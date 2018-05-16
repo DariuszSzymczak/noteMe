@@ -6,7 +6,7 @@
     }
     else
     {
-        die('Błąd krytyczny :(aa');
+        die('Błąd krytyczny :(');
     }
 
     if(isset($_POST['mail']))
