@@ -15,14 +15,30 @@
 <div class="container-fluid">
     
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-  Zarejestruj
-</button>
-<button type="button" class="btn btn-danger" style="float:right;" data-toggle="modal" data-target="#exampleModalCenter">
-  Zaloguj
-</button>
+<div class="page-header">
+    <div class="page-header-title">
+      <img src="notepad.png"/>
+      <h1><strong>note</strong>Me</h1>
+    </div>
+    <br/>
+  <div class="page-header-description">
+    <p class="description">
+      
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempore recusandae animi soluta quasi?
+ Asperiores rem dolore eaque vel, porro, soluta unde debitis aliquam laboriosam. Repellat explicabo, maiores!
+    </p>
+  </div>
+    <div class=page-header-buttons>
+      <button type="button" class="btn btn-primary btn-header" data-toggle="modal" data-target="#registerModal">
+        Zarejestruj
+      </button>
+      <button type="button" class="btn btn-danger btn-header" style="float:right;" data-toggle="modal" data-target="#loginModal">
+        Zaloguj
+      </button>
+  </div>
+</div>
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -34,34 +50,61 @@
       <div class="modal-body">
       <form action="accounts/handler.php" method="POST">
   <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
+    <label class="form-label" for="exampleInputEmail1">Adres e-mail</label>
     <input name="mail" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Login</label>
+    <label class="form-label" for="exampleInputPassword1">Login</label>
     <input name="login" type="text" class="form-control" id="exampleInputPassword1" placeholder="login">
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Password2</label>
+    <label class="form-label" for="exampleInputPassword1">Hasło</label>
     <input name="pass1" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
+    <label class="form-label" for="exampleInputPassword1">Powtórz hasło</label>
     <input name="pass2" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
   </div>
-
-  
-  <button type="submit" class="btn btn-primary">Submit</button>
 </form>   
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+
+      <div class="modal-footer"><button type="submit" class="btn btn-primary">Zarejestruj się</button>
+      <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+        
       </div>
     </div>
   </div>
 </div>
 
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h3 class="modal-title">Zaloguj się</h3>
+      </div>
+      <div class="modal-body">
+      <form action="accounts/handler.php" method="POST">
+  <div class="form-group">
+    <label class="form-label" for="exampleInputPassword1">Login</label>
+    <input name="login" type="text" class="form-control" id="exampleInputPassword1" placeholder="login">
+  </div>
+  <div class="form-group">
+    <label class="form-label" for="exampleInputPassword1">Hasło</label>
+    <input name="pass1" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+</form>   
+      </div>
+
+      <div class="modal-footer"><button type="submit" class="btn btn-primary">Zaloguj</button>
+      <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
 
 
 </div>

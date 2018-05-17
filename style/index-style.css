@@ -43,7 +43,83 @@ body{
 	}
 }
 
-h3
+.modal-header h3
 {
-    color: black;
+   color: rgb(26, 0, 0);
+}
+
+.page-header
+{
+    padding: 1%;
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    margin:auto;
+    padding:auto;
+
+    width:50%;
+    height:50%;
+
+    background-color: rgba(54, 0, 0, 0.05);
+    border: 0px solid green;
+}
+
+.page-header-title
+{
+    border: 0px solid white;
+    width: 100%;
+}
+.page-header-title h1
+{
+    font-size: 10rem;
+    float: left;
+}
+.page-header-title img
+{
+    float: left;
+}
+
+.btn-header
+{
+    position: relative;
+    top:100%;
+    left:0;
+    right:0;
+    bottom:0;
+    margin:auto;
+    padding:auto;
+
+}
+
+
+.page-header-buttons
+{
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    margin:auto;
+    padding:auto;
+    border: 0px solid black;
+    width: 50%;
+}
+
+.page-header-description p
+{
+    float:left;
+    margin-left:3%;
+}
+
+.btn-header
+{
+float:left;
+width:49%;
+margin-left: 1%;
+}
+
+.form-label
+{
+    color:rgb(26, 0, 0);
 }
