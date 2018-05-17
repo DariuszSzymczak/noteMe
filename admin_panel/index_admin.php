@@ -1,3 +1,11 @@
+<?php
+	session_start();
+		if(isset($_SESSION["KOMUNIKAT"]))
+		{
+			echo "<script>confirm($_SESSION['KOMUNIKAT'])</script>";
+		}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,7 +60,7 @@ body{
 		background-position: 0% 50%
 	}
 }
-      </style>
+	</style>
 </head>
 
 <body>
@@ -68,8 +76,9 @@ body{
                 onclick="document.adminForm.action= 'deleteQuest.php';"/>
             <input type="submit" name="submit" value="Zmień hasło"
                 onclick="document.adminForm.action= 'changePW.php';"/>
-            
         </form>
     </div>
+
+
 </body>
 </html>
