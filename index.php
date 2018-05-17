@@ -8,20 +8,17 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="particles/particles.js"></script><!--SRC FOR PARTICLES -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body>
+<body id="particles-js"><!--ID FOR PARTICLES -->
   
 <div class="container">
-    
+
 <!-- Button trigger modal -->
 <div class="page-header">
     <div class="page-header-title">
-      <img src="notepad.png"/>
-      <h1 style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" 
- unselectable="on"
- onselectstart="return false;" 
- onmousedown="return false;"><strong>note</strong>Me</h1>
+    <img class="logo" src="assets/logo.png"></img>
     </div>
     <br/>
   <div class="page-header-description">
@@ -32,7 +29,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempo
     </p>
   </div>
     <div class=page-header-buttons>
-      <button type="button" class="btn btn-primary btn-header" data-toggle="modal" data-target="#registerModal">
+      <button type="button" class="btn btn-success btn-header" data-toggle="modal" data-target="#registerModal">
         Zarejestruj
       </button>
       <button type="button" class="btn btn-danger btn-header" style="float:right;" data-toggle="modal" data-target="#loginModal">
@@ -111,6 +108,13 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempo
 
 
 </div>
+<script>
+/* particlesJS.load(@dom-id, @path-json, @callback (optional); */
+particlesJS.load('particles-js', 'particles/particlesjs-config.json', function() {
+  console.log('callback - particles.js config loaded');
+});
 
+  
+</script>
 </body>
 </html>
