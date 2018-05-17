@@ -18,7 +18,10 @@
 <div class="page-header">
     <div class="page-header-title">
       <img src="notepad.png"/>
-      <h1><strong>note</strong>Me</h1>
+      <h1 style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" 
+ unselectable="on"
+ onselectstart="return false;" 
+ onmousedown="return false;"><strong>note</strong>Me</h1>
     </div>
     <br/>
   <div class="page-header-description">

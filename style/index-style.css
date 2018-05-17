@@ -113,6 +113,13 @@ body{
 .page-header-title img
 {
     float: left;
+    transition: transform 2s;
+    
+}
+
+.page-header-title img:hover
+{
+    transform:rotate(360deg);
 }
 
 .btn-header
