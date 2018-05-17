@@ -65,9 +65,6 @@ body{
 <button type="button" class="btn btn-danger" style="float:right;" data-toggle="modal" data-target="#exampleModalCenter">
   Zaloguj
 </button>
-<button>
-  sraj
-</button>
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
