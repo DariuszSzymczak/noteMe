@@ -1,3 +1,37 @@
+@media only screen and (max-width: 800px) 
+{
+    /* For mobile phones: */
+    .page-header-title img
+    {
+        width: 30%;
+    }
+   .page-header .page-header-title h1
+    {
+        width: 10%;
+        float:left; 
+        font-size: 6rem;
+        float: left;
+    }
+    .container .page-header
+    {
+        padding: 1%;
+        position: absolute;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        margin:auto;
+        padding:auto;
+        width:100%;
+        
+    }
+    .page-header .page-header-buttons
+    {
+        width: 100%;
+    }
+
+}
+
 body{
 	height: 90vh;
 	color: #fff;
@@ -62,7 +96,7 @@ body{
     width:50%;
     height:50%;
 
-    background-color: rgba(54, 0, 0, 0.05);
+    background-color: rgba(54, 0, 0, 0.00);
     border: 0px solid green;
 }
 
