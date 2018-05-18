@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+
 @media only screen and (max-width: 800px) 
 {
     /* For mobile phones: */
     .page-header-title img
     {
-        width: 30%;
+        width: 100%;
     }
    .page-header .page-header-title h1
     {
@@ -32,17 +34,22 @@
 
 }
 
-
+.loader
+{
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('loading.gif') 50% 50% no-repeat rgb(249,249,249);
+    opacity: 0.95;
+}
 .modal-header h3
 {
    color: rgb(26, 0, 0);
 }
-.modal-footer {
-    padding: 15px;
-    text-align: right;
-    margin-top: 50px;
-    border-top: 1px solid #e5e5e5;
-}
+
 .page-header
 {
     padding: 1%;
@@ -98,6 +105,7 @@
     padding:auto;
     border: 0px solid black;
     width: 50%;
+    height: 30%;
 }
 
 .page-header-description p
@@ -108,12 +116,125 @@
 
 .btn-header
 {
-float:left;
-width:49%;
-margin-left: 1%;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    margin:auto;
+    padding:auto;
+    float:left;
+    width:47%;
+    margin-left: 3%;
+    background:none;
+    color: rgb(41, 41, 41);
+    border: 2px solid rgb(41, 41, 41);
+    border-radius: 15px;
+    height: 60%; 
+    transition: color 0.5s ease,  border-color 0.5s ease;
+    font-size:2rem;
+    font-family: 'Quicksand', sans-serif;
+
+
+}
+.btn
+{
+    background:none;
+    color: rgb(41, 41, 41);
+    border: 2px solid rgb(41, 41, 41);
+    border-radius: 15px;
+}
+.btn-success:hover
+{
+    background: none;
+    color: green;
+    transition: color 0.5s ease,  border-color 0.7s ease;
+}
+
+.btn-danger:hover
+{
+    background: none;
+    color: red;
+    transition: color 0.5s ease,  border-color 0.7s ease;
 }
 
 .form-label
 {
     color:rgb(26, 0, 0);
+}
+
+.modal-backdrop
+{
+    background-color:white;
+}
+
+.modal-content
+{
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+form
+{
+    background-color: rgba(255, 255, 255, 0.0);
+}
+
+
+input
+{
+    background: none !important;
+    border: 1px solid rgba(41, 41, 41, 0.75) !important;
+    color:black !important;
+}
+
+.btn:focus
+{
+    background: none;
+    color: rgb(41, 41, 41);
+
+}
+
+.modal-header
+{
+    text-align: center;
+}
+
+.modal
+{
+    font-family: 'Quicksand', sans-serif;
+}
+
+
+label
+{
+    border: 1px solid rgb(41, 41, 41) !important;
+    border-radius: 3px !important;
+}
+
+label:hover
+{
+    background: none !important;
+}
+
+.modal-footer .btn
+{
+    background:none;
+    color: rgb(41, 41, 41);
+    border: 1px solid rgb(41, 41, 41);
+    border-radius: 15px;
+    transition: color 0.5s ease,  border-color 0.5s ease !important;
+}
+.modal-footer .btn-success:hover
+{
+    background: none;
+    color: green;
+    border-color: green;
+    transition: color 0.5s ease,  border-color 0.7s ease;
+}
+
+.modal-footer .btn-danger:hover
+{
+    background: none;
+    color: red;
+    border-color: red;
+
+    transition: color 0.5s ease,  border-color 0.7s ease;
 }
