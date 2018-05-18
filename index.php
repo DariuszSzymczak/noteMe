@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
@@ -8,113 +9,136 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="particles/particles.js"></script><!--SRC FOR PARTICLES -->
+  <script src="particles/particles.js"></script>
+  <!--SRC FOR PARTICLES -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body id="particles-js"><!--ID FOR PARTICLES -->
-  
-<div class="container">
 
-<!-- Button trigger modal -->
-<div class="page-header">
-    <div class="page-header-title">
-    <img class="logo" src="assets/logo.png"></img>
-    </div>
-    <br/>
-  <div class="page-header-description">
-    <p class="description">
-      
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempore recusandae animi soluta quasi?
- Asperiores rem dolore eaque vel, porro, soluta unde debitis aliquam laboriosam. Repellat explicabo, maiores!
-    </p>
-  </div>
-    <div class=page-header-buttons>
-      <button type="button" class="btn btn-success btn-header" data-toggle="modal" data-target="#registerModal">
-        Zarejestruj
-      </button>
-      <button type="button" class="btn btn-danger btn-header" style="float:right;" data-toggle="modal" data-target="#loginModal">
-        Zaloguj
-      </button>
-  </div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+<body id="particles-js">
+  <!--ID FOR PARTICLES -->
+
+  <div class="container">
+
+    <!-- Button trigger modal -->
+    <div class="page-header">
+      <div class="page-header-title">
+        <img class="logo" src="assets/logo.png"></img>
+      </div>
+      <br/>
+      <div class="page-header-description">
+        <p class="description">
+
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempore recusandae animi soluta quasi? Asperiores
+          rem dolore eaque vel, porro, soluta unde debitis aliquam laboriosam. Repellat explicabo, maiores!
+        </p>
+      </div>
+      <div class=page-header-buttons>
+        <button type="button" class="btn btn-success btn-header" data-toggle="modal" data-target="#registerModal">
+          Zarejestruj
         </button>
-        <h3 class="modal-title">Zarejestruj się</h3>
-      </div>
-      <div class="modal-body">
-      <form action="accounts/handler.php" method="POST">
-  <div class="form-group">
-    <label class="form-label" for="exampleInputEmail1">Adres e-mail</label>
-    <input name="mail" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-  </div>
-  <div class="form-group">
-    <label class="form-label" for="exampleInputPassword1">Login</label>
-    <input name="login" type="text" class="form-control" id="exampleInputPassword1" placeholder="login">
-  </div>
-  <div class="form-group">
-    <label class="form-label" for="exampleInputPassword1">Hasło</label>
-    <input name="pass1" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-  </div>
-  <div class="form-group">
-    <label class="form-label" for="exampleInputPassword1">Powtórz hasło</label>
-    <input name="pass2" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-  </div> 
-      <div class="modal-footer"><button type="submit" class="btn btn-primary">Zarejestruj się</button>
-      <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
-        
-      </div>
-</form>   
-      </div>
-
-
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+        <button type="button" class="btn btn-danger btn-header" style="float:right;" data-toggle="modal" data-target="#loginModal">
+          Zaloguj
         </button>
-        <h3 class="modal-title">Zaloguj się</h3>
       </div>
-      <div class="modal-body">
-      <form action="accounts/handler.php" method="POST">
-  <div class="form-group">
-    <label class="form-label" for="exampleInputPassword1">Login</label>
-    <input name="login" type="text" class="form-control" id="exampleInputPassword1" placeholder="login">
-  </div>
-  <div class="form-group">
-    <label class="form-label" for="exampleInputPassword1">Hasło</label>
-    <input name="pass1" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-  </div>
-  <div class="modal-footer"><button type="submit" class="btn btn-primary">Zaloguj</button>
-      <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
-        
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h3 class="modal-title">Zarejestruj się</h3>
+          </div>
+          <div class="modal-body">
+            <form action="accounts/handler.php" method="POST">
+              <div class="form-group">
+                <label class="form-label" for="exampleInputEmail1">Adres e-mail</label>
+                <input name="mail" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="exampleInputPassword1">Login</label>
+                <input name="login" type="text" class="form-control" id="exampleInputPassword1" placeholder="login">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="exampleInputPassword1">Hasło</label>
+                <input name="pass1" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="exampleInputPassword1">Powtórz hasło</label>
+                <input name="pass2" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Zarejestruj się</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+
+              </div>
+            </form>
+          </div>
+
+
+        </div>
       </div>
-</form>   
+    </div>
+
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h3 class="modal-title">Zaloguj się</h3>
+          </div>
+          <div class="modal-body">
+            <form action="accounts/handler.php" method="POST">
+
+              <div class="row">
+                <div class="form-group">
+                  <div class="col-lg-3 col-xs-12">
+                    <label for="loginform-login" class="btn btn-default btn-sm" style="width:100%">
+                      <span class="glyphicon glyphicon-user"></span> login
+                    </label>
+                  </div>
+                  <div class="col-lg-9 col-xs-12">
+                    <input name="loginform-login" type="text" class="form-control" id="loginform-login" placeholder="Podaj Login"></input>
+                  </div>
+                </div>
+              </div></br>
+              <!-- end or row1 -->
+              <div class="row">
+                <div class="form-group">
+                  <div class="col-lg-3 col-xs-12">
+                    <label for="loginform-password" class="btn btn-default btn-sm" style="width:100%">
+                      <span class="	glyphicon glyphicon-lock"></span> Hasło
+                    </label>
+                  </div>
+                  <div class="col-lg-9 col-xs-12">
+                    <input name="loginform-password" type="password" class="form-control" id="loginform-password" placeholder="Podaj Hasło"></input>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary">Zaloguj</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+                </div>
+              </div>
+              <!-- end of row2-->
+          </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
-</div>
-<script>
-/* particlesJS.load(@dom-id, @path-json, @callback (optional); */
-particlesJS.load('particles-js', 'particles/particlesjs-config.json', function() {
-  console.log('callback - particles.js config loaded');
-});
-
-  
-</script>
+  </div>
+  <script>
+    /* particlesJS.load(@dom-id, @path-json, @callback (optional); */
+    particlesJS.load('particles-js', 'particles/particlesjs-config.json', function () {
+      console.log('callback - particles.js config loaded');
+    });
+  </script>
 </body>
+
 </html>
