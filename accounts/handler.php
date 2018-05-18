@@ -16,4 +16,8 @@
         $d = $_POST['pass2'];
         $reg->addUser($a,$b,$c,$d);
     }
+    else
+    {
+        header("Location:../index.php");
+    }
 ?>

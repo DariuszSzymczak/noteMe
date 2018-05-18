@@ -63,7 +63,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempo
                     </label>
                   </div>
                   <div class="col-lg-9 col-xs-12">
-                    <input name="loginform-login" type="text" class="form-control" id="loginform-login" placeholder="Podaj Login"></input>
+                    <input name="loginform-login" type="text" class="form-control" id="loginform-login" placeholder="Podaj Login" required></input>
                   </div>
                 </div>
               </div><br/>
@@ -75,7 +75,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempo
                     </label>
                   </div>
                   <div class="col-lg-9 col-xs-12">
-                    <input name="loginform-password" type="text" class="form-control" id="loginform-login" placeholder="Podaj e-mail"></input>
+                    <input name="loginform-password" type="text" class="form-control" id="loginform-login" placeholder="Podaj e-mail" required></input>
                   </div>
                 </div>
               </div><br/>
@@ -87,7 +87,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempo
                     </label>
                   </div>
                   <div class="col-lg-9 col-xs-12">
-                    <input name="loginform-login" type="password" class="form-control" id="loginform-login" placeholder="Podaj hasło"></input>
+                    <input name="loginform-login" type="password" class="form-control" id="loginform-login" placeholder="Podaj hasło" required></input>
                   </div>
                 </div>
               </div><br/>
@@ -99,7 +99,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempo
                     </label>
                   </div>
                   <div class="col-lg-9 col-xs-12">
-                    <input name="loginform-login" type="password" class="form-control" id="loginform-login" placeholder="Powtórz hasło"></input>
+                    <input name="loginform-login" type="password" class="form-control" id="loginform-login" placeholder="Powtórz hasło" required></input>
                   </div>
                 </div>
               </div><br/>
