@@ -64,14 +64,15 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempo
   <div class="form-group">
     <label class="form-label" for="exampleInputPassword1">Powtórz hasło</label>
     <input name="pass2" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-  </div>
-</form>   
-      </div>
-
+  </div> 
       <div class="modal-footer"><button type="submit" class="btn btn-primary">Zarejestruj się</button>
       <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
         
       </div>
+</form>   
+      </div>
+
+
     </div>
   </div>
 </div>
@@ -95,12 +96,11 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempo
     <label class="form-label" for="exampleInputPassword1">Hasło</label>
     <input name="pass1" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
   </div>
-</form>   
-      </div>
-
-      <div class="modal-footer"><button type="submit" class="btn btn-primary">Zaloguj</button>
+  <div class="modal-footer"><button type="submit" class="btn btn-primary">Zaloguj</button>
       <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
         
+      </div>
+</form>   
       </div>
     </div>
   </div>

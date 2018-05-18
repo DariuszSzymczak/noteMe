@@ -7,7 +7,8 @@
     $querryDelete = $pdo->prepare("DELETE FROM users where login=:login");
     $querryDelete->bindParam(':login',$login, PDO::PARAM_STR);
     $querryDelete->execute();
-    $_SESSION['KOMUNIKAT'] = "Użytkownik ',$login,' został usuniety";
-    header('location:index_admin.php');
-    
+        echo "<script type='text/javascript'>
+                   alert('Usunięto użytkownika ",$login, " ');
+                   location='index_admin.php';
+                </script>"    
 ?>
