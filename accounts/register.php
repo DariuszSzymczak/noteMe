@@ -1,12 +1,11 @@
 <?php
 class register{
 
-    public function addUser($mail,$login,$password,$password2)
+    public function addUser($pdo,$mail,$login,$password,$password2)
     {
 
            if($password===$password2)
            {
-                $pdo = new PDO('mysql:host=localhost;dbname=1158227_qkg', 'root', '');
                 $salted = "salt{$password}salt";
                 $hash = md5($salted);
                 $null = "";
@@ -23,6 +22,39 @@ class register{
                 $stmt->execute();
            }
 
+
+    }
+
+    public function login($pdo,$login,$password)
+    {
+            $stmt = $pdo->query('SELECT login,md5 FROM users');
+            $salted = "salt{$password}salt";
+            $md5 = md5($salted);
+            $check = FALSE;
+            foreach($stmt as $row)
+            {
+                if($login===$row['login'] AND $md5===$row['md5'])
+                {
+                    $check = TRUE;
+                }
+            }
+
+            if($check == TRUE)
+            {
+                session_start();
+                $query = $pdo->query('SELECT loginmd5 FROM users WHERE md5='.$md5.'');
+                $userID = $query->fetchColumn();
+                $_SESSION['userID']=$userID;
+                header('Location:../adminpanel.php');
+
+            }
+            else
+            {
+                setcookie("loginFailed", $login, time()+10);
+                header('Location:../index.php');
+            }
+            
+           
 
     }
 

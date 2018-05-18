@@ -1,23 +1,50 @@
 <?php
- $register = 'register.php';
+    $register = 'register.php';
     if(file_exists($register)){
         require $register;
+        $config = 'config.php';
+        if(file_exists($config))
+        {
+            require $config;
+            
+            try
+            {
+                $pdo = new PDO("mysql:host=$server;dbname=$database", $usr, $passwd);
+            }
+            catch(Exception $e)
+            {
+                die('Błąd krytyczny');
+            }
+        }
+        else
+        {
+            die('Błąd krytyczny :(');
+        }
         $reg = new register();
     }
     else
     {
         die('Błąd krytyczny :(');
     }
-
+    //----------------Weryfikacja rejestracji----------------
     if(isset($_POST['mail']))
-    {   $a = $_POST['mail'];
-        $b = $_POST['login'];
-        $c = $_POST['pass1'];
-        $d = $_POST['pass2'];
-        $reg->addUser($a,$b,$c,$d);
+    {   $mail = $_POST['mail'];
+        $login = $_POST['login'];
+        $pass1 = $_POST['pass1'];
+        $pass2 = $_POST['pass2'];
+        
+        $reg->addUser($pdo,$mail,$login,$pass1,$pass2);
     }
-    else
+   
+    //-------------------------------------------------------
+
+    //----------------Weryfikacja logowania----------------
+    if(isset($_POST['auth-login']))
     {
-        header("Location:../index.php");
+        $login = $_POST['auth-login'];
+        $password = $_POST['auth-password'];
+
+        $reg->login($pdo,$login,$password);
     }
+    
 ?>
