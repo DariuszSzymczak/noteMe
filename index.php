@@ -16,7 +16,7 @@
 <body id="particles-js"><!--ID FOR PARTICLES -->
   
 <div class="container">
-  <div class="loader"></div>
+ 
 
 <!-- Button trigger modal -->
 
