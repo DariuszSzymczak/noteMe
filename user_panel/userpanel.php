@@ -33,7 +33,7 @@
     <!-- Preloader - style you can find in spinners.css -->
     <div class="preloader">
         <svg class="circular" viewBox="25 25 50 50">
-			<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
     </div>
     <!-- Main wrapper  -->
     <div id="main-wrapper">
@@ -42,12 +42,20 @@
             <nav class="navbar top-navbar navbar-expand-md navbar-light">
                 <!-- Logo -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="userpanel.php">
+                    <a class="navbar-brand" href="userpanel.php">
                         <!-- Logo icon -->
-                        <b><img src="images/logo.png" alt="homepage" class="dark-logo" /></b>
+                        <span>
+                            <img src="../assets/header-logo-text.png" alt="homepage" class="dark-logo" />
+                        </span>                        
+                        <b>
+                            <img src="../assets/header-logo.png" alt="homepage" class="dark-logo" />
+                        </b>
+                    </a>
                         <!--End Logo icon -->
                         <!-- Logo text -->
-                        <span><img src="images/logo-text.png" alt="homepage" class="dark-logo" /></span>
+                        
+                    </a>
                     </a>
                 </div>
                 <!-- End Logo -->
@@ -55,10 +63,22 @@
                     <!-- toggle and nav items -->
                     <ul class="navbar-nav mr-auto mt-md-0">
                         <!-- This is  -->
-                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted  " href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
-                        <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted  " href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-toggler hidden-md-up text-muted  " href="javascript:void(0)">
+                                <i class="mdi mdi-menu"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item m-l-10">
+                            <a class="nav-link sidebartoggler hidden-sm-down text-muted  " href="javascript:void(0)">
+                                <i class="ti-menu"></i>
+                            </a>
+                        </li>
                         <!-- Messages -->
-                        <li class="nav-item dropdown mega-dropdown"> <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-th-large"></i></a>
+                        <li class="nav-item dropdown mega-dropdown">
+                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <i class="fa fa-th-large"></i>
+                            </a>
                             <div class="dropdown-menu animated zoomIn">
                                 <ul class="mega-dropdown-menu row">
 
@@ -81,33 +101,78 @@
                                         <h4 class="m-b-20">List style</h4>
                                         <!-- List style -->
                                         <ul class="list-style-none">
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li class="col-lg-3 col-xlg-3 m-b-30">
                                         <h4 class="m-b-20">List style</h4>
                                         <!-- List style -->
                                         <ul class="list-style-none">
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li class="col-lg-3 col-xlg-3 m-b-30">
                                         <h4 class="m-b-20">List style</h4>
                                         <!-- List style -->
                                         <ul class="list-style-none">
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -119,15 +184,26 @@
                     <ul class="navbar-nav my-lg-0">
 
                         <!-- Search -->
-                        <li class="nav-item hidden-sm-down search-box"> <a class="nav-link hidden-sm-down text-muted  " href="javascript:void(0)"><i class="ti-search"></i></a>
+                        <li class="nav-item hidden-sm-down search-box">
+                            <a class="nav-link hidden-sm-down text-muted  " href="javascript:void(0)">
+                                <i class="ti-search"></i>
+                            </a>
                             <form class="app-search">
-                                <input type="text" class="form-control" placeholder="Search here"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
+                                <input type="text" class="form-control" placeholder="Search here">
+                                <a class="srh-btn">
+                                    <i class="ti-close"></i>
+                                </a>
+                            </form>
                         </li>
                         <!-- Comment -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-bell"></i>
-								<div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
-							</a>
+                            <a class="nav-link dropdown-toggle text-muted text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-bell"></i>
+                                <div class="notify">
+                                    <span class="heartbit"></span>
+                                    <span class="point"></span>
+                                </div>
+                            </a>
                             <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn">
                                 <ul>
                                     <li>
@@ -137,36 +213,55 @@
                                         <div class="message-center">
                                             <!-- Message -->
                                             <a href="#">
-                                                <div class="btn btn-danger btn-circle m-r-10"><i class="fa fa-link"></i></div>
+                                                <div class="btn btn-danger btn-circle m-r-10">
+                                                    <i class="fa fa-link"></i>
+                                                </div>
                                                 <div class="mail-contnet">
-                                                    <h5>This is title</h5> <span class="mail-desc">Just see the my new admin!</span> <span class="time">9:30 AM</span>
+                                                    <h5>This is title</h5>
+                                                    <span class="mail-desc">Just see the my new admin!</span>
+                                                    <span class="time">9:30 AM</span>
                                                 </div>
                                             </a>
                                             <!-- Message -->
                                             <a href="#">
-                                                <div class="btn btn-success btn-circle m-r-10"><i class="ti-calendar"></i></div>
+                                                <div class="btn btn-success btn-circle m-r-10">
+                                                    <i class="ti-calendar"></i>
+                                                </div>
                                                 <div class="mail-contnet">
-                                                    <h5>This is another title</h5> <span class="mail-desc">Just a reminder that you have event</span> <span class="time">9:10 AM</span>
+                                                    <h5>This is another title</h5>
+                                                    <span class="mail-desc">Just a reminder that you have event</span>
+                                                    <span class="time">9:10 AM</span>
                                                 </div>
                                             </a>
                                             <!-- Message -->
                                             <a href="#">
-                                                <div class="btn btn-info btn-circle m-r-10"><i class="ti-settings"></i></div>
+                                                <div class="btn btn-info btn-circle m-r-10">
+                                                    <i class="ti-settings"></i>
+                                                </div>
                                                 <div class="mail-contnet">
-                                                    <h5>This is title</h5> <span class="mail-desc">You can customize this template as you want</span> <span class="time">9:08 AM</span>
+                                                    <h5>This is title</h5>
+                                                    <span class="mail-desc">You can customize this template as you want</span>
+                                                    <span class="time">9:08 AM</span>
                                                 </div>
                                             </a>
                                             <!-- Message -->
                                             <a href="#">
-                                                <div class="btn btn-primary btn-circle m-r-10"><i class="ti-user"></i></div>
+                                                <div class="btn btn-primary btn-circle m-r-10">
+                                                    <i class="ti-user"></i>
+                                                </div>
                                                 <div class="mail-contnet">
-                                                    <h5>This is another title</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span>
+                                                    <h5>This is another title</h5>
+                                                    <span class="mail-desc">Just see the my admin!</span>
+                                                    <span class="time">9:02 AM</span>
                                                 </div>
                                             </a>
                                         </div>
                                     </li>
                                     <li>
-                                        <a class="nav-link text-center" href="javascript:void(0);"> <strong>Check all notifications</strong> <i class="fa fa-angle-right"></i> </a>
+                                        <a class="nav-link text-center" href="javascript:void(0);">
+                                            <strong>Check all notifications</strong>
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
@@ -174,9 +269,13 @@
                         <!-- End Comment -->
                         <!-- Messages -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted  " href="#" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-envelope"></i>
-								<div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
-							</a>
+                            <a class="nav-link dropdown-toggle text-muted  " href="#" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-envelope"></i>
+                                <div class="notify">
+                                    <span class="heartbit"></span>
+                                    <span class="point"></span>
+                                </div>
+                            </a>
                             <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn" aria-labelledby="2">
                                 <ul>
                                     <li>
@@ -186,36 +285,59 @@
                                         <div class="message-center">
                                             <!-- Message -->
                                             <a href="#">
-                                                <div class="user-img"> <img src="images/users/5.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
+                                                <div class="user-img">
+                                                    <img src="images/users/5.jpg" alt="user" class="img-circle">
+                                                    <span class="profile-status online pull-right"></span>
+                                                </div>
                                                 <div class="mail-contnet">
-                                                    <h5>Michael Qin</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:30 AM</span>
+                                                    <h5>Michael Qin</h5>
+                                                    <span class="mail-desc">Just see the my admin!</span>
+                                                    <span class="time">9:30 AM</span>
                                                 </div>
                                             </a>
                                             <!-- Message -->
                                             <a href="#">
-                                                <div class="user-img"> <img src="images/users/2.jpg" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
+                                                <div class="user-img">
+                                                    <img src="images/users/2.jpg" alt="user" class="img-circle">
+                                                    <span class="profile-status busy pull-right"></span>
+                                                </div>
                                                 <div class="mail-contnet">
-                                                    <h5>John Doe</h5> <span class="mail-desc">I've sung a song! See you at</span> <span class="time">9:10 AM</span>
+                                                    <h5>John Doe</h5>
+                                                    <span class="mail-desc">I've sung a song! See you at</span>
+                                                    <span class="time">9:10 AM</span>
                                                 </div>
                                             </a>
                                             <!-- Message -->
                                             <a href="#">
-                                                <div class="user-img"> <img src="images/users/3.jpg" alt="user" class="img-circle"> <span class="profile-status away pull-right"></span> </div>
+                                                <div class="user-img">
+                                                    <img src="images/users/3.jpg" alt="user" class="img-circle">
+                                                    <span class="profile-status away pull-right"></span>
+                                                </div>
                                                 <div class="mail-contnet">
-                                                    <h5>Mr. John</h5> <span class="mail-desc">I am a singer!</span> <span class="time">9:08 AM</span>
+                                                    <h5>Mr. John</h5>
+                                                    <span class="mail-desc">I am a singer!</span>
+                                                    <span class="time">9:08 AM</span>
                                                 </div>
                                             </a>
                                             <!-- Message -->
                                             <a href="#">
-                                                <div class="user-img"> <img src="images/users/4.jpg" alt="user" class="img-circle"> <span class="profile-status offline pull-right"></span> </div>
+                                                <div class="user-img">
+                                                    <img src="images/users/4.jpg" alt="user" class="img-circle">
+                                                    <span class="profile-status offline pull-right"></span>
+                                                </div>
                                                 <div class="mail-contnet">
-                                                    <h5>Michael Qin</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span>
+                                                    <h5>Michael Qin</h5>
+                                                    <span class="mail-desc">Just see the my admin!</span>
+                                                    <span class="time">9:02 AM</span>
                                                 </div>
                                             </a>
                                         </div>
                                     </li>
                                     <li>
-                                        <a class="nav-link text-center" href="javascript:void(0);"> <strong>See all e-Mails</strong> <i class="fa fa-angle-right"></i> </a>
+                                        <a class="nav-link text-center" href="javascript:void(0);">
+                                            <strong>See all e-Mails</strong>
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
@@ -223,14 +345,31 @@
                         <!-- End Messages -->
                         <!-- Profile -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/users/5.jpg" alt="user" class="profile-pic" /></a>
+                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="images/users/5.jpg" alt="user" class="profile-pic" />
+                            </a>
                             <div class="dropdown-menu dropdown-menu-right animated zoomIn">
                                 <ul class="dropdown-user">
-                                    <li><a href="#"><i class="ti-user"></i> Profile</a></li>
-                                    <li><a href="#"><i class="ti-wallet"></i> Balance</a></li>
-                                    <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
-                                    <li><a href="#"><i class="ti-settings"></i> Setting</a></li>
-                                    <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="ti-user"></i> Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="ti-wallet"></i> Balance</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="ti-email"></i> Inbox</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="ti-settings"></i> Setting</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-power-off"></i> Logout</a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
@@ -248,14 +387,47 @@
                     <ul id="sidebarnav">
                         <li class="nav-devider"></li>
                         <li class="nav-label">Menu główne</li>
-                        <li> <a href="userpanel.php"><i class="fa fa-tachometer"></i><span class="hide-menu">Strona główna </a></li>
+                        <li>
+                            <a href="userpanel.php">
+                                <i class="fa fa-tachometer"></i>
+                                <span class="hide-menu">Strona główna </a>
+                        </li>
 
-                        <li> <a href="#" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Wiadomości</span></a>
-                        <li> <a href="app-profile.php" aria-expanded="false"><i class="fa fa-user"></i><span class="hide-menu">Twój profil</span></a></li>
-                        <li> <a href="#" aria-expanded="false"><i class="fa fa-table"></i><span class="hide-menu">Grupy</span></a></li>
-                        <li> <a href="tasks.php" aria-expanded="false"><i class="fa fa-wpforms"></i><span class="hide-menu">Zadania</span></a></li>
-                        <li> <a href="#" aria-expanded="false"><i class="fa fa-book"></i><span class="hide-menu">Notatki</span></a></li>
-                        <li> <a href="#" aria-expanded="false"><i class="fa fa-level-down"></i><span class="hide-menu">Wyloguj</span></a></li>
+                        <li>
+                            <a href="#" aria-expanded="false">
+                                <i class="fa fa-envelope"></i>
+                                <span class="hide-menu">Wiadomości</span>
+                            </a>
+                            <li>
+                                <a href="app-profile.php" aria-expanded="false">
+                                    <i class="fa fa-user"></i>
+                                    <span class="hide-menu">Twój profil</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" aria-expanded="false">
+                                    <i class="fa fa-table"></i>
+                                    <span class="hide-menu">Grupy</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="tasks.php" aria-expanded="false">
+                                    <i class="fa fa-wpforms"></i>
+                                    <span class="hide-menu">Zadania</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" aria-expanded="false">
+                                    <i class="fa fa-book"></i>
+                                    <span class="hide-menu">Notatki</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" aria-expanded="false">
+                                    <i class="fa fa-level-down"></i>
+                                    <span class="hide-menu">Wyloguj</span>
+                                </a>
+                            </li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -268,10 +440,13 @@
             <!-- Bread crumb -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-primary">Panel użytkownika</h3> </div>
+                    <h3 class="text-primary">Panel użytkownika</h3>
+                </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                        <li class="breadcrumb-item">
+                            <a href="javascript:void(0)">Home</a>
+                        </li>
                         <li class="breadcrumb-item active">Panel użytkownika</li>
                     </ol>
                 </div>
@@ -284,9 +459,9 @@
                     <div class="col-md-3">
                         <div class="card p-30">
                             <div class="media">
-                            <div class="media-left meida media-middle">
-                                <img src="images/list.png"/>
-                            </div>
+                                <div class="media-left meida media-middle">
+                                    <img src="images/list.png" />
+                                </div>
                                 <div class="media-body media-text-right">
                                     <h2>568120</h2>
                                     <p class="m-b-0">Twoje zadania</p>
@@ -297,9 +472,9 @@
                     <div class="col-md-3">
                         <div class="card p-30">
                             <div class="media">
-                            <div class="media-left meida media-middle">
-                                <img src="images/hourglass.png"/>
-                            </div>
+                                <div class="media-left meida media-middle">
+                                    <img src="images/hourglass.png" />
+                                </div>
                                 <div class="media-body media-text-right">
                                     <h2>1178</h2>
                                     <p class="m-b-0">Oczekujące</p>
@@ -310,9 +485,9 @@
                     <div class="col-md-3">
                         <div class="card p-30">
                             <div class="media">
-                            <div class="media-left meida media-middle">
-                                <img src="images/goal.png"/>
-                            </div>
+                                <div class="media-left meida media-middle">
+                                    <img src="images/goal.png" />
+                                </div>
                                 <div class="media-body media-text-right">
                                     <h2>25</h2>
                                     <p class="m-b-0">Zakończone</p>
@@ -323,9 +498,9 @@
                     <div class="col-md-3">
                         <div class="card p-30">
                             <div class="media">
-                            <div class="media-left meida media-middle">
-                                <img src="images/notepad.png"/>
-                            </div>
+                                <div class="media-left meida media-middle">
+                                    <img src="images/notepad.png" />
+                                </div>
                                 <div class="media-body media-text-right">
                                     <h2>847</h2>
                                     <p class="m-b-0">Notatki</p>
@@ -335,157 +510,205 @@
                     </div>
                 </div>
 
-                
-                <div class="row">
-					
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-title">
-                                <h4>Twoje ostatnie zadania </h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Nazwa</th>
-                                                <th>Grupa</th>
-                                                <th>Deadline</th>
-                                                <th>Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
 
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Przykładowe zadanie z bazy</td>
-                                                <td><span>IP20</span></td>
-                                                <td><span>2018-05-30</span></td>
-                                                <td><span class="badge badge-success">Skończone</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                   2
-                                                </td>
-                                                <td>Następne jakieś zadanie</td>
-                                                <td><span>IP20</span></td>
-                                                <td><span>2018-06-01</span></td>
-                                                <td><span class="badge badge-success">Done</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                  3
-                                                </td>
-                                                <td>Zadanie nr 3</td>
-                                                <td><span>Praca</span></td>
-                                                <td><span>2018-09-10</span></td>
-                                                <td><span class="badge badge-warning">Pending</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                 4
-                                                </td>
-                                                <td>Ostatnie zadanie na liście</td>
-                                                <td><span>Nauka</span></td>
-                                                <td><span>2018-05-20</span></td>
-                                                <td><span class="badge badge-success">Done</span></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                <div class="row">
+
+                </div>
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-title">
+                            <h4>Twoje ostatnie zadania </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Nazwa</th>
+                                            <th>Grupa</th>
+                                            <th>Deadline</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Przykładowe zadanie z bazy</td>
+                                            <td>
+                                                <span>IP20</span>
+                                            </td>
+                                            <td>
+                                                <span>2018-05-30</span>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-success">Skończone</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                2
+                                            </td>
+                                            <td>Następne jakieś zadanie</td>
+                                            <td>
+                                                <span>IP20</span>
+                                            </td>
+                                            <td>
+                                                <span>2018-06-01</span>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-success">Done</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                3
+                                            </td>
+                                            <td>Zadanie nr 3</td>
+                                            <td>
+                                                <span>Praca</span>
+                                            </td>
+                                            <td>
+                                                <span>2018-09-10</span>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-warning">Pending</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                4
+                                            </td>
+                                            <td>Ostatnie zadanie na liście</td>
+                                            <td>
+                                                <span>Nauka</span>
+                                            </td>
+                                            <td>
+                                                <span>2018-05-20</span>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-success">Done</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
 
-                <div class="row">
-					<div class="col-lg-11">
-						<div class="row">
-                            <div class="col-lg-1"></div>
-						<div class="col-lg-5">
-							<div class="card">
-								<div class="card-title">
-									<h4>Message </h4>
-								</div>
-								<div class="recent-comment">
-									<div class="media">
-										<div class="media-left">
-											<a href="#"><img alt="..." src="images/avatar/1.jpg" class="media-object"></a>
-										</div>
-										<div class="media-body">
-											<h4 class="media-heading">john doe</h4>
-											<p>Cras sit amet nibh libero, in gravida nulla. </p>
-											<p class="comment-date">October 21, 2018</p>
-										</div>
-									</div>
-									<div class="media">
-										<div class="media-left">
-											<a href="#"><img alt="..." src="images/avatar/1.jpg" class="media-object"></a>
-										</div>
-										<div class="media-body">
-											<h4 class="media-heading">john doe</h4>
-											<p>Cras sit amet nibh libero, in gravida nulla. </p>
-											<p class="comment-date">October 21, 2018</p>
-										</div>
-									</div>
+            <div class="row">
+                <div class="col-lg-11">
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-5">
+                            <div class="card">
+                                <div class="card-title">
+                                    <h4>Message </h4>
+                                </div>
+                                <div class="recent-comment">
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <a href="#">
+                                                <img alt="..." src="images/avatar/1.jpg" class="media-object">
+                                            </a>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">john doe</h4>
+                                            <p>Cras sit amet nibh libero, in gravida nulla. </p>
+                                            <p class="comment-date">October 21, 2018</p>
+                                        </div>
+                                    </div>
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <a href="#">
+                                                <img alt="..." src="images/avatar/1.jpg" class="media-object">
+                                            </a>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">john doe</h4>
+                                            <p>Cras sit amet nibh libero, in gravida nulla. </p>
+                                            <p class="comment-date">October 21, 2018</p>
+                                        </div>
+                                    </div>
 
-									<div class="media">
-										<div class="media-left">
-											<a href="#"><img alt="..." src="images/avatar/1.jpg" class="media-object"></a>
-										</div>
-										<div class="media-body">
-											<h4 class="media-heading">john doe</h4>
-											<p>Cras sit amet nibh libero, in gravida nulla. </p>
-											<p class="comment-date">October 21, 2018</p>
-										</div>
-									</div>
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <a href="#">
+                                                <img alt="..." src="images/avatar/1.jpg" class="media-object">
+                                            </a>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">john doe</h4>
+                                            <p>Cras sit amet nibh libero, in gravida nulla. </p>
+                                            <p class="comment-date">October 21, 2018</p>
+                                        </div>
+                                    </div>
 
-									<div class="media no-border">
-										<div class="media-left">
-											<a href="#"><img alt="..." src="images/avatar/1.jpg" class="media-object"></a>
-										</div>
-										<div class="media-body">
-											<h4 class="media-heading">Mr. Michael</h4>
-											<p>Cras sit amet nibh libero, in gravida nulla. </p>
-											<div class="comment-date">October 21, 2018</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- /# card -->
-						</div>
-						<!-- /# column -->
-						<div class="col-lg-6">
-							<div class="card">
-								<div class="card-body">
-									<div class="year-calendar"></div>
-								</div>
-							</div>
-						</div>
+                                    <div class="media no-border">
+                                        <div class="media-left">
+                                            <a href="#">
+                                                <img alt="..." src="images/avatar/1.jpg" class="media-object">
+                                            </a>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">Mr. Michael</h4>
+                                            <p>Cras sit amet nibh libero, in gravida nulla. </p>
+                                            <div class="comment-date">October 21, 2018</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /# card -->
+                        </div>
+                        <!-- /# column -->
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="year-calendar"></div>
+                                </div>
+                            </div>
+                        </div>
 
 
-						</div>
-					</div>
-
-
+                    </div>
                 </div>
 
 
-                <!-- End PAge Content -->
             </div>
-            <!-- End Container fluid  -->
-            <!-- footer -->
-            <footer class="footer"> © 2018 All rights reserved. Template designed by <a href="https://colorlib.com">Colorlib</a>
-            <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-            <div>Icons made by <a href="https://www.flaticon.com/authors/dinosoftlabs" title="DinosoftLabs">DinosoftLabs</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-            <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>  
-        </footer>
-            <!-- End footer -->
+
+
+            <!-- End PAge Content -->
         </div>
-        <!-- End Page wrapper  -->
+        <!-- End Container fluid  -->
+        <!-- footer -->
+        <footer class="footer"> © 2018 All rights reserved. Template designed by
+            <a href="https://colorlib.com">Colorlib</a>
+            <div>Icons made by
+                <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from
+                <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by
+                <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0"
+                    target="_blank">CC 3.0 BY</a>
+            </div>
+            <div>Icons made by
+                <a href="https://www.flaticon.com/authors/dinosoftlabs" title="DinosoftLabs">DinosoftLabs</a> from
+                <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by
+                <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0"
+                    target="_blank">CC 3.0 BY</a>
+            </div>
+            <div>Icons made by
+                <a href="http://www.freepik.com" title="Freepik">Freepik</a> from
+                <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by
+                <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0"
+                    target="_blank">CC 3.0 BY</a>
+            </div>
+        </footer>
+        <!-- End footer -->
+    </div>
+    <!-- End Page wrapper  -->
     </div>
     <!-- End Wrapper -->
     <!-- All Jquery -->
@@ -494,7 +717,7 @@
     <script src="js/lib/bootstrap/js/popper.min.js"></script>
     <script src="js/lib/bootstrap/js/bootstrap.min.js"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="js/lib/jquery.nicescroll/jquery.nicescroll.min.js"></script>    
+    <script src="js/lib/jquery.nicescroll/jquery.nicescroll.min.js"></script>
     <!--Menu sidebar -->
     <script src="js/sidebarmenu.js"></script>
     <!--stickey kit -->
@@ -511,12 +734,12 @@
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
     <!-- Amchart -->
-     <script src="js/lib/morris-chart/raphael-min.js"></script>
+    <script src="js/lib/morris-chart/raphael-min.js"></script>
     <script src="js/lib/morris-chart/morris.js"></script>
     <script src="js/lib/morris-chart/dashboard1-init.js"></script>
 
 
-	<script src="js/lib/calendar-2/moment.latest.min.js"></script>
+    <script src="js/lib/calendar-2/moment.latest.min.js"></script>
     <!-- scripit init-->
     <script src="js/lib/calendar-2/semantic.ui.min.js"></script>
     <!-- scripit init-->

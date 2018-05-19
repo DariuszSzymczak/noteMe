@@ -30,7 +30,7 @@
     <!-- Preloader - style you can find in spinners.css -->
     <div class="preloader">
         <svg class="circular" viewBox="25 25 50 50">
-			<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
     </div>
     <!-- Main wrapper  -->
     <div id="main-wrapper">
@@ -38,12 +38,20 @@
             <nav class="navbar top-navbar navbar-expand-md navbar-light">
                 <!-- Logo -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="userpanel.php">
+                    <a class="navbar-brand" href="userpanel.php">
                         <!-- Logo icon -->
-                        <b><img src="images/logo.png" alt="homepage" class="dark-logo" /></b>
+                        <span>
+                            <img src="../assets/header-logo-text.png" alt="homepage" class="dark-logo" />
+                        </span>                        
+                        <b>
+                            <img src="../assets/header-logo.png" alt="homepage" class="dark-logo" />
+                        </b>
+                    </a>
                         <!--End Logo icon -->
                         <!-- Logo text -->
-                        <span><img src="images/logo-text.png" alt="homepage" class="dark-logo" /></span>
+                        
+                    </a>
                     </a>
                 </div>
                 <!-- End Logo -->
@@ -51,25 +59,50 @@
                     <!-- toggle and nav items -->
                     <ul class="navbar-nav mr-auto mt-md-0">
                         <!-- This is  -->
-                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted  " href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
-                        <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted  " href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-toggler hidden-md-up text-muted  " href="javascript:void(0)">
+                                <i class="mdi mdi-menu"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item m-l-10">
+                            <a class="nav-link sidebartoggler hidden-sm-down text-muted  " href="javascript:void(0)">
+                                <i class="ti-menu"></i>
+                            </a>
+                        </li>
                         <!-- Search -->
-                        <li class="nav-item hidden-sm-down search-box"> <a class="nav-link hidden-sm-down text-muted  " href="javascript:void(0)"><i class="ti-search"></i></a>
+                        <li class="nav-item hidden-sm-down search-box">
+                            <a class="nav-link hidden-sm-down text-muted  " href="javascript:void(0)">
+                                <i class="ti-search"></i>
+                            </a>
                             <form class="app-search">
-                                <input type="text" class="form-control" placeholder="Search here"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
+                                <input type="text" class="form-control" placeholder="Search here">
+                                <a class="srh-btn">
+                                    <i class="ti-close"></i>
+                                </a>
+                            </form>
                         </li>
                         <!-- Language -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="flag-icon flag-icon-us"></i></a>
+                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="flag-icon flag-icon-us"></i>
+                            </a>
                             <div class="dropdown-menu animated zoomIn">
-                                <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-ca"></i> Canada</a>
-                                <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-fr"></i> French</a>
-                                <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-cn"></i> China</a>
-                                <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-de"></i> Dutch</a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="flag-icon flag-icon-ca"></i> Canada</a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="flag-icon flag-icon-fr"></i> French</a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="flag-icon flag-icon-cn"></i> China</a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="flag-icon flag-icon-de"></i> Dutch</a>
                             </div>
                         </li>
                         <!-- Messages -->
-                        <li class="nav-item dropdown mega-dropdown"> <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-th-large"></i></a>
+                        <li class="nav-item dropdown mega-dropdown">
+                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <i class="fa fa-th-large"></i>
+                            </a>
                             <div class="dropdown-menu animated zoomIn">
                                 <ul class="mega-dropdown-menu row">
 
@@ -92,33 +125,78 @@
                                         <h4 class="m-b-20">List style</h4>
                                         <!-- List style -->
                                         <ul class="list-style-none">
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li class="col-lg-3 col-xlg-3 m-b-30">
                                         <h4 class="m-b-20">List style</h4>
                                         <!-- List style -->
                                         <ul class="list-style-none">
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li class="col-lg-3 col-xlg-3 m-b-30">
                                         <h4 class="m-b-20">List style</h4>
                                         <!-- List style -->
                                         <ul class="list-style-none">
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -130,9 +208,13 @@
                     <ul class="navbar-nav my-lg-0">
                         <!-- Comment -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-bell"></i>
-        								<div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
-        							</a>
+                            <a class="nav-link dropdown-toggle text-muted text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-bell"></i>
+                                <div class="notify">
+                                    <span class="heartbit"></span>
+                                    <span class="point"></span>
+                                </div>
+                            </a>
                             <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn">
                                 <ul>
                                     <li>
@@ -142,36 +224,55 @@
                                         <div class="message-center">
                                             <!-- Message -->
                                             <a href="#">
-                                                <div class="btn btn-danger btn-circle m-r-10"><i class="fa fa-link"></i></div>
+                                                <div class="btn btn-danger btn-circle m-r-10">
+                                                    <i class="fa fa-link"></i>
+                                                </div>
                                                 <div class="mail-contnet">
-                                                    <h5>This is title</h5> <span class="mail-desc">Just see the my new admin!</span> <span class="time">9:30 AM</span>
+                                                    <h5>This is title</h5>
+                                                    <span class="mail-desc">Just see the my new admin!</span>
+                                                    <span class="time">9:30 AM</span>
                                                 </div>
                                             </a>
                                             <!-- Message -->
                                             <a href="#">
-                                                <div class="btn btn-success btn-circle m-r-10"><i class="ti-calendar"></i></div>
+                                                <div class="btn btn-success btn-circle m-r-10">
+                                                    <i class="ti-calendar"></i>
+                                                </div>
                                                 <div class="mail-contnet">
-                                                    <h5>This is another title</h5> <span class="mail-desc">Just a reminder that you have event</span> <span class="time">9:10 AM</span>
+                                                    <h5>This is another title</h5>
+                                                    <span class="mail-desc">Just a reminder that you have event</span>
+                                                    <span class="time">9:10 AM</span>
                                                 </div>
                                             </a>
                                             <!-- Message -->
                                             <a href="#">
-                                                <div class="btn btn-info btn-circle m-r-10"><i class="ti-settings"></i></div>
+                                                <div class="btn btn-info btn-circle m-r-10">
+                                                    <i class="ti-settings"></i>
+                                                </div>
                                                 <div class="mail-contnet">
-                                                    <h5>This is title</h5> <span class="mail-desc">You can customize this template as you want</span> <span class="time">9:08 AM</span>
+                                                    <h5>This is title</h5>
+                                                    <span class="mail-desc">You can customize this template as you want</span>
+                                                    <span class="time">9:08 AM</span>
                                                 </div>
                                             </a>
                                             <!-- Message -->
                                             <a href="#">
-                                                <div class="btn btn-primary btn-circle m-r-10"><i class="ti-user"></i></div>
+                                                <div class="btn btn-primary btn-circle m-r-10">
+                                                    <i class="ti-user"></i>
+                                                </div>
                                                 <div class="mail-contnet">
-                                                    <h5>This is another title</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span>
+                                                    <h5>This is another title</h5>
+                                                    <span class="mail-desc">Just see the my admin!</span>
+                                                    <span class="time">9:02 AM</span>
                                                 </div>
                                             </a>
                                         </div>
                                     </li>
                                     <li>
-                                        <a class="nav-link text-center" href="javascript:void(0);"> <strong>Check all notifications</strong> <i class="fa fa-angle-right"></i> </a>
+                                        <a class="nav-link text-center" href="javascript:void(0);">
+                                            <strong>Check all notifications</strong>
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
@@ -179,9 +280,13 @@
                         <!-- End Comment -->
                         <!-- Messages -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted  " href="#" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-envelope"></i>
-        								<div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
-        							</a>
+                            <a class="nav-link dropdown-toggle text-muted  " href="#" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-envelope"></i>
+                                <div class="notify">
+                                    <span class="heartbit"></span>
+                                    <span class="point"></span>
+                                </div>
+                            </a>
                             <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn" aria-labelledby="2">
                                 <ul>
                                     <li>
@@ -191,37 +296,59 @@
                                         <div class="message-center">
                                             <!-- Message -->
                                             <a href="#">
-                                                <div class="user-img"> <img src="images/users/5.jpg" alt="user" class="img-circle"> 
-                                                    <span class="profile-status online pull-right"></span> </div>
+                                                <div class="user-img">
+                                                    <img src="images/users/5.jpg" alt="user" class="img-circle">
+                                                    <span class="profile-status online pull-right"></span>
+                                                </div>
                                                 <div class="mail-contnet">
-                                                    <h5>Michael Qin</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:30 AM</span>
+                                                    <h5>Michael Qin</h5>
+                                                    <span class="mail-desc">Just see the my admin!</span>
+                                                    <span class="time">9:30 AM</span>
                                                 </div>
                                             </a>
                                             <!-- Message -->
                                             <a href="#">
-                                                <div class="user-img"> <img src="images/users/2.jpg" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
+                                                <div class="user-img">
+                                                    <img src="images/users/2.jpg" alt="user" class="img-circle">
+                                                    <span class="profile-status busy pull-right"></span>
+                                                </div>
                                                 <div class="mail-contnet">
-                                                    <h5>John Doe</h5> <span class="mail-desc">I've sung a song! See you at</span> <span class="time">9:10 AM</span>
+                                                    <h5>John Doe</h5>
+                                                    <span class="mail-desc">I've sung a song! See you at</span>
+                                                    <span class="time">9:10 AM</span>
                                                 </div>
                                             </a>
                                             <!-- Message -->
                                             <a href="#">
-                                                <div class="user-img"> <img src="images/users/3.jpg" alt="user" class="img-circle"> <span class="profile-status away pull-right"></span> </div>
+                                                <div class="user-img">
+                                                    <img src="images/users/3.jpg" alt="user" class="img-circle">
+                                                    <span class="profile-status away pull-right"></span>
+                                                </div>
                                                 <div class="mail-contnet">
-                                                    <h5>Mr. John</h5> <span class="mail-desc">I am a singer!</span> <span class="time">9:08 AM</span>
+                                                    <h5>Mr. John</h5>
+                                                    <span class="mail-desc">I am a singer!</span>
+                                                    <span class="time">9:08 AM</span>
                                                 </div>
                                             </a>
                                             <!-- Message -->
                                             <a href="#">
-                                                <div class="user-img"> <img src="images/users/4.jpg" alt="user" class="img-circle"> <span class="profile-status offline pull-right"></span> </div>
+                                                <div class="user-img">
+                                                    <img src="images/users/4.jpg" alt="user" class="img-circle">
+                                                    <span class="profile-status offline pull-right"></span>
+                                                </div>
                                                 <div class="mail-contnet">
-                                                    <h5>Michael Qin</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span>
+                                                    <h5>Michael Qin</h5>
+                                                    <span class="mail-desc">Just see the my admin!</span>
+                                                    <span class="time">9:02 AM</span>
                                                 </div>
                                             </a>
                                         </div>
                                     </li>
                                     <li>
-                                        <a class="nav-link text-center" href="javascript:void(0);"> <strong>See all e-Mails</strong> <i class="fa fa-angle-right"></i> </a>
+                                        <a class="nav-link text-center" href="javascript:void(0);">
+                                            <strong>See all e-Mails</strong>
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
@@ -229,16 +356,33 @@
                         <!-- End Messages -->
                         <!-- Profile -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/users/5.jpg" alt="user" class="profile-pic" /></a>
+                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="images/users/5.jpg" alt="user" class="profile-pic" />
+                            </a>
                             <div class="dropdown-menu dropdown-menu-right animated zoomIn">
                                 <ul class="dropdown-user">
-                                    <li><a href="javascript:;" data-toggle="modal" data-target="#changePassModal"><i class="ti-user"></i> Change Password</a></li>
-                                    <li><a href="#"><i class="ti-wallet"></i> Balance</a></li>
-                                    <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
+                                    <li>
+                                        <a href="javascript:;" data-toggle="modal" data-target="#changePassModal">
+                                            <i class="ti-user"></i> Change Password</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="ti-wallet"></i> Balance</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="ti-email"></i> Inbox</a>
+                                    </li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a href="#"><i class="ti-settings"></i> Setting</a></li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="ti-settings"></i> Setting</a>
+                                    </li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-power-off"></i> Logout</a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
@@ -256,13 +400,46 @@
                     <ul id="sidebarnav">
                         <li class="nav-devider"></li>
                         <li class="nav-label">Menu główne</li>
-                        <li> <a href="userpanel.php"><i class="fa fa-tachometer"></i><span class="hide-menu">Strona główna </a></li>
-                        <li> <a href="#" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Wiadomości</span></a>
-                        <li> <a href="app-profile.php" aria-expanded="false"><i class="fa fa-user"></i><span class="hide-menu">Twój profil</span></a></li>
-                        <li> <a href="#" aria-expanded="false"><i class="fa fa-table"></i><span class="hide-menu">Grupy</span></a></li>
-                        <li> <a href="tasks.php" aria-expanded="false"><i class="fa fa-wpforms"></i><span class="hide-menu">Zadania</span></a></li>
-                        <li> <a href="#" aria-expanded="false"><i class="fa fa-book"></i><span class="hide-menu">Notatki</span></a></li>
-                        <li> <a href="#" aria-expanded="false"><i class="fa fa-level-down"></i><span class="hide-menu">Wyloguj</span></a></li>
+                        <li>
+                            <a href="userpanel.php">
+                                <i class="fa fa-tachometer"></i>
+                                <span class="hide-menu">Strona główna </a>
+                        </li>
+                        <li>
+                            <a href="#" aria-expanded="false">
+                                <i class="fa fa-envelope"></i>
+                                <span class="hide-menu">Wiadomości</span>
+                            </a>
+                            <li>
+                                <a href="app-profile.php" aria-expanded="false">
+                                    <i class="fa fa-user"></i>
+                                    <span class="hide-menu">Twój profil</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" aria-expanded="false">
+                                    <i class="fa fa-table"></i>
+                                    <span class="hide-menu">Grupy</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="tasks.php" aria-expanded="false">
+                                    <i class="fa fa-wpforms"></i>
+                                    <span class="hide-menu">Zadania</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" aria-expanded="false">
+                                    <i class="fa fa-book"></i>
+                                    <span class="hide-menu">Notatki</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" aria-expanded="false">
+                                    <i class="fa fa-level-down"></i>
+                                    <span class="hide-menu">Wyloguj</span>
+                                </a>
+                            </li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -275,10 +452,13 @@
             <!-- Bread crumb -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-primary">Profil grupy IP20 </h3> </div>
+                    <h3 class="text-primary">Profil grupy IP20 </h3>
+                </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                        <li class="breadcrumb-item">
+                            <a href="javascript:void(0)">Home</a>
+                        </li>
                         <li class="breadcrumb-item active">Grupa</li>
                     </ol>
                 </div>
@@ -304,202 +484,276 @@
                                         Lorem ipsum dolor sit amet, consectetur adipisicing elit et cupiditate deleniti.
                                     </div>
 
-                                        <div class="clear"></div>
-                                    </div>
+                                    <div class="clear"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Column -->
-                    <!-- Column -->
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <!-- Nav tabs -->
-                            <ul class="nav nav-tabs profile-tab" role="tablist">
-                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#members" role="tab">Członkowie</a> </li>
-                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#tasks" role="tab">Zadania</a> </li>
-                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#settings" role="tab">Ustawienia</a> </li>
+                </div>
+                <!-- Column -->
+                <!-- Column -->
+                <div class="col-lg-12">
+                    <div class="card">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs profile-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#members" role="tab">Członkowie</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tasks" role="tab">Zadania</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#settings" role="tab">Ustawienia</a>
+                            </li>
 
-                            </ul>
-                            <!-- Tab panes -->
-                            <div class="tab-content">
-                            <div class="tab-pane active" id="members" role="tabpanel">     
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Nazwa</th>
-                                                <th>Ilość zadań</th>
-                                                <th>Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="members" role="tabpanel">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Nazwa</th>
+                                                    <th>Ilość zadań</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
 
-                                            <tr>
-                                                <td>
-                                                    <div class="round-img">
-                                                        <a href=""><img src="images/avatar/4.jpg" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td>John Abraham</td>
-                                                <td><span>456 </span></td>
-                                                <td><span class="badge badge-danger">ADMIN</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="round-img">
-                                                        <a href=""><img src="images/avatar/2.jpg" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td>John Abraham</td>
-                                                <td><span>456 </span></td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="round-img">
-                                                        <a href=""><img src="images/avatar/3.jpg" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td>John Abraham</td>
-                                                <td><span>456 </span></td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="round-img">
-                                                        <a href=""><img src="images/avatar/4.jpg" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td>John Abraham</td>
-                                                <td><span>456 </span></td>
-                                                <td></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                                <tr>
+                                                    <td>
+                                                        <div class="round-img">
+                                                            <a href="">
+                                                                <img src="images/avatar/4.jpg" alt="">
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                    <td>John Abraham</td>
+                                                    <td>
+                                                        <span>456 </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="badge badge-danger">ADMIN</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="round-img">
+                                                            <a href="">
+                                                                <img src="images/avatar/2.jpg" alt="">
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                    <td>John Abraham</td>
+                                                    <td>
+                                                        <span>456 </span>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="round-img">
+                                                            <a href="">
+                                                                <img src="images/avatar/3.jpg" alt="">
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                    <td>John Abraham</td>
+                                                    <td>
+                                                        <span>456 </span>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="round-img">
+                                                            <a href="">
+                                                                <img src="images/avatar/4.jpg" alt="">
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                    <td>John Abraham</td>
+                                                    <td>
+                                                        <span>456 </span>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="tab-pane" id="tasks" role="tabpanel">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Nazwa</th>
+                                                    <th>Grupa</th>
+                                                    <th>Deadline</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>
+                                                        <a href="task.php">Przykładowe zadanie z bazy</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="group.php">
+                                                            <span>IP20</span>
+                                                    </td>
+                                                    <td>
+                                                        <a href="date.php">
+                                                            <span>2018-05-30</span>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <span class="badge badge-success">Skończone</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        2
+                                                    </td>
+                                                    <td>
+                                                        <a href="task.php">Następne jakieś zadanie</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="group.php">
+                                                            <span>IP20</span>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="date.php">
+                                                            <span>2018-06-01</span>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <span class="badge badge-success">Skończone</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        3
+                                                    </td>
+                                                    <td>
+                                                        <a href="task.php">Zadanie nr 3</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="group.php">
+                                                            <span>Praca</span>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="date.php">
+                                                            <span>2018-09-10</span>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <span class="badge badge-warning">W trakcie</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        4
+                                                    </td>
+                                                    <td>
+                                                        <a href="task.php">Ostatnie zadanie na liście</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="group.php">
+                                                            <span>Nauka</span>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="date.php">
+                                                            <span>2018-05-20</span>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="date.php">
+                                                            <span class="badge badge-success">Skończone</span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-                           
-                            </div>         
-                            <div class="tab-pane" id="tasks" role="tabpanel">  
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Nazwa</th>
-                                                <th>Grupa</th>
-                                                <th>Deadline</th>
-                                                <th>Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-                                            <tr>
-                                                <td>1</td>
-                                                <td><a href="task.php">Przykładowe zadanie z bazy</a></td>
-                                                <td><a href="group.php"><span>IP20</span></td>
-                                                <td><a href="date.php"><span>2018-05-30</span></a></td>
-                                                <td><span class="badge badge-success">Skończone</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                   2
-                                                </td>
-                                                <td><a href="task.php">Następne jakieś zadanie</a></td>
-                                                <td><a href="group.php"><span>IP20</span></a></td>
-                                                <td><a href="date.php"><span>2018-06-01</span></a></td>
-                                                <td><span class="badge badge-success">Skończone</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                  3
-                                                </td>
-                                                <td><a href="task.php">Zadanie nr 3</a></td>
-                                                <td><a href="group.php"><span>Praca</span></a></td>
-                                                <td><a href="date.php"><span>2018-09-10</span></a></td>
-                                                <td><span class="badge badge-warning">W trakcie</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                 4
-                                                </td>
-                                                <td><a href="task.php">Ostatnie zadanie na liście</a></td>
-                                                <td><a href="group.php"><span>Nauka</span></a></td>
-                                                <td><a href="date.php"><span>2018-05-20</span></a></td>
-                                                <td><a href="date.php"><span class="badge badge-success">Skończone</span></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>                              
-                            </div>                                          
                             <div class="tab-pane" id="settings" role="tabpanel">
-                                    <div class="card-body">
-                                        <form class="form-horizontal form-material">
-                                            <div class="form-group">
-                                                <label class="col-md-12">Nazwa grupy</label>
-                                                <div class="col-md-12">
-                                                    <input type="text" placeholder="IP20" class="form-control form-control-line">
-                                                </div>
+                                <div class="card-body">
+                                    <form class="form-horizontal form-material">
+                                        <div class="form-group">
+                                            <label class="col-md-12">Nazwa grupy</label>
+                                            <div class="col-md-12">
+                                                <input type="text" placeholder="IP20" class="form-control form-control-line">
                                             </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-md-12">Opis</label>
-                                                <div class="col-md-12">
-                                                    <textarea rows="20" class="form-control form-control-line"></textarea>
-                                                </div>
-                                            </div>
+                                        </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Opis</label>
+                                    <div class="col-md-12">
+                                        <textarea rows="20" class="form-control form-control-line"></textarea>
+                                    </div>
+                                </div>
 
-                                                <div class="form-group">
-                                                <label class="col-md-12">Avatar</label>
-                                                    <div class="col-md-12">    
-                                                        <form action="#" class="dropzone">
-                                                            <div class="fallback">
-                                                                <input name="file" type="file" multiple />
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-
-
-        
-                                            <div class="form-group">
-                                                <div class="col-sm-12">
-                                                    <button class="btn btn-success">Zapisz</button>
-                                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Avatar</label>
+                                    <div class="col-md-12">
+                                        <form action="#" class="dropzone">
+                                            <div class="fallback">
+                                                <input name="file" type="file" multiple />
                                             </div>
                                         </form>
                                     </div>
-                                </div>        
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-success">Zapisz</button>
+                                    </div>
+                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-                    <!-- Column -->
                 </div>
-
-                <!-- End PAge Content -->
             </div>
-            <!-- End Container fluid  -->
-            <!-- footer -->
-            <footer class="footer"> © 2018 All rights reserved. Template designed by <a href="https://colorlib.com">Colorlib</a></footer>
-            <!-- End footer -->
+            <!-- Column -->
         </div>
-        <!-- End Page wrapper  -->
+
+        <!-- End PAge Content -->
+    </div>
+    <!-- End Container fluid  -->
+    <!-- footer -->
+    <footer class="footer"> © 2018 All rights reserved. Template designed by
+        <a href="https://colorlib.com">Colorlib</a>
+    </footer>
+    <!-- End footer -->
+    </div>
+    <!-- End Page wrapper  -->
     </div>
 
-    <div class="modal"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="changePassModal">
+    <div class="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="changePassModal">
         <div class="modal-dialog" role="document">
-          <div class="modal-content">
+            <div class="modal-content">
                 <form action="javascript:;" novalidate="novalidate">
                     <div class="modal-header">
-                    <h5 class="modal-title">Change Password</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                        <h5 class="modal-title">Change Password</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                     <div class="modal-body">
                         <div class="">
@@ -507,37 +761,40 @@
                                 <label for="oldPass">
                                     old Password
                                 </label>
-                                <input type="password"  data-val="true" data-val-required="this is Required Field" class="form-control" name="oldPass" id="oldPass"/>
+                                <input type="password" data-val="true" data-val-required="this is Required Field" class="form-control" name="oldPass" id="oldPass"
+                                />
                                 <span class="field-validation-valid text-danger" data-valmsg-for="oldPass" data-valmsg-replace="true"></span>
                             </div>
                             <div class="form-group">
                                 <label for="newPass">
                                     New Password
                                 </label>
-                                <input type="password" data-val="true" data-val-required="this is Required Field" class="form-control" name="newPass" id="newPass"/>
-                                <span class="field-validation-valid text-danger"  data-valmsg-for="newPass" data-valmsg-replace="true"></span>
-                                
+                                <input type="password" data-val="true" data-val-required="this is Required Field" class="form-control" name="newPass" id="newPass"
+                                />
+                                <span class="field-validation-valid text-danger" data-valmsg-for="newPass" data-valmsg-replace="true"></span>
+
                             </div>
                             <div class="form-group">
                                 <label for="confirmPass">
                                     Confirm Password
                                 </label>
-                                <input type="password" data-val-equalto="Password not Match ", data-val-equalto-other="newPass" data-val="true" data-val-required="this is Required Field" class="form-control" name="confirmPass" id="confirmPass"/>
+                                <input type="password" data-val-equalto="Password not Match " , data-val-equalto-other="newPass" data-val="true" data-val-required="this is Required Field"
+                                    class="form-control" name="confirmPass" id="confirmPass" />
                                 <span class="field-validation-valid text-danger" data-valmsg-for="confirmPass" data-valmsg-replace="true"></span>
-                                
+
                             </div>
-                                        
+
                         </div>
 
                     </div>
                     <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </form>
-          </div>
+            </div>
         </div>
-      </div>
+    </div>
 
     <!-- End Wrapper -->
     <!-- All Jquery -->
@@ -556,17 +813,17 @@
     <script src="js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
-      <script>
-          $(function(){
+    <script>
+        $(function () {
             $("html").niceScroll({
-                cursorcolor:"#16385d",
-                cursorwidth:"5px",
-                background:"#fff",
-                cursorborder:"1px solid #5c4ac7",
-                cursorborderradius:0
-                });  // a world f
-          });
-      </script>
+                cursorcolor: "#16385d",
+                cursorwidth: "5px",
+                background: "#fff",
+                cursorborder: "1px solid #5c4ac7",
+                cursorborderradius: 0
+            }); // a world f
+        });
+    </script>
 </body>
 
 </html>
