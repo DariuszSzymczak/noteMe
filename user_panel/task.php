@@ -422,7 +422,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#" aria-expanded="false">
+                                <a href="tasks.php" aria-expanded="false">
                                     <i class="fa fa-wpforms"></i>
                                     <span class="hide-menu">Zadania</span>
                                 </a>
@@ -451,14 +451,14 @@
             <!-- Bread crumb -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-primary">Twoje wszystkie zadania</h3>
+                    <h3 class="text-primary">Nazwa zadania .. . . </h3>
                 </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="javascript:void(0)">Home</a>
+                            <a href="javascript:void(0)">Zadania</a>
                         </li>
-                        <li class="breadcrumb-item active">Zadania</li>
+                        <li class="breadcrumb-item active">Nazwa zadania . .. . </li>
                     </ol>
                 </div>
             </div>
@@ -467,223 +467,229 @@
             <div class="container-fluid">
                 <!-- Start Page Content -->
                 <div class="row">
+                    <!-- Column -->
                     <div class="col-lg-12">
                         <div class="card">
-                            <div class="card-title">
-                                <h2>Lista zadań </h2>
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs profile-tab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#profile" role="tab">Zadanie</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#users" role="tab">Przypisani użytkownicy</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#edit" role="tab">Edycja</a>
+                                </li>
+                            </ul>
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <!--second tab-->
+                                <div class="tab-pane active" id="profile" role="tabpanel">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-3 col-xs-6 b-r">
+                                                <strong>Nazwa zadania</strong>
+                                                <br>
+                                                <p class="text-muted">Jakieś tam zadanie</p>
+                                            </div>
+                                            <div class="col-md-3 col-xs-6 b-r">
+                                                <strong>Grupa</strong>
+                                                <br>
+                                                <p class="text-muted">Zebra Theme@gmail.com</p>
+                                            </div>
+                                            <div class="col-md-3 col-xs-6">
+                                                <strong>Deadline</strong>
+                                                <br>
+                                                <p class="text-muted">2018-05-30</p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <p class="m-t-30">Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo,
+                                            rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede
+                                            mollis pretium. Integer tincidunt.Cras dapibus. Vivamus elementum semper nisi.
+                                            Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat
+                                            vitae, eleifend ac, enim.</p>
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                            Ipsum has been the industry's standard dummy text ever since the 1500s, when
+                                            an unknown printer took a galley of type and scrambled it to make a type specimen
+                                            book. It has survived not only five centuries </p>
+                                        <p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem
+                                            Ipsum passages, and more recently with desktop publishing software like Aldus
+                                            PageMaker including versions of Lorem Ipsum.
+                                        </p>
 
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Nazwa</th>
-                                                <th>Grupa</th>
-                                                <th>Deadline</th>
-                                                <th><center>Akcje</center></th>
-                                                <th>Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-                                            <tr>
-                                                <td>1</td>
-                                                <td>
-                                                    <a href="task.php">Przykładowe zadanie z bazy</a>
-                                                </td>
-                                                <td>
-                                                    <a href="group.php">
-                                                        <span>IP20</span>
-                                                </td>
-                                                <td>
-                                                    <a href="date.php">
-                                                        <span>2018-05-30</span>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                        <center>
-                                                            <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
-                                                            <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Edytuj</button>
-                                                            <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">Skasuj</button>
-                                                        </center>
-                                                    </td>
-                                                <td>
-                                                    <span class="badge badge-success">Skończone</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    2
-                                                </td>
-                                                <td>
-                                                    <a href="task.php">Następne jakieś zadanie</a>
-                                                </td>
-                                                <td>
-                                                    <a href="group.php">
-                                                        <span>IP20</span>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <a href="date.php">
-                                                        <span>2018-06-01</span>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                <center>
-                                                            <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
-                                                            <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Edytuj</button>
-                                                            <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">Skasuj</button>
-                                                        </center>
-                                                    </td>
-                                                <td>
-                                                    <span class="badge badge-success">Skończone</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    3
-                                                </td>
-                                                <td>
-                                                    <a href="task.php">Zadanie nr 3</a>
-                                                </td>
-                                                <td>
-                                                    <a href="group.php">
-                                                        <span>Praca</span>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <a href="date.php">
-                                                        <span>2018-09-10</span>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                <center>
-                                                            <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
-                                                            <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Edytuj</button>
-                                                            <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">Skasuj</button>
-                                                        </center>
-                                                    </td>
-                                                <td>
-                                                    <span class="badge badge-warning">W trakcie</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    4
-                                                </td>
-                                                <td>
-                                                    <a href="task.php">Ostatnie zadanie na liście</a>
-                                                </td>
-                                                <td>
-                                                    <a href="group.php">
-                                                        <span>Nauka</span>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <a href="date.php">
-                                                        <span>2018-05-20</span>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                <center>
-                                                            <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
-                                                            <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Edytuj</button>
-                                                            <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">Skasuj</button>
-                                                        </center>
-                                                    </td>
-                                                <td>
-                                                    <a href="date.php">
-                                                        <span class="badge badge-success">Skończone</span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    </div>
+                                    <button type="button" class="btn btn-success m-b-10 m-l-5">Zakończ zadanie</button>
                                 </div>
-                            </div>
-                            <br/>
-                            <a href="javascript:;" data-toggle="modal" data-target="#addTaskModal">
-                                <button type="button" class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5">
-                                    <i class="ti-plus"></i>Dodaj zadanie</button>
-                            </a>
-                        </div>
-                        <!-- /# card -->
-                    </div>
-                    <!-- /# column -->
-                </div>
-                <!-- /# row -->
-                <!-- End PAge Content -->
-            </div>
-            <!-- End Container fluid  -->
-            <!-- footer -->
-            <footer class="footer"> © 2018 All rights reserved. Template designed by
-                <a href="https://colorlib.com">Colorlib</a>
-            </footer>
-            <!-- End footer -->
-        </div>
 
-        <!-- End Page wrapper  -->
+                                <div class="tab-pane" id="users" role="tabpanel">
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Nazwa</th>
+                                                    <th>Ilość zadań</th>
+                                                    <th>
+                                                        <center>Akcje</center>
+                                                    </th>
+                                                    <th>Status zadania</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="round-img">
+                                                            <a href="">
+                                                                <img src="images/avatar/4.jpg" alt="">
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                    <td>John Abraham</td>
+                                                    <td>
+                                                        <span>456 </span>
+                                                    </td>
+                                                    <td>
+                                                        <center>
+                                                            <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Wiadomość</button>
+                                                            <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Dodaj zadanie</button>
+                                                            <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">Usuń z grupy</button>
+                                                        </center>
+                                                    </td>
+                                                    <td>
+                                                        <span class="badge badge-info">W trakcie</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="round-img">
+                                                            <a href="">
+                                                                <img src="images/avatar/4.jpg" alt="">
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                    <td>John Abraham</td>
+                                                    <td>
+                                                        <span>456 </span>
+                                                    </td>
+                                                    <td>
+                                                        <center>
+                                                            <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Wiadomość</button>
+                                                            <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Dodaj zadanie</button>
+                                                            <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">Usuń z grupy</button>
+                                                        </center>
+                                                    </td>
+                                                    <td>
+                                                        <span class="badge badge-success">Zakończone</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="round-img">
+                                                            <a href="">
+                                                                <img src="images/avatar/4.jpg" alt="">
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                    <td>John Abraham</td>
+                                                    <td>
+                                                        <span>456 </span>
+                                                    </td>
+                                                    <td>
+                                                        <center>
+                                                            <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Wiadomość</button>
+                                                            <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Dodaj zadanie</button>
+                                                            <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">Usuń z grupy</button>
+                                                        </center>
+                                                    </td>
+                                                    <td>
+                                                        <span class="badge badge-info">W trakcie</span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        </div>
+                                        <br/>
+                                        <a href="javascript:;" data-toggle="modal" data-target="#changePassModal">
+                                            <button type="button" class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5">
+                                                <i class="ti-plus"></i>Dodaj użytkownika</button>
+                                        </a>
+                                        
+                                    </div>
+
+                                </div>
+
+                                <div class="tab-pane" id="edit" role="tabpanel">
+                                    <div class="card-body">
+                                        <form class="form-horizontal form-material">
+                                            <div class="form-group">
+                                                <label class="col-md-12">Nazwa zadania</label>
+                                                <div class="col-md-12">
+                                                    <input type="text" placeholder="Zadanie jakieś" class="form-control form-control-line" name="taskName">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="example-email" class="col-md-12">Opis</label>
+                                                <div class="col-md-12">
+                                                    <input type="text" placeholder="Opis zadania..." class="form-control form-control-line" name="taskDescription" id="example-email">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-12">Deadline</label>
+                                                <div class="col-md-12">
+                                                    <input type="date" class="form-control" placeholder="yyyy/mm/dd"> </div>
+                                            </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <input type="submit" value="Zapisz" class="btn btn-success" />
+                                        </div>
+                                    </div>
+                                    </form>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Column -->
+            </div>
+            <!-- End PAge Content -->
+        </div>
+        <!-- End Container fluid  -->
+        <!-- footer -->
+        <footer class="footer"> © 2018 All rights reserved. Template designed by
+            <a href="https://colorlib.com">Colorlib</a>
+        </footer>
+        <!-- End footer -->
+    </div>
+    <!-- End Page wrapper  -->
     </div>
 
-    <div class="modal" tabindex="-1" role="dialog" aria-labelledby="addTaskModal" aria-hidden="true" id="addTaskModal">
+    <div class="modal" tabindex="-1" role="dialog" aria-labelledby="addUserModal" aria-hidden="true" id="changePassModal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form action="javascript:;" novalidate="novalidate">
+                <form action="addUserHandler.php" method="POST" novalidate="novalidate">
                     <div class="modal-header">
-                        <h5 class="modal-title">Dodaj zadanie</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <h3 class="modal-title">Przypisz użytkownika do zadania</h3>
                     </div>
                     <div class="modal-body">
                         <div class="">
                             <div class="form-group">
-                                <label for="taskName">
-                                    Nazwa zadania
-                                </label>
-                                <input type="text" data-val="true" data-val-required="Wpisz nazwę zadania" class="form-control" name="oldPass" id="oldPass"
+                                <label for="oldPass">
+                                    Nazwa użytkownika </label>
+                                <input type="text" data-val="true" data-val-required="Wpisz nazwę użytkownika" class="form-control" name="userName" id="userName"
                                 />
-                                <span class="field-validation-valid text-danger" data-valmsg-for="oldPass" data-valmsg-replace="true"></span>
+                                <span class="field-validation-valid text-danger" data-valmsg-for="userName" data-valmsg-replace="true"></span>
                             </div>
-                            <div class="form-group">
-                                <label for="taskDescription">
-                                    Opis
-                                </label>
-                                <input type="text" data-val="false" data-val-required="this is Required Field" class="form-control" name="newPass" id="newPass"
-                                />
-                                <span class="field-validation-valid text-danger" data-valmsg-for="newPass" data-valmsg-replace="true"></span>
-
-                            </div>
-                            <div class="form-group">
-                                <label for="chooseGroup">
-                                    Wybier grupę
-                                </label>
-                                <select name="chooseGroup" class="form-control">
-                                    <option>IP20</option>
-                                    <option>GRUPA2</option>
-                                    <option>Jakaś grupa</option>
-                                    <option>xD</option>
-                                </select>
-                            </div>
-
-
-                            <div class="form-group">
-                                <label for="taskDeadline">
-                                    Deadline zadania
-                                </label>
-                                <div class='input-group date' id='datetimepicker2'>
-                                    <input type="date" class="form-control" placeholder="dd/mm/yyyy">
-                                </div>
-                                <span class="field-validation-valid text-danger" data-valmsg-for="confirmPass" data-valmsg-replace="true"></span>
-
-                            </div>
-
                         </div>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Dodaj</button>
+                        <input type="submit" class="btn btn-primary" />
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
                     </div>
                 </form>

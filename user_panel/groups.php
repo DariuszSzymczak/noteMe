@@ -422,7 +422,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#" aria-expanded="false">
+                                <a href="tasks.php" aria-expanded="false">
                                     <i class="fa fa-wpforms"></i>
                                     <span class="hide-menu">Zadania</span>
                                 </a>
@@ -481,10 +481,11 @@
                                                 <th>#</th>
                                                 <th>Nazwa</th>
                                                 <th>Użytkownicy</th>
+                                                <th><center>Akcje</center></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
+                                            <tr>
                                                 <td>
                                                     <div class="round-img">
                                                         <a href="group.php">
@@ -495,7 +496,13 @@
                                                     <a href="group.php">IP20</a>
                                                 </td>
                                                 <td>
-                                                        <span>21/37</span>
+                                                    <span>21/37</span>
+                                                </td>
+                                                <td>
+                                                <center>
+                                                            <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Opuść grupę</button>
+                                                            <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">Skasuj grupę</button>
+                                                        </center>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -507,10 +514,17 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <a href="group.php">IP20</a>
+                                                    <a href="group.php">Grupa 2</a>
+                                                </td>
+                                                
+                                                <td>
+                                                    <span>21/37</span>
                                                 </td>
                                                 <td>
-                                                        <span>21/37</span>
+                                                <center>
+                                                            <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Opuść grupę</button>
+                                                            <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">Skasuj grupę</button>
+                                                        </center>
                                                 </td>
                                             </tr>
                                         </tbody>

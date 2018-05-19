@@ -39,18 +39,18 @@
                 <!-- Logo -->
                 <div class="navbar-header">
                     <a class="navbar-brand" href="userpanel.php">
-                    <a class="navbar-brand" href="userpanel.php">
-                        <!-- Logo icon -->
-                        <span>
-                            <img src="../assets/header-logo-text.png" alt="homepage" class="dark-logo" />
-                        </span>                        
-                        <b>
-                            <img src="../assets/header-logo.png" alt="homepage" class="dark-logo" />
-                        </b>
-                    </a>
+                        <a class="navbar-brand" href="userpanel.php">
+                            <!-- Logo icon -->
+                            <span>
+                                <img src="../assets/header-logo-text.png" alt="homepage" class="dark-logo" />
+                            </span>
+                            <b>
+                                <img src="../assets/header-logo.png" alt="homepage" class="dark-logo" />
+                            </b>
+                        </a>
                         <!--End Logo icon -->
                         <!-- Logo text -->
-                        
+
                     </a>
                     </a>
                 </div>
@@ -99,8 +99,7 @@
                         </li>
                         <!-- Messages -->
                         <li class="nav-item dropdown mega-dropdown">
-                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
+                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-th-large"></i>
                             </a>
                             <div class="dropdown-menu animated zoomIn">
@@ -452,14 +451,14 @@
             <!-- Bread crumb -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-primary">Profil grupy IP20 </h3>
+                    <h3 class="text-primary">Dashboard</h3>
                 </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
                             <a href="javascript:void(0)">Home</a>
                         </li>
-                        <li class="breadcrumb-item active">Grupa</li>
+                        <li class="breadcrumb-item active">Profil użytkownika</li>
                     </ol>
                 </div>
             </div>
@@ -479,7 +478,7 @@
                                         </div>
                                     </header>
 
-                                    <h3>IP20</h3>
+                                    <h3>przykladowyUser1</h3>
                                     <div class="desc">
                                         Lorem ipsum dolor sit amet, consectetur adipisicing elit et cupiditate deleniti.
                                     </div>
@@ -518,11 +517,13 @@
                                                     <th>#</th>
                                                     <th>Nazwa</th>
                                                     <th>Ilość zadań</th>
+                                                    <th>
+                                                        <center>Akcje</center>
+                                                    </th>
                                                     <th>Status</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-
                                                 <tr>
                                                     <td>
                                                         <div class="round-img">
@@ -534,6 +535,13 @@
                                                     <td>John Abraham</td>
                                                     <td>
                                                         <span>456 </span>
+                                                    </td>
+                                                    <td>
+                                                        <center>
+                                                            <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Wiadomość</button>
+                                                            <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Dodaj zadanie</button>
+                                                            <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">Usuń z grupy</button>
+                                                        </center>
                                                     </td>
                                                     <td>
                                                         <span class="badge badge-danger">ADMIN</span>
@@ -543,7 +551,7 @@
                                                     <td>
                                                         <div class="round-img">
                                                             <a href="">
-                                                                <img src="images/avatar/2.jpg" alt="">
+                                                                <img src="images/avatar/4.jpg" alt="">
                                                             </a>
                                                         </div>
                                                     </td>
@@ -551,21 +559,16 @@
                                                     <td>
                                                         <span>456 </span>
                                                     </td>
-                                                    <td></td>
-                                                </tr>
-                                                <tr>
                                                     <td>
-                                                        <div class="round-img">
-                                                            <a href="">
-                                                                <img src="images/avatar/3.jpg" alt="">
-                                                            </a>
-                                                        </div>
+                                                        <center>
+                                                            <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Wiadomość</button>
+                                                            <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Dodaj zadanie</button>
+                                                            <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">Usuń z grupy</button>
+                                                        </center>
                                                     </td>
-                                                    <td>John Abraham</td>
                                                     <td>
-                                                        <span>456 </span>
+                                                        <span class="badge badge-danger"></span>
                                                     </td>
-                                                    <td></td>
                                                 </tr>
                                                 <tr>
                                                     <td>
@@ -579,11 +582,25 @@
                                                     <td>
                                                         <span>456 </span>
                                                     </td>
-                                                    <td></td>
+                                                    <td>
+                                                        <center>
+                                                            <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Wiadomość</button>
+                                                            <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Dodaj zadanie</button>
+                                                            <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">Usuń z grupy</button>
+                                                        </center>
+                                                    </td>
+                                                    <td>
+                                                        <span class="badge badge-danger"></span>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
+                                    <br/>
+                                    <a href="javascript:;" data-toggle="modal" data-target="#changePassModal">
+                                        <button type="button" class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5">
+                                            <i class="ti-plus"></i>Dodaj użytkownika</button>
+                                    </a>
                                 </div>
 
                             </div>
@@ -597,6 +614,9 @@
                                                     <th>Nazwa</th>
                                                     <th>Grupa</th>
                                                     <th>Deadline</th>
+                                                    <th>
+                                                        <center>Akcje</center>
+                                                    </th>
                                                     <th>Status</th>
                                                 </tr>
                                             </thead>
@@ -617,77 +637,92 @@
                                                         </a>
                                                     </td>
                                                     <td>
+                                                        <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
+                                                        <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Edytuj</button>
+                                                        <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">Usuń</button>
+                                                    </td>
+                                                    </td>
+                                                    <td>
                                                         <span class="badge badge-success">Skończone</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
+                                                    <td>1</td>
                                                     <td>
-                                                        2
-                                                    </td>
-                                                    <td>
-                                                        <a href="task.php">Następne jakieś zadanie</a>
+                                                        <a href="task.php">Przykładowe zadanie z bazy</a>
                                                     </td>
                                                     <td>
                                                         <a href="group.php">
                                                             <span>IP20</span>
-                                                        </a>
                                                     </td>
                                                     <td>
                                                         <a href="date.php">
-                                                            <span>2018-06-01</span>
+                                                            <span>2018-05-30</span>
                                                         </a>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
+                                                        <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Edytuj</button>
+                                                        <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">Usuń</button>
+                                                    </td>
                                                     </td>
                                                     <td>
                                                         <span class="badge badge-success">Skończone</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
+                                                    <td>1</td>
                                                     <td>
-                                                        3
-                                                    </td>
-                                                    <td>
-                                                        <a href="task.php">Zadanie nr 3</a>
+                                                        <a href="task.php">Przykładowe zadanie z bazy</a>
                                                     </td>
                                                     <td>
                                                         <a href="group.php">
-                                                            <span>Praca</span>
-                                                        </a>
+                                                            <span>IP20</span>
                                                     </td>
                                                     <td>
                                                         <a href="date.php">
-                                                            <span>2018-09-10</span>
+                                                            <span>2018-05-30</span>
                                                         </a>
                                                     </td>
                                                     <td>
-                                                        <span class="badge badge-warning">W trakcie</span>
+                                                        <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
+                                                        <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Edytuj</button>
+                                                        <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">Usuń</button>
+                                                    </td>
+                                                    </td>
+                                                    <td>
+                                                        <span class="badge badge-success">Skończone</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
+                                                    <td>1</td>
                                                     <td>
-                                                        4
-                                                    </td>
-                                                    <td>
-                                                        <a href="task.php">Ostatnie zadanie na liście</a>
+                                                        <a href="task.php">Przykładowe zadanie z bazy</a>
                                                     </td>
                                                     <td>
                                                         <a href="group.php">
-                                                            <span>Nauka</span>
-                                                        </a>
+                                                            <span>IP20</span>
                                                     </td>
                                                     <td>
                                                         <a href="date.php">
-                                                            <span>2018-05-20</span>
+                                                            <span>2018-05-30</span>
                                                         </a>
                                                     </td>
                                                     <td>
-                                                        <a href="date.php">
-                                                            <span class="badge badge-success">Skończone</span>
+                                                        <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
+                                                        <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Edytuj</button>
+                                                        <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">Usuń</button>
+                                                    </td>
+                                                    </td>
+                                                    <td>
+                                                        <span class="badge badge-success">Skończone</span>
                                                     </td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
+
                             </div>
                             <div class="tab-pane" id="settings" role="tabpanel">
                                 <div class="card-body">
@@ -731,6 +766,35 @@
                 </div>
             </div>
             <!-- Column -->
+        </div>
+
+        <div class="modal" tabindex="-1" role="dialog" aria-labelledby="addUserModal" aria-hidden="true" id="changePassModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form action="addUserHandler.php" method="POST" novalidate="novalidate">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Przypisz użytkownika do zadania</h3>
+
+                        </div>
+                        <div class="modal-body">
+                            <div class="">
+                                <div class="form-group">
+                                    <label for="oldPass">
+                                        Nazwa użytkownika </label>
+                                    <input type="text" data-val="true" data-val-required="Wpisz nazwę użytkownika" class="form-control" name="userName" id="userName"
+                                    />
+                                    <span class="field-validation-valid text-danger" data-valmsg-for="userName" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" class="btn btn-primary" />
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
 
         <!-- End PAge Content -->
