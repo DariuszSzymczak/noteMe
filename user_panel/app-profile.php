@@ -1,3 +1,15 @@
+<?php 
+                            //TO TRZEBA DAC DO PLIKU JEDNEGO JAK BEDZIE ZROBIONY PODZIAL
+                            session_start();
+                            $panel = 'panelClass/panel.php';
+                            require $panel;
+
+                            $pane = new panel();
+                            $config = '../accounts/config.php';
+                            require $config;
+                            $pdo = new PDO("mysql:host=$server;dbname=$database", $usr, $passwd);
+                            
+                            ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -541,32 +553,33 @@
 
                                 </div>
                             </div>
+                       
                             <div class="tab-pane" id="settings" role="tabpanel">
                                 <div class="card-body">
                                     <form class="form-horizontal form-material">
                                         <div class="form-group">
                                             <label class="col-md-12">Miejscowość</label>
                                             <div class="col-md-12">
-                                                <input type="text" placeholder="Katowice" class="form-control form-control-line">
+                                                <input name="city" type="text" placeholder="<?php $pane->getUserData($pdo,$_SESSION['userID'],'miejscowosc'); ?>" class="form-control form-control-line">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="example-email" class="col-md-12">Email</label>
                                             <div class="col-md-12">
-                                                <input type="email" placeholder="Zebra Theme@gmail.com" class="form-control form-control-line" name="example-email" id="example-email">
+                                                <input name = "mail"type="email" placeholder="Zebra Theme@gmail.com" class="form-control form-control-line" name="example-email" id="example-email">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-12">Hasło</label>
                                             <div class="col-md-12">
-                                                <input type="password" value="password" class="form-control form-control-line">
+                                                <input name="password" type="password" value="password" class="form-control form-control-line">
                                             </div>
                                         </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-12">Opis</label>
                                     <div class="col-md-12">
-                                        <textarea rows="20" class="form-control form-control-line"></textarea>
+                                        <textarea name="description" rows="20" class="form-control form-control-line"></textarea>
                                     </div>
                                 </div>
 
@@ -575,7 +588,7 @@
                                     <div class="col-md-12">
                                         <form action="#" class="dropzone">
                                             <div class="fallback">
-                                                <input name="file" type="file" multiple />
+                                                <input name="avatar" type="file" multiple />
                                             </div>
                                         </form>
                                     </div>
