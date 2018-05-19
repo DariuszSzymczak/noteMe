@@ -63,43 +63,43 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempo
                     </label>
                   </div>
                   <div class="col-lg-9 col-xs-12">
-                    <input name="loginform-login" type="text" class="form-control" id="loginform-login" placeholder="Podaj Login"></input>
+                    <input name="login" type="text" class="form-control" id="loginform-login" placeholder="Podaj Login"></input>
                   </div>
                 </div>
               </div><br/>
               <div class="row">
                 <div class="form-group">
                   <div class="col-lg-3 col-xs-12">
-                    <label for="loginform-email" class="btn btn-default btn-sm" style="width:100%">
+                    <label for="mail" class="btn btn-default btn-sm" style="width:100%">
                       <span class="glyphicon glyphicon-envelope"></span> Adres e-mail
                     </label>
                   </div>
                   <div class="col-lg-9 col-xs-12">
-                    <input name="loginform-password" type="text" class="form-control" id="loginform-login" placeholder="Podaj e-mail"></input>
+                    <input name="mail" type="text" class="form-control" id="loginform-login" placeholder="Podaj e-mail"></input>
                   </div>
                 </div>
               </div><br/>
               <div class="row">
                 <div class="form-group">
                   <div class="col-lg-3 col-xs-12">
-                    <label for="loginform-password-confirn" class="btn btn-default btn-sm" style="width:100%">
+                    <label for="pass1" class="btn btn-default btn-sm" style="width:100%">
                       <span class="glyphicon glyphicon-lock"></span> Hasło
                     </label>
                   </div>
                   <div class="col-lg-9 col-xs-12">
-                    <input name="loginform-login" type="password" class="form-control" id="loginform-login" placeholder="Podaj hasło"></input>
+                    <input name="pass1" type="text" class="form-control" id="loginform-login" placeholder="Podaj hasło"></input>
                   </div>
                 </div>
               </div><br/>
               <div class="row">
                 <div class="form-group">
                   <div class="col-lg-3 col-xs-12">
-                    <label for="loginform-login" class="btn btn-default btn-sm" style="width:100%">
+                    <label for="pass2" class="btn btn-default btn-sm" style="width:100%">
                       <span class="glyphicon glyphicon-lock"></span> Powtórz hasło
                     </label>
                   </div>
                   <div class="col-lg-9 col-xs-12">
-                    <input name="loginform-login" type="password" class="form-control" id="loginform-login" placeholder="Powtórz hasło"></input>
+                    <input name="pass2" type="text" class="form-control" id="loginform-login" placeholder="Powtórz hasło"></input>
                   </div>
                 </div>
               </div><br/>
@@ -135,7 +135,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempo
                     </label>
                   </div>
                   <div class="col-lg-9 col-xs-12">
-                    <input name="loginform-login" type="text" class="form-control" id="loginform-login" placeholder="Podaj Login"></input>
+                    <input name="auth-login" type="text" class="form-control" id="loginform-login" placeholder="Podaj Login"></input>
                   </div>
                 </div>
               </div><br/>
@@ -148,7 +148,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempo
                     </label>
                   </div>
                   <div class="col-lg-9 col-xs-12">
-                    <input name="loginform-password" type="password" class="form-control" id="loginform-password" placeholder="Podaj Hasło"></input>
+                    <input name="auth-password" type="password" class="form-control" id="loginform-password" placeholder="Podaj Hasło"></input>
                   </div>
                 </div>
                 <br/>

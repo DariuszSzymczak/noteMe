@@ -45,7 +45,7 @@ class register{
                 $query = $pdo->query('SELECT loginmd5 FROM users WHERE md5='.$md5.'');
                 $_SESSION['userID']=$query;
                 echo $query;
-                 header('Location:../userpanel.php');
+                 header('Location:../user_panel/userpanel.php');
             }
             else
             {
