@@ -21,7 +21,7 @@ $('#login-form-submit').on('click', function () {
                     "background-color" : "#5cb85c"
                 });
                 $('#loginform-info').html('Zalogowano Pomyślnie - zaraz nastąpi przekierowanie');
-                setTimeout("location.href='/user_panel/userpanel.php';",1000);
+                setTimeout("location.href='./user_panel/userpanel.php';",1000);
             }
         }
     });
