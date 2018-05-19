@@ -42,9 +42,15 @@ class register{
             if($check == TRUE)
             {
                 session_start();
-                $query = $pdo->query('SELECT loginmd5 FROM users WHERE md5='.$md5.'');
-                $_SESSION['userID']=$query;
-                echo $query;
+                $query = $pdo->query('SELECT login,loginmd5 FROM users');
+                foreach($query as $row)
+                {
+                    if($row['login']===$login)
+                    {
+                        $_SESSION['userID']= $row['loginmd5'];
+                    }
+                }
+
                 setcookie("loginResult", 'true', time()+100,'/',$_SERVER['HTTP_HOST']);
                 header('Location:../user_panel/userpanel.php');
             }

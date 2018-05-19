@@ -560,7 +560,7 @@
                                         <div class="form-group">
                                             <label class="col-md-12">Miejscowość</label>
                                             <div class="col-md-12">
-                                                <input name="city" type="text" placeholder="<?php $pane->getUserData($pdo,$_SESSION['userID'],'miejscowosc'); ?>" class="form-control form-control-line">
+                                                <input name="city" type="text" placeholder="" class="form-control form-control-line">
                                             </div>
                                         </div>
                                         <div class="form-group">
