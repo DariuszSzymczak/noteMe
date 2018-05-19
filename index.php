@@ -87,7 +87,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempo
                     </label>
                   </div>
                   <div class="col-lg-9 col-xs-12">
-                    <input name="pass1" type="text" class="form-control" id="loginform-login" placeholder="Podaj hasło"></input>
+                    <input name="pass1" type="password" class="form-control" id="loginform-login" placeholder="Podaj hasło"></input>
                   </div>
                 </div>
               </div><br/>
@@ -99,11 +99,12 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempo
                     </label>
                   </div>
                   <div class="col-lg-9 col-xs-12">
-                    <input name="pass2" type="text" class="form-control" id="loginform-login" placeholder="Powtórz hasło"></input>
+                    <input name="pass2" type="password" class="form-control" id="loginform-login" placeholder="Powtórz hasło"></input>
                   </div>
                 </div>
               </div><br/>
-      <div class="modal-footer"><button type="submit" class="btn btn-success btn-form">Zarejestruj się</button>
+      <div class="modal-footer">
+      <input type="submit" name="submit" value="Zarejestruj się" class="btn btn-success btn-form">
       <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
         
       </div>
