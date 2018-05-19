@@ -14,7 +14,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body id="particles-js"><!--ID FOR PARTICLES -->
-  
+  <div id="loginResult"><?php echo(''); ?></div>
+
 <div class="container">
   <div class="loader"></div>
 
@@ -56,12 +57,12 @@
               <div class="row">
                 <div class="form-group">
                   <div class="col-lg-3 col-xs-12">
-                    <label for="loginform-login" class="btn btn-default btn-sm" style="width:100%">
+                    <label for="registerform-login" class="btn btn-default btn-sm" style="width:100%">
                       <span class="glyphicon glyphicon-user"></span> Login
                     </label>
                   </div>
                   <div class="col-lg-9 col-xs-12">
-                    <input name="login" type="text" class="form-control" id="loginform-login" placeholder="Podaj Login"></input>
+                    <input name="login" type="text" class="form-control" id="registerform-login" placeholder="Podaj Login"></input>
                   </div>
                 </div>
               </div><br/>
@@ -73,7 +74,7 @@
                     </label>
                   </div>
                   <div class="col-lg-9 col-xs-12">
-                    <input name="mail" type="text" class="form-control" id="loginform-login" placeholder="Podaj e-mail"></input>
+                    <input name="mail" type="text" class="form-control" id="registerform-email" placeholder="Podaj e-mail"></input>
                   </div>
                 </div>
               </div><br/>
@@ -85,7 +86,7 @@
                     </label>
                   </div>
                   <div class="col-lg-9 col-xs-12">
-                    <input name="pass1" type="password" class="form-control" id="loginform-login" placeholder="Podaj hasło"></input>
+                    <input name="pass1" type="password" class="form-control" id="registerform-password1" placeholder="Podaj hasło"></input>
                   </div>
                 </div>
               </div><br/>
@@ -97,7 +98,7 @@
                     </label>
                   </div>
                   <div class="col-lg-9 col-xs-12">
-                    <input name="pass2" type="password" class="form-control" id="loginform-login" placeholder="Powtórz hasło"></input>
+                    <input name="pass2" type="password" class="form-control" id="registerform-password2" placeholder="Powtórz hasło"></input>
                   </div>
                 </div>
               </div><br/>
@@ -124,7 +125,7 @@
             <h3 class="modal-title">Zaloguj się</h3>
           </div>
           <div class="modal-body">
-            <form action="accounts/handler.php" method="POST">
+            <form id="login-form" action="" method="post">
 
               <div class="row">
                 <div class="form-group">
@@ -152,7 +153,8 @@
                 </div>
                 <br/>
                 <div class="modal-footer">
-                  <button type="submit" class="btn btn-success">Zaloguj</button>
+                <span id="loginform-info" class="label label-danger"></span>
+                  <input id="login-form-submit"  type='button' class="btn btn-success" value="zaloguj"></input>
                   <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
                 </div>
               </div>
@@ -174,6 +176,7 @@ particlesJS.load('particles-js', 'particles/particlesjs-config.json', function()
 
   
 </script>
+<script src="controllers/Index.js"></script>
 </body>
 </html>
 
