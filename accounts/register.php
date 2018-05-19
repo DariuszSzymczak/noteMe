@@ -45,12 +45,13 @@ class register{
                 $query = $pdo->query('SELECT loginmd5 FROM users WHERE md5='.$md5.'');
                 $_SESSION['userID']=$query;
                 echo $query;
-                 header('Location:../user_panel/userpanel.php');
+                //header('Location:../user_panel/userpanel.php');
+                setcookie("loginResult", 'true', time()+100,'/',$_SERVER['HTTP_HOST']);
             }
             else
             {
-                setcookie("loginFailed", $login, time()+10);
-                header('Location:../index.php');
+                setcookie("loginResult", 'false', time()+100,'/',$_SERVER['HTTP_HOST']);
+                //header('Location:../index.php');
             }
             
            
