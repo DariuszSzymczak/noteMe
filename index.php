@@ -26,11 +26,9 @@
     </div>
     <br/>
   <div class="page-header-description">
-    <p class="description">
-      
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempore recusandae animi soluta quasi?
- Asperiores rem dolore eaque vel, porro, soluta unde debitis aliquam laboriosam. Repellat explicabo, maiores!
-    </p>
+    <div class="description">
+     <h3> Internetowy pojemnik na twoje myśli! </h3>
+</div>
   </div>
     <div class=page-header-buttons>
       <button type="button" class="btn btn-success btn-header" data-toggle="modal" data-target="#registerModal">
