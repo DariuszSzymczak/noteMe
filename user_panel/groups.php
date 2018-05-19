@@ -39,18 +39,18 @@
                 <!-- Logo -->
                 <div class="navbar-header">
                     <a class="navbar-brand" href="userpanel.php">
-                    <a class="navbar-brand" href="userpanel.php">
-                        <!-- Logo icon -->
-                        <span>
-                            <img src="../assets/header-logo-text.png" alt="homepage" class="dark-logo" />
-                        </span>                        
-                        <b>
-                            <img src="../assets/header-logo.png" alt="homepage" class="dark-logo" />
-                        </b>
-                    </a>
+                        <a class="navbar-brand" href="userpanel.php">
+                            <!-- Logo icon -->
+                            <span>
+                                <img src="../assets/header-logo-text.png" alt="homepage" class="dark-logo" />
+                            </span>
+                            <b>
+                                <img src="../assets/header-logo.png" alt="homepage" class="dark-logo" />
+                            </b>
+                        </a>
                         <!--End Logo icon -->
                         <!-- Logo text -->
-                        
+
                     </a>
                     </a>
                 </div>
@@ -99,8 +99,7 @@
                         </li>
                         <!-- Messages -->
                         <li class="nav-item dropdown mega-dropdown">
-                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
+                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-th-large"></i>
                             </a>
                             <div class="dropdown-menu animated zoomIn">
@@ -452,14 +451,14 @@
             <!-- Bread crumb -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-primary">Twoje wszystkie zadania</h3>
+                    <h3 class="text-primary">Grupy do których należysz</h3>
                 </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
                             <a href="javascript:void(0)">Home</a>
                         </li>
-                        <li class="breadcrumb-item active">Zadania</li>
+                        <li class="breadcrumb-item active">Twoje grupy</li>
                     </ol>
                 </div>
             </div>
@@ -471,7 +470,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-title">
-                                <h2>Lista zadań </h2>
+                                <h2>Twoje grupy </h2>
 
                             </div>
                             <div class="card-body">
@@ -481,93 +480,37 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>Nazwa</th>
-                                                <th>Grupa</th>
-                                                <th>Deadline</th>
-                                                <th>Status</th>
+                                                <th>Użytkownicy</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-
-                                            <tr>
-                                                <td>1</td>
+                                        <tr>
                                                 <td>
-                                                    <a href="task.php">Przykładowe zadanie z bazy</a>
+                                                    <div class="round-img">
+                                                        <a href="group.php">
+                                                            <img src="images/avatar/4.jpg" alt="">
+                                                    </div>
                                                 </td>
                                                 <td>
-                                                    <a href="group.php">
-                                                        <span>IP20</span>
+                                                    <a href="group.php">IP20</a>
                                                 </td>
                                                 <td>
-                                                    <a href="date.php">
-                                                        <span>2018-05-30</span>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <span class="badge badge-success">Skończone</span>
+                                                        <span>21/37</span>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    2
+                                                    <div class="round-img">
+                                                        <a href="group.php">
+                                                            <img src="images/avatar/4.jpg" alt="">
+                                                        </a>
+                                                    </div>
                                                 </td>
                                                 <td>
-                                                    <a href="task.php">Następne jakieś zadanie</a>
+                                                    <a href="group.php">IP20</a>
                                                 </td>
                                                 <td>
-                                                    <a href="group.php">
-                                                        <span>IP20</span>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <a href="date.php">
-                                                        <span>2018-06-01</span>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <span class="badge badge-success">Skończone</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    3
-                                                </td>
-                                                <td>
-                                                    <a href="task.php">Zadanie nr 3</a>
-                                                </td>
-                                                <td>
-                                                    <a href="group.php">
-                                                        <span>Praca</span>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <a href="date.php">
-                                                        <span>2018-09-10</span>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <span class="badge badge-warning">W trakcie</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    4
-                                                </td>
-                                                <td>
-                                                    <a href="task.php">Ostatnie zadanie na liście</a>
-                                                </td>
-                                                <td>
-                                                    <a href="group.php">
-                                                        <span>Nauka</span>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <a href="date.php">
-                                                        <span>2018-05-20</span>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <a href="date.php">
-                                                        <span class="badge badge-success">Skończone</span>
+                                                        <span>21/37</span>
                                                 </td>
                                             </tr>
                                         </tbody>

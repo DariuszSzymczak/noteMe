@@ -24,11 +24,11 @@
     <div class="page-header-title">
     <img class="logo" src="assets/logo.png"></img>
     </div>
-    <br/>
   <div class="page-header-description">
     <div class="description">
      <h3> Internetowy pojemnik na twoje myśli! </h3>
 </div>
+<br/>
   </div>
     <div class=page-header-buttons>
       <button type="button" class="btn btn-success btn-header" data-toggle="modal" data-target="#registerModal">

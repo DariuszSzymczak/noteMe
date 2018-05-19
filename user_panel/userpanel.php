@@ -405,7 +405,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#" aria-expanded="false">
+                                <a href="groups.php" aria-expanded="false">
                                     <i class="fa fa-table"></i>
                                     <span class="hide-menu">Grupy</span>
                                 </a>
