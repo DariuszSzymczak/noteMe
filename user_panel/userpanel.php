@@ -43,18 +43,18 @@
                 <!-- Logo -->
                 <div class="navbar-header">
                     <a class="navbar-brand" href="userpanel.php">
-                    <a class="navbar-brand" href="userpanel.php">
-                        <!-- Logo icon -->
-                        <span>
-                            <img src="../assets/header-logo-text.png" alt="homepage" class="dark-logo" />
-                        </span>                        
-                        <b>
-                            <img src="../assets/header-logo.png" alt="homepage" class="dark-logo" />
-                        </b>
-                    </a>
+                        <a class="navbar-brand" href="userpanel.php">
+                            <!-- Logo icon -->
+                            <span>
+                                <img src="../assets/header-logo-text.png" alt="homepage" class="dark-logo" />
+                            </span>
+                            <b>
+                                <img src="../assets/header-logo.png" alt="homepage" class="dark-logo" />
+                            </b>
+                        </a>
                         <!--End Logo icon -->
                         <!-- Logo text -->
-                        
+
                     </a>
                     </a>
                 </div>
@@ -75,8 +75,7 @@
                         </li>
                         <!-- Messages -->
                         <li class="nav-item dropdown mega-dropdown">
-                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
+                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-th-large"></i>
                             </a>
                             <div class="dropdown-menu animated zoomIn">
@@ -528,6 +527,9 @@
                                             <th>Nazwa</th>
                                             <th>Grupa</th>
                                             <th>Deadline</th>
+                                            <th>
+                                                <center>Akcje</center>
+                                            </th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>
@@ -541,6 +543,12 @@
                                             </td>
                                             <td>
                                                 <span>2018-05-30</span>
+                                            </td>
+                                            <td>
+                                                <center>
+                                                    <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
+                                                    <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Edytuj</button>
+                                                </center>
                                             </td>
                                             <td>
                                                 <span class="badge badge-success">Skończone</span>
@@ -558,6 +566,12 @@
                                                 <span>2018-06-01</span>
                                             </td>
                                             <td>
+                                                <center>
+                                                    <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
+                                                    <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Edytuj</button>
+                                                </center>
+                                            </td>
+                                            <td>
                                                 <span class="badge badge-success">Done</span>
                                             </td>
                                         </tr>
@@ -573,6 +587,12 @@
                                                 <span>2018-09-10</span>
                                             </td>
                                             <td>
+                                                <center>
+                                                    <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
+                                                    <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Edytuj</button>
+                                                </center>
+                                            </td>
+                                            <td>
                                                 <span class="badge badge-warning">Pending</span>
                                             </td>
                                         </tr>
@@ -586,6 +606,12 @@
                                             </td>
                                             <td>
                                                 <span>2018-05-20</span>
+                                            </td>
+                                            <td>
+                                                <center>
+                                                    <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
+                                                    <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Edytuj</button>
+                                                </center>
                                             </td>
                                             <td>
                                                 <span class="badge badge-success">Done</span>
@@ -690,20 +716,17 @@
             <div>Icons made by
                 <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from
                 <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by
-                <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0"
-                    target="_blank">CC 3.0 BY</a>
+                <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
             </div>
             <div>Icons made by
                 <a href="https://www.flaticon.com/authors/dinosoftlabs" title="DinosoftLabs">DinosoftLabs</a> from
                 <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by
-                <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0"
-                    target="_blank">CC 3.0 BY</a>
+                <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
             </div>
             <div>Icons made by
                 <a href="http://www.freepik.com" title="Freepik">Freepik</a> from
                 <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by
-                <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0"
-                    target="_blank">CC 3.0 BY</a>
+                <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
             </div>
         </footer>
         <!-- End footer -->
