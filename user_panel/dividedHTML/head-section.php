@@ -1,6 +1,8 @@
 <?php 
                             //TO TRZEBA DAC DO PLIKU JEDNEGO JAK BEDZIE ZROBIONY PODZIAL
                             session_start();
+                            if(isset($_SESSION['userID']))
+                            {
                             $panel = 'panelClass/panel.php';
                             require $panel;
 
@@ -8,7 +10,12 @@
                             $config = '../accounts/config.php';
                             require $config;
                             $pdo = new PDO("mysql:host=$server;dbname=$database", $usr, $passwd);
-                            
+                            }
+                            else
+                            {
+                                //cookies ze zlego logowania
+                                header('Location:../index.php');
+                            }
                             ?>
 <!DOCTYPE html>
 <html lang="en">
