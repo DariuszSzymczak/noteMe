@@ -87,6 +87,11 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                <br/>
+                                <a href="javascript:;" data-toggle="modal" data-target="#createGroupModal">
+                                        <button type="button" class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5">
+                                            <i class="ti-plus"></i>Stwórz grupę</button>
+                                    </a>
                             </div>
                         </div>
                         <!-- /# card -->
@@ -96,6 +101,7 @@
                 <!-- /# row -->
 
 <?php
+    require('dividedHTML/createGroupModal.php');
     require('dividedHTML/footer.php');
 ?>
  
