@@ -757,9 +757,9 @@
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
     <!-- Amchart -->
-    <script src="js/lib/morris-chart/raphael-min.js"></script>
-    <script src="js/lib/morris-chart/morris.js"></script>
-    <script src="js/lib/morris-chart/dashboard1-init.js"></script>
+    <!-- <script src="js/lib/morris-chart/raphael-min.js"></script> -->
+    <!-- <script src="js/lib/morris-chart/morris.js"></script> -->
+    <!-- <script src="js/lib/morris-chart/dashboard1-init.js"></script> -->
 
 
     <script src="js/lib/calendar-2/moment.latest.min.js"></script>
@@ -779,6 +779,8 @@
 
     <script src="js/custom.min.js"></script>
 
+    <!-- calendar functions with AJAX -->
+    <script src="js/calendar.js"></script>
 </body>
 
 </html>
