@@ -9,7 +9,7 @@
                             require $config;
                             $pdo = new PDO("mysql:host=$server;dbname=$database", $usr, $passwd);
                             
-                            ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -487,13 +487,13 @@
                                 <div class="card-two">
                                     <header>
                                         <div class="avatar">
-                                            <img src="https://randomuser.me/api/portraits/women/21.jpg" alt="Allison Walker" />
+                                            <img src="<?php $pane->getUserData($pdo,$_SESSION['userID'],'avatar');?>" alt="Allison Walker" />
                                         </div>
                                     </header>
 
-                                    <h3>przykladowyUser1</h3>
+                                    <h3><?php $pane->getUserData($pdo,$_SESSION['userID'],'login');?></h3>
                                     <div class="desc">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit et cupiditate deleniti.
+                                    <?php $pane->getUserData($pdo,$_SESSION['userID'],'opis');?>
                                     </div>
 
                                     <div class="clear"></div>
@@ -524,73 +524,58 @@
                                         <div class="col-md-3 col-xs-6 b-r">
                                             <strong>Nazwa użytkownika</strong>
                                             <br>
-                                            <p class="text-muted">John Deo</p>
+                                            <p class="text-muted"><?php $pane->getUserData($pdo,$_SESSION['userID'],'login');?></p>
                                         </div>
                                         <div class="col-md-3 col-xs-6 b-r">
                                             <strong>Email</strong>
                                             <br>
-                                            <p class="text-muted">Zebra Theme@gmail.com</p>
+                                            <p class="text-muted"><?php $pane->getUserData($pdo,$_SESSION['userID'],'email');?></p>
                                         </div>
                                         <div class="col-md-3 col-xs-6">
                                             <strong>Miejscowość</strong>
                                             <br>
-                                            <p class="text-muted">London</p>
+                                            <p class="text-muted"><?php $pane->getUserData($pdo,$_SESSION['userID'],'miejscowosc');?></p>
                                         </div>
                                     </div>
                                     <hr>
-                                    <p class="m-t-30">Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus
-                                        ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.
-                                        Integer tincidunt.Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend
-                                        tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.</p>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                                        has been the industry's standard dummy text ever since the 1500s, when an unknown
-                                        printer took a galley of type and scrambled it to make a type specimen book. It has
-                                        survived not only five centuries </p>
-                                    <p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem
-                                        Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker
-                                        including versions of Lorem Ipsum.
+                                    <p class="m-t-30">
+                                    <?php $pane->getUserData($pdo,$_SESSION['userID'],'opis');?>
                                     </p>
 
                                 </div>
                             </div>
-                       
+                       <?php $pane->changeUserData($pdo,$_SESSION['userID']);?>
                             <div class="tab-pane" id="settings" role="tabpanel">
                                 <div class="card-body">
-                                    <form class="form-horizontal form-material">
+                                    <form method = "POST" class="form-horizontal form-material">
                                         <div class="form-group">
                                             <label class="col-md-12">Miejscowość</label>
                                             <div class="col-md-12">
-                                                <input name="city" type="text" placeholder="" class="form-control form-control-line">
+                                                <input name="city" type="text" value="<?php $pane->getUserData($pdo,$_SESSION['userID'],'miejscowosc');?>" class="form-control form-control-line">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="example-email" class="col-md-12">Email</label>
+                                            <label class="col-md-12">Hasło (podaj nowe)</label>
                                             <div class="col-md-12">
-                                                <input name = "mail"type="email" placeholder="Zebra Theme@gmail.com" class="form-control form-control-line" name="example-email" id="example-email">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-12">Hasło</label>
-                                            <div class="col-md-12">
-                                                <input name="password" type="password" value="password" class="form-control form-control-line">
+                                                <input name="password" type="password" value="" class="form-control form-control-line">
                                             </div>
                                         </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-12">Opis</label>
                                     <div class="col-md-12">
-                                        <textarea name="description" rows="20" class="form-control form-control-line"></textarea>
+                                        <textarea name="description" rows="20" class="form-control form-control-line"><?php $pane->getUserData($pdo,$_SESSION['userID'],'opis');?></textarea>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-12">Avatar</label>
                                     <div class="col-md-12">
-                                        <form action="#" class="dropzone">
+                                       
                                             <div class="fallback">
-                                                <input name="avatar" type="file" multiple />
+                                                <input name="avatar" type="file"/>
                                             </div>
-                                        </form>
+                                       
                                     </div>
                                 </div>
 
@@ -598,7 +583,7 @@
 
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <button class="btn btn-success">Update Profile</button>
+                                        <input type="submit" class="btn btn-success">Update Profile</input>
                                     </div>
                                 </div>
                                 </form>
