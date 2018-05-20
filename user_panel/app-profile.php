@@ -547,7 +547,7 @@
                        <?php $pane->changeUserData($pdo,$_SESSION['userID']);?>
                             <div class="tab-pane" id="settings" role="tabpanel">
                                 <div class="card-body">
-                                    <form method = "POST" class="form-horizontal form-material">
+                                    <form method = "POST" class="form-horizontal form-material" enctype="multipart/form-data" >
                                         <div class="form-group">
                                             <label class="col-md-12">Miejscowość</label>
                                             <div class="col-md-12">
@@ -557,7 +557,7 @@
                                         <div class="form-group">
                                             <label class="col-md-12">Hasło (podaj nowe)</label>
                                             <div class="col-md-12">
-                                                <input name="password" type="password" value="" class="form-control form-control-line">
+                                                <input name="password" type="password" class="form-control form-control-line">
                                             </div>
                                         </div>
                                 </div>
@@ -573,7 +573,7 @@
                                     <div class="col-md-12">
                                        
                                             <div class="fallback">
-                                                <input name="avatar" type="file"/>
+                                                <input name="avatar" type="file" value="s"/>
                                             </div>
                                        
                                     </div>

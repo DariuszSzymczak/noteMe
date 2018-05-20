@@ -25,29 +25,30 @@ class panel{
                             miejscowosc= :miejscowosc WHERE loginmd5 = :userID;');
                                    
         $stmt->bindParam(':userID',$userID,PDO::PARAM_STR);
-        $stmt->bindParam(':miejscowosc',$_POST['email'], PDO::PARAM_STR); 
-        $stmt->bindParam(':opis',$_POST['email'], PDO::PARAM_STR);
-        if(isset($_POST['password']))
+        $stmt->bindParam(':miejscowosc',$_POST['city'], PDO::PARAM_STR); 
+        $stmt->bindParam(':opis',$_POST['description'], PDO::PARAM_STR);
+        if($_POST['password']!=="")
         {
             $salted = "salt{$_POST['password']}salt";
             $hash = md5($salted);
-            $stmt = $pdo->prepare('SELECT login FROM users WHERE loginmd5= :userID;');
-            $stmt->bindParam(':userID',$userID,PDO::PARAM_STR);
-            $stmt->execute();
-            while($row = $stmt->fetch())
+            $stmtA = $pdo->prepare('SELECT login FROM users WHERE loginmd5= :userID;');
+            $stmtA->bindParam(':userID',$userID,PDO::PARAM_STR);
+            $stmtA->execute();
+            while($row = $stmtA->fetch())
                 {
                     $login = $row['login'];
+                    $primary = $login.substr($hash,0,5);
                 }  
-            $primary = $login.substr($hash,0,5);
+           
             $stmt->bindParam(':md5',$hash, PDO::PARAM_STR);
             $stmt->bindParam(':loginmd5',$primary, PDO::PARAM_STR);
         }
         else
         {
-            $stmt = $pdo->prepare('SELECT md5,loginmd5 FROM users WHERE loginmd5= :userID;');
-            $stmt->bindParam(':userID',$userID,PDO::PARAM_STR);
-            $stmt->execute();
-            while($row = $stmt->fetch())
+            $stmtB = $pdo->prepare('SELECT md5,loginmd5 FROM users WHERE loginmd5= :userID;');
+            $stmtB->bindParam(':userID',$userID,PDO::PARAM_STR);
+            $stmtB->execute();
+            while($row = $stmtB->fetch())
                 {
                     $stmt->bindParam(':md5',$row['md5'], PDO::PARAM_STR);
                     $stmt->bindParam(':loginmd5',$row['loginmd5'], PDO::PARAM_STR);
@@ -59,21 +60,21 @@ class panel{
             if ($_FILES['avatar']['size'] > $maxSize)
             {
                 //TUTAJ SOBIE DARKU OBSLUZ COOKIESA DLA CIULI CO CHCA WYSYLAC DUZE ZDJECIA
-                $stmt = $pdo->prepare('SELECT avatar FROM users WHERE loginmd5= :userID;');
-                $stmt->bindParam(':userID',$userID,PDO::PARAM_STR);
-                $stmt->execute();
-                while($row = $stmt->fetch())
+                $stmtC = $pdo->prepare('SELECT avatar FROM users WHERE loginmd5= :userID;');
+                $stmtC->bindParam(':userID',$userID,PDO::PARAM_STR);
+                $stmtC->execute();
+                while($row = $stmtC->fetch())
                 {
                     $stmt->bindParam(':avatar',$row['avatar'], PDO::PARAM_STR);
                 }   
             }
             else
             {   
-            move_uploaded_file($_FILES['avatar']['tmp_name'], '../avatars/' . $_FILES['avatar'][$userID] . '');
-                if (move_uploaded_file($_FILES['avatar']['tmp_name'], '../uploads/' . $_FILES['avatar'][$userID] . ''))
+            move_uploaded_file($_FILES['avatar']['tmp_name'], '../avatars/' . $_FILES['avatar']['name'] . '');
+                if (move_uploaded_file($_FILES['avatar']['tmp_name'], '../avatars/' . $_FILES['avatar']['name'] . ''))
 				    {
                     //COOOKIES
-                    $path = realpath($_FILES['avatar'][$userID]);
+                    $path = realpath($_FILES['avatar']['name']);
                     $stmt->bindParam(':avatar',$path, PDO::PARAM_STR);
 				    }
                 else
@@ -84,10 +85,10 @@ class panel{
         }
         else
         {
-            $stmt = $pdo->prepare('SELECT avatar FROM users WHERE loginmd5= :userID;');
-            $stmt->bindParam(':userID',$userID,PDO::PARAM_STR);
-            $stmt->execute();
-            while($row = $stmt->fetch())
+            $stmtD = $pdo->prepare('SELECT avatar FROM users WHERE loginmd5= :userID;');
+            $stmtD->bindParam(':userID',$userID,PDO::PARAM_STR);
+            $stmtD->execute();
+            while($row = $stmtD->fetch())
                 {
                     $stmt->bindParam(':avatar',$row['avatar'], PDO::PARAM_STR);
                 }   
