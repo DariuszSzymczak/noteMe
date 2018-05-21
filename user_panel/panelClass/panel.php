@@ -1,10 +1,22 @@
 <?php
+
 class panel{
     //Pobieranie poszczgólnych danych usera (edycja profilu)
     public function getUserData($pdo,$userID,$data)
     {
         $stmt = $pdo->prepare('SELECT email,login,md5,loginmd5,avatar,opis,miejscowosc FROM users WHERE loginmd5= :userID;');
         $stmt->bindParam(':userID',$userID,PDO::PARAM_STR);
+        $stmt->execute();
+        while($row = $stmt->fetch())
+        {
+            echo $row[$data];
+        }   
+    }
+
+    public function getUserArticles($pdo,$userID,$date,$data){
+        $stmt = $pdo->prepare('SELECT Temat,Podtemat,Autor FROM articles WHERE loginmd5= :userID AND DateAdded = :today ;');
+        $stmt->bindParam(':userID',$userID,PDO::PARAM_STR);
+        $stmt->bindParam(':today',$date,PDO::PARAM_STR);
         $stmt->execute();
         while($row = $stmt->fetch())
         {

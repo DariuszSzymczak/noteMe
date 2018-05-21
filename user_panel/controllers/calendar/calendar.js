@@ -33,7 +33,7 @@ function calendarSendData(date) {
     $.ajax({
         type: 'POST',
         url: 'controllers/calendar/getArticles.php',
-        data: {"loginmd5":session,"date":date},
+        data: {"date":date},
         success: function (response) {
             console.log(response);
             
