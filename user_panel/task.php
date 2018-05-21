@@ -169,7 +169,7 @@
                                         </table>
                                         </div>
                                         <br/>
-                                        <a href="javascript:;" data-toggle="modal" data-target="#changePassModal">
+                                        <a href="javascript:;" data-toggle="modal" data-target="#addUserModal">
                                             <button type="button" class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5">
                                                 <i class="ti-plus"></i>Dodaj użytkownika</button>
                                         </a>
