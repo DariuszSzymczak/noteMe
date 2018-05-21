@@ -1,15 +1,20 @@
 <?php
-$config = "./../../../accounts/config.php";
+session_start();
+if(isset($_SESSION['userID']))
+{
+$panel = './../../panelClass/panel.php';
+require $panel;
+
+$pane = new panel();
+$config = './../../../accounts/config.php';
 require $config;
 $pdo = new PDO("mysql:host=$server;dbname=$database", $usr, $passwd);
-$stmt = $pdo->prepare('SELECT Temat,Podtemat,Treść,Autor FROM articles WHERE loginmd5= :userID AND DateAdded = :dateadd ;');
-        $stmt->bindParam(':userID',$_POST['loginmd5'],PDO::PARAM_STR);
-        $stmt->bindParam(':dateadd',$_POST['date'],PDO::PARAM_STR);
-        $stmt->execute();
-        while($row = $stmt->fetch())
-        {
-            echo $row[$data];
-        }   
+}
+else
+{
+    //cookies ze zlego logowania
+    header('Location:./../../../../index.php');
+}
 
-echo($userID);
+$pane->getUserArticles($pdo,$_SESSION['userID'],$_POST['date'],'Temat')
 ?>
