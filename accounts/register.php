@@ -10,15 +10,16 @@ class register{
                 $hash = md5($salted);
                 $null = "";
                 $primary = $login.substr($hash,0,5);
-                $stmt = $pdo->prepare('INSERT INTO users(email,login,md5,loginmd5,avatar,opis,miejscowosc)
-                                    VALUES(:email,:login,:md5,:loginmd5,:avatar,:opis,:miejscowosc)');
+                $stmt = $pdo->prepare('INSERT INTO users(email,login,md5,loginmd5,avatar,description,town,isAdmin)
+                                    VALUES(:email,:login,:md5,:loginmd5,:avatar,:description,:town,0)');
                 $stmt->bindParam(':email',$mail, PDO::PARAM_STR);
                 $stmt->bindParam(':login',$login, PDO::PARAM_STR);
                 $stmt->bindParam(':md5',$hash, PDO::PARAM_STR);
                 $stmt->bindParam(':loginmd5',$primary, PDO::PARAM_STR);
                 $stmt->bindParam(':avatar',$null, PDO::PARAM_STR);
-                $stmt->bindParam(':opis',$null, PDO::PARAM_STR);
-                $stmt->bindParam(':miejscowosc',$null, PDO::PARAM_STR);
+                $stmt->bindParam(':description',$null, PDO::PARAM_STR);
+                $stmt->bindParam(':town',$null, PDO::PARAM_STR);
+                $stmt->bindParam(':town',$null, PDO::PARAM_STR);
                 $stmt->execute();
            }
 

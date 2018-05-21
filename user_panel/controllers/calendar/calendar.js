@@ -29,13 +29,14 @@ function calendarAddCallback() {
 
 function calendarSendData(date) {
     const session = document.getElementById("sessionNumber").dataset.name;
-
+    console.log(session);
     $.ajax({
         type: 'POST',
         url: 'controllers/calendar/getArticles.php',
         data: {"date":date},
         success: function (response) {
-            console.log(response);
+            let json =JSON.parse(response);
+            console.log(json);
             
         }
     });
