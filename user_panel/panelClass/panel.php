@@ -13,8 +13,8 @@ class panel{
         }   
     }
 
-    public function getUserArticles($pdo,$userID,$date,$data){
-        $stmt = $pdo->prepare('SELECT Temat,Treść,Podtemat,Autor FROM articles WHERE loginmd5= :userID AND DateAdded = :today ;');
+    public function getUserArticles($pdo,$userID,$date){
+        $stmt = $pdo->prepare('SELECT topic,content,dateend FROM tasks WHERE loginmd5= :userID AND DateAdded = :today ;');
         $stmt->bindParam(':userID',$userID,PDO::PARAM_STR);
         $stmt->bindParam(':today',$date,PDO::PARAM_STR);
         $stmt->execute();

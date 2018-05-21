@@ -17,5 +17,5 @@ else
     header('Location:./../../../../index.php');
 }
 
-$pane->getUserArticles($pdo,$_SESSION['userID'],$_POST['date'],'Temat')
+$pane->getUserArticles($pdo,$_SESSION['userID'],$_POST['date'])
 ?>
