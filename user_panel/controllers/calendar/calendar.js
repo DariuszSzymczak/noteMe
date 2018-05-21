@@ -35,7 +35,8 @@ function calendarSendData(date) {
         url: 'controllers/calendar/getArticles.php',
         data: {"date":date},
         success: function (response) {
-            console.log(response);
+            let json =JSON.parse(response);
+            console.log(json);
             
         }
     });

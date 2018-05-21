@@ -9,6 +9,7 @@ $pane = new panel();
 $config = './../../../accounts/config.php';
 require $config;
 $pdo = new PDO("mysql:host=$server;dbname=$database", $usr, $passwd);
+$pdo->exec("set names utf8");
 }
 else
 {

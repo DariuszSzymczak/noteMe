@@ -14,14 +14,13 @@ class panel{
     }
 
     public function getUserArticles($pdo,$userID,$date,$data){
-        $stmt = $pdo->prepare('SELECT Temat,Podtemat,Autor FROM articles WHERE loginmd5= :userID AND DateAdded = :today ;');
+        $stmt = $pdo->prepare('SELECT Temat,Treść,Podtemat,Autor FROM articles WHERE loginmd5= :userID AND DateAdded = :today ;');
         $stmt->bindParam(':userID',$userID,PDO::PARAM_STR);
         $stmt->bindParam(':today',$date,PDO::PARAM_STR);
         $stmt->execute();
-        while($row = $stmt->fetch())
-        {
-            echo $row[$data];
-        }   
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $json = json_encode($results);  
+        echo($json);
     }
 
     //Edycja profilu usera
