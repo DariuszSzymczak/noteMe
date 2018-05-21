@@ -16,7 +16,7 @@
                                 //cookies ze zlego logowania
                                 header('Location:../index.php');
                             }
-                            ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,8 +28,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
-    <title>Ela - Bootstrap Admin Dashboard Template</title>
+    <title>noteMe       </title>
     <!-- Bootstrap Core CSS -->
     <link href="css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -38,6 +37,7 @@
     <link href="css/lib/dropzone/dropzone.css" rel="stylesheet">
     <link href="css/lib/calendar2/semantic.ui.min.css" rel="stylesheet">
     <link href="css/lib/calendar2/pignose.calendar.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="../assets/header-logo2.png" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:** -->

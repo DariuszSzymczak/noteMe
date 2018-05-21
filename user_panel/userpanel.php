@@ -288,6 +288,7 @@
 <?php
     require('dividedHTML/footer.php');
 ?>
+<<<<<<< HEAD
  
 
             <!-- End PAge Content -->
@@ -365,3 +366,6 @@
 </body>
 
 </html>
+=======
+ 
+>>>>>>> dedd5ac08d521e9c0abe5c8354054b9bea86a5f1
