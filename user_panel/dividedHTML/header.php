@@ -1,4 +1,3 @@
-
 <body class="fix-header fix-sidebar">
     <!-- Preloader - style you can find in spinners.css -->
     <div class="preloader">
@@ -23,9 +22,6 @@
                     </a>
                         <!--End Logo icon -->
                         <!-- Logo text -->
-                        
-                    </a>
-                    </a>
                 </div>
                 <!-- End Logo -->
                 <div class="navbar-collapse">
@@ -231,4 +227,3 @@
                 </div>
             </nav>
         </div>
-        <div id="sessionNumber" data-name="<?php echo($_SESSION['userID']); ?>" style="display:none"></div>
