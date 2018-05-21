@@ -61,7 +61,6 @@ body{
 	<button type="button" class="btn btn-deleteUser" data-toggle="modal" data-target="#modalDeleteUser"> Usuń użytkownika </button>
 	<button type="button" class="btn btn-addQuest" data-toggle="modal" data-target="#modalAddQuest"> Dodaj Zadanie </button>
 	<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangePassword"> Zmień hasło </button>
-	<button type="button" class="btn btn-addUser" data-toggle="modal" data-target="#modalAddUser"> Dodaj użytkownika </button>
 	
 	<!--modal Usun uzytkownika-->
 	<div class="modal fade" id="modalDeleteUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -113,42 +112,6 @@ body{
     					<input name="pass1" type="text" class="form-control" id="exampleInputPassword1" placeholder="Termin">
   					</div>
 					<div class="modal-footer"><button type="submit" class="btn btn-primary">Dodaj zadanie</button>
-      					<button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
-					</div>  
-				</form>   
-      			</div>  
-     		</div>
-    	</div>
-	</div>
-	<!--modal Dodaj uzytkownika-->
-	<div class="modal fade" id="modalAddUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-    		<div class="modal-content">
-      			<div class="modal-header">
-        				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          				<span aria-hidden="true">&times;</span>
-        				</button>
-        				<h3 class="modal-title">Dodawanie użytkownika</h3>
-      			</div>
-      			<div class="modal-body">
-      			<form action="accounts/handler.php" method="POST">
-  					<div class="form-group">
-    					<label class="form-label" for="exampleInputEmail1">Adres e-mail</label>
-    					<input name="mail" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-  					</div>
-  					<div class="form-group">
-    					<label class="form-label" for="exampleInputPassword1">Login</label>
-    					<input name="login" type="text" class="form-control" id="exampleInputPassword1" placeholder="login">
-  					</div>
-  					<div class="form-group">
-    					<label class="form-label" for="exampleInputPassword1">Hasło</label>
-    					<input name="pass1" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-  					</div>
-  					<div class="form-group">
-    					<label class="form-label" for="exampleInputPassword1">Powtórz hasło</label>
-   						<input name="pass2" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-  					</div>
-					<div class="modal-footer"><button type="submit" class="btn btn-primary">Dodaj użytkownika</button>
       					<button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
 					</div>  
 				</form>   
