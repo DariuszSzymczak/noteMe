@@ -231,3 +231,4 @@
                 </div>
             </nav>
         </div>
+        <div id="sessionNumber" data-name="<?php echo($_SESSION['userID']); ?>" style="display:none"></div>
