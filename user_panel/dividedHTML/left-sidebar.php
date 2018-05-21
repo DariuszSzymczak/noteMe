@@ -36,7 +36,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#" aria-expanded="false">
+                                <a href="userPrivateNotes.php" aria-expanded="false">
                                     <i class="fa fa-book"></i>
                                     <span class="hide-menu">Notatki</span>
                                 </a>

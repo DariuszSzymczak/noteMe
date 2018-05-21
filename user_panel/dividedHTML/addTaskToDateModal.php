@@ -1,9 +1,9 @@
-<div class="modal" tabindex="-1" role="dialog" aria-labelledby="addTaskModal" aria-hidden="true" id="addTaskModal">
+<div class="modal" tabindex="-1" role="dialog" aria-labelledby="addTaskToDateModal" aria-hidden="true" id="addTaskToDateModal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <form action="javascript:;" novalidate="novalidate">
                     <div class="modal-header">
-                        <h3 class="modal-title">Dodaj zadanie</h3>
+                        <h5 class="modal-title">Dodaj zadanie do daty: 2018-05-30</h5>
                     </div>
                     <div class="modal-body">
                         <div class="">
@@ -36,7 +36,7 @@
                                 </select>
                             </div>
 
-                            <div class="form-group">
+                         <div class="form-group">
                                 <label for="chooseUsers">
                                     Wybier użytkowników
                                 </label>
@@ -50,18 +50,7 @@
                                 <input type="checkbox" name="selectAllUsers" value="selectedAllUsers"><strong>Wybierz wszystkich</strong><br>
 
                             </div>
-
-
-                            <div class="form-group">
-                                <label for="taskDeadline">
-                                    Deadline zadania
-                                </label>
-                                <div class='input-group date' id='datetimepicker2'>
-                                    <input type="date" class="form-control" placeholder="dd/mm/yyyy">
-                                </div>
-                                <span class="field-validation-valid text-danger" data-valmsg-for="confirmPass" data-valmsg-replace="true"></span>
-
-                            </div>
+                            
 
                         </div>
 

@@ -1,9 +1,9 @@
-<div class="modal" tabindex="-1" role="dialog" aria-labelledby="addTaskModal" aria-hidden="true" id="addTaskModal">
+<div class="modal" tabindex="-1" role="dialog" aria-labelledby="addTaskToUserModal" aria-hidden="true" id="addTaskToUserModal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <form action="javascript:;" novalidate="novalidate">
                     <div class="modal-header">
-                        <h3 class="modal-title">Dodaj zadanie</h3>
+                        <h3 class="modal-title">Dodaj zadanie użytkownikowi jakiśUser1</h3>
                     </div>
                     <div class="modal-body">
                         <div class="">
@@ -24,34 +24,6 @@
                                 <span class="field-validation-valid text-danger" data-valmsg-for="newPass" data-valmsg-replace="true"></span>
 
                             </div>
-                            <div class="form-group">
-                                <label for="chooseGroup">
-                                    Wybier grupę
-                                </label>
-                                <select name="chooseGroup" class="form-control">
-                                    <option>IP20</option>
-                                    <option>GRUPA2</option>
-                                    <option>Jakaś grupa</option>
-                                    <option>xD</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="chooseUsers">
-                                    Wybier użytkowników
-                                </label>
-                                <br/>
-                                <input type="checkbox" name="userName" value="userName"> user1<br>
-                                <input type="checkbox" name="userName" value="userName"> username13<br>
-                                <input type="checkbox" name="userName" value="userName"> user666<br>
-                                <input type="checkbox" name="userName" value="userName"> username123<br>
-                                <input type="checkbox" name="userName" value="userName"> AdamMickiewicz<br>
-                                <br/>
-                                <input type="checkbox" name="selectAllUsers" value="selectedAllUsers"><strong>Wybierz wszystkich</strong><br>
-
-                            </div>
-
-
                             <div class="form-group">
                                 <label for="taskDeadline">
                                     Deadline zadania
