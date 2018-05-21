@@ -1,4 +1,4 @@
-<div class="modal" tabindex="-1" role="dialog" aria-labelledby="addUserModal" aria-hidden="true" id="changePassModal">
+<div class="modal" tabindex="-1" role="dialog" aria-labelledby="addUserModal" aria-hidden="true" id="addUserModal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <form action="addUserHandler.php" method="POST" novalidate="novalidate">
@@ -10,8 +10,7 @@
                             <div class="form-group">
                                 <label for="oldPass">
                                     Nazwa użytkownika </label>
-                                <input type="text" data-val="true" data-val-required="Wpisz nazwę użytkownika" class="form-control" name="userName" id="userName"
-                                />
+                                <input type="text" data-val="true" data-val-required="Wpisz nazwę użytkownika" class="form-control" name="userName" id="userName"/>
                                 <span class="field-validation-valid text-danger" data-valmsg-for="userName" data-valmsg-replace="true"></span>
                             </div>
                         </div>
