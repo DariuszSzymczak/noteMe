@@ -1,13 +1,12 @@
-function calendarActiveDot() {
-    let date = document.getElementsByClassName('pignose-calendar-unit-active')[0].dataset.date;
 
-}
 
 console.log("chuj");
 function calendarAddCallback() {
 
 
     setTimeout(function () {
+        calendarGetUserDates();
+
         $(".pignose-calendar-unit-date").each(function () {
 
             let date = this.dataset.date;
@@ -24,12 +23,10 @@ function calendarAddCallback() {
 
 
     }, 100);
-    console.log('calendarAddCallback');
 }
 
 function calendarSendData(date) {
     const session = document.getElementById("sessionNumber").dataset.name;
-    console.log(session);
     $.ajax({
         type: 'POST',
         url: 'controllers/calendar/getArticles.php',
@@ -54,7 +51,26 @@ function calendarSendData(date) {
     });
 }
 
+function calendarGetUserDates(){
+    const session = document.getElementById("sessionNumber").dataset.name;
+    $.ajax({
+        type: 'POST',
+        url: 'controllers/calendar/getDates.php',
+        data: {"method":"getDates"},
+        success: function (response) {
+            let json =JSON.parse(response);
+            
+            for(x=0;x<json.length;x++){
+                let targetData = json[x].DateAdded;
+                let targetElement = $(`.pignose-calendar-unit-date[data-date='${targetData}']`).css({background: "#ff99a4"});
+            }
+            
+        }
+    });
+}
+
 function calendarShowTable(json){
+
     let content = json.content + "...";
     let outerDiv = `<div class="media" style="display: none"> \
     <div class="media-left"> \ 
