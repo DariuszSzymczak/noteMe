@@ -36,12 +36,41 @@ function calendarSendData(date) {
         data: {"date":date},
         success: function (response) {
             let json =JSON.parse(response);
-            console.log(json);
-            
+            $('#calendarTable').html('')
+            let length = json.length;
+            let iterator=0;
+            function animation(){
+                if(iterator < length){
+                    setTimeout(function () {  
+                        calendarShowTable(json[iterator]);
+                        iterator++;
+                        animation();
+                    },240);
+                }   
+                
+            }
+            animation();
         }
     });
 }
 
+function calendarShowTable(json){
+    let content = json.content + "...";
+    let outerDiv = `<div class="media" style="display: none"> \
+    <div class="media-left"> \ 
+        <a href="#"> \
+            <img alt="..." src="images/avatar/1.jpg" class="media-object"> \ 
+        </a> \
+    </div> \
+    <div class="media-body"> \
+        <h4 class="media-heading">${json.topic}</h4>\
+        <p>${content}</p>\
+        <p class="comment-date">Data zakończenia: ${json.dateend}</p> \
+    </div> \
+    </div>`
+    $('#calendarTable').append(outerDiv);
+    $('.media').slideDown(500).delay(300);
+}
 
 
 document.addEventListener('DOMContentLoaded', calendarAddCallback);
