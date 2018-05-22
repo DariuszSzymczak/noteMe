@@ -32,11 +32,11 @@ class panel{
                             md5= :md5,
                             loginmd5= :loginmd5,
                             avatar= :avatar,
-                            opis= :opis,
-                            miejscowosc= :miejscowosc WHERE loginmd5 = :userID;');
+                            description= :description,
+                            town= :town WHERE loginmd5 = :userID;');
                                    
         $stmt->bindParam(':userID',$userID,PDO::PARAM_STR);
-        $stmt->bindParam(':miejscowosc',$_POST['city'], PDO::PARAM_STR); 
+        $stmt->bindParam(':town',$_POST['city'], PDO::PARAM_STR); 
         $stmt->bindParam(':opis',$_POST['description'], PDO::PARAM_STR);
         if($_POST['password']!=="")
         {
