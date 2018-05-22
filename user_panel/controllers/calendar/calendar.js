@@ -62,7 +62,7 @@ function calendarGetUserDates(){
             
             for(x=0;x<json.length;x++){
                 let targetData = json[x].DateAdded;
-                let targetElement = $(`.pignose-calendar-unit-date[data-date='${targetData}']`).css({background: "#ff99a4"});
+                let targetElement = $(`.pignose-calendar-unit-date[data-date='${targetData}'] a`).css({background: "#ff99a4"});
             }
             
         }
