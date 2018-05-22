@@ -2,7 +2,7 @@
     require('dividedHTML/head-section.php');
     require('dividedHTML/header.php');
     require('dividedHTML/left-sidebar.php');
-
+ $pane->changeUserData($pdo,$_SESSION['userID']);
 ?>
         <!-- Page wrapper  -->
         <div class="page-wrapper">
@@ -89,8 +89,9 @@
 
                                 </div>
                             </div>
-                       <?php $pane->changeUserData($pdo,$_SESSION['userID']);?>
+                       
                             <div class="tab-pane" id="settings" role="tabpanel">
+                            </br>
                                 <div class="card-body">
                                     <form method = "POST" class="form-horizontal form-material" enctype="multipart/form-data" >
                                         <div class="form-group">
@@ -102,7 +103,7 @@
                                         <div class="form-group">
                                             <label class="col-md-12">Hasło (podaj nowe)</label>
                                             <div class="col-md-12">
-                                                <input name="password" type="password" class="form-control form-control-line">
+                                                <input name="password" placeholder="Uzupełnij jeśli chcesz zmienić" type="password" class="form-control form-control-line">
                                             </div>
                                         </div>
                                 </div>
@@ -112,23 +113,9 @@
                                         <textarea name="description" rows="20" class="form-control form-control-line"><?php $pane->getUserData($pdo,$_SESSION['userID'],'description');?></textarea>
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-12">Avatar</label>
-                                    <div class="col-md-12">
-                                       
-                                            <div class="fallback">
-                                                <input name="avatar" type="file" value="s"/>
-                                            </div>
-                                       
-                                    </div>
-                                </div>
-
-
-
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <input type="submit" class="btn btn-success">Update Profile</input>
+                                        <input type="submit" class="btn btn-success"></input>
                                     </div>
                                 </div>
                                 </form>
