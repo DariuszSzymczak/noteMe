@@ -2,7 +2,7 @@
 
     $editosoba = 'editosoba.php';
     require $editosoba;
-    require 'adminconfig.php';
+    require './../accounts/config.php';
     try
     {
         $pdo = new PDO("mysql:host=$server;dbname=$database", $usr, $passwd);

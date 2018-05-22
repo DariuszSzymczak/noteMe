@@ -5,17 +5,50 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="./../style/index-style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
 body{
 	height: 90vh;
 	color: #aaa;
-	background: linear-gradient(-45deg, #41484D,#660002);
+	background: linear-gradient(-45deg, #e6ffff,#0d0d0d);
 	background-size: 400% 400%;
 	-webkit-animation: Gradient 15s ease infinite;
 	-moz-animation: Gradient 15s ease infinite;
     animation: Gradient 15s ease infinite;
+}
+.container {
+	width:100%;
+	padding: 0;
+	margin: 0;
+}
+.btn {
+	position:relative;
+	background: inherit;
+	background-color: #ffffff;
+	transition: background-color 1s,color 1s;
+	font-family: 'Quicksand', sans-serif;
+	text-align:center;
+	width:90%;
+	padding:2%;
+	margin-top:3%;
+	margin-left:5%;
+}
+.btn:last-child{
+	position: relative;
+	bottom:-40%;
+}
+
+
+.btn:hover {
+	background:inherit;
+	background-color: #000000;
+	color: #ffffff;
+}
+
+.form-label {
+	border: none !important;
 }
 @-webkit-keyframes Gradient {
 	0% {
@@ -52,16 +85,74 @@ body{
 		background-position: 0% 50%
 	}
 }
+.header {
+	width:100%;
+	height:60px;
+	background-color:white;
+	position: relative;
+	box-sizing: inherit;
+	-webkit-box-shadow: 0px 5px 20px -5px rgba(0,0,0,1);
+	-moz-box-shadow: 0px 5px 20px -5px rgba(0,0,0,1);
+	box-shadow: 0px 5px 20px -5px rgba(0,0,0,1);
+	z-index:50;
+}
+.side-bar{
+	min-width:10%;
+	max-width:10%;
+	background-color:white;
+	height:100%;
+	position:fixed;
+	padding-bottom:0;
+	margin-bottom:0;
+	z-index:99;
+	overflow: hidden;
+	-webkit-box-shadow: inset 0px 5px 20px -5px rgba(0,0,0,1);
+	-moz-box-shadow: inset 0px 5px 20px -5px rgba(0,0,0,1);
+	box-shadow: inset 0px 5px 20px -5px rgba(0,0,0,1);
+	
+}
+.modal-content{
+	top:100px;
+}
+
 	</style>
 </head>
 
 <body>
 <div class="container">
 
+	<div class="header">
+	<div class="navbar-header">
+                    <a class="navbar-brand" href="userpanel.php">
+                    </a><a class="navbar-brand" href="userpanel.php">
+                        <!-- Logo icon -->
+                        <span style="">
+                            <img src="../assets/header-logo-text.png" alt="homepage" class="dark-logo">
+                        </span>                        
+                        <b>
+                            <img src="../assets/header-logo.png" alt="homepage" class="dark-logo">
+                        </b>
+                    </a>
+                        <!--End Logo icon -->
+                        <!-- Logo text -->
+                </div>
+		<div class="avatar">
+		</div>
+		
+	</div>
+	<div class="side-bar">
+
 	<button type="button" class="btn btn-deleteUser" data-toggle="modal" data-target="#modalDeleteUser"> Usuń użytkownika </button>
 	<button type="button" class="btn btn-addQuest" data-toggle="modal" data-target="#modalAddQuest"> Dodaj Zadanie </button>
 	<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangePassword"> Zmień hasło </button>
 	<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangeToAdmin"> Nadaj Admina </button>
+	<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangeToAdmin"> Dodatkowe </button>
+	<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangeToAdmin"> Przyciski </button>
+	<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangeToAdmin"> Dla </button>
+	<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangeToAdmin"> Dawida </button>
+	<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangeToAdmin"> xdd </button>
+	<button type="button" class="btn btn-logout" id="logout" data-toggle="modal" data-target="#modalChangeToAdmin"> Wyloguj </button>
+	</div>
 
 	<!--modal Usun uzytkownika-->
 	<div class="modal fade" id="modalDeleteUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

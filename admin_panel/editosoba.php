@@ -20,13 +20,6 @@
 
             $start = date('Y-m-d');
             
-            echo $loginmd5;
-            echo $start;
-            echo $task;
-            echo $expiry_date;
-            echo $autor;
-            echo $topic;
-            
             $querryAddTask = $pdo->prepare('INSERT INTO tasks (topic,content,loginmd5,DateAdded,dateend,author,status) 
                                              values(:temat,:zadanie,:login,:data_start,:data_zakonczenia,:autor,0)');
             $querryAddTask->bindParam(':login',$loginmd5, PDO::PARAM_STR);
