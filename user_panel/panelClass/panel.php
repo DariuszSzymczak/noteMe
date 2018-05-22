@@ -37,7 +37,7 @@ class panel{
                                    
         $stmt->bindParam(':userID',$userID,PDO::PARAM_STR);
         $stmt->bindParam(':town',$_POST['city'], PDO::PARAM_STR); 
-        $stmt->bindParam(':opis',$_POST['description'], PDO::PARAM_STR);
+        $stmt->bindParam(':description',$_POST['description'], PDO::PARAM_STR);
         if($_POST['password']!=="")
         {
             $salted = "salt{$_POST['password']}salt";
