@@ -13,6 +13,16 @@ class panel{
         }   
     }
 
+    public function getUserArticles($pdo,$userID,$date){
+        $stmt = $pdo->prepare('SELECT topic,content,dateend FROM tasks WHERE loginmd5= :userID AND DateAdded = :today ;');
+        $stmt->bindParam(':userID',$userID,PDO::PARAM_STR);
+        $stmt->bindParam(':today',$date,PDO::PARAM_STR);
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $json = json_encode($results);  
+        echo($json);
+    }
+
     public function getUserDates($pdo,$userID){
         $stmt = $pdo->prepare('SELECT DateAdded FROM tasks WHERE loginmd5= :userID;');
         $stmt->bindParam(':userID',$userID,PDO::PARAM_STR);
@@ -21,8 +31,6 @@ class panel{
         $json = json_encode($results);  
         echo($json);
     }
-
-
 
     //Edycja profilu usera
     public function changeUserData($pdo,$userID)
