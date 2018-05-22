@@ -37,16 +37,13 @@ body{
 }
 .btn:last-child{
 	position: relative;
-	bottom:-40%;
+	bottom:-35%;
 }
-
-
 .btn:hover {
 	background:inherit;
 	background-color: #000000;
 	color: #ffffff;
 }
-
 .form-label {
 	border: none !important;
 }
@@ -61,7 +58,6 @@ body{
 		background-position: 0% 50%
 	}
 }
-
 @-moz-keyframes Gradient {
 	0% {
 		background-position: 0% 50%
@@ -73,7 +69,6 @@ body{
 		background-position: 0% 50%
 	}
 }
-
 @keyframes Gradient {
 	0% {
 		background-position: 0% 50%
@@ -97,8 +92,8 @@ body{
 	z-index:50;
 }
 .side-bar{
-	min-width:10%;
-	max-width:10%;
+	min-width:13%;
+	max-width:13%;
 	background-color:white;
 	height:100%;
 	position:fixed;
@@ -115,7 +110,7 @@ body{
 	top:100px;
 }
 
-	</style>
+		</style>
 </head>
 
 <body>
@@ -123,8 +118,8 @@ body{
 
 	<div class="header">
 	<div class="navbar-header">
-                    <a class="navbar-brand" href="userpanel.php">
-                    </a><a class="navbar-brand" href="userpanel.php">
+                    <a class="navbar-brand" href="./../index.php">
+                    </a><a class="navbar-brand" href="./../index.php">
                         <!-- Logo icon -->
                         <span style="">
                             <img src="../assets/header-logo-text.png" alt="homepage" class="dark-logo">
@@ -145,8 +140,8 @@ body{
 	<button type="button" class="btn btn-deleteUser" data-toggle="modal" data-target="#modalDeleteUser"> Usuń użytkownika </button>
 	<button type="button" class="btn btn-addQuest" data-toggle="modal" data-target="#modalAddQuest"> Dodaj Zadanie </button>
 	<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangePassword"> Zmień hasło </button>
-	<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangeToAdmin"> Nadaj Admina </button>
-	<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangeToAdmin"> Dodatkowe </button>
+	<button type="button" class="btn btn-changeToAdmin" data-toggle="modal" data-target="#modalChangeToAdmin"> Nadaj Admina </button>
+	<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangeToAdmin"> Wyświetl wszystkich </button>
 	<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangeToAdmin"> Przyciski </button>
 	<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangeToAdmin"> Dla </button>
 	<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangeToAdmin"> Dawida </button>
@@ -257,7 +252,7 @@ body{
         				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
           				<span aria-hidden="true">&times;</span>
         				</button>
-        				<h3 class="modal-title">Zmiana hasła</h3>
+        				<h3 class="modal-title">Nadaj uprawnienia admina</h3>
       			</div>
       			<div class="modal-body">
       			<form action="adminhandler.php" method="POST">
