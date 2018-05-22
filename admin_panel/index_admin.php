@@ -61,7 +61,8 @@ body{
 	<button type="button" class="btn btn-deleteUser" data-toggle="modal" data-target="#modalDeleteUser"> Usuń użytkownika </button>
 	<button type="button" class="btn btn-addQuest" data-toggle="modal" data-target="#modalAddQuest"> Dodaj Zadanie </button>
 	<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangePassword"> Zmień hasło </button>
-	
+	<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangeToAdmin"> Nadaj Admina </button>
+
 	<!--modal Usun uzytkownika-->
 	<div class="modal fade" id="modalDeleteUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   		<div class="modal-dialog modal-dialog-centered" role="document">
@@ -73,13 +74,13 @@ body{
         			<h3 class="modal-title">Usuń użytkownika</h3>
       			</div>
       			<div class="modal-body">
-      				<form action="deleteUser.php" method="POST">
+      				<form action="adminhandler.php" method="POST">
   						<div class="form-group">
     						<label class="form-label" for="exampleInputPassword1">Nazwa użytkownika</label>
     						<input name="loginToDoSt" type="text" class="form-control" placeholder="login">
   						</div>
 						<div class="modal-footer">
-							<button type="submit" class="btn btn-primary">Usuń uzytkownika</button>
+							<input type="submit" name="delete" class="btn btn-primary" value="Usuń uzytkownika"></input>
       						<button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
 						</div>
 					</form>   
@@ -98,20 +99,25 @@ body{
         				<h3 class="modal-title">Dodawanie zadania</h3>
       			</div>
       			<div class="modal-body">
-      			<form action="addQuest.php" method="POST">
+      			<form action="adminhandler.php" method="POST">
   					<div class="form-group">
     					<label class="form-label" for="exampleInputEmail1">Nazwa użytkownika</label>
     					<input name="login" type="text" class="form-control" id="exampleLogin" aria-describedby="emailHelp" placeholder="Login">
   					</div>
+					<div class="form-group">
+    					<label class="form-label" for="exampleInputPassword1">Temat</label>
+    					<input name="topic" type="text" class="form-control" id="exampleInputPassword1" placeholder="Temat">
+  					</div>
   					<div class="form-group">
     					<label class="form-label" for="exampleInputPassword1">Treść zadania</label>
-    					<input name="login" type="text" class="form-control" id="exampleInputPassword1" placeholder="Treść...">
+    					<input name="content" type="text" class="form-control" id="exampleInputPassword1" placeholder="Treść...">
   					</div>
   					<div class="form-group">
     					<label class="form-label" for="exampleInputPassword1">Termin zakończenia</label>
-    					<input name="pass1" type="text" class="form-control" id="exampleInputPassword1" placeholder="Termin">
+    					<input name="expiry_date" type="text" class="form-control" id="exampleInputPassword1" placeholder="Termin">
   					</div>
-					<div class="modal-footer"><button type="submit" class="btn btn-primary">Dodaj zadanie</button>
+					<div class="modal-footer">
+						<input name="addtask" type="submit" class="btn btn-primary" value='Dodaj zadanie'></input>
       					<button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
 					</div>  
 				</form>   
@@ -130,7 +136,7 @@ body{
         				<h3 class="modal-title">Zmiana hasła</h3>
       			</div>
       			<div class="modal-body">
-      			<form action="accounts/handler.php" method="POST">
+      			<form action="adminhandler.php" method="POST">
   					<div class="form-group">
     					<label class="form-label" for="exampleInputEmail1">Login</label>
     					<input name="login" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter login">
@@ -144,7 +150,7 @@ body{
     					<input name="password2" type="password" class="form-control" id="exampleInputPassword1" placeholder="Powtórz hasło">
   					</div>
 					<div class="modal-footer">
-						<button type="submit" class="btn btn-primary">Zmień hasło</button>
+						<input type="submit" name='changepw' class="btn btn-primary" value="Zmień hasło"></input>
       					<button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
 					</div>  
 				</form>   
@@ -152,7 +158,31 @@ body{
      		</div>
     	</div>
 	</div>
-	
+	<!--modal Zmień hasło-->
+	<div class="modal fade" id="modalChangeToAdmin" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+    		<div class="modal-content">
+      			<div class="modal-header">
+        				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          				<span aria-hidden="true">&times;</span>
+        				</button>
+        				<h3 class="modal-title">Zmiana hasła</h3>
+      			</div>
+      			<div class="modal-body">
+      			<form action="adminhandler.php" method="POST">
+  					<div class="form-group">
+    					<label class="form-label" for="exampleInputEmail1">Login</label>
+    					<input name="login" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter login">
+  					</div>
+					<div class="modal-footer">
+						<input type="submit" name='getAdmin' class="btn btn-primary" value="Wykonaj"></input>
+      					<button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+					</div>  
+				</form>   
+      			</div>  
+     		</div>
+    	</div>
+	</div>
 </div>
 
 </body>
