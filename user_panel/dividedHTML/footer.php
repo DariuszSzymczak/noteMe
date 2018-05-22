@@ -67,6 +67,7 @@
 
 <script src="js/custom.min.js"></script>
 <!-- End Wrapper -->
+<script src="./../controllers/calendar/calendar.js"></script>
 <!-- All Jquery -->
 </body>
 </html>

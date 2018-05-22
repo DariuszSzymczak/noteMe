@@ -3,7 +3,7 @@ function calendarActiveDot() {
 
 }
 
-
+console.log("chuj");
 function calendarAddCallback() {
 
 
