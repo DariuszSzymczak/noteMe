@@ -9,7 +9,7 @@
             <!-- Bread crumb -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-primary">Dashboard</h3>
+                    <h3 class="text-primary">Twój profil</h3>
                 </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
@@ -38,7 +38,7 @@
 
                                     <h3><?php $pane->getUserData($pdo,$_SESSION['userID'],'login');?></h3>
                                     <div class="desc">
-                                    <?php $pane->getUserData($pdo,$_SESSION['userID'],'opis');?>
+                                    <?php $pane->getUserData($pdo,$_SESSION['userID'],'description');?>
                                     </div>
 
                                     <div class="clear"></div>
@@ -79,12 +79,12 @@
                                         <div class="col-md-3 col-xs-6">
                                             <strong>Miejscowość</strong>
                                             <br>
-                                            <p class="text-muted"><?php $pane->getUserData($pdo,$_SESSION['userID'],'miejscowosc');?></p>
+                                            <p class="text-muted"><?php $pane->getUserData($pdo,$_SESSION['userID'],'town');?></p>
                                         </div>
                                     </div>
                                     <hr>
                                     <p class="m-t-30">
-                                    <?php $pane->getUserData($pdo,$_SESSION['userID'],'opis');?>
+                                    <?php $pane->getUserData($pdo,$_SESSION['userID'],'description');?>
                                     </p>
 
                                 </div>
@@ -96,7 +96,7 @@
                                         <div class="form-group">
                                             <label class="col-md-12">Miejscowość</label>
                                             <div class="col-md-12">
-                                                <input name="city" type="text" value="<?php $pane->getUserData($pdo,$_SESSION['userID'],'miejscowosc');?>" class="form-control form-control-line">
+                                                <input name="city" type="text" value="<?php $pane->getUserData($pdo,$_SESSION['userID'],'town');?>" class="form-control form-control-line">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -109,7 +109,7 @@
                                 <div class="form-group">
                                     <label class="col-md-12">Opis</label>
                                     <div class="col-md-12">
-                                        <textarea name="description" rows="20" class="form-control form-control-line"><?php $pane->getUserData($pdo,$_SESSION['userID'],'opis');?></textarea>
+                                        <textarea name="description" rows="20" class="form-control form-control-line"><?php $pane->getUserData($pdo,$_SESSION['userID'],'description');?></textarea>
                                     </div>
                                 </div>
 
