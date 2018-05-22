@@ -6,7 +6,6 @@ $('#login-form-submit').on('click', function () {
         data: $("#login-form").serialize(),
         //or your custom data either as object {foo: "bar", ...} or foo=bar&...
         success: function (response) {
-            console.log('wyslano:' + $("#ogin-form").serialize())
             if (getCookie("loginResult") == 'false') {
                 console.log(getCookie("loginResult"));
                 $('#loginform-info').css({

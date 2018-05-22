@@ -28,7 +28,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-title">
-                            <h2>Lista zadań </h2>
+                            <h2>Twoje prywatne notatki </h2>
 
                         </div>
                         <div class="card-body">
@@ -37,13 +37,11 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Nazwa</th>
-                                            <th>Grupa</th>
-                                            <th>Deadline</th>
+                                            <th>Tytuł</th>
+                                            <th>Data dodania</th>
                                             <th>
                                                 <center>Akcje</center>
                                             </th>
-                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -51,11 +49,7 @@
                                         <tr>
                                             <td>1</td>
                                             <td>
-                                                <a href="task.php">Przykładowe zadanie z bazy</a>
-                                            </td>
-                                            <td>
-                                                <a href="group.php">
-                                                    <span>IP20</span>
+                                                <a href="userPrivateNote.php">Notatka 1</a>
                                             </td>
                                             <td>
                                                 <a href="date.php">
@@ -64,7 +58,6 @@
                                             </td>
                                             <td>
                                                 <center>
-                                                    <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
                                                     <a href="javascript:;" data-toggle="modal" data-target="#editTaskModal">
                                                         <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">
                                                             Edytuj</button>
@@ -75,30 +68,22 @@
                                                     </a>
                                                 </center>
                                             </td>
-                                            <td>
-                                                <span class="badge badge-success">Skończone</span>
-                                            </td>
+
                                         </tr>
                                         <tr>
                                             <td>
                                                 2
                                             </td>
                                             <td>
-                                                <a href="task.php">Następne jakieś zadanie</a>
-                                            </td>
-                                            <td>
-                                                <a href="group.php">
-                                                    <span>IP20</span>
-                                                </a>
+                                                <a href="userPrivateNote.php">Zakupy</a>
                                             </td>
                                             <td>
                                                 <a href="date.php">
-                                                    <span>2018-06-01</span>
+                                                    <span>2018-05-30</span>
                                                 </a>
                                             </td>
                                             <td>
                                                 <center>
-                                                    <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
                                                     <a href="javascript:;" data-toggle="modal" data-target="#editTaskModal">
                                                         <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">
                                                             Edytuj</button>
@@ -108,9 +93,6 @@
                                                             Usuń</button>
                                                     </a>
                                                 </center>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-success">Skończone</span>
                                             </td>
                                         </tr>
                                         <tr>
@@ -118,21 +100,15 @@
                                                 3
                                             </td>
                                             <td>
-                                                <a href="task.php">Zadanie nr 3</a>
-                                            </td>
-                                            <td>
-                                                <a href="group.php">
-                                                    <span>Praca</span>
-                                                </a>
+                                                <a href="userPrivateNote.php">Notatka 2</a>
                                             </td>
                                             <td>
                                                 <a href="date.php">
-                                                    <span>2018-09-10</span>
+                                                    <span>2018-05-30</span>
                                                 </a>
                                             </td>
                                             <td>
                                                 <center>
-                                                    <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
                                                     <a href="javascript:;" data-toggle="modal" data-target="#editTaskModal">
                                                         <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">
                                                             Edytuj</button>
@@ -142,9 +118,6 @@
                                                             Usuń</button>
                                                     </a>
                                                 </center>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-warning">W trakcie</span>
                                             </td>
                                         </tr>
                                         <tr>
@@ -152,21 +125,15 @@
                                                 4
                                             </td>
                                             <td>
-                                                <a href="task.php">Ostatnie zadanie na liście</a>
-                                            </td>
-                                            <td>
-                                                <a href="group.php">
-                                                    <span>Nauka</span>
-                                                </a>
+                                                <a href="userPrivateNote.php">Przepis na ciasto</a>
                                             </td>
                                             <td>
                                                 <a href="date.php">
-                                                    <span>2018-05-20</span>
+                                                    <span>2018-05-30</span>
                                                 </a>
                                             </td>
                                             <td>
                                                 <center>
-                                                    <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
                                                     <a href="javascript:;" data-toggle="modal" data-target="#editTaskModal">
                                                         <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">
                                                             Edytuj</button>
@@ -176,10 +143,6 @@
                                                             Usuń</button>
                                                     </a>
                                                 </center>
-                                            </td>
-                                            <td>
-                                                <a href="date.php">
-                                                    <span class="badge badge-success">Skończone</span>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -189,7 +152,7 @@
                         <br/>
                         <a href="javascript:;" data-toggle="modal" data-target="#addTaskModal">
                             <button type="button" class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5">
-                                <i class="ti-plus"></i>Dodaj zadanie</button>
+                                <i class="ti-plus"></i>Dodaj notatkę</button>
                         </a>
                     </div>
                     <!-- /# card -->

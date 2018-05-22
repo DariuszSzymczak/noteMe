@@ -2,6 +2,7 @@
     require('dividedHTML/head-section.php');
     require('dividedHTML/header.php');
     require('dividedHTML/left-sidebar.php');
+    
 ?>
 
     <!-- Page wrapper  -->
@@ -36,7 +37,7 @@
                                     </div>
                                 </header>
 
-                                <h3>przykladowyUser1</h3>
+                                <h3>Grupa IP20</h3>
                                 <div class="desc">
                                     Lorem ipsum dolor sit amet, consectetur adipisicing elit et cupiditate deleniti.
                                 </div>
@@ -48,6 +49,7 @@
                 </div>
             </div>
             <!-- Column -->
+
             <!-- Column -->
             <div class="col-lg-12">
                 <div class="card">
@@ -96,9 +98,15 @@
                                                 </td>
                                                 <td>
                                                     <center>
-                                                        <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Wiadomość</button>
-                                                        <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Dodaj zadanie</button>
-                                                        <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">Usuń z grupy</button>
+                                                        <a href="javascript:;" data-toggle="modal" data-target="#sendMessageModal">
+                                                            <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Wiadomość</button>
+                                                        </a>
+                                                        <a href="javascript:;" data-toggle="modal" data-target="#addTaskToUserModal">
+                                                            <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Dodaj zadanie</button>
+                                                        </a>
+                                                        <a href="javascript:;" data-toggle="modal" data-target="#deleteUserConfirmModal">
+                                                            <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">Usuń z grupy</button>
+                                                        </a>
                                                     </center>
                                                 </td>
                                                 <td>
@@ -119,9 +127,15 @@
                                                 </td>
                                                 <td>
                                                     <center>
-                                                        <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Wiadomość</button>
-                                                        <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Dodaj zadanie</button>
-                                                        <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">Usuń z grupy</button>
+                                                        <a href="javascript:;" data-toggle="modal" data-target="#sendMessageModal">
+                                                            <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Wiadomość</button>
+                                                        </a>
+                                                        <a href="javascript:;" data-toggle="modal" data-target="#addTaskToUserModal">
+                                                            <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Dodaj zadanie</button>
+                                                        </a>
+                                                        <a href="javascript:;" data-toggle="modal" data-target="#deleteUserConfirmModal">
+                                                            <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">Usuń z grupy</button>
+                                                        </a>
                                                     </center>
                                                 </td>
                                                 <td>
@@ -145,8 +159,12 @@
                                                         <a href="javascript:;" data-toggle="modal" data-target="#sendMessageModal">
                                                             <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Wiadomość</button>
                                                         </a>
-                                                        <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Dodaj zadanie</button>
-                                                        <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">Usuń z grupy</button>
+                                                        <a href="javascript:;" data-toggle="modal" data-target="#addTaskToUserModal">
+                                                            <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Dodaj zadanie</button>
+                                                        </a>
+                                                        <a href="javascript:;" data-toggle="modal" data-target="#deleteUserConfirmModal">
+                                                            <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">Usuń z grupy</button>
+                                                        </a>
                                                     </center>
                                                 </td>
                                                 <td>
@@ -158,9 +176,9 @@
                                 </div>
                                 <br/>
                                 <a href="javascript:;" data-toggle="modal" data-target="#addUserToGroupModal">
-                                            <button type="button" class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5">
-                                                <i class="ti-plus"></i>Dodaj użytkownika</button>
-                                        </a>
+                                    <button type="button" class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5">
+                                        <i class="ti-plus"></i>Dodaj użytkownika</button>
+                                </a>
                             </div>
                         </div>
 
@@ -198,8 +216,14 @@
                                                 </td>
                                                 <td>
                                                     <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
-                                                    <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Edytuj</button>
-                                                    <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">Usuń</button>
+                                                    <a href="javascript:;" data-toggle="modal" data-target="#editTaskModal">
+                                                        <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">
+                                                            Edytuj</button>
+                                                    </a>
+                                                    <a href="javascript:;" data-toggle="modal" data-target="#deleteTaskConfirmModal">
+                                                        <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">
+                                                            Usuń</button>
+                                                    </a>
                                                 </td>
                                                 <td>
                                                     <span class="badge badge-success">Skończone</span>
@@ -221,8 +245,14 @@
                                                 </td>
                                                 <td>
                                                     <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
-                                                    <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Edytuj</button>
-                                                    <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">Usuń</button>
+                                                    <a href="javascript:;" data-toggle="modal" data-target="#editTaskModal">
+                                                        <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">
+                                                            Edytuj</button>
+                                                    </a>
+                                                    <a href="javascript:;" data-toggle="modal" data-target="#deleteTaskConfirmModal">
+                                                        <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">
+                                                            Usuń</button>
+                                                    </a>
                                                 </td>
                                                 <td>
                                                     <span class="badge badge-success">Skończone</span>
@@ -244,8 +274,14 @@
                                                 </td>
                                                 <td>
                                                     <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
-                                                    <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Edytuj</button>
-                                                    <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">Usuń</button>
+                                                    <a href="javascript:;" data-toggle="modal" data-target="#editTaskModal">
+                                                        <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">
+                                                            Edytuj</button>
+                                                    </a>
+                                                    <a href="javascript:;" data-toggle="modal" data-target="#deleteTaskConfirmModal">
+                                                        <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">
+                                                            Usuń</button>
+                                                    </a>
                                                 </td>
                                                 <td>
                                                     <span class="badge badge-success">Skończone</span>
@@ -267,8 +303,14 @@
                                                 </td>
                                                 <td>
                                                     <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
-                                                    <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Edytuj</button>
-                                                    <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">Usuń</button>
+                                                    <a href="javascript:;" data-toggle="modal" data-target="#editTaskModal">
+                                                        <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">
+                                                            Edytuj</button>
+                                                    </a>
+                                                    <a href="javascript:;" data-toggle="modal" data-target="#deleteTaskConfirmModal">
+                                                        <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">
+                                                            Usuń</button>
+                                                    </a>
                                                 </td>
                                                 <td>
                                                     <span class="badge badge-success">Skończone</span>
@@ -278,9 +320,9 @@
                                     </table>
                                 </div>
                                 <a href="javascript:;" data-toggle="modal" data-target="#addTaskModal">
-                                <button type="button" class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5">
-                                    <i class="ti-plus"></i>Dodaj zadanie</button>
-                            </a>
+                                    <button type="button" class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5">
+                                        <i class="ti-plus"></i>Dodaj zadanie</button>
+                                </a>
                             </div>
                         </div>
 
@@ -306,7 +348,7 @@
                                 <div class="col-md-12">
                                     <form action="#" class="dropzone">
                                         <div class="fallback">
-                                            <input name="file" type="file"/>
+                                            <input name="file" type="file" />
                                         </div>
                                     </form>
                                 </div>
@@ -323,12 +365,13 @@
                     </div>
                 </div>
             </div>
-        </div>
-      
 
-<?php
-    require('dividedHTML/addUserToGroupModal.php');
+            <?php
+    require('dividedHTML/deleteTaskConfirmModal.php');
+    require('dividedHTML/editTaskModal.php');
+    require('dividedHTML/deleteUserConfirmModal.php');
     require('dividedHTML/sendMessageModal.php');
-    require('dividedHTML/addTaskModal.php');
+    require('dividedHTML/addTaskToUserModal.php');
+    require('dividedHTML/addUserToGroupModal.php');
     require('dividedHTML/footer.php');
 ?>
