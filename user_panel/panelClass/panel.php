@@ -4,7 +4,7 @@ class panel{
     //Pobieranie poszczgólnych danych usera (edycja profilu)
     public function getUserData($pdo,$userID,$data)
     {
-        $stmt = $pdo->prepare('SELECT email,login,md5,loginmd5,avatar,opis,miejscowosc FROM users WHERE loginmd5= :userID;');
+        $stmt = $pdo->prepare('SELECT email,login,md5,loginmd5,avatar,description,town,isAdmin FROM users WHERE loginmd5= :userID;');
         $stmt->bindParam(':userID',$userID,PDO::PARAM_STR);
         $stmt->execute();
         while($row = $stmt->fetch())
