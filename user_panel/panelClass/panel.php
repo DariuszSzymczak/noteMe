@@ -95,7 +95,6 @@ class panel{
         $stmt->bindParam(':description',$_POST['description'], PDO::PARAM_STR);
         }
         if($_POST['password']!=="")
-
         {
             $salted = "salt{$_POST['password']}salt";
             $hash = md5($salted);
@@ -108,8 +107,8 @@ class panel{
                     $primary = $login.substr($hash,0,5);
                 }  
            
-            $stmt->bindParam(':md5',$hash, PDO::PARAM_STR);
-            $stmt->bindParam(':loginmd5',$primary, PDO::PARAM_STR);
+            $stmtA->bindParam(':md5',$hash, PDO::PARAM_STR);
+            $stmtA->bindParam(':loginmd5',$primary, PDO::PARAM_STR);
         }
         else
         {
