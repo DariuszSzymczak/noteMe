@@ -1,6 +1,7 @@
 <?php
 
-class panel{
+class panel
+{
     //Pobieranie poszczgólnych danych usera (edycja profilu)
     public function getUserData($pdo,$userID,$data)
     {
@@ -61,7 +62,7 @@ class panel{
             echo '<td>'. $counter .'</td>';
 
             echo "<td><a href=\"javascript:;\" data-toggle=\"modal\" data-target=\"#showPrivateNoteModal\">
-         {$rows["Title"]}</td></a>";
+                  {$rows["Title"]}</td></a>";
             echo " <td>{$rows["DateAdded"]}</td>";
             echo "<td> <center>
             <a href=\"javascript:;\" data-toggle=\"modal\" data-target=\"#editTaskModal\">
@@ -84,23 +85,24 @@ class panel{
     {
         if(isset($_POST['city']))
         {
-        $stmt = $pdo->prepare('UPDATE users SET
-                            md5= :md5,
-                            loginmd5= :loginmd5,
-                            description= :description,
-                            town= :town WHERE loginmd5 = :userID;');
-                                   
-        $stmt->bindParam(':userID',$userID,PDO::PARAM_STR);
-        $stmt->bindParam(':town',$_POST['city'], PDO::PARAM_STR); 
-        $stmt->bindParam(':description',$_POST['description'], PDO::PARAM_STR);
+            $stmt = $pdo->prepare('UPDATE users SET town= :town WHERE loginmd5 = :userID;');
+            $stmt->bindParam(':town',$_POST['city'], PDO::PARAM_STR);
+            $stmt->bindParam(':userID',$userID, PDO::PARAM_STR);
+            $stmt->execute();
         }
-        if($_POST['password']!=="")
+        if(isset($_POST['description']))
+        {
+            $stmtE = $pdo->prepare('UPDATE users SET description= :description WHERE loginmd5 = :userID;');
+            $stmtE->bindParam(':description',$_POST['description'],PDO::PARAM_STR);
+            $stmtE->bindParam(':userID',$userID,PDO::PARAM_STR);
+            $stmtE->execute();      
+        }
+        if(isset($_POST['password']))
         {
             $salted = "salt{$_POST['password']}salt";
             $hash = md5($salted);
             $stmtA = $pdo->prepare('SELECT login FROM users WHERE loginmd5= :userID;');
             $stmtA->bindParam(':userID',$userID,PDO::PARAM_STR);
-            $stmtA->execute();
             while($row = $stmtA->fetch())
                 {
                     $login = $row['login'];
@@ -109,6 +111,8 @@ class panel{
            
             $stmtA->bindParam(':md5',$hash, PDO::PARAM_STR);
             $stmtA->bindParam(':loginmd5',$primary, PDO::PARAM_STR);
+            $stmtA->execute();
+
         }
         else
         {
@@ -117,11 +121,12 @@ class panel{
             $stmtB->execute();
             while($row = $stmtB->fetch())
                 {
-                    $stmt->bindParam(':md5',$row['md5'], PDO::PARAM_STR);
-                    $stmt->bindParam(':loginmd5',$row['loginmd5'], PDO::PARAM_STR);
+                    $stmtB->bindParam(':md5',$row['md5'], PDO::PARAM_STR);
+                    $stmtB->bindParam(':loginmd5',$row['loginmd5'], PDO::PARAM_STR);
                 }   
         }
-        
+        if (!empty($_FILES['avatar']))        
+        {
         if(file_exists($_FILES['avatar']['tmp_name']))
         {        
             
@@ -141,9 +146,8 @@ class panel{
             $stmtC->bindParam(':type', $type);
             $stmtC->bindValue(':imgdata', $imgData);
             $stmtC->execute();
-
-
         }
     }
+}
 }
 ?>
