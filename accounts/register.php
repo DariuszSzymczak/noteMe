@@ -13,16 +13,27 @@ class register{
                 $avatar = "../avatars/avatar.png";
                 $description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac semper ante. Nam semper erat nec dui accumsan, in rutrum urna congue. Duis cursus turpis vestibulum tortor posuere, eu varius neque rhoncus. In volutpat luctus tortor ac finibus. Etiam placerat nunc id ultricies dictum. Suspendisse dapibus dui augue, quis scelerisque eros lacinia eu. Sed sed turpis lectus. Maecenas et nisl molestie, ullamcorper mauris non, consectetur sem. Vivamus bibendum purus in erat faucibus, at pharetra purus euismod. Ut ut accumsan nibh.";
                 $town = "Przykładowa miejscowość";
-                $stmt = $pdo->prepare('INSERT INTO users(email,login,md5,loginmd5,avatar,description,town,isAdmin)
-                                    VALUES(:email,:login,:md5,:loginmd5,:avatar,:description,:town,0)');
+                $stmt = $pdo->prepare('INSERT INTO users(email,login,md5,loginmd5,description,town,isAdmin)
+                                    VALUES(:email,:login,:md5,:loginmd5,:description,:town,0)');
                 $stmt->bindParam(':email',$mail, PDO::PARAM_STR);
                 $stmt->bindParam(':login',$login, PDO::PARAM_STR);
                 $stmt->bindParam(':md5',$hash, PDO::PARAM_STR);
                 $stmt->bindParam(':loginmd5',$primary, PDO::PARAM_STR);
-                $stmt->bindParam(':avatar',$avatar, PDO::PARAM_STR);
                 $stmt->bindParam(':description',$description, PDO::PARAM_STR);
                 $stmt->bindParam(':town',$town, PDO::PARAM_STR);
                 $stmt->execute();
+
+                $imgData = file_get_contents($avatar);
+    
+                $stmtD = $pdo->prepare('DELETE FROM avatars WHERE loginmd5 = :loginmd5');
+                $stmtD->bindParam(':loginmd5', $loginmd5);
+                $stmtD->execute();
+             
+                $stmtC = $pdo->prepare('INSERT into avatars(login, data) values(:login, :imgdata)');
+                $stmtC->bindParam(':login', $login);
+                $stmtC->bindValue(':imgdata', $imgData);
+                $stmtC->execute();
+
            }
 
 

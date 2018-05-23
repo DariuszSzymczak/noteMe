@@ -2,7 +2,7 @@
     require('dividedHTML/head-section.php');
     require('dividedHTML/header.php');
     require('dividedHTML/left-sidebar.php');
- $pane->changeUserData($pdo,$_SESSION['userID']);
+    $pane->changeUserData($pdo,$_SESSION['userID']);
 ?>
         <!-- Page wrapper  -->
         <div class="page-wrapper">
@@ -32,7 +32,9 @@
                                 <div class="card-two">
                                     <header>
                                         <div class="avatar">
-                                            <img src="<?php $pane->getUserData($pdo,$_SESSION['userID'],'avatar');?>" alt="Allison Walker" />
+                                            <?php
+                                             $pane->getUserAvatar($pdo,$_SESSION['userID']);
+                                             ?>
                                         </div>
                                     </header>
 
@@ -113,6 +115,14 @@
                                         <textarea name="description" rows="20" class="form-control form-control-line"><?php $pane->getUserData($pdo,$_SESSION['userID'],'description');?></textarea>
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-12">Avatar</label>
+                                    <div class="col-md-12">
+                                        <input type="file" name="avatar">
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <input type="submit" class="btn btn-success"></input>

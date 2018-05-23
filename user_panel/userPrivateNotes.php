@@ -2,6 +2,7 @@
     require('dividedHTML/head-section.php');
     require('dividedHTML/header.php');
     require('dividedHTML/left-sidebar.php');
+    $pane->changeUserData($pdo,$_SESSION['userID']);
 ?>
 
     <!-- Page wrapper  -->
@@ -45,112 +46,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-
-                                        <tr>
-                                            <td>1</td>
-                                            <td>
-                                                <a href="userPrivateNote.php">Notatka 1</a>
-                                            </td>
-                                            <td>
-                                                <a href="date.php">
-                                                    <span>2018-05-30</span>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <center>
-                                                    <a href="javascript:;" data-toggle="modal" data-target="#editTaskModal">
-                                                        <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">
-                                                            Edytuj</button>
-                                                    </a>
-                                                    <a href="javascript:;" data-toggle="modal" data-target="#deleteTaskConfirmModal">
-                                                        <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">
-                                                            Usuń</button>
-                                                    </a>
-                                                </center>
-                                            </td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                2
-                                            </td>
-                                            <td>
-                                                <a href="userPrivateNote.php">Zakupy</a>
-                                            </td>
-                                            <td>
-                                                <a href="date.php">
-                                                    <span>2018-05-30</span>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <center>
-                                                    <a href="javascript:;" data-toggle="modal" data-target="#editTaskModal">
-                                                        <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">
-                                                            Edytuj</button>
-                                                    </a>
-                                                    <a href="javascript:;" data-toggle="modal" data-target="#deleteTaskConfirmModal">
-                                                        <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">
-                                                            Usuń</button>
-                                                    </a>
-                                                </center>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                3
-                                            </td>
-                                            <td>
-                                                <a href="userPrivateNote.php">Notatka 2</a>
-                                            </td>
-                                            <td>
-                                                <a href="date.php">
-                                                    <span>2018-05-30</span>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <center>
-                                                    <a href="javascript:;" data-toggle="modal" data-target="#editTaskModal">
-                                                        <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">
-                                                            Edytuj</button>
-                                                    </a>
-                                                    <a href="javascript:;" data-toggle="modal" data-target="#deleteTaskConfirmModal">
-                                                        <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">
-                                                            Usuń</button>
-                                                    </a>
-                                                </center>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                4
-                                            </td>
-                                            <td>
-                                                <a href="userPrivateNote.php">Przepis na ciasto</a>
-                                            </td>
-                                            <td>
-                                                <a href="date.php">
-                                                    <span>2018-05-30</span>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <center>
-                                                    <a href="javascript:;" data-toggle="modal" data-target="#editTaskModal">
-                                                        <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">
-                                                            Edytuj</button>
-                                                    </a>
-                                                    <a href="javascript:;" data-toggle="modal" data-target="#deleteTaskConfirmModal">
-                                                        <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">
-                                                            Usuń</button>
-                                                    </a>
-                                                </center>
-                                            </td>
-                                        </tr>
+                                    <?php $pane->showUserPrivateNotes($pdo, $_SESSION['userID']);?>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                         <br/>
-                        <a href="javascript:;" data-toggle="modal" data-target="#addTaskModal">
+                        <a href="javascript:;" data-toggle="modal" data-target="#addPrivateNoteModal">
                             <button type="button" class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5">
                                 <i class="ti-plus"></i>Dodaj notatkę</button>
                         </a>
@@ -163,8 +65,7 @@
             <!-- End PAge Content -->
         </div>
         <?php
-    require('dividedHTML/deleteTaskConfirmModal.php');
-    require('dividedHTML/editTaskModal.php');
-    require('dividedHTML/addTaskModal.php');
+    require('dividedHTML/showPrivateNoteModal.php');
+    require('dividedHTML/addPrivateNoteModal.php');
     require('dividedHTML/footer.php');
 ?>
