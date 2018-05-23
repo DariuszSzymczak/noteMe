@@ -48,19 +48,11 @@ class panel
         echo($json);
     }
 
-    //Wyswietlenie listy notatek użytkownika
-    public function showUserPrivateNotes($pdo, $userID)
+    //Dodawanie i wyswietlenie listy notatek użytkownika
+    public function addUserPrivateNotes($pdo, $userID)
     {
-        $stmt = $pdo->prepare('SELECT Title,DateAdded FROM privatenotes WHERE loginmd5= :userID');
-        $stmt->bindParam(':userID',$userID,PDO::PARAM_STR);
-        $stmt->execute();
-        $counter = 1;
-        $quotationMarks = '"';
-        while($rows = $stmt->fetch())
-        {
-            echo '<tr>';
-            echo '<td>'. $counter .'</td>';
 
+<<<<<<< HEAD
             echo "<td><a href=\"javascript:;\" data-toggle=\"modal\" data-target=\"#showPrivateNoteModal\">
                   {$rows["Title"]}</td></a>";
             echo " <td>{$rows["DateAdded"]}</td>";
@@ -76,8 +68,56 @@ class panel
         </center></td>";
         $counter++;
         }
+=======
+       if(isset($_POST['note']))
+       {
+>>>>>>> 49e0ccee8bc7b15db739c4420aafd2671e5f89e8
         
+        $currentDate = date("Y-m-d");
+        echo "{$currentDate}<br>{$_POST['title']}<br>{$_POST['note']}";
+        $stmt = $pdo->prepare('INSERT INTO privatenotes(DateAdded,Loginmd5,Title,Content)
+                                VALUES(
+                                    :dateadded,
+                                    :loginmd5,
+                                    :title,
+                                    :content)');
+        $stmt->bindParam(':dateadded', $currentDate , PDO::PARAM_STR);
+        $stmt->bindParam(':loginmd5', $userID, PDO::PARAM_STR);
+        $stmt->bindParam(':title', $_POST['title'], PDO::PARAM_STR);
+        $stmt->bindParam(':content', $POST['note'], PDO::PARAM_STR);
+        $stmt->execute();
+        
+       }
     }
+    // public function showUserPrivateNotes($pdo, $userID)
+    // {
+    //     $stmt = $pdo->prepare('SELECT Title,DateAdded FROM privatenotes WHERE loginmd5= :userID');
+    //     $stmt->bindParam(':userID',$userID,PDO::PARAM_STR);
+    //     $stmt->execute();
+    //     $counter = 1;
+    //     $quotationMarks = '"';
+    //     while($rows = $stmt->fetch())
+    //     {
+    //         echo '<tr>';
+    //         echo '<td>'. $counter .'</td>';
+
+    //         echo "<td><a href=\"javascript:;\" data-toggle=\"modal\" data-target=\"#showPrivateNoteModal\">
+    //      {$rows["Title"]}</td></a>";
+    //         echo " <td>{$rows["DateAdded"]}</td>";
+    //         echo "<td> <center>
+    //         <a href=\"javascript:;\" data-toggle=\"modal\" data-target=\"#editTaskModal\">
+    //             <button type=\"button\" class=\"btn btn-warning btn-xs m-b-10 m-l-5\">
+    //                 Edytuj</button>
+    //         </a>
+    //         <a href=\"javascript:;\" data-toggle=\"modal\" data-target=\"#deleteTaskConfirmModal\">
+    //             <button type=\"button\" class=\"btn btn-danger btn-xs m-b-10 m-l-5\">
+    //                 Usuń</button>
+    //         </a>
+    //     </center></td>";
+    //     $counter++;
+    //     }
+        
+    // }
 
 
     //Edycja profilu usera
