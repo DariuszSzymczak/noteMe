@@ -216,7 +216,7 @@ class panel
     }
     public function getGroupData($pdo, $groupName, $data)
     {
-        $stmt = $pdo->prepare('SELECT GroupName, GroupDescription FROM groups WHERE GroupName= :groupName;');
+        $stmt = $pdo->prepare('SELECT GroupName, GroupDescription, Max_count, UserCount FROM groups WHERE GroupName= :groupName;');
         $stmt->bindParam(':groupName',$groupName,PDO::PARAM_STR);
         $stmt->execute();
         while($row = $stmt->fetch())
@@ -304,7 +304,7 @@ class panel
         $userFound = false;
             while($rows = $stmt->fetch())
             { 
-                if($username == $rows['login'] && groupName == $rows['groupName'])
+                if($username == $rows['login'] && $groupName == $rows['groupName'])
                 {
                     $userFound = true;
                 }
@@ -353,17 +353,41 @@ class panel
         }
     }
 
-    public function changeGrouoData($pdo,$groupName)
+    public function changeGroupData($pdo,$groupName)
     {
-        // if(isset($_POST['groupName']))
-        // {
-        //     $stmt = $pdo->prepare('UPDATE groups SET GroupName= :name WHERE GroupName  = :oldName;');
-        //     $stmtB = $pdo->prepare('UPDATE connectgroup SET GroupName= :name WHERE GroupName  = :oldName;'); 
-        //     $stmt->bindParam(':name',$_POST['name'], PDO::PARAM_STR);
-        //     $stmt->bindParam(':oldName',$groupName, PDO::PARAM_STR);
-        //     $stmt->execute();
-        // }
+            if(isset($_POST['groupName']))
+            {
+                $stmt = $pdo->prepare('UPDATE groups SET GroupName= :name WHERE GroupName  = :oldName;');
+                $stmtB = $pdo->prepare('UPDATE connectgroup SET GroupName= :name WHERE GroupName  = :oldName;'); 
+                $stmt->bindParam(':name',$_POST['groupName'], PDO::PARAM_STR);
+                $stmt->bindParam(':oldName',$groupName, PDO::PARAM_STR);
+                $stmtB->bindParam(':name',$_POST['groupName'], PDO::PARAM_STR);
+                $stmtB->bindParam(':oldName',$groupName, PDO::PARAM_STR);
+                $stmt->execute();
+                $stmtB->execute();
+                if(isset($_POST['description']))
+                {
+                    $stmt = $pdo->prepare('UPDATE groups SET GroupDescription= :desc WHERE GroupName  = :name;');
+                    $stmt->bindParam(':desc',$_POST['description'], PDO::PARAM_STR);
+                    $stmt->bindParam(':name',$groupName, PDO::PARAM_STR);
+                    $stmt->execute();
+                    
+                    if(isset($_POST['count']))
+                    {
+                        $stmt = $pdo->prepare('UPDATE groups SET Max_count= :count WHERE GroupName  = :name;');
+                        $stmt->bindParam(':count',$_POST['count'], PDO::PARAM_STR);
+                        $stmt->bindParam(':name',$groupName, PDO::PARAM_STR);
+                        $stmt->execute();
+                    }
+                }
+
+                
+            }
+
+            
+        
     }
+    
 
 }
 ?>

@@ -3,6 +3,7 @@
     require('dividedHTML/header.php');
     require('dividedHTML/left-sidebar.php');
     $pane->addUserToGroup($pdo, $_GET['groupName']);
+    $pane->changeGroupData($pdo, $_GET['groupName'])
 ?>
 
     <!-- Page wrapper  -->
@@ -250,18 +251,24 @@
                                     <div class="form-group">
                                         <label class="col-md-12">Nazwa grupy</label>
                                         <div class="col-md-12">
-                                            <input name="groupName" type="text" value="<?php echo $_GET[ 'groupName'];?>" class="form-control form-control-line">
+                                            <input name="groupName" type="text" value="<?php echo $_GET['groupName'];?>" class="form-control form-control-line">
                                         </div>
                                     </div>
                             <div class="form-group">
                                 <label class="col-md-12">Opis</label>
                                 <div class="col-md-12">
-                                    <input name="description" type=text value="<?php $pane->getGroupData($pdo,$_GET[ 'groupName'] , 'GroupDescription') ?>" class="form-control form-control-line"/>
+                                    <input name="description" type=text value="<?php $pane->getGroupData($pdo,$_GET['groupName'] , 'GroupDescription'); ?>" class="form-control form-control-line"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12">Zwiększ limit użytwkowników</label>
+                                <div class="col-md-12">
+                                    <input name="count" type=number value="<?php $pane->getGroupData($pdo,$_GET['groupName'] , 'Max_count'); ?>" class="form-control form-control-line"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <button class="btn btn-success">Zapisz</button>
+                                    <input type="submit" value="Zapisz" class="btn btn-info"/>
                                 </div>
                             </div>
                             </form>
