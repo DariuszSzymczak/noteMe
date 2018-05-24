@@ -8,6 +8,7 @@
   <link rel="stylesheet" type="text/css" href="./../style/index-style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="script.js"></script>
   <style>
 body{
 	height: 90vh;
@@ -20,6 +21,7 @@ body{
 }
 .container {
 	width:100%;
+	height:100%;
 	padding: 0;
 	margin: 0;
 }
@@ -82,7 +84,7 @@ body{
 }
 .header {
 	width:100%;
-	height:60px;
+	height:8%;
 	background-color:white;
 	position: relative;
 	box-sizing: inherit;
@@ -109,15 +111,29 @@ body{
 .modal-content{
 	top:100px;
 }
+#users{
+	left:15%;
+	top:10%;
+	position:fixed;
+	min-width:10%;
+	min-height:10%;
+	background-color:white;
+	overflow-y:scroll;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px 0 4px 0;
+    overflow-y: hidden;
+	padding-bottom:0;
+	margin-bottom:0;
+}
 
-		</style>
+</style>
 </head>
 
 <body>
 <div class="container">
 
 	<div class="header">
-	<div class="navbar-header">
+		<div class="navbar-header">
                     <a class="navbar-brand" href="./../index.php">
                     </a><a class="navbar-brand" href="./../index.php">
                         <!-- Logo icon -->
@@ -134,20 +150,23 @@ body{
 		<div class="avatar">
 		</div>
 		
-	</div>
+		</div>
 	<div class="side-bar">
 
-	<button type="button" class="btn btn-deleteUser" data-toggle="modal" data-target="#modalDeleteUser"> Usuń użytkownika </button>
-	<button type="button" class="btn btn-addQuest" data-toggle="modal" data-target="#modalAddQuest"> Dodaj Zadanie </button>
-	<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangePassword"> Zmień hasło </button>
-	<button type="button" class="btn btn-changeToAdmin" data-toggle="modal" data-target="#modalChangeToAdmin"> Nadaj Admina </button>
-	<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangeToAdmin"> Wyświetl wszystkich </button>
-	<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangeToAdmin"> Przyciski </button>
-	<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangeToAdmin"> Dla </button>
-	<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangeToAdmin"> Dawida </button>
-	<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangeToAdmin"> xdd </button>
-	<button type="button" class="btn btn-logout" id="logout" data-toggle="modal" data-target="#modalChangeToAdmin"> Wyloguj </button>
-	</div>
+		<button type="button" class="btn btn-deleteUser" data-toggle="modal" data-target="#modalDeleteUser"> Usuń użytkownika </button>
+		<button type="button" class="btn btn-addQuest" data-toggle="modal" data-target="#modalAddQuest"> Dodaj Zadanie </button>
+		<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangePassword"> Zmień hasło </button>
+		<button type="button" class="btn btn-changeToAdmin" data-toggle="modal" data-target="#modalChangeToAdmin"> Nadaj Admina </button>
+		<button type="button" class="btn btn-showAll" id="showall"> Wyświetl wszystkich </button>
+		<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangeToAdmin"> Przyciski </button>
+		<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangeToAdmin"> Dla </button>
+		<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangeToAdmin"> Dawida </button>
+		<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangeToAdmin"> xdd </button>
+		<button type="button" class="btn btn-logout" id="logout" data-toggle="modal" data-target="#modalChangeToAdmin"> Wyloguj </button>
+		</div>
+
+	<div id="users">
+		</div>
 
 	<!--modal Usun uzytkownika-->
 	<div class="modal fade" id="modalDeleteUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
