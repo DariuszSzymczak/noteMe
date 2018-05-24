@@ -1,7 +1,7 @@
 <div class="modal" tabindex="-1" role="dialog" aria-labelledby="createGroupModal" aria-hidden="true" id="createGroupModal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form action="....php" method="POST" novalidate="novalidate">
+                <form method="POST" novalidate="novalidate">
                     <div class="modal-header">
                         <h3 class="modal-title">Utwórz grupę</h3>
                     </div>
@@ -10,7 +10,11 @@
                             <div class="form-group">
                                 <label for="groupName">
                                     Nazwa grupy </label>
-                                <input type="text" data-val="true" data-val-required="Wpisz nazwę grupy" class="form-control" name="userName" id="userName"
+                                <input type="text" data-val="true" data-val-required="Wpisz nazwę grupy" class="form-control" name="groupName" id="groupName"
+                                />
+                                <label for="groupSize">
+                                    Liczba użytkowników </label>
+                                <input type="number" min="20" value="20" data-val="true" data-val-required="Wpisz nazwę grupy" class="form-control" name="groupSize" id="groupSize"
                                 />
                                 <span class="field-validation-valid text-danger" data-valmsg-for="groupName" data-valmsg-replace="true"></span>
                             </div>

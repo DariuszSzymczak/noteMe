@@ -2,15 +2,13 @@
     require('dividedHTML/head-section.php');
     require('dividedHTML/header.php');
     require('dividedHTML/left-sidebar.php');
-    
+    $pane->addPrivateNote($pdo,$_SESSION['userID']);
+
 ?>
 
     <!-- Page wrapper  -->
     <div class="page-wrapper">
         <!-- Bread crumb -->
-        <?php
-        $pane->addUserPrivateNotes($pdo,$_SESSION['userID']);
-?>
         <div class="row page-titles">
             <div class="col-md-5 align-self-center">
                 <h3 class="text-primary">Twoje wszystkie zadania</h3>
@@ -33,11 +31,6 @@
                     <div class="card">
                         <div class="card-title">
                             <h2>Twoje prywatne notatki </h2>
-                          <?php 
-                          echo date("Y.m.j");
-                          echo $_POST['title'];
-                          echo $_POST['note'];
-?>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -67,10 +60,8 @@
                     <!-- /# card -->
                 </div>
                 <!-- /# column -->
-            </div>
-            <!-- /# row -->
-            <!-- End PAge Content -->
-        </div>
+
+        
         <?php
     require('dividedHTML/showPrivateNoteModal.php');
     require('dividedHTML/addPrivateNoteModal.php');

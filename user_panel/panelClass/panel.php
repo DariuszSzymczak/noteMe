@@ -55,7 +55,6 @@ class panel
         $stmt->bindParam(':userID',$userID,PDO::PARAM_STR);
         $stmt->execute();
         $counter = 1;
-        $quotationMarks = '"';
         while($rows = $stmt->fetch())
         {
             echo '<tr>';
@@ -148,6 +147,223 @@ class panel
             $stmtC->execute();
         }
     }
-}
+    }
+
+    public function showGroups($pdo,$userID)
+    {
+
+        $loggedUser = substr($_SESSION['userID'], 0, -5); 
+        $stmt = $pdo->prepare('SELECT cg.GroupName, g.Max_count, g.UserCount, g.groupAdmin
+        FROM groups g, connectgroup cg
+        WHERE cg.login = :loggedUser
+        AND cg.GroupName = g.GroupName
+        ');
+        $stmt->bindParam(':loggedUser',$loggedUser,PDO::PARAM_STR);
+        $stmt->execute();
+        $counter = 1;
+        while($rows = $stmt->fetch())
+        {
+            // var_dump($rows);
+            // echo"<br/>";
+            echo '<tr>';
+            echo '<td>'. $counter .'</td>';
+
+            echo "<td><a href=group.php?groupName=" .$rows["GroupName"] .">{$rows["GroupName"]}</td></a>";
+            echo "
+            <td>"
+                .$rows["UserCount"] ."/".$rows["Max_count"]
+            ."</td>";
+            echo "<td> <center>
+            <a href=\"javascript:;\" data-toggle=\"modal\" data-target=\"\">
+                <button type=\"button\" class=\"btn btn-warning btn-xs m-b-10 m-l-5\">
+                    Opuść grupę</button>
+            </a>";
+            if($loggedUser == $rows["groupAdmin"])
+            {
+           echo "<a href=\"javascript:;\" data-toggle=\"modal\" data-target=\"#deleteTaskConfirmModal\">
+                <button type=\"button\" class=\"btn btn-danger btn-xs m-b-10 m-l-5\">
+                Skasuj grupę</button>
+            </a>";
+            }
+            echo "</center></td>";
+        $counter++;
+        }
+    }
+    public function addGroup($pdo, $userID)
+    {
+        if(isset($_POST["groupName"]) && isset($_POST["groupSize"]))
+        {
+            $name = $_POST["groupName"];
+            $size = $_POST["groupSize"];
+            $count = 1;
+            $loggedUser = substr($_SESSION['userID'], 0, -5); 
+            $stmt = $pdo->prepare('INSERT INTO groups(GroupName, Max_count, UserCount, groupAdmin)
+                                VALUES (:name, :size, :count, :user ) ');
+            $stmtB = $pdo->prepare('INSERT INTO connectgroup(login, GroupName)
+            VALUES (:login, :name) ');
+
+            $stmt->bindParam(':name', $name,PDO::PARAM_STR);
+            $stmt->bindParam(':size', $size,PDO::PARAM_INT);
+            $stmt->bindParam(':count', $count,PDO::PARAM_INT);
+            $stmt->bindParam(':user', $loggedUser,PDO::PARAM_STR);
+
+            $stmtB->bindParam(':name', $name,PDO::PARAM_STR);
+            $stmtB->bindParam(':login', $loggedUser,PDO::PARAM_STR);
+
+            $stmt->execute();
+            $stmtB->execute();
+        }
+    }
+    public function getGroupData($pdo, $groupName, $data)
+    {
+        $stmt = $pdo->prepare('SELECT GroupName, GroupDescription FROM groups WHERE GroupName= :groupName;');
+        $stmt->bindParam(':groupName',$groupName,PDO::PARAM_STR);
+        $stmt->execute();
+        while($row = $stmt->fetch())
+        {
+            echo $row[$data];
+        }  
+    }
+
+    public function showGroupUsers($pdo, $groupName)
+    {
+        $stmt = $pdo->prepare('SELECT cg.login, g.groupAdmin 
+                               FROM groups g, connectgroup cg 
+                               WHERE cg.GroupName = :groupName 
+                               AND cg.GroupName = g.GroupName ');
+
+        $stmt->bindParam(':groupName',$_GET['groupName'],PDO::PARAM_STR);
+        $stmt->execute();
+        $counter = 1;
+
+            while($rows = $stmt->fetch())
+            { 
+            //  var_dump($rows);
+            //  echo"<br/>";
+            echo '<tr>';
+            echo '<td>'. $counter .'</td>';
+            echo "<td><a href=app-profile.php?userName=" .$rows["login"] .">" .$rows["login"] ."</a> </td>" ;
+            echo "<td> <center>
+            <a href=\"javascript:;\" data-toggle=\"modal\" data-target=\"#sendMessageModal".$rows["login"]. "\">
+                <button type=\"button\" class=\"btn btn-info btn-xs m-b-10 m-l-5\">
+                    Wiadomość</button>
+            </a>
+            <a href=\"javascript:;\" data-toggle=\"modal\" data-target=\"\">
+                <button type=\"button\" class=\"btn btn-warning btn-xs m-b-10 m-l-5\">
+                    Przydziel zadanie</button>
+            </a>";
+            if(substr($_SESSION['userID'], 0, 5) == $rows["groupAdmin"])
+            echo"
+            <a href=\"javascript:;\" data-toggle=\"modal\" data-target=\"\">
+            <button type=\"button\" class=\"btn btn-danger btn-xs m-b-10 m-l-5\">
+                Usuń użytkownika</button>
+            </a>
+            </td>";
+            
+            if($rows["login"] == $rows["groupAdmin"])
+            {
+            echo "<td><span class=\"badge badge-danger\">ADMIN</span>
+                    </td>
+                    </tr>";
+            }
+            // else
+            // {
+            //     echo "<a href=\"javascript:;\" data-toggle=\"modal\" data-target=\"#deleteTaskConfirmModal\">
+            //             <button type=\"button\" class=\"btn btn-danger btn-xs m-b-10 m-l-5\"></button>
+            //         </a>
+            //         </center></td>
+            //         <td>
+            //             <span class=\"badge badge-danger\"></span>
+            //         </td>
+            //         </tr>";
+            // }
+            $counter++;
+        }
+
+    }
+
+    public function existsUser($pdo, $username)
+    {
+        $stmt = $pdo->prepare('SELECT login FROM users ');
+        $stmt->execute();
+        $userFound = false;
+            while($rows = $stmt->fetch())
+            { 
+                if($username == $rows['login'])
+                {
+                    $userFound = true;
+                }
+            }
+        return $userFound;
+    }
+
+    public function existsUserInGroup($pdo, $username, $groupName)
+    {
+        $stmt = $pdo->prepare('SELECT login, GroupName FROM connectgroup ');
+        $stmt->execute();
+        $userFound = false;
+            while($rows = $stmt->fetch())
+            { 
+                if($username == $rows['login'] && groupName == $rows['groupName'])
+                {
+                    $userFound = true;
+                }
+            }
+        return $userFound;
+    }
+
+    public function addUserToGroup($pdo, $groupName)
+    {
+        if(isset($_POST["username"]))
+        {
+            $username = $_POST["username"];
+            if($this->existsUser($pdo, $username) && (!($this->existsUserInGroup($pdo, $username, $groupName))))
+            {
+                $stmt = $pdo->prepare('INSERT INTO connectgroup(login, GroupName)
+                                    VALUES (:username, :groupName) ');
+
+                $stmt->bindParam(':username', $username,PDO::PARAM_STR);
+                $stmt->bindParam(':groupName', $groupName,PDO::PARAM_STR);
+
+                $stmt->execute();
+            }
+        }
+    }
+
+    public function addPrivateNote($pdo, $username)
+    {
+        if(isset($_POST['title']) && isset($_POST['content']))
+        {       
+            
+            
+            $title = $_POST['title'];
+            $noteContent = $_POST['content'];
+            $today = date("Y-m-d");
+            echo $title;
+            echo $noteContent;
+            echo $today;
+            $stmt = $pdo->prepare('INSERT INTO privatenotes (DateAdded, Loginmd5, Title, Content)
+                                   VALUES (:today, :userID, :title, :content ) ');
+            $stmt->bindParam(':today', $today,PDO::PARAM_STR);
+            $stmt->bindParam(':userID', $userID,PDO::PARAM_STR);
+            $stmt->bindParam(':title', $title,PDO::PARAM_STR);
+            $stmt->bindParam(':content', $noteContent,PDO::PARAM_STR);
+
+           var_dump($stmt->execute());
+        }
+    }
+
+    public function changeGrouoData($pdo,$groupName)
+    {
+        // if(isset($_POST['groupName']))
+        // {
+        //     $stmt = $pdo->prepare('UPDATE groups SET GroupName= :name WHERE GroupName  = :oldName;');
+        //     $stmtB = $pdo->prepare('UPDATE connectgroup SET GroupName= :name WHERE GroupName  = :oldName;'); 
+        //     $stmt->bindParam(':name',$_POST['name'], PDO::PARAM_STR);
+        //     $stmt->bindParam(':oldName',$groupName, PDO::PARAM_STR);
+        //     $stmt->execute();
+        // }
+    }
+
 }
 ?>

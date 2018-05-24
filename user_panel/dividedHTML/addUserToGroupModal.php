@@ -5,10 +5,10 @@
         <h3 class="modal-title" id="exampleModalLabel">Dodaj użytkownika do grupy</h3>
       </div>
       <div class="modal-body">
-        <form>
+        <form action="" method="POST">
           <div class="form-group">
             <label for="username" class="col-form-label">Nazwa użytkownika:</label>
-            <input type="text" class="form-control" id="username">
+            <input name="username" type="text" class="form-control" id="username">
           </div>
         </form>
       </div>

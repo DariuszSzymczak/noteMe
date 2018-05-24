@@ -2,6 +2,7 @@
     require('dividedHTML/head-section.php');
     require('dividedHTML/header.php');
     require('dividedHTML/left-sidebar.php');
+    $pane->addGroup($pdo,$_SESSION['userID']);
 ?>
 
     <div class="page-wrapper">
@@ -44,54 +45,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="round-img">
-                                                    <a href="group.php">
-                                                        <img src="images/avatar/4.jpg" alt="">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <a href="group.php">IP20</a>
-                                            </td>
-                                            <td>
-                                                <span>21/37</span>
-                                            </td>
-                                            <td>
-                                                <center>
-                                                    <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Opuść grupę</button>
-                                                    <a href="javascript:;" data-toggle="modal" data-target="#deleteGroupConfirmModal">
-                                                        <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">
-                                                            Skasuj grupę</button>
-                                                    </a>
-                                                </center>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="round-img">
-                                                    <a href="group.php">
-                                                        <img src="images/avatar/4.jpg" alt="">
-                                                    </a>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <a href="group.php">Grupa 2</a>
-                                            </td>
-
-                                            <td>
-                                                <span>21/37</span>
-                                            </td>
-                                            <td>
-                                                <center>
-                                                    <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Opuść grupę</button>
-                                                    <a href="javascript:;" data-toggle="modal" data-target="#deleteGroupConfirmModal">
-                                                        <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">
-                                                            Skasuj grupę</button>
-                                                    </a>
-                                                </center>
-                                            </td>
-                                        </tr>
+                                        <?php $pane->showGroups($pdo,$_SESSION['userID']);?>
                                     </tbody>
                                 </table>
                             </div>
@@ -108,7 +62,7 @@
             </div>
             <!-- /# row -->
 
-            <?php
+<?php
     require('dividedHTML/deleteGroupConfirmModal.php');
     require('dividedHTML/createGroupModal.php');
     require('dividedHTML/footer.php');

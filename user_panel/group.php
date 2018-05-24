@@ -2,7 +2,7 @@
     require('dividedHTML/head-section.php');
     require('dividedHTML/header.php');
     require('dividedHTML/left-sidebar.php');
-    
+    $pane->addUserToGroup($pdo, $_GET['groupName']);
 ?>
 
     <!-- Page wrapper  -->
@@ -10,14 +10,18 @@
         <!-- Bread crumb -->
         <div class="row page-titles">
             <div class="col-md-5 align-self-center">
-                <h3 class="text-primary">Dashboard</h3>
+                <h3 class="text-primary">Panel grupy
+                    <?php echo $_GET['groupName'];?>
+                </h3>
             </div>
             <div class="col-md-7 align-self-center">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="javascript:void(0)">Home</a>
+                        <a href="groups.php">GRUPY</a>
                     </li>
-                    <li class="breadcrumb-item active">Profil grupy IP20</li>
+                    <li class="breadcrumb-item active">Profil grupy
+                        <?php echo $_GET['groupName'];?>
+                    </li>
                 </ol>
             </div>
         </div>
@@ -31,15 +35,15 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="card-two">
-                                <header>
-                                    <div class="avatar">
-                                        <img src="https://randomuser.me/api/portraits/women/21.jpg" alt="Allison Walker" />
-                                    </div>
-                                </header>
 
-                                <h3>Grupa IP20</h3>
+                                <center>
+                                    <h1>
+                                        <?php echo $_GET['groupName'];?>
+                                    </h1>
+                                </center>
+                                <hr/>
                                 <div class="desc">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit et cupiditate deleniti.
+                                    <?php $pane->getGroupData($pdo, $_GET['groupName'], 'GroupDescription'); ?>
                                 </div>
 
                                 <div class="clear"></div>
@@ -75,8 +79,7 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Nazwa</th>
-                                                <th>Ilość zadań</th>
+                                                <th>Użytkownik</th>
                                                 <th>
                                                     <center>Akcje</center>
                                                 </th>
@@ -84,93 +87,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>
-                                                    <div class="round-img">
-                                                        <a href="">
-                                                            <img src="images/avatar/4.jpg" alt="">
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                                <td>John Abraham</td>
-                                                <td>
-                                                    <span>456 </span>
-                                                </td>
-                                                <td>
-                                                    <center>
-                                                        <a href="javascript:;" data-toggle="modal" data-target="#sendMessageModal">
-                                                            <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Wiadomość</button>
-                                                        </a>
-                                                        <a href="javascript:;" data-toggle="modal" data-target="#addTaskToUserModal">
-                                                            <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Dodaj zadanie</button>
-                                                        </a>
-                                                        <a href="javascript:;" data-toggle="modal" data-target="#deleteUserConfirmModal">
-                                                            <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">Usuń z grupy</button>
-                                                        </a>
-                                                    </center>
-                                                </td>
-                                                <td>
-                                                    <span class="badge badge-danger">ADMIN</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="round-img">
-                                                        <a href="">
-                                                            <img src="images/avatar/4.jpg" alt="">
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                                <td>John Abraham</td>
-                                                <td>
-                                                    <span>456 </span>
-                                                </td>
-                                                <td>
-                                                    <center>
-                                                        <a href="javascript:;" data-toggle="modal" data-target="#sendMessageModal">
-                                                            <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Wiadomość</button>
-                                                        </a>
-                                                        <a href="javascript:;" data-toggle="modal" data-target="#addTaskToUserModal">
-                                                            <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Dodaj zadanie</button>
-                                                        </a>
-                                                        <a href="javascript:;" data-toggle="modal" data-target="#deleteUserConfirmModal">
-                                                            <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">Usuń z grupy</button>
-                                                        </a>
-                                                    </center>
-                                                </td>
-                                                <td>
-                                                    <span class="badge badge-danger"></span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="round-img">
-                                                        <a href="">
-                                                            <img src="images/avatar/4.jpg" alt="">
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                                <td>John Abraham</td>
-                                                <td>
-                                                    <span>456 </span>
-                                                </td>
-                                                <td>
-                                                    <center>
-                                                        <a href="javascript:;" data-toggle="modal" data-target="#sendMessageModal">
-                                                            <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Wiadomość</button>
-                                                        </a>
-                                                        <a href="javascript:;" data-toggle="modal" data-target="#addTaskToUserModal">
-                                                            <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Dodaj zadanie</button>
-                                                        </a>
-                                                        <a href="javascript:;" data-toggle="modal" data-target="#deleteUserConfirmModal">
-                                                            <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">Usuń z grupy</button>
-                                                        </a>
-                                                    </center>
-                                                </td>
-                                                <td>
-                                                    <span class="badge badge-danger"></span>
-                                                </td>
-                                            </tr>
+                                            <?php  $pane->showGroupUsers($pdo, $_GET['groupName']); ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -328,50 +245,38 @@
 
                         <div class="tab-pane" id="settings" role="tabpanel">
                             <div class="card-body">
-                                <form class="form-horizontal form-material">
+                            <br/>
+                                <form method="POST" class="form-horizontal form-material">
                                     <div class="form-group">
                                         <label class="col-md-12">Nazwa grupy</label>
                                         <div class="col-md-12">
-                                            <input type="text" placeholder="IP20" class="form-control form-control-line">
+                                            <input name="groupName" type="text" value="<?php echo $_GET[ 'groupName'];?>" class="form-control form-control-line">
                                         </div>
                                     </div>
-                            </div>
                             <div class="form-group">
                                 <label class="col-md-12">Opis</label>
                                 <div class="col-md-12">
-                                    <textarea rows="20" class="form-control form-control-line"></textarea>
+                                    <input name="description" type=text value="<?php $pane->getGroupData($pdo,$_GET[ 'groupName'] , 'GroupDescription') ?>" class="form-control form-control-line"/>
                                 </div>
                             </div>
-
-                            <div class="form-group">
-                                <label class="col-md-12">Avatar</label>
-                                <div class="col-md-12">
-                                    <form action="#" class="dropzone">
-                                        <div class="fallback">
-                                            <input name="file" type="file" />
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-
-
-
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <button class="btn btn-success">Zapisz</button>
                                 </div>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
 
             <?php
+    require('dividedHTML/footer.php');
     require('dividedHTML/deleteTaskConfirmModal.php');
     require('dividedHTML/editTaskModal.php');
     require('dividedHTML/deleteUserConfirmModal.php');
     require('dividedHTML/sendMessageModal.php');
     require('dividedHTML/addTaskToUserModal.php');
     require('dividedHTML/addUserToGroupModal.php');
-    require('dividedHTML/footer.php');
+    
 ?>
