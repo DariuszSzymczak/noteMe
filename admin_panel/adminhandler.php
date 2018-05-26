@@ -67,5 +67,9 @@ if(isset($_POST["getAdmin"])){
         </script>"; 
     }
 }
+if(isset($_POST["showalluser"])){
+
+    $edit->show_all($pdo);
+}
 
 ?>

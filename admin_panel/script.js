@@ -3,8 +3,7 @@ console.log("Skrypt załadowano");
 function showCallback(){
     
     setTimeout(function(){
-        show_all();
-            $("#showall").each(function(){
+            $(".btn-showAll").each(function(){
                 this.addEventListener('click', function(){
                 sendUsers();
                 alert("Wywolano metode!");
@@ -16,24 +15,22 @@ function showCallback(){
 function sendUsers(){
     $.ajax ({
         type:'POST',
-        url:'./getUsers.php',
+        url:'./adminhandler.php',
+        data:{"showalluser":"1"},
         success: function (response){
             let json = JSON.parse(response);
             $('#users').html('');
-            let lenght = json.lenght;
-            let iterator=0;
-            console.log("wywolalo sie drugie chujstwo");
+            var lenght = json.length;
+            var iterator=0;
             function animation(){
-                if(iterator < length){
+                if(iterator < lenght){
                     setTimeout(function () {  
-                        calendarShowTable(json[iterator]);
+                       showall(json[iterator]);
                         iterator++;
                         animation();
                     },240);
-                }   
-                
+                }    
             }
-            animation();
         }
     })
 }
@@ -55,4 +52,5 @@ function showall(json){
         $('.media').slideDown(500).delay(300); 
         console.log("wywolalo sie trzecie chujstwo");
     }
+
     document.addEventListener('DOMContentLoaded', showCallback);

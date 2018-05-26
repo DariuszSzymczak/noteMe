@@ -67,8 +67,8 @@
                 echo $sql . "<br>" . $e->getMessage();
         }
         }
-        public function show_all(){
-            $querryShow = $pdo->prepare("SELECT login, email,town,isAdmin from users");
+        public function show_all($pdo){
+            $querryShow = $pdo->prepare('SELECT login, email,town,isAdmin from users');
             $querryShow->execute();
             $results = $querryShow->fetchall(PDO::FETCH_ASSOC);
             $json = json_encode($results);

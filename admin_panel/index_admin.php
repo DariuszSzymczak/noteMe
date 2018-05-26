@@ -157,7 +157,7 @@ body{
 		<button type="button" class="btn btn-addQuest" data-toggle="modal" data-target="#modalAddQuest"> Dodaj Zadanie </button>
 		<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangePassword"> Zmień hasło </button>
 		<button type="button" class="btn btn-changeToAdmin" data-toggle="modal" data-target="#modalChangeToAdmin"> Nadaj Admina </button>
-		<button type="button" class="btn btn-showAll" id="showall"> Wyświetl wszystkich </button>
+		<button type="submit" class="btn btn-showAll" name="showall"> Wyświetl wszystkich </button>
 		<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangeToAdmin"> Przyciski </button>
 		<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangeToAdmin"> Dla </button>
 		<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangeToAdmin"> Dawida </button>
