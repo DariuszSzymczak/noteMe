@@ -74,5 +74,35 @@
             $json = json_encode($results);
             echo($json);
         }
+        public function show_in_Groups($pdo,$groupName){
+            $querryShowInGroups = $pdo->prepare('SELECT login, email,town,isAdmin from users,connectgroup WHERE users.loginmd5 = connectgroup.loginmd5 AND connectgroup.GroupName=:groupName');
+            $querryShowInGroups->bindparam(':groupName',$groupName, PDO::PARAM_STR);
+            $querryShowInGroups->execute();
+            $results = $querryShowInGroups->fetchall(PDO::FETCH_ASSOC);
+            $json = json_encode($results);
+            echo($json);
+        }
+        public function show_Groups ($pdo){
+            $queryShowGroups = $pdo ->prepare('SELECT * from groups');
+            $queryShowGroups->execute();
+            $results = $queryShowGroups->fetchall(PDO::FETCH_ASSOC);
+            $json = json_encode($results);
+            echo($json);
+        }
+        public function deleteGroup ($pdo,$groupName){
+            $querryDeleteGroup=$pdo->prepare('DELETE FROM groups WHERE GroupName=:groupName');
+            $querryDeleteGroup->bindParam(':groupName',$groupName, PDO::PARAM_STR);
+            $querryDeleteGroup->execute();
+            
+            
+            $q = $pdo->prepare('DELETE FROM connectgroup WHERE GroupName=:groupName');
+            $q->bindParam(':groupName',$groupName, PDO::PARAM_STR);
+            $q->execute();
+
+            echo "<script type='text/javascript'>
+            alert('Grupa",$groupName, " została usunięta ');
+            location='index_admin.php';
+             </script>";
+        }
     }
 ?>

@@ -71,5 +71,18 @@ if(isset($_POST["showalluser"])){
 
     $edit->show_all($pdo);
 }
+if(isset($_POST["showUsersIngroup"])){
+    $groupName = $_POST['showUsersIngroup'];
+    $edit->show_in_Groups($pdo,$groupName);
+}
+if(isset($_POST["showAllGroups"])){
+    $edit->show_Groups($pdo);
+}
+if(isset($_POST["deleteGroup"])){
+    $groupName = $_POST['GroupName'];
+    $edit->deleteGroup($pdo,$groupName);
+}
+
+
 
 ?>

@@ -111,19 +111,35 @@ body{
 .modal-content{
 	top:100px;
 }
+
 #users{
 	left:15%;
 	top:10%;
 	position:fixed;
-	min-width:10%;
+	min-width:82%;
 	min-height:10%;
+	max-width:82%;
+	max-height:88%;
 	background-color:white;
 	overflow-y:scroll;
     border: 1px solid #DDDDDD;
     border-radius: 4px 0 4px 0;
-    overflow-y: hidden;
 	padding-bottom:0;
 	margin-bottom:0;
+	}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
 
 </style>
@@ -158,14 +174,15 @@ body{
 		<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangePassword"> Zmień hasło </button>
 		<button type="button" class="btn btn-changeToAdmin" data-toggle="modal" data-target="#modalChangeToAdmin"> Nadaj Admina </button>
 		<button type="submit" class="btn btn-showAll" name="showall"> Wyświetl wszystkich </button>
-		<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangeToAdmin"> Przyciski </button>
-		<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangeToAdmin"> Dla </button>
-		<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangeToAdmin"> Dawida </button>
+		<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalShowUsersInGroup" style="font-size:12px;"> Wyświetl użytkowników grupy</button>
+		<button type="button" class="btn btn-showGroups" neme="showGroups"> Wyświetl grupy </button>
+		<button type="button" class="btn btn-deleteGroup" data-toggle="modal" data-target="#modaldeleteGroup"> Usuń Grupę </button>
 		<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangeToAdmin"> xdd </button>
 		<button type="button" class="btn btn-logout" id="logout" data-toggle="modal" data-target="#modalChangeToAdmin"> Wyloguj </button>
 		</div>
 
 	<div id="users">
+		<h2 style="text-align:center"> Witaj w panelu administracyjnym </h2>
 		</div>
 
 	<!--modal Usun uzytkownika-->
@@ -284,6 +301,56 @@ body{
       					<button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
 					</div>  
 				</form>   
+      			</div>  
+     		</div>
+    	</div>
+	</div>
+	<!--modal Wyświetl grupy użytkowników-->
+	<div class="modal fade" id="modalShowUsersInGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+    		<div class="modal-content">
+      			<div class="modal-header">
+        				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          				<span aria-hidden="true">&times;</span>
+        				</button>
+        				<h3 class="modal-title">Pokaż użytkowników danej grupy</h3>
+      			</div>
+      			<div class="modal-body">
+      			
+  					<div class="form-group">
+    					<label class="form-label" for="GroupName">Nazwa Grupy</label>
+    					<input name="GroupName" type="text" class="form-control" id="GroupName" aria-describedby="emailHelp" placeholder="">
+  					</div>
+					<div class="modal-footer">
+						<input type="submit" name='getUsersInGroups' class="btn btn-primary-groups" value="Wykonaj"></input>
+      					<button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+					</div>  
+				  
+      			</div>  
+     		</div>
+    	</div>
+	</div>
+	<!--modal Usuń grupę-->
+	<div class="modal fade" id="modaldeleteGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+    		<div class="modal-content">
+      			<div class="modal-header">
+        				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          				<span aria-hidden="true">&times;</span>
+        				</button>
+        				<h3 class="modal-title">Usuń grupę</h3>
+      			</div>
+      			<div class="modal-body">
+      			<form action="adminhandler.php" method="POST">
+  					<div class="form-group">
+    					<label class="form-label" for="GroupName">Nazwa Grupy</label>
+    					<input name="GroupName" type="text" class="form-control" id="GroupName" aria-describedby="emailHelp" placeholder="">
+  					</div>
+					<div class="modal-footer">
+						<input type="submit" name="deleteGroup" class="btn btn-primary-groups" value="Wykonaj"></input>
+      					<button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+					</div>  
+				 </form> 
       			</div>  
      		</div>
     	</div>
