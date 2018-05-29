@@ -13,7 +13,7 @@
                                 <span class="hide-menu">Strona główna </a>
                         </li>
                         <li>
-                            <a href="#" aria-expanded="false">
+                            <a href="emailInbox.php" aria-expanded="false">
                                 <i class="fa fa-envelope"></i>
                                 <span class="hide-menu">Wiadomości</span>
                             </a>

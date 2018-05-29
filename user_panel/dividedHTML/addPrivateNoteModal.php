@@ -10,11 +10,11 @@
                             <div class="form-group">
                                 <label for="groupName">
                                     Tytuł </label>
-                                <input type="text" data-val="true" data-val-required="Wpisz nazwę grupy" class="form-control" name="title" id="groupName"
+                                <input type="text" data-val="true" data-val-required="Wpisz nazwę grupy" class="form-control" name="noteTitle" id="groupName"
                                 />
                                 <label for="groupSize">
                                     Treść </label>
-                                <input type="text" min="20" value="20" data-val="true" data-val-required="Wpisz nazwę grupy" class="form-control" name="content" id="groupSize"
+                                <input type="text" data-val="true" data-val-required="Wpisz nazwę grupy" class="form-control" name="noteContent" id="groupSize"
                                 />
                                 <span class="field-validation-valid text-danger" data-valmsg-for="groupName" data-valmsg-replace="true"></span>
                             </div>

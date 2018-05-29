@@ -341,24 +341,19 @@ class panel
 
     public function addPrivateNote($pdo, $username)
     {
-        if(isset($_POST['title']) && isset($_POST['content']))
-        {       
-            
-            
-            $title = $_POST['title'];
-            $noteContent = $_POST['content'];
-            $today = date("Y-m-d");
-            echo $title;
-            echo $noteContent;
-            echo $today;
-            $stmt = $pdo->prepare('INSERT INTO privatenotes (DateAdded, Loginmd5, Title, Content)
-                                   VALUES (:today, :userID, :title, :content ) ');
-            $stmt->bindParam(':today', $today,PDO::PARAM_STR);
-            $stmt->bindParam(':userID', $userID,PDO::PARAM_STR);
-            $stmt->bindParam(':title', $title,PDO::PARAM_STR);
-            $stmt->bindParam(':content', $noteContent,PDO::PARAM_STR);
-
-           var_dump($stmt->execute());
+        if(isset ($_POST['noteTitle']))
+        {
+            if(isset ($_POST['noteContent']))
+            {
+                $date = date("y-m-d");
+                $insertSTMT = $pdo->prepare('INSERT into privatenotes(DateAdded, Loginmd5, Title, Content) 
+                                values(:DateAdded, :Loginmd5, :Title, :Content)');
+                $insertSTMT->bindParam(':DateAdded', $date);
+                $insertSTMT->bindParam(':Loginmd5', $username);
+                $insertSTMT->bindParam(':Title', $_POST['noteTitle']);
+                $insertSTMT->bindParam(':Content', $_POST['noteContent']);
+                $insertSTMT->execute();
+            }
         }
     }
 
@@ -439,7 +434,7 @@ class panel
     public function countFinishedTasks($pdo, $username)
     {
         $tasksCount = 0;
-        $stmt = $pdo->prepare('SELECT COUNT(t.loginmd5) FROM tasks t WHERE t.loginmd5 = :userID AND t.status = 1');
+        $stmt = $pdo->prepare('SELECT COUNT(t.loginmd5) FROM tasks t WHERE t.loginmd5 = :userID AND t.status1 = 1');
         $stmt->bindParam(':userID', $username,PDO::PARAM_STR);
         $stmt->execute();
         $row = $stmt->fetch();
@@ -449,7 +444,7 @@ class panel
     public function countWaitingTasks($pdo, $username)
     {
         $tasksCount = 0;
-        $stmt = $pdo->prepare('SELECT COUNT(t.loginmd5) FROM tasks t WHERE t.loginmd5 = :userID AND t.status = 0');
+        $stmt = $pdo->prepare('SELECT COUNT(t.loginmd5) FROM tasks t WHERE t.loginmd5 = :userID AND t.status1 = 0');
         $stmt->bindParam(':userID', $username,PDO::PARAM_STR);
         $stmt->execute();
         $row = $stmt->fetch();
@@ -464,6 +459,20 @@ class panel
         $stmt->execute();
         $row = $stmt->fetch();
         echo $row['COUNT(n.loginmd5)'];  
+    }
+
+    public function removeUserFromGroup($pdo, $username, $groupName)
+    {
+            $username = $_POST["username"];
+            if($this->existsUser($pdo, $username) && (!($this->existsUserInGroup($pdo, $username, $groupName))))
+            {
+                $stmt = $pdo->prepare('DELETE FROM connectgroup WHERE login = :username AND GroupName = :groupName');
+
+                $stmt->bindParam(':username', $username,PDO::PARAM_STR);
+                $stmt->bindParam(':groupName', $groupName,PDO::PARAM_STR);
+
+                $stmt->execute();
+            }
     }
 }
 ?>
