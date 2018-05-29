@@ -2,8 +2,9 @@
     require('dividedHTML/head-section.php');
     require('dividedHTML/header.php');
     require('dividedHTML/left-sidebar.php');
+    $pane->changeGroupData($pdo, $_GET['groupName']);
     $pane->addUserToGroup($pdo, $_GET['groupName']);
-    $pane->changeGroupData($pdo, $_GET['groupName'])
+    
 ?>
 
     <!-- Page wrapper  -->
