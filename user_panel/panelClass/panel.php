@@ -27,10 +27,15 @@ class panel
 
     }
 
+
+
     public function getUserArticles($pdo,$userID,$date)
-    {
-        $stmt = $pdo->prepare('SELECT topic,content,dateend FROM tasks WHERE loginmd5= :userID AND DateAdded = :today ;');
-        $stmt->bindParam(':userID',$userID,PDO::PARAM_STR);
+    {   $stmt1 = $pdo->prepare('SELECT login FROM users WHERE loginmd5= :userID;');
+        $stmt1->bindParam(':userID',$userID,PDO::PARAM_STR);
+        $stmt1->execute();
+        $loged = $stmt1->fetchColumn();
+        $stmt = $pdo->prepare('SELECT topic,content,DateAdded,dateend FROM tasks WHERE author = :loged AND DateAdded = :today UNION SELECT topic,content,DateAdded,dateend FROM grouptasks INNER JOIN connectgroup ON grouptasks.groupname = connectgroup.GroupName AND grouptasks.Dateadded = :today AND connectgroup.login = :loged  ;');
+        $stmt->bindParam(':loged',$loged,PDO::PARAM_STR);
         $stmt->bindParam(':today',$date,PDO::PARAM_STR);
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -40,8 +45,12 @@ class panel
 
     public function getUserDates($pdo,$userID)
     {
-        $stmt = $pdo->prepare('SELECT DateAdded FROM tasks WHERE loginmd5= :userID;');
-        $stmt->bindParam(':userID',$userID,PDO::PARAM_STR);
+        $stmt1 = $pdo->prepare('SELECT login FROM users WHERE loginmd5= :userID;');
+        $stmt1->bindParam(':userID',$userID,PDO::PARAM_STR);
+        $stmt1->execute();
+        $loged = $stmt1->fetchColumn();
+        $stmt = $pdo->prepare('SELECT DateAdded FROM tasks WHERE author = :loged UNION SELECT DateAdded FROM grouptasks INNER JOIN connectgroup ON grouptasks.groupname = connectgroup.GroupName AND connectgroup.login = :loged  ;');
+        $stmt->bindParam(':loged',$loged,PDO::PARAM_STR);
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $json = json_encode($results);  
