@@ -396,7 +396,6 @@ class panel
         echo $row['COUNT(t.loginmd5)'];  
     }
     
-<<<<<<< HEAD
     // public function deleteGroup($pdo, $groupID)
     // {
 
@@ -427,7 +426,7 @@ class panel
         $insertSTMT->bindParam(':status1', $status);
         $insertSTMT->execute();
         }
-=======
+    }
     public function countFinishedTasks($pdo, $username)
     {
         $tasksCount = 0;
@@ -436,7 +435,6 @@ class panel
         $stmt->execute();
         $row = $stmt->fetch();
         echo $row['COUNT(t.loginmd5)'];  
->>>>>>> 78fae92a9d5d1112b45b6326e45061a3c7ddd6d1
     }
 
     public function countWaitingTasks($pdo, $username)
