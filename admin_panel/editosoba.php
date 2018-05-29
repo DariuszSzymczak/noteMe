@@ -104,5 +104,24 @@
             location='index_admin.php';
              </script>";
         }
+        public function changePwGroup($pdo,$groupName,$pass1,$pass2){
+            if ($pass1 == $pass2){
+                try{
+                    $salted = "salt{$pass1}salt";
+                    $hash = md5($salted);
+                    $querryChangePass = $pdo->prepare('UPDATE groups SET md5=:hash WHERE GroupName =:GroupName');
+                    $querryChangePass->bindParam(':GroupName',$groupName, PDO::PARAM_STR);
+                    $querryChangePass->bindParam(':hash',$hash, PDO::PARAM_STR);
+                    $querryChangePass->execute();
+                    echo "<script type='text/javascript'>
+                        alert('Hasło grupy ",$groupName, " zostało zmienione ');
+                        location='index_admin.php';
+                         </script>";
+                } catch (PDOException $e){
+                    echo $sql . "<br>" . $e->getMessage();
+                }
+            }
+
+        }
     }
 ?>

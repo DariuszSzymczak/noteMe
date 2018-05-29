@@ -82,6 +82,19 @@ if(isset($_POST["deleteGroup"])){
     $groupName = $_POST['GroupName'];
     $edit->deleteGroup($pdo,$groupName);
 }
+if(isset($_POST["changeGrpPw"])){
+    $groupName = $_POST['GroupName'];
+    $pw1 = $_POST['password1'];
+    $pw2 = $_POST['password2'];
+    if ($groupName !=''){
+        $edit->changePwGroup($pdo,$groupName,$pw1,$pw2);
+    } else {
+        echo "<script type='text/javascript'>
+        alert('Uzupełnij nazwe grupy do zmiany hasła');
+        
+        </script>"; 
+    }
+}
 
 
 

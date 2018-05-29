@@ -111,7 +111,39 @@ body{
 .modal-content{
 	top:100px;
 }
+#form-button-delete{
+	background-color:#EC0808 !important;
+	max-width:20%;
+	position:relative;
+	top:20%;
+	min-width:150px;
+	margin-right:100px;
+	transition: color 1s;
+	}
+#form-button-delete:hover {
+	background:inherit;
+	color: #ffffff;
+	}
+.user-info{
+	max-width: 50%;
+	margin-right:0;
 
+}
+.user-buttons{
+	float:right;
+}
+.media > div {
+	display:inline-block;
+}
+#form-button-changepw {
+	background-color:#bcab29 !important;
+	max-width:20%;
+	position:relative;
+	top:20%;
+	min-width:150px;
+	margin-right:100px;
+	border: 1px solid black;
+}
 #users{
 	left:15%;
 	top:10%;
@@ -177,7 +209,7 @@ body{
 		<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalShowUsersInGroup" style="font-size:12px;"> Wyświetl użytkowników grupy</button>
 		<button type="button" class="btn btn-showGroups" neme="showGroups"> Wyświetl grupy </button>
 		<button type="button" class="btn btn-deleteGroup" data-toggle="modal" data-target="#modaldeleteGroup"> Usuń Grupę </button>
-		<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangeToAdmin"> xdd </button>
+		<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangeGroupPassword" style="font-size:12px;"> Zmień hasło grupy </button>
 		<button type="button" class="btn btn-logout" id="logout" data-toggle="modal" data-target="#modalChangeToAdmin"> Wyloguj </button>
 		</div>
 
@@ -260,8 +292,8 @@ body{
       			<div class="modal-body">
       			<form action="adminhandler.php" method="POST">
   					<div class="form-group">
-    					<label class="form-label" for="exampleInputEmail1">Login</label>
-    					<input name="login" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter login">
+    					<label class="form-label" id="loginLabel" for="exampleInputEmail1">Login</label>
+    					<input name="login" type="text" class="form-control" id="loginInput" aria-describedby="emailHelp" placeholder="Enter login" value="">
   					</div>
   					<div class="form-group">
     					<label class="form-label" for="exampleInputPassword1">Nowe hasło</label>
@@ -355,6 +387,39 @@ body{
      		</div>
     	</div>
 	</div>
+	<!--modal Zmień hasło-->
+	<div class="modal fade" id="modalChangeGroupPassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+    		<div class="modal-content">
+      			<div class="modal-header">
+        				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          				<span aria-hidden="true">&times;</span>
+        				</button>
+        				<h3 class="modal-title">Zmiana hasła grupy</h3>
+      			</div>
+      			<div class="modal-body">
+      			<form action="adminhandler.php" method="POST">
+  					<div class="form-group">
+    					<label class="form-label" for="exampleInputEmail1">Nazwa grupy</label>
+    					<input name="GroupName" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter login">
+  					</div>
+  					<div class="form-group">
+    					<label class="form-label" for="exampleInputPassword1">Nowe hasło</label>
+    					<input name="password1" type="password" class="form-control" id="exampleInputPassword1" placeholder="Podaj nowe hasło">
+  					</div>
+  					<div class="form-group">
+    					<label class="form-label" for="exampleInputPassword1">Powtórz hasło</label>
+    					<input name="password2" type="password" class="form-control" id="exampleInputPassword1" placeholder="Powtórz hasło">
+  					</div>
+					<div class="modal-footer">
+						<input type="submit" name='changeGrpPw' class="btn btn-primary" value="Zmień hasło"></input>
+      					<button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+					</div>  
+				</form>   
+      			</div>  
+     		</div>
+    	</div>
+	</div>	
 </div>
 
 </body>
