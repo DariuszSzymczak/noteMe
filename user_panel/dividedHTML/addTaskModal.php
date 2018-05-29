@@ -1,7 +1,7 @@
 <div class="modal" tabindex="-1" role="dialog" aria-labelledby="addTaskModal" aria-hidden="true" id="addTaskModal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form action="javascript:;" novalidate="novalidate">
+                <form method="POST" novalidate="novalidate">
                     <div class="modal-header">
                         <h3 class="modal-title">Dodaj zadanie</h3>
                     </div>
@@ -11,7 +11,7 @@
                                 <label for="taskName">
                                     Nazwa zadania
                                 </label>
-                                <input type="text" data-val="true" data-val-required="Wpisz nazwę zadania" class="form-control" name="oldPass" id="oldPass"
+                                <input type="text" data-val="true" data-val-required="Wpisz nazwę zadania" class="form-control" name="topic" id="oldPass"
                                 />
                                 <span class="field-validation-valid text-danger" data-valmsg-for="oldPass" data-valmsg-replace="true"></span>
                             </div>
@@ -19,45 +19,17 @@
                                 <label for="taskDescription">
                                     Opis
                                 </label>
-                                <input type="text" data-val="false" data-val-required="this is Required Field" class="form-control" name="newPass" id="newPass"
+                                <input type="text" data-val="false" data-val-required="this is Required Field" class="form-control" name="content" id="newPass"
                                 />
                                 <span class="field-validation-valid text-danger" data-valmsg-for="newPass" data-valmsg-replace="true"></span>
 
                             </div>
                             <div class="form-group">
-                                <label for="chooseGroup">
-                                    Wybier grupę
-                                </label>
-                                <select name="chooseGroup" class="form-control">
-                                    <option>IP20</option>
-                                    <option>GRUPA2</option>
-                                    <option>Jakaś grupa</option>
-                                    <option>xD</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="chooseUsers">
-                                    Wybier użytkowników
-                                </label>
-                                <br/>
-                                <input type="checkbox" name="userName" value="userName"> user1<br>
-                                <input type="checkbox" name="userName" value="userName"> username13<br>
-                                <input type="checkbox" name="userName" value="userName"> user666<br>
-                                <input type="checkbox" name="userName" value="userName"> username123<br>
-                                <input type="checkbox" name="userName" value="userName"> AdamMickiewicz<br>
-                                <br/>
-                                <input type="checkbox" name="selectAllUsers" value="selectedAllUsers"><strong>Wybierz wszystkich</strong><br>
-
-                            </div>
-
-
-                            <div class="form-group">
                                 <label for="taskDeadline">
                                     Deadline zadania
                                 </label>
                                 <div class='input-group date' id='datetimepicker2'>
-                                    <input type="date" class="form-control" placeholder="dd/mm/yyyy">
+                                    <input name="dateend" type="date" class="form-control" placeholder="dd/mm/yyyy">
                                 </div>
                                 <span class="field-validation-valid text-danger" data-valmsg-for="confirmPass" data-valmsg-replace="true"></span>
 

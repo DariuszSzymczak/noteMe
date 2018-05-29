@@ -2,6 +2,7 @@
     require('dividedHTML/head-section.php');
     require('dividedHTML/header.php');
     require('dividedHTML/left-sidebar.php');
+    $pane->addTask($pdo,$_SESSION['userID']);
 ?>
 
     <!-- Page wrapper  -->

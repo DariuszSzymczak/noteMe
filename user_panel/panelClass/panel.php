@@ -388,6 +388,37 @@ class panel
         
     }
     
+    // public function deleteGroup($pdo, $groupID)
+    // {
+
+    // }
+
+    //DODAWANIE ZADAŃ
+
+    public function addTask($pdo,$userID)
+    {
+        if(isset ($_POST['topic']))
+        {
+        $stmt = $pdo->prepare('SELECT email,login,md5,loginmd5,description,town FROM users WHERE loginmd5= :userID;');
+        $stmt->bindParam(':userID',$userID,PDO::PARAM_STR);
+        $stmt->execute();
+        $row = $stmt->fetch(); 
+        $stmt -> closeCursor();
+
+        $status = 0;
+        $date = date("d-m-y");
+        $insertSTMT = $pdo->prepare('INSERT into tasks(topic, content, loginmd5, DateAdded, dateend, author, status1) 
+                            values(:topic, :content, :loginmd5, :DateAdded, :dateend, :author, :status1)');
+        $insertSTMT->bindParam(':topic', $_POST['topic']);
+        $insertSTMT->bindParam(':content', $_POST['content']);
+        $insertSTMT->bindParam(':loginmd5', $userID);
+        $insertSTMT->bindParam(':DateAdded', $date);
+        $insertSTMT->bindParam(':dateend', $_POST['dateend']);
+        $insertSTMT->bindParam(':author', $row['login']);
+        $insertSTMT->bindParam(':status1', $status);
+        $insertSTMT->execute();
+        }
+    }
 
 }
 ?>
