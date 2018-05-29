@@ -53,21 +53,21 @@ function setCookie(cname, cvalue, exdays) {
 }
 
 $('#registerform-submit').on('click', function () {
-
+    
     $.ajax({
         type: 'POST',
         url: 'accounts/handlerregister.php',
         data: $("#registerform-form").serialize(),
         success: function (response) {
-            console.log(response.length);
+            console.log(response.length + response);
             $('#registerform-info').css({
                 display: "block"
             });
             if(response.length == 32) {
                 $('#registerform-info').css({"background-color" : "#5cb85c"});
-                $('#loginform-login').text($('#registerform-login').text());
-                $('#loginform-password').text($('registerform-password1').text());
-                Ajaxlogin();
+                $('#loginform-login').val($('#registerform-login').val());
+                $('#loginform-password').val($('#registerform-password1').val());
+                setTimeout(function(){Ajaxlogin()},1000);
             } 
             $('#registerform-info').html(response);
             

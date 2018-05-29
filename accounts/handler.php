@@ -33,7 +33,7 @@
     {
         $login = $_POST['auth-login'];
         $password = $_POST['auth-password'];
-
+        echo $login." ".$password;
         $reg->login($pdo,$login,$password);
     }
     //-------------------------------------------------------
