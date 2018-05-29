@@ -193,37 +193,11 @@
                         <!-- End Messages -->
                         <!-- Profile -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle text-muted" href="app-profile.php">
                                 <div class="profile-pic">
                                 <?php  $pane->getUserAvatar($pdo,$_SESSION['userID']); ?>
                                 </div>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right animated zoomIn">
-                                <ul class="dropdown-user">
-                                    <li>
-                                        <a href="javascript:;" data-toggle="modal" data-target="#changePassModal">
-                                            <i class="ti-user"></i> Change Password</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="ti-wallet"></i> Balance</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="ti-email"></i> Inbox</a>
-                                    </li>
-                                    <li role="separator" class="divider"></li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="ti-settings"></i> Setting</a>
-                                    </li>
-                                    <li role="separator" class="divider"></li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-power-off"></i> Logout</a>
-                                    </li>
-                                </ul>
-                            </div>
                         </li>
                     </ul>
                 </div>

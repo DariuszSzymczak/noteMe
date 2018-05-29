@@ -46,7 +46,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                   
+                                        <?php $pane->showUserPrivateNotes($pdo,$_SESSION['userID']) ?>
                                     </tbody>
                                 </table>
                             </div>
