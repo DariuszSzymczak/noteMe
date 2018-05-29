@@ -19,12 +19,10 @@
 if(isset($_POST["delete"])){
     $login = $_POST['loginToDoSt'];
     if($login == ''){
-        echo "<script type='text/javascript'>
-        alert('Uzupełnij login do usunięcia');
-        location='index_admin.php';
-        </script>"; 
+        echo "Uzupełnij login do usunięcia"; 
     }
     $edit->delete_user($pdo,$login);
+    echo "usunieto: ".$login;
 }
 if(isset(($_POST["addtask"]))){
     $exec = True;
