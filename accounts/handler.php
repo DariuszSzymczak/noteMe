@@ -26,17 +26,7 @@
     {
         die('Błąd krytyczny :(');
     }
-    //----------------Weryfikacja rejestracji----------------
-    if(isset($_POST['mail']))
-    {   $mail = $_POST['mail'];
-        $login = $_POST['login'];
-        $pass1 = $_POST['pass1'];
-        $pass2 = $_POST['pass2'];
-        
-        $reg->addUser($pdo,$mail,$login,$pass1,$pass2);
-    }
-   
-    //-------------------------------------------------------
+ 
 
     //----------------Weryfikacja logowania----------------
     if(isset($_POST['auth-login']))

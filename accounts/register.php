@@ -35,7 +35,7 @@ class register{
                 $stmtC->execute();
 
            }
-
+           
 
     }
 

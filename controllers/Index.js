@@ -1,5 +1,5 @@
-$('#login-form-submit').on('click', function () {
-
+function Ajaxlogin () {
+    console.log('wywolano ajaxlogin');
     $.ajax({
         type: 'POST',
         url: 'accounts/handler.php',
@@ -25,7 +25,8 @@ $('#login-form-submit').on('click', function () {
         }
     });
 
-});
+}
+$('#login-form-submit').on('click', Ajaxlogin);
 
 
 function getCookie(cname) {
@@ -50,3 +51,27 @@ function setCookie(cname, cvalue, exdays) {
     var expires = "expires=" + d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
+
+$('#registerform-submit').on('click', function () {
+
+    $.ajax({
+        type: 'POST',
+        url: 'accounts/handlerregister.php',
+        data: $("#registerform-form").serialize(),
+        success: function (response) {
+            console.log(response.length);
+            $('#registerform-info').css({
+                display: "block"
+            });
+            if(response.length == 32) {
+                $('#registerform-info').css({"background-color" : "#5cb85c"});
+                $('#loginform-login').text($('#registerform-login').text());
+                $('#loginform-password').text($('registerform-password1').text());
+                Ajaxlogin();
+            } 
+            $('#registerform-info').html(response);
+            
+        }
+    });
+
+});

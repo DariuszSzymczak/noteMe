@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php $_POST = array(); ?>
 <html lang="en">
 <head>
   <title>Bootstrap Example</title>
@@ -53,7 +54,7 @@
       </div>
       <div class="modal-body">
 
-      <form action="accounts/handler.php" method="POST">
+      <form id="registerform-form" action="" method="post">
               <div class="row">
                 <div class="form-group">
                   <div class="col-lg-3 col-xs-12">
@@ -62,7 +63,7 @@
                     </label>
                   </div>
                   <div class="col-lg-9 col-xs-12">
-                    <input name="login" type="text" class="form-control" id="registerform-login" placeholder="Podaj Login"></input>
+                    <input name="login" type="text" class="form-control" id="registerform-login" placeholder="Podaj Login" required></input>
                   </div>
                 </div>
               </div><br/>
@@ -74,7 +75,7 @@
                     </label>
                   </div>
                   <div class="col-lg-9 col-xs-12">
-                    <input name="mail" type="text" class="form-control" id="registerform-email" placeholder="Podaj e-mail"></input>
+                    <input name="mail" type="text" class="form-control" id="registerform-email" placeholder="Podaj e-mail" required></input>
                   </div>
                 </div>
               </div><br/>
@@ -86,7 +87,7 @@
                     </label>
                   </div>
                   <div class="col-lg-9 col-xs-12">
-                    <input name="pass1" type="password" class="form-control" id="registerform-password1" placeholder="Podaj hasło"></input>
+                    <input name="pass1" type="password" class="form-control" id="registerform-password1" placeholder="Podaj hasło" required></input>
                   </div>
                 </div>
               </div><br/>
@@ -98,12 +99,13 @@
                     </label>
                   </div>
                   <div class="col-lg-9 col-xs-12">
-                    <input name="pass2" type="password" class="form-control" id="registerform-password2" placeholder="Powtórz hasło"></input>
+                    <input name="pass2" type="password" class="form-control" id="registerform-password2" placeholder="Powtórz hasło" required></input>
                   </div>
                 </div>
               </div><br/>
       <div class="modal-footer">
-      <input type="submit" name="submit" value="Zarejestruj się" class="btn btn-success btn-form">
+      <span id="registerform-info" class="label label-danger"></span>
+      <input type="button" id="registerform-submit" value="Zarejestruj się" class="btn btn-success btn-form">
       <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
         
       </div>
