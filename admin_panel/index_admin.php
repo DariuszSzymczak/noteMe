@@ -19,6 +19,15 @@ body{
 	-moz-animation: Gradient 15s ease infinite;
     animation: Gradient 15s ease infinite;
 }
+.deleteUser{
+	background-color: red !important;
+    max-width: 20%;
+    position: relative;
+    top: 20%;
+    min-width: 150px;
+    margin-right: 100px;
+    border: 1px solid black;
+}
 .divinfo{
 	width: 100%;
     height: 78px;
@@ -144,6 +153,8 @@ body{
 }
 .media > div {
 	display:inline-block;
+	padding: 0;
+	margin:0;
 }
 #form-button-changepw {
 	background-color:#bcab29 !important;

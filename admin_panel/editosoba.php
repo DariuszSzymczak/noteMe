@@ -2,9 +2,31 @@
     class editosoba {
 
         public function delete_user($pdo,$login){
+            $q = $pdo->prepare("SELECT loginmd5 FROM users where login=:login");
+            $q->bindparam(':login',$login, PDO::PARAM_STR);
+            $q->execute();
+            $f = $q->fetch();
+            $loginmd5 = $f['loginmd5'];
+
             $querryDelete = $pdo->prepare("DELETE FROM users where login=:login");
             $querryDelete->bindParam(':login',$login, PDO::PARAM_STR);
             $querryDelete->execute();
+            $querryDelete = $pdo->prepare("DELETE FROM avatars where login=:login");
+            $querryDelete->bindParam(':login',$login, PDO::PARAM_STR);
+            $querryDelete->execute();
+            $querryDelete = $pdo->prepare("DELETE FROM connectgroup where login=:login");
+            $querryDelete->bindParam(':login',$login, PDO::PARAM_STR);
+            $querryDelete->execute();
+            $querryDelete = $pdo->prepare("DELETE FROM avatars where login=:login");
+            $querryDelete->bindParam(':login',$login, PDO::PARAM_STR);
+            $querryDelete->execute();
+            $querryDelete = $pdo->prepare("DELETE FROM privatenotes where login=:login");
+            $querryDelete->bindParam(':login',$loginmd5, PDO::PARAM_STR);
+            $querryDelete->execute();
+            $querryDelete = $pdo->prepare("DELETE FROM tasks where login=:login");
+            $querryDelete->bindParam(':login',$loginmd5, PDO::PARAM_STR);
+            $querryDelete->execute();
+
                 echo "<script type='text/javascript'>
                         alert('Usunięto użytkownika ",$login, " ');
                         location='index_admin.php';
@@ -65,7 +87,7 @@
                  </script>";
             } catch (PDOException $e) {
                 echo $sql . "<br>" . $e->getMessage();
-        }
+            }
         }
         public function show_all($pdo){
             $querryShow = $pdo->prepare('SELECT login, email,town,isAdmin from users');
@@ -75,7 +97,7 @@
             echo($json);
         }
         public function show_in_Groups($pdo,$groupName){
-            $querryShowInGroups = $pdo->prepare('SELECT login, email,town,isAdmin from users,connectgroup WHERE users.loginmd5 = connectgroup.loginmd5 AND connectgroup.GroupName=:groupName');
+            $querryShowInGroups = $pdo->prepare('SELECT login, email,town,isAdmin from users,connectgroup WHERE users.login = connectgroup.login AND connectgroup.GroupName=:groupName');
             $querryShowInGroups->bindparam(':groupName',$groupName, PDO::PARAM_STR);
             $querryShowInGroups->execute();
             $results = $querryShowInGroups->fetchall(PDO::FETCH_ASSOC);
