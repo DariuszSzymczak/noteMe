@@ -19,6 +19,16 @@ body{
 	-moz-animation: Gradient 15s ease infinite;
     animation: Gradient 15s ease infinite;
 }
+.divinfo{
+	width: 100%;
+    height: 78px;
+    background: #fc4343;
+    text-align: center;
+    font-size: 32px;
+    padding: 16px;
+    color: #2d2d2d;
+}
+
 .container {
 	width:100%;
 	height:100%;
@@ -264,11 +274,11 @@ body{
   					</div>
   					<div class="form-group">
     					<label class="form-label" for="exampleInputPassword1">Treść zadania</label>
-    					<input name="content" type="text" class="form-control" id="exampleInputPassword1" placeholder="Treść...">
+    					<input name="content" type="text" class="form-control" id="exampleInputPassword2" placeholder="Treść...">
   					</div>
   					<div class="form-group">
     					<label class="form-label" for="exampleInputPassword1">Termin zakończenia</label>
-    					<input name="expiry_date" type="text" class="form-control" id="exampleInputPassword1" placeholder="Termin">
+    					<input name="expiry_date" type="text" class="form-control" id="exampleInputPassword3" placeholder="Termin">
   					</div>
 					<div class="modal-footer">
 						<input name="addtask" type="submit" class="btn btn-primary" value='Dodaj zadanie'></input>
@@ -292,16 +302,16 @@ body{
       			<div class="modal-body">
       			<form action="adminhandler.php" method="POST">
   					<div class="form-group">
-    					<label class="form-label" id="loginLabel" for="exampleInputEmail1">Login</label>
+    					<label class="form-label" id="loginLabel" for="exampleInputEmail3">Login</label>
     					<input name="login" type="text" class="form-control" id="loginInput" aria-describedby="emailHelp" placeholder="Enter login" value="">
   					</div>
   					<div class="form-group">
     					<label class="form-label" for="exampleInputPassword1">Nowe hasło</label>
-    					<input name="password1" type="password" class="form-control" id="exampleInputPassword1" placeholder="Podaj nowe hasło">
+    					<input name="password1" type="password" class="form-control" id="exampleInputPassword4" placeholder="Podaj nowe hasło">
   					</div>
   					<div class="form-group">
     					<label class="form-label" for="exampleInputPassword1">Powtórz hasło</label>
-    					<input name="password2" type="password" class="form-control" id="exampleInputPassword1" placeholder="Powtórz hasło">
+    					<input name="password2" type="password" class="form-control" id="exampleInputPassword5" placeholder="Powtórz hasło">
   					</div>
 					<div class="modal-footer">
 						<input type="submit" name='changepw' class="btn btn-primary" value="Zmień hasło"></input>
@@ -351,7 +361,7 @@ body{
       			
   					<div class="form-group">
     					<label class="form-label" for="GroupName">Nazwa Grupy</label>
-    					<input name="GroupName" type="text" class="form-control" id="GroupName" aria-describedby="emailHelp" placeholder="">
+    					<input name="GroupName" type="text" class="form-control" id="GroupName1" aria-describedby="emailHelp" placeholder="">
   					</div>
 					<div class="modal-footer">
 						<input type="submit" name='getUsersInGroups' class="btn btn-primary-groups" value="Wykonaj"></input>
@@ -376,7 +386,7 @@ body{
       			<form action="adminhandler.php" method="POST">
   					<div class="form-group">
     					<label class="form-label" for="GroupName">Nazwa Grupy</label>
-    					<input name="GroupName" type="text" class="form-control" id="GroupName" aria-describedby="emailHelp" placeholder="">
+    					<input name="GroupName" type="text" class="form-control" id="GroupName2" aria-describedby="emailHelp" placeholder="">
   					</div>
 					<div class="modal-footer">
 						<input type="submit" name="deleteGroup" class="btn btn-primary-groups" value="Wykonaj"></input>
@@ -401,15 +411,15 @@ body{
       			<form action="adminhandler.php" method="POST">
   					<div class="form-group">
     					<label class="form-label" for="exampleInputEmail1">Nazwa grupy</label>
-    					<input name="GroupName" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter login">
+    					<input name="GroupName" type="text" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Enter login">
   					</div>
   					<div class="form-group">
     					<label class="form-label" for="exampleInputPassword1">Nowe hasło</label>
-    					<input name="password1" type="password" class="form-control" id="exampleInputPassword1" placeholder="Podaj nowe hasło">
+    					<input name="password1" type="password" class="form-control" id="exampleInputPassword6" placeholder="Podaj nowe hasło">
   					</div>
   					<div class="form-group">
     					<label class="form-label" for="exampleInputPassword1">Powtórz hasło</label>
-    					<input name="password2" type="password" class="form-control" id="exampleInputPassword1" placeholder="Powtórz hasło">
+    					<input name="password2" type="password" class="form-control" id="exampleInputPassword7" placeholder="Powtórz hasło">
   					</div>
 					<div class="modal-footer">
 						<input type="submit" name='changeGrpPw' class="btn btn-primary" value="Zmień hasło"></input>

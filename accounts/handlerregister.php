@@ -34,21 +34,28 @@
         if(!empty($_POST['mail']))
         {
             $mail = $_POST['mail'];
-            if(!empty($_POST['pass1']) && !empty($_POST['pass2']) )
-            {
-                $pass1 = $_POST['pass1'];
-                $pass2 = $_POST['pass2'];
-                if($pass1 == $pass2){
-                    $reg->addUser($pdo,$mail,$login,$pass1,$pass2);
-                    echo"Rejestracja przbiegła pomyślnie!";
-                }
-                else{
-                    echo ("Podane Hasła są różne!");
-                }
+            if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+                echo "podano zły email!"; 
             }
             else{
-                echo"Nie podano Hasła";
-            }     
+
+                
+                if(!empty($_POST['pass1']) && !empty($_POST['pass2']) )
+                {
+                    $pass1 = $_POST['pass1'];
+                    $pass2 = $_POST['pass2'];
+                    if($pass1 == $pass2){
+                        $reg->addUser($pdo,$mail,$login,$pass1,$pass2);
+                        echo"Rejestracja przbiegła pomyślnie!";
+                    }
+                    else{
+                        echo ("Podane Hasła są różne!");
+                    }
+                }
+                else{
+                    echo"Nie podano Hasła";
+                }     
+            }
         }
         else{
             echo "Nie wpisano adresu Email.";

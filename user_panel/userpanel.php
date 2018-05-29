@@ -30,7 +30,7 @@
                                 <img src="images/list.png" />
                             </div>
                             <div class="media-body media-text-right">
-                                <h2>568120</h2>
+                                <h2><?php $pane->countAllTasks($pdo, $_SESSION['userID']) ?></h2>
                                 <p class="m-b-0">Twoje zadania</p>
                             </div>
                         </div>
@@ -43,7 +43,7 @@
                                 <img src="images/hourglass.png" />
                             </div>
                             <div class="media-body media-text-right">
-                                <h2>1178</h2>
+                                <h2><?php $pane->countWaitingTasks($pdo, $_SESSION['userID']) ?></h2>
                                 <p class="m-b-0">Oczekujące</p>
                             </div>
                         </div>
@@ -56,7 +56,7 @@
                                 <img src="images/goal.png" />
                             </div>
                             <div class="media-body media-text-right">
-                                <h2>25</h2>
+                                <h2><?php $pane->countFinishedTasks($pdo, $_SESSION['userID']) ?></h2>
                                 <p class="m-b-0">Zakończone</p>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                                 <img src="images/notepad.png" />
                             </div>
                             <div class="media-body media-text-right">
-                                <h2>847</h2>
+                                <h2><?php $pane->countUserPrivateNotes($pdo, $_SESSION['userID']) ?></h2>
                                 <p class="m-b-0">Notatki</p>
                             </div>
                         </div>

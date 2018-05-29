@@ -31,8 +31,38 @@ function showCallback(){
                 x.style.visibility = 'visible';
                 }
             });
-        })
+        });
+    $('#users').on('DOMNodeInserted DOMNodeRemoved',function(){
+        $('.deleteUser').each(function(){
+            $(this).on('click',function(){
+                let przycisk = this;
+                let user = this.dataset.user;
+                $.ajax({
+                    type: 'POST',
+                    url: './adminhandler.php',
+                    data: {"delete":"true","loginToDoSt":user},
+                    success: function (response) {
+                        console.log(response);
+                        animateAndDelete(przycisk.parentNode.parentNode);
+                        
+                    }
+                });
+            
+            });
+        });
+
+    });
     }
+
+function animateAndDelete(przycisk){
+    przycisk.innerHTML = "";
+    let divInfo = `<div class="divinfo">Usunięto Użytkownika</div>`;
+    przycisk.innerHTML= divInfo;
+    setTimeout(function(){
+        przycisk.remove();
+    },1500);
+}
+
 
 function showGroups(){
     $.ajax ({
@@ -121,14 +151,11 @@ function show_all(json){
                 <p>Miejscowość: ${json.town}</p>\
             </div>
             <div class="user-buttons">
-            <button type="button" class="btn btn-primary" id="form-button-changepw" data-toggle="modal" data-target="#modalChangePassword" data-loginTS=${json.login}> Zmień hasło </button>
-                <form action="adminhandler.php" method="POST">\
-    					<input name="loginToDoSt" type="hidden" class="form-control" value=${json.login}>\
-						<input type="submit" id="form-button-delete" name="delete" class="btn btn-primary" value="Usuń uzytkownika"></input>\
-                </form>
+            <button type="button" class="btn btn-primary" id="form-button-changepw" data-toggle="modal" data-target="#modalChangePassword" data-loginTS=${json.login}> Zmień hasło </button>\
+			<button data-user="${json.login}" class="btn btn-primary deleteUser" value="Usuń uzytkownika">Usuń uzytkownika</button>\
             </div>
         </div>\
-        <hr>`
+        `
         $('#users').append(outerDiv);
         $('.media').slideDown(500).delay(300);
     }

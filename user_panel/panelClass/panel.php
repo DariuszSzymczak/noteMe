@@ -197,8 +197,8 @@ class panel
             $size = $_POST["groupSize"];
             $count = 1;
             $loggedUser = substr($_SESSION['userID'], 0, -5); 
-            $stmt = $pdo->prepare('INSERT INTO groups(GroupName, Max_count, UserCount, groupAdmin)
-                                VALUES (:name, :size, :count, :user ) ');
+            $stmt = $pdo->prepare('INSERT INTO groups(GroupName,GroupDescription, Max_count, UserCount, groupAdmin)
+                                VALUES (:name, "Opis grupy...", :size, :count, :user ) ');
             $stmtB = $pdo->prepare('INSERT INTO connectgroup(login, GroupName)
             VALUES (:login, :name) ');
 
@@ -363,31 +363,40 @@ class panel
                 $stmt->bindParam(':oldName',$groupName, PDO::PARAM_STR);
                 $stmtB->bindParam(':name',$_POST['groupName'], PDO::PARAM_STR);
                 $stmtB->bindParam(':oldName',$groupName, PDO::PARAM_STR);
-                $stmt->execute();
-                $stmtB->execute();
+
                 if(isset($_POST['description']))
                 {
-                    $stmt = $pdo->prepare('UPDATE groups SET GroupDescription= :desc WHERE GroupName  = :name;');
-                    $stmt->bindParam(':desc',$_POST['description'], PDO::PARAM_STR);
-                    $stmt->bindParam(':name',$groupName, PDO::PARAM_STR);
-                    $stmt->execute();
+                    $stmtC = $pdo->prepare('UPDATE groups SET GroupDescription= :desc WHERE GroupName  = :name;');
+                    $stmtC->bindParam(':desc',$_POST['description'], PDO::PARAM_STR);
+                    $stmtC->bindParam(':name',$groupName, PDO::PARAM_STR);
+                    $stmtC->execute();
                     
                     if(isset($_POST['count']))
                     {
-                        $stmt = $pdo->prepare('UPDATE groups SET Max_count= :count WHERE GroupName  = :name;');
-                        $stmt->bindParam(':count',$_POST['count'], PDO::PARAM_STR);
-                        $stmt->bindParam(':name',$groupName, PDO::PARAM_STR);
-                        $stmt->execute();
+                        $stmtD = $pdo->prepare('UPDATE groups SET Max_count= :count WHERE GroupName  = :name;');
+                        $stmtD->bindParam(':count',$_POST['count'], PDO::PARAM_STR);
+                        $stmtD->bindParam(':name',$groupName, PDO::PARAM_STR);
+                        $stmtD->execute();
                     }
                 }
-
-                
+                $stmt->execute();
+                $stmtB->execute();
             }
-
             
-        
+
     }
     
+    public function countAllTasks($pdo, $username)
+    {
+        $tasksCount = 0;
+        $stmt = $pdo->prepare('SELECT COUNT(t.loginmd5) FROM tasks t WHERE t.loginmd5 = :userID ');
+        $stmt->bindParam(':userID', $username,PDO::PARAM_STR);
+        $stmt->execute();
+        $row = $stmt->fetch();
+        echo $row['COUNT(t.loginmd5)'];  
+    }
+    
+<<<<<<< HEAD
     // public function deleteGroup($pdo, $groupID)
     // {
 
@@ -418,7 +427,36 @@ class panel
         $insertSTMT->bindParam(':status1', $status);
         $insertSTMT->execute();
         }
+=======
+    public function countFinishedTasks($pdo, $username)
+    {
+        $tasksCount = 0;
+        $stmt = $pdo->prepare('SELECT COUNT(t.loginmd5) FROM tasks t WHERE t.loginmd5 = :userID AND t.status = 1');
+        $stmt->bindParam(':userID', $username,PDO::PARAM_STR);
+        $stmt->execute();
+        $row = $stmt->fetch();
+        echo $row['COUNT(t.loginmd5)'];  
+>>>>>>> 78fae92a9d5d1112b45b6326e45061a3c7ddd6d1
     }
 
+    public function countWaitingTasks($pdo, $username)
+    {
+        $tasksCount = 0;
+        $stmt = $pdo->prepare('SELECT COUNT(t.loginmd5) FROM tasks t WHERE t.loginmd5 = :userID AND t.status = 0');
+        $stmt->bindParam(':userID', $username,PDO::PARAM_STR);
+        $stmt->execute();
+        $row = $stmt->fetch();
+        echo $row['COUNT(t.loginmd5)'];  
+    }
+
+    public function countUserPrivateNotes($pdo, $username)
+    {
+        $tasksCount = 0;
+        $stmt = $pdo->prepare('SELECT COUNT(n.loginmd5) FROM privatenotes n WHERE n.loginmd5 = :userID');
+        $stmt->bindParam(':userID', $username,PDO::PARAM_STR);
+        $stmt->execute();
+        $row = $stmt->fetch();
+        echo $row['COUNT(n.loginmd5)'];  
+    }
 }
 ?>
