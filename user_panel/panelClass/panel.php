@@ -30,7 +30,8 @@ class panel
 
 
     public function getUserArticles($pdo,$userID,$date)
-    {   $stmt1 = $pdo->prepare('SELECT login FROM users WHERE loginmd5= :userID;');
+    {   
+        $stmt1 = $pdo->prepare('SELECT login FROM users WHERE loginmd5= :userID;');
         $stmt1->bindParam(':userID',$userID,PDO::PARAM_STR);
         $stmt1->execute();
         $loged = $stmt1->fetchColumn();
@@ -42,6 +43,7 @@ class panel
         $json = json_encode($results);  
         echo($json);
     }
+
 
     public function getUserDates($pdo,$userID)
     {
@@ -400,10 +402,18 @@ class panel
         echo $row['COUNT(t.loginmd5)'];  
     }
     
-    // public function deleteGroup($pdo, $groupID)
-    // {
-
-    // }
+    //USUWANIE GRUPY ORAZ UŻYTKOWNIKÓW Z GRUPY
+    public function deleteGroup($pdo, $groupID)
+    {
+        $querryDeleteGroup=$pdo->prepare('DELETE FROM groups WHERE GroupName=:groupName');
+        $querryDeleteGroup->bindParam(':groupName',$groupID, PDO::PARAM_STR);
+        $querryDeleteGroup->execute();
+            
+            
+        $q = $pdo->prepare('DELETE FROM connectgroup WHERE GroupName=:groupName');
+        $q->bindParam(':groupName',$groupID, PDO::PARAM_STR);
+        $q->execute();
+    }
 
     //DODAWANIE ZADAŃ
 

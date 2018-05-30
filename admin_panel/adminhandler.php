@@ -93,7 +93,9 @@ if(isset($_POST["changeGrpPw"])){
         </script>"; 
     }
 }
-
+if(isset($_POST["logout"])){
+    $edit->logout();
+}
 
 
 ?>

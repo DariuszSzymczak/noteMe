@@ -56,12 +56,13 @@ class register{
             if($check == TRUE)
             {
                 session_start();
-                $query = $pdo->query('SELECT login,loginmd5 FROM users');
+                $query = $pdo->query('SELECT login,loginmd5,isAdmin FROM users');
                 foreach($query as $row)
                 {
                     if($row['login']===$login)
                     {
                         $_SESSION['userID']= $row['loginmd5'];
+                        $_SESSION['isAdmin'] = $row['isAdmin'];
                     }
                 }
 

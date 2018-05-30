@@ -10,7 +10,8 @@ function showCallback(){
             });
             $(".btn-primary-groups").each(function(){
                 this.addEventListener('click',function(){
-                sendUsersInGroups();    
+                    var grupa = document.getElementById('grpName');
+                    sendUsersInGroups(grupa);    
                 })
             });
             $(".btn-showGroups").each(function(){
@@ -32,7 +33,6 @@ function showCallback(){
                 }
             });
         });
-
     $('#users').on('DOMNodeInserted DOMNodeRemoved',function(){
         $('.deleteUser').each(function(){
             $(this).on('click',function(){
@@ -66,6 +66,7 @@ function showCallback(){
 
     });
     }
+
 
 function animateAndDelete(przycisk){
     przycisk.innerHTML = "";
@@ -102,12 +103,11 @@ function showGroups(){
 }
 
 
-function sendUsersInGroups(){
-    var group = document.getElementById('GroupName1');
+function sendUsersInGroups(grupa){
     $.ajax({
         type:'POST',
         url:'./adminhandler.php',
-        data:{'showUsersIngroup':group.value},
+        data:{'showUsersIngroup':grupa.value},
         success: function(response){
             let json = JSON.parse(response);
             $('#users').html('');
@@ -116,7 +116,7 @@ function sendUsersInGroups(){
             function animation(){
                 if(iterator < lenght){
                     setTimeout(function () {  
-                       showall(json[iterator]);
+                       show_all(json[iterator]);
                         iterator++;
                         animation();
                     },240);
