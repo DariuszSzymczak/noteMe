@@ -56,7 +56,7 @@
                                 <img src="images/goal.png" />
                             </div>
                             <div class="media-body media-text-right">
-                                <h2><?php //$pane->countFinishedTasks($pdo, $_SESSION['userID']) ?></h2>
+                                <h2><?php $pane->countFinishedTasks($pdo, $_SESSION['userID']) ?></h2>
                                 <p class="m-b-0">Zakończone</p>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                                 <img src="images/notepad.png" />
                             </div>
                             <div class="media-body media-text-right">
-                                <h2><?php // $pane->countUserPrivateNotes($pdo, $_SESSION['userID']) ?></h2>
+                                <h2><?php $pane->countUserPrivateNotes($pdo, $_SESSION['userID']) ?></h2>
                                 <p class="m-b-0">Notatki</p>
                             </div>
                         </div>

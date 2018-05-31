@@ -392,16 +392,6 @@ class panel
 
     }
     
-    public function countAllTasks($pdo, $username)
-    {
-        $tasksCount = 0;
-        $stmt = $pdo->prepare('SELECT COUNT(t.loginmd5) FROM tasks t WHERE t.loginmd5 = :userID ');
-        $stmt->bindParam(':userID', $username,PDO::PARAM_STR);
-        $stmt->execute();
-        $row = $stmt->fetch();
-        echo $row['COUNT(t.loginmd5)'];  
-    }
-    
     //USUWANIE GRUPY ORAZ UŻYTKOWNIKÓW Z GRUPY
     public function deleteGroup($pdo, $groupID)
     {
@@ -617,7 +607,7 @@ class panel
     public function countWaitingTasks($pdo, $username)
     {
         $tasksCount = 0;
-        $stmt = $pdo->prepare('SELECT COUNT(t.loginmd5) FROM tasks t WHERE t.loginmd5 = :userID AND t.status = 0');
+        $stmt = $pdo->prepare('SELECT COUNT(t.loginmd5) FROM tasks t WHERE t.loginmd5 = :userID AND t.status1 = 0');
         $stmt->bindParam(':userID', $username,PDO::PARAM_STR);
         $stmt->execute();
         $row = $stmt->fetch();
@@ -634,6 +624,25 @@ class panel
         echo $row['COUNT(n.loginmd5)'];  
     }
 
- 
+    public function countAllTasks($pdo, $username)
+    {
+        $tasksCount = 0;
+        $stmt = $pdo->prepare('SELECT COUNT(t.loginmd5) FROM tasks t WHERE t.loginmd5 = :userID ');
+        $stmt->bindParam(':userID', $username,PDO::PARAM_STR);
+        $stmt->execute();
+        $row = $stmt->fetch();
+        echo $row['COUNT(t.loginmd5)'];  
+    }
+
+    public function countFinishedTasks($pdo, $username)
+     {
+         $tasksCount = 0;
+        $stmt = $pdo->prepare('SELECT COUNT(t.loginmd5) FROM tasks t WHERE t.loginmd5 = :userID AND t.status = 1');
+        $stmt = $pdo->prepare('SELECT COUNT(t.loginmd5) FROM tasks t WHERE t.loginmd5 = :userID AND t.status1 = 1');
+         $stmt->bindParam(':userID', $username,PDO::PARAM_STR);
+         $stmt->execute();
+         $row = $stmt->fetch();
+         echo $row['COUNT(t.loginmd5)'];  
+     }
 }
 ?>
