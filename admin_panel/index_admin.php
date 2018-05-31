@@ -1,3 +1,21 @@
+<?php 
+                            session_start();
+                            if(isset($_SESSION['userID']))
+                            {
+								if($_SESSION['isAdmin']==1){
+
+								}
+                            
+                            else
+                            {
+                                header('Location:../index.php');
+							}
+						}                            else
+						{
+							header('Location:../index.php');
+						}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -231,7 +249,7 @@ body{
 		<button type="button" class="btn btn-showGroups" neme="showGroups"> Wyświetl grupy </button>
 		<button type="button" class="btn btn-deleteGroup" data-toggle="modal" data-target="#modaldeleteGroup"> Usuń Grupę </button>
 		<button type="button" class="btn btn-changePassword" data-toggle="modal" data-target="#modalChangeGroupPassword" style="font-size:12px;"> Zmień hasło grupy </button>
-		<button type="button" class="btn btn-logout" id="logout" data-toggle="modal" data-target="#modalChangeToAdmin"> Wyloguj </button>
+		<form action='./adminhandler.php' method='POST'><button type="submit" class="btn btn-logout" name="logout"> Wyloguj </button></form>
 		</div>
 
 	<div id="users">
@@ -372,7 +390,7 @@ body{
       			
   					<div class="form-group">
     					<label class="form-label" for="GroupName">Nazwa Grupy</label>
-    					<input name="GroupName" type="text" class="form-control" id="GroupName1" aria-describedby="emailHelp" placeholder="">
+    					<input name="GroupName" type="text" class="form-control" id="grpName">
   					</div>
 					<div class="modal-footer">
 						<input type="submit" name='getUsersInGroups' class="btn btn-primary-groups" value="Wykonaj"></input>

@@ -97,7 +97,7 @@
             echo($json);
         }
         public function show_in_Groups($pdo,$groupName){
-            $querryShowInGroups = $pdo->prepare('SELECT login, email,town,isAdmin from users,connectgroup WHERE users.login = connectgroup.login AND connectgroup.GroupName=:groupName');
+            $querryShowInGroups = $pdo->prepare('SELECT users.login, email,town,isAdmin from users,connectgroup WHERE users.login = connectgroup.login AND connectgroup.GroupName=:groupName');
             $querryShowInGroups->bindparam(':groupName',$groupName, PDO::PARAM_STR);
             $querryShowInGroups->execute();
             $results = $querryShowInGroups->fetchall(PDO::FETCH_ASSOC);
@@ -144,6 +144,14 @@
                 }
             }
 
+        }
+        public function logout() {
+            session_start();
+            session_destroy();
+            echo "<script type='text/javascript'>
+            alert('Wylogowano');
+            location='./../index.php';
+            </script>";
         }
     }
 ?>

@@ -28,15 +28,26 @@ class panel
     }
 
     public function getUserArticles($pdo,$userID,$date)
+<<<<<<< HEAD
     {
         $stmt = $pdo->prepare('SELECT topic,content,dateend FROM tasks WHERE loginmd5= :userID AND DateAdded = :today ;');
         $stmt->bindParam(':userID',$userID,PDO::PARAM_STR);
+=======
+    {   
+        $stmt1 = $pdo->prepare('SELECT login FROM users WHERE loginmd5= :userID;');
+        $stmt1->bindParam(':userID',$userID,PDO::PARAM_STR);
+        $stmt1->execute();
+        $loged = $stmt1->fetchColumn();
+        $stmt = $pdo->prepare('SELECT topic,content,DateAdded,dateend FROM tasks WHERE author = :loged AND DateAdded = :today UNION SELECT topic,content,DateAdded,dateend FROM grouptasks INNER JOIN connectgroup ON grouptasks.groupname = connectgroup.GroupName AND grouptasks.Dateadded = :today AND connectgroup.login = :loged  ;');
+        $stmt->bindParam(':loged',$loged,PDO::PARAM_STR);
+>>>>>>> d847cecfbf0b3e083ba9a4ac1bd7ced769568753
         $stmt->bindParam(':today',$date,PDO::PARAM_STR);
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $json = json_encode($results);  
         echo($json);
     }
+
 
     public function getUserDates($pdo,$userID)
     {
@@ -396,10 +407,18 @@ class panel
         echo $row['COUNT(t.loginmd5)'];  
     }
     
-    // public function deleteGroup($pdo, $groupID)
-    // {
-
-    // }
+    //USUWANIE GRUPY ORAZ UŻYTKOWNIKÓW Z GRUPY
+    public function deleteGroup($pdo, $groupID)
+    {
+        $querryDeleteGroup=$pdo->prepare('DELETE FROM groups WHERE GroupName=:groupName');
+        $querryDeleteGroup->bindParam(':groupName',$groupID, PDO::PARAM_STR);
+        $querryDeleteGroup->execute();
+            
+            
+        $q = $pdo->prepare('DELETE FROM connectgroup WHERE GroupName=:groupName');
+        $q->bindParam(':groupName',$groupID, PDO::PARAM_STR);
+        $q->execute();
+    }
 
     //DODAWANIE ZADAŃ
 
