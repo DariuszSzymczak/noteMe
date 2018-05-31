@@ -404,6 +404,14 @@ class panel
         $q->bindParam(':groupName',$groupID, PDO::PARAM_STR);
         $q->execute();
     }
+    //Opuść grupe
+    public function leaveGroup($pdo,$groupID,$userID){
+        $querryLeaveGroup = $pdo->prepare('DELETE FROM connectgroup WHERE GroupName=:groupName AND login=:login');
+        $querryLeaveGroup->bindParam(':groupName',$groupID, PDO::PARAM_STR);
+        $querryLeaveGroup->bindParam(':login',$userID, PDO::PARAM_STR);
+        $querryLeaveGroup->eecute();
+    }
+    
 
     //DODAWANIE ZADAŃ
 
