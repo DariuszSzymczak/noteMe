@@ -33,7 +33,7 @@ class panel
         $stmt1->bindParam(':userID',$userID,PDO::PARAM_STR);
         $stmt1->execute();
         $loged = $stmt1->fetchColumn();
-        $stmt = $pdo->prepare('SELECT topic,content,DateAdded,dateend FROM tasks WHERE author = :loged AND DateAdded = :today UNION SELECT topic,content,DateAdded,dateend FROM grouptasks INNER JOIN connectgroup ON grouptasks.groupname = connectgroup.GroupName AND grouptasks.Dateadded = :today AND connectgroup.login = :loged  ;');
+        $stmt = $pdo->prepare('SELECT topic,content,DateAdded,dateend FROM tasks WHERE author = :loged AND dateend>=:today AND DateAdded<=:today ;');
         $stmt->bindParam(':loged',$loged,PDO::PARAM_STR);
         $stmt->bindParam(':today',$date,PDO::PARAM_STR);
         $stmt->execute();
@@ -180,16 +180,17 @@ class panel
                 .$rows["UserCount"] ."/".$rows["Max_count"]
             ."</td>";
             echo "<td> <center>
-            <a href=\"javascript:;\" data-toggle=\"modal\" data-target=\"\">
-                <button type=\"button\" class=\"btn btn-warning btn-xs m-b-10 m-l-5\">
-                    Opuść grupę</button>
-            </a>";
+            <form method='POST' id='delete-".$rows["GroupName"]."'>
+                <input name='deleteGroup' type='hidden' value='".$rows["GroupName"]."'>
+            </form>
+
+            <form method='POST' id='leave-".$rows["GroupName"]."'>
+                <input name='leaveGroup' type='hidden' value='".$rows["GroupName"]."'>
+            </form>
+                <button form='leave-".$rows["GroupName"]."'  type='submit' class='btn btn-warning btn-xs m-b-10 m-l-5'> Opuść grupę </button>";
             if($loggedUser == $rows["groupAdmin"])
             {
-           echo "<a href=\"javascript:;\" data-toggle=\"modal\" data-target=\"#deleteTaskConfirmModal\">
-                <button type=\"button\" class=\"btn btn-danger btn-xs m-b-10 m-l-5\">
-                Skasuj grupę</button>
-            </a>";
+           echo "<button form='delete-".$rows["GroupName"]."' type='submit' class='btn btn-danger btn-xs m-b-10 m-l-5'> Skasuj grupę </button>";
             }
             echo "</center></td>";
         $counter++;
@@ -393,23 +394,39 @@ class panel
     }
     
     //USUWANIE GRUPY ORAZ UŻYTKOWNIKÓW Z GRUPY
-    public function deleteGroup($pdo, $groupID)
+    public function deleteGroup($pdo,$loginmd5)
     {
-        $querryDeleteGroup=$pdo->prepare('DELETE FROM groups WHERE GroupName=:groupName');
+
+        if(isset($_POST['deleteGroup'])){
+            $groupID = $_POST['deleteGroup'];
+            $login= substr($loginmd5, 0, -5); 
+        $querryDeleteGroup=$pdo->prepare('DELETE FROM groups WHERE GroupName=:groupName AND groupAdmin=:login');
         $querryDeleteGroup->bindParam(':groupName',$groupID, PDO::PARAM_STR);
+        $querryDeleteGroup->bindParam(':login',$login, PDO::PARAM_STR);
         $querryDeleteGroup->execute();
             
+        echo "<script>console.log( 'Ustawiony login: " . $login . "' );</script>";
+        echo "<script>console.log( 'Ustawiona Grupa: " . $groupID . "' );</script>";
             
-        $q = $pdo->prepare('DELETE FROM connectgroup WHERE GroupName=:groupName');
+        echo '<script>alert('.$login.')</script>';
+
+        $q = $pdo->prepare('DELETE FROM connectgroup WHERE GroupName=:groupName AND login=:login');
         $q->bindParam(':groupName',$groupID, PDO::PARAM_STR);
+        $q->bindParam(':login',$login, PDO::PARAM_STR);
         $q->execute();
-    }
+            }
+        }
     //Opuść grupe
-    public function leaveGroup($pdo,$groupID,$userID){
+    public function leaveGroup($pdo){
+        if(isset($_POST['leaveGroup'])){
+            $groupID = $_POST['leaveGroup'];
+            $loginmd5 = $_SESSION['userID'];
+            $login= substr($loginmd5, 0, -5); 
         $querryLeaveGroup = $pdo->prepare('DELETE FROM connectgroup WHERE GroupName=:groupName AND login=:login');
         $querryLeaveGroup->bindParam(':groupName',$groupID, PDO::PARAM_STR);
-        $querryLeaveGroup->bindParam(':login',$userID, PDO::PARAM_STR);
-        $querryLeaveGroup->eecute();
+        $querryLeaveGroup->bindParam(':login',$login, PDO::PARAM_STR);
+        $querryLeaveGroup->execute();
+        }
     }
     
 

@@ -3,6 +3,9 @@
     require('dividedHTML/header.php');
     require('dividedHTML/left-sidebar.php');
     $pane->addGroup($pdo,$_SESSION['userID']);
+    $pane->deleteGroup($pdo,$_SESSION['userID']);
+    $pane->leaveGroup($pdo);
+
 ?>
 
     <div class="page-wrapper">
