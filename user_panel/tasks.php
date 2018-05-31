@@ -3,7 +3,8 @@
     require('dividedHTML/header.php');
     require('dividedHTML/left-sidebar.php');
     $pane->addTask($pdo,$_SESSION['userID']);
-    $pane->editTask($pdo,$_SESSION['userID']);
+    $pane->endTask($pdo,$_SESSION['userID']);
+    $pane->delTask($pdo,$_SESSION['userID']);
 ?>
 
     <!-- Page wrapper  -->
@@ -30,8 +31,8 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-title">
-                            <h2>Lista zadań </h2>
-
+                            <h2>Lista zadań <?php $pane->editTask($pdo,$_SESSION['userID']); ?></h2>
+                           
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">

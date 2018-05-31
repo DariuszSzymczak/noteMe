@@ -28,11 +28,6 @@ class panel
     }
 
     public function getUserArticles($pdo,$userID,$date)
-<<<<<<< HEAD
-    {
-        $stmt = $pdo->prepare('SELECT topic,content,dateend FROM tasks WHERE loginmd5= :userID AND DateAdded = :today ;');
-        $stmt->bindParam(':userID',$userID,PDO::PARAM_STR);
-=======
     {   
         $stmt1 = $pdo->prepare('SELECT login FROM users WHERE loginmd5= :userID;');
         $stmt1->bindParam(':userID',$userID,PDO::PARAM_STR);
@@ -40,7 +35,6 @@ class panel
         $loged = $stmt1->fetchColumn();
         $stmt = $pdo->prepare('SELECT topic,content,DateAdded,dateend FROM tasks WHERE author = :loged AND DateAdded = :today UNION SELECT topic,content,DateAdded,dateend FROM grouptasks INNER JOIN connectgroup ON grouptasks.groupname = connectgroup.GroupName AND grouptasks.Dateadded = :today AND connectgroup.login = :loged  ;');
         $stmt->bindParam(':loged',$loged,PDO::PARAM_STR);
->>>>>>> d847cecfbf0b3e083ba9a4ac1bd7ced769568753
         $stmt->bindParam(':today',$date,PDO::PARAM_STR);
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -60,6 +54,7 @@ class panel
     }
 
     //Wyswietlenie listy notatek użytkownika
+
     public function showUserPrivateNotes($pdo, $userID)
     {
         $stmt = $pdo->prepare('SELECT Title,DateAdded FROM privatenotes WHERE loginmd5= :userID');
@@ -481,20 +476,37 @@ class panel
                         </a>
                     </td>
                     <td>
-                        <center>
-                            <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
-                            <a href="javascript:;" data-toggle="modal" data-target="#'.$row['topic'].'">
+                        <center>';
+                        if($row['status1']==0)
+                        {
+                         echo '<form id="end" method="POST">
+                         <input style="width:0px !important;display:none;" name="endTask" type="hidden" value="'.$row['topic'].'">
+                         </form>
+                         <button form="end" type="submit" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
+                         
+                         ';
+                        }
+                           
+                            echo '<a href="javascript:;" data-toggle="modal" data-target="#'.$row['topic'].'">
                                 <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">
                                     Edytuj</button>
                             </a>
-                            <a href="javascript:;" data-toggle="modal" data-target="#deleteTaskConfirmModal">
+                            <a href="javascript:;" data-toggle="modal" data-target="#a'.$row['topic'].'">
                                 <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">
                                     Usuń</button>
                             </a>
                         </center>
                     </td>
-                    <td>
-                        <span class="badge badge-success">Skończone</span>
+                    <td>';
+                        if($row['status1']==1)
+                        {
+                        echo '<span class="badge badge-success">Skończone</span>';
+                        }
+                        else
+                        {
+                        echo '<span class="badge badge-danger">W trakcie</span>';   
+                        }
+                        echo'
                     </td>
                 </tr>
                
@@ -507,7 +519,6 @@ class panel
                         <div class="modal-body">
                             <form method="POST">
                                 <div class="form-group">
-                                    <label class="col-md-12">Nazwa zadania</label>
                                     <div class="col-md-12">
                                         <input type="hidden" value="'.$row['topic'].'" class="form-control form-control-line" name="editTaskName">
                                     </div>
@@ -529,7 +540,31 @@ class panel
                         </div>
                     </div>
                 </div>
-            </div> ';
+          </div>
+            
+            
+            <div class="modal" id="a'.$row['topic'].'" tabindex="-1" role="dialog" aria-labelledby="deleteTaskConfirmModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Uwaga!</h3>
+      </div>
+      <div class="modal-body">
+        <h5>Na pewno chcesz usunąć zadanie: <strong>'.$row['topic'].'</strong></h5>
+      </div>
+      <div class="modal-footer">
+      <form id="del" method="POST">
+        <input name="delTask" type="text" value="'.$row['topic'].'">
+        <button form="del" type="submit" class="btn btn-primary"> Tak</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
+        </form>
+        
+        
+       
+      </div>
+    </div>
+  </div>
+</div>';
         }
         echo '       </tbody>
         </table>';
@@ -539,14 +574,43 @@ class panel
     {
         if(isset($_POST['editTaskName']))
         {
-        $insertSTMT = $pdo->prepare('UPDATE tasks(content, dateend) 
-                            SET (:content, :dateend) WHERE topic = :topic AND loginmd5 = :userID');
-        $insertSTMT->bindParam(':topic', $_POST['editTaskName']);                    
-        $insertSTMT->bindParam(':content', $_POST['editTaskDescription']);
-        $insertSTMT->bindParam(':dateend', $_POST['editTaskDate']);
-        $insertSTMT->bindParam(':userID', $userID);
-        $insertSTMT->execute();
+        $stmt = $pdo->prepare('UPDATE tasks SET 
+                                content= :content,
+                                dateend= :dateend 
+                                WHERE topic = :topic AND loginmd5 = :userID;');
+        $stmt->bindParam(':topic', $_POST['editTaskName']);                    
+        $stmt->bindParam(':content', $_POST['editTaskDescription']);
+        $stmt->bindParam(':dateend', $_POST['editTaskDate']);
+        $stmt->bindParam(':userID', $userID);
+        $stmt->execute();
         }
+    }
+    public function endTask($pdo,$userID)
+    {
+        if(isset($_POST['endTask']))
+        {
+       
+        $status1 = 1;
+        $stmt = $pdo->prepare('UPDATE tasks SET 
+                                status1= :status1
+                                WHERE topic = :topic AND loginmd5 = :userID;');
+        $stmt->bindParam(':status1', $status1);                    
+        $stmt->bindParam(':topic', $_POST['endTask']);
+        $stmt->bindParam(':userID', $userID);
+        $stmt->execute();
+        } 
+    }
+
+    public function delTask($pdo,$userID)
+    {
+        if(isset($_POST['delTask']))
+        {
+        $stmt = $pdo->prepare('DELETE FROM tasks WHERE topic = :topic AND loginmd5 = :userID;');                 
+        $stmt->bindParam(':topic', $_POST['delTask']);
+        $stmt->bindParam(':userID', $userID);
+        $stmt->execute();
+        } 
+        
     }
 
     //ZLICZANIE landpage
