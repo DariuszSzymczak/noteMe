@@ -452,7 +452,7 @@ class panel
         </thead>
         <tbody>';
         $counter =0;
-        foreach($stmt as $row)
+        while($row = $stmt->fetch())        
         {
             echo '
                 <tr>
@@ -466,26 +466,27 @@ class panel
                         </a>
                     </td>
                     <td>
-                        <center>';
+                    <center> ';
                         if($row['status1']==0)
                         {
-                         echo '<form id="end" method="POST">
-                         <input style="width:0px !important;display:none;" name="endTask" type="hidden" value="'.$row['topic'].'">
-                         </form>
-                         <button form="end" type="submit" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
-                         
+                         echo '<form id="end-'.$row['topic'].'" method="POST">
+                         <input name="endTask" type="hidden" value="'.$row['topic'].'">
+                         </form>                 
+                        <button form="end-'.$row['topic'].'" type="submit" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button> 
+                                          
                          ';
                         }
                            
-                            echo '<a href="javascript:;" data-toggle="modal" data-target="#'.$row['topic'].'">
+                        echo '<a href="javascript:;" data-toggle="modal" data-target="#'.$row['topic'].'">
                                 <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">
                                     Edytuj</button>
                             </a>
                             <a href="javascript:;" data-toggle="modal" data-target="#a'.$row['topic'].'">
                                 <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">
                                     Usuń</button>
-                            </a>
-                        </center>
+                            </a> 
+                   </center>
+
                     </td>
                     <td>';
                         if($row['status1']==1)
@@ -533,30 +534,28 @@ class panel
           </div>
             
             
-            <div class="modal" id="a'.$row['topic'].'" tabindex="-1" role="dialog" aria-labelledby="deleteTaskConfirmModal" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLabel">Uwaga!</h3>
-      </div>
-      <div class="modal-body">
-        <h5>Na pewno chcesz usunąć zadanie: <strong>'.$row['topic'].'</strong></h5>
-      </div>
-      <div class="modal-footer">
-      <form id="del" method="POST">
-        <input name="delTask" type="text" value="'.$row['topic'].'">
-        <button form="del" type="submit" class="btn btn-primary"> Tak</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
-        </form>
-        
-        
-       
-      </div>
-    </div>
-  </div>
-</div>';
+                        <div class="modal" id="a'.$row['topic'].'" tabindex="-1" role="dialog" aria-labelledby="deleteTaskConfirmModal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Uwaga!</h3>
+                </div>
+                <div class="modal-body">
+                    <h5>Na pewno chcesz usunąć zadanie: <strong>'.$row['topic'].'</strong></h5>
+                </div>
+                <div class="modal-footer">
+                <form method="POST">
+                    <input name="delTask" type="hidden" value="'.$row['topic'].'">
+                    <input type="submit" class="btn btn-primary" value="Tak"/>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
+                    </form>
+                </div>
+                </div>
+            </div>
+            </div>';
         }
-        echo '       </tbody>
+        echo '
+        </tbody>
         </table>';
     }
 
@@ -579,15 +578,14 @@ class panel
     {
         if(isset($_POST['endTask']))
         {
-       
-        $status1 = 1;
-        $stmt = $pdo->prepare('UPDATE tasks SET 
-                                status1= :status1
-                                WHERE topic = :topic AND loginmd5 = :userID;');
-        $stmt->bindParam(':status1', $status1);                    
-        $stmt->bindParam(':topic', $_POST['endTask']);
-        $stmt->bindParam(':userID', $userID);
-        $stmt->execute();
+            $status1 = 1;
+            $stmt = $pdo->prepare('UPDATE tasks SET 
+                                    status1= :status1
+                                    WHERE topic = :topic AND loginmd5 = :userID;');
+            $stmt->bindParam(':status1', $status1);                    
+            $stmt->bindParam(':topic', $_POST['endTask']);
+            $stmt->bindParam(':userID', $userID);
+            $stmt->execute();
         } 
     }
 
@@ -595,10 +593,11 @@ class panel
     {
         if(isset($_POST['delTask']))
         {
-        $stmt = $pdo->prepare('DELETE FROM tasks WHERE topic = :topic AND loginmd5 = :userID;');                 
-        $stmt->bindParam(':topic', $_POST['delTask']);
-        $stmt->bindParam(':userID', $userID);
-        $stmt->execute();
+
+            $stmt = $pdo->prepare('DELETE FROM tasks WHERE topic = :topic AND loginmd5 = :userID;');                 
+            $stmt->bindParam(':topic', $_POST['delTask']);
+            $stmt->bindParam(':userID', $userID);
+            $stmt->execute();
         } 
         
     }

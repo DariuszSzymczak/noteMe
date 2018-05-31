@@ -51,7 +51,6 @@
             </div>
             <!-- /# row -->
             <!-- End PAge Content -->
-        </div>
         <?php
     require('dividedHTML/deleteTaskConfirmModal.php');
     require('dividedHTML/editTaskModal.php');
