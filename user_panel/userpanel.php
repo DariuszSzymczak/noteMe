@@ -30,7 +30,7 @@
                                 <img src="images/list.png" />
                             </div>
                             <div class="media-body media-text-right">
-                                <h2><?php $pane->countAllTasks($pdo, $_SESSION['userID']) ?></h2>
+                                <h2><?php $pane->countAllTasks($pdo, $_SESSION['userID']); ?></h2>
                                 <p class="m-b-0">Twoje zadania</p>
                             </div>
                         </div>
@@ -43,7 +43,7 @@
                                 <img src="images/hourglass.png" />
                             </div>
                             <div class="media-body media-text-right">
-                                <h2><?php $pane->countWaitingTasks($pdo, $_SESSION['userID']) ?></h2>
+                                <h2><?php $pane->countWaitingTasks($pdo, $_SESSION['userID']); ?></h2>
                                 <p class="m-b-0">Oczekujące</p>
                             </div>
                         </div>
@@ -56,7 +56,7 @@
                                 <img src="images/goal.png" />
                             </div>
                             <div class="media-body media-text-right">
-                                <h2><?php $pane->countFinishedTasks($pdo, $_SESSION['userID']) ?></h2>
+                                <h2><?php //$pane->countFinishedTasks($pdo, $_SESSION['userID']) ?></h2>
                                 <p class="m-b-0">Zakończone</p>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                                 <img src="images/notepad.png" />
                             </div>
                             <div class="media-body media-text-right">
-                                <h2><?php $pane->countUserPrivateNotes($pdo, $_SESSION['userID']) ?></h2>
+                                <h2><?php // $pane->countUserPrivateNotes($pdo, $_SESSION['userID']) ?></h2>
                                 <p class="m-b-0">Notatki</p>
                             </div>
                         </div>
@@ -84,147 +84,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Nazwa</th>
-                                        <th>Grupa</th>
-                                        <th>Deadline</th>
-                                        <th>
-                                            <center>Akcje</center>
-                                        </th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            <a href="task.php">Przykładowe zadanie z bazy</a>
-                                        </td>
-                                        <td>
-                                            <span>
-                                                <a href="group.php">IP20</a>
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span>
-                                                <a href="date.php">2018-05-30</a>
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <center>
-                                                <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
-                                                <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Edytuj</button>
-                                            </center>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-success">Skończone</span>
-                                        </td>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>
-                                                <a href="task.php">Przykładowe zadanie z bazy</a>
-                                            </td>
-                                            <td>
-                                                <span>
-                                                    <a href="group.php">IP20</a>
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <span>
-                                                    <a href="date.php">2018-05-30</a>
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <center>
-                                                    <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
-                                                    <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Edytuj</button>
-                                                </center>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-success">Skończone</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>
-                                                <a href="task.php">Przykładowe zadanie z bazy</a>
-                                            </td>
-                                            <td>
-                                                <span>
-                                                    <a href="group.php">IP20</a>
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <span>
-                                                    <a href="date.php">2018-05-30</a>
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <center>
-                                                    <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
-                                                    <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Edytuj</button>
-                                                </center>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-success">Skończone</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>
-                                                <a href="task.php">Przykładowe zadanie z bazy</a>
-                                            </td>
-                                            <td>
-                                                <span>
-                                                    <a href="group.php">IP20</a>
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <span>
-                                                    <a href="date.php">2018-05-30</a>
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <center>
-                                                    <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
-                                                    <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Edytuj</button>
-                                                </center>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-success">Skończone</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>
-                                                <a href="task.php">Przykładowe zadanie z bazy</a>
-                                            </td>
-                                            <td>
-                                                <span>
-                                                    <a href="group.php">IP20</a>
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <span>
-                                                    <a href="date.php">2018-05-30</a>
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <center>
-                                                    <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
-                                                    <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">Edytuj</button>
-                                                </center>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-success">Skończone</span>
-                                            </td>
-                                        </tr>
-                                </tbody>
-                            </table>
+                        <?php  $pane->showTasks($pdo,$_SESSION['userID']);?>
                         </div>
                     </div>
                 </div>

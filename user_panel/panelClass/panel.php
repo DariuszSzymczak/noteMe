@@ -27,15 +27,10 @@ class panel
 
     }
 
-
-
     public function getUserArticles($pdo,$userID,$date)
-    {   $stmt1 = $pdo->prepare('SELECT login FROM users WHERE loginmd5= :userID;');
-        $stmt1->bindParam(':userID',$userID,PDO::PARAM_STR);
-        $stmt1->execute();
-        $loged = $stmt1->fetchColumn();
-        $stmt = $pdo->prepare('SELECT topic,content,DateAdded,dateend FROM tasks WHERE author = :loged AND DateAdded = :today UNION SELECT topic,content,DateAdded,dateend FROM grouptasks INNER JOIN connectgroup ON grouptasks.groupname = connectgroup.GroupName AND grouptasks.Dateadded = :today AND connectgroup.login = :loged  ;');
-        $stmt->bindParam(':loged',$loged,PDO::PARAM_STR);
+    {
+        $stmt = $pdo->prepare('SELECT topic,content,dateend FROM tasks WHERE loginmd5= :userID AND DateAdded = :today ;');
+        $stmt->bindParam(':userID',$userID,PDO::PARAM_STR);
         $stmt->bindParam(':today',$date,PDO::PARAM_STR);
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -45,12 +40,8 @@ class panel
 
     public function getUserDates($pdo,$userID)
     {
-        $stmt1 = $pdo->prepare('SELECT login FROM users WHERE loginmd5= :userID;');
-        $stmt1->bindParam(':userID',$userID,PDO::PARAM_STR);
-        $stmt1->execute();
-        $loged = $stmt1->fetchColumn();
-        $stmt = $pdo->prepare('SELECT DateAdded FROM tasks WHERE author = :loged UNION SELECT DateAdded FROM grouptasks INNER JOIN connectgroup ON grouptasks.groupname = connectgroup.GroupName AND connectgroup.login = :loged  ;');
-        $stmt->bindParam(':loged',$loged,PDO::PARAM_STR);
+        $stmt = $pdo->prepare('SELECT DateAdded FROM tasks WHERE loginmd5= :userID;');
+        $stmt->bindParam(':userID',$userID,PDO::PARAM_STR);
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $json = json_encode($results);  
@@ -341,19 +332,24 @@ class panel
 
     public function addPrivateNote($pdo, $username)
     {
-        if(isset ($_POST['noteTitle']))
-        {
-            if(isset ($_POST['noteContent']))
-            {
-                $date = date("y-m-d");
-                $insertSTMT = $pdo->prepare('INSERT into privatenotes(DateAdded, Loginmd5, Title, Content) 
-                                values(:DateAdded, :Loginmd5, :Title, :Content)');
-                $insertSTMT->bindParam(':DateAdded', $date);
-                $insertSTMT->bindParam(':Loginmd5', $username);
-                $insertSTMT->bindParam(':Title', $_POST['noteTitle']);
-                $insertSTMT->bindParam(':Content', $_POST['noteContent']);
-                $insertSTMT->execute();
-            }
+        if(isset($_POST['title']) && isset($_POST['content']))
+        {       
+            
+            
+            $title = $_POST['title'];
+            $noteContent = $_POST['content'];
+            $today = date("Y-m-d");
+            echo $title;
+            echo $noteContent;
+            echo $today;
+            $stmt = $pdo->prepare('INSERT INTO privatenotes (DateAdded, Loginmd5, Title, Content)
+                                   VALUES (:today, :userID, :title, :content ) ');
+            $stmt->bindParam(':today', $today,PDO::PARAM_STR);
+            $stmt->bindParam(':userID', $userID,PDO::PARAM_STR);
+            $stmt->bindParam(':title', $title,PDO::PARAM_STR);
+            $stmt->bindParam(':content', $noteContent,PDO::PARAM_STR);
+
+           var_dump($stmt->execute());
         }
     }
 
@@ -431,20 +427,114 @@ class panel
         $insertSTMT->execute();
         }
     }
-    public function countFinishedTasks($pdo, $username)
+
+    public function showTasks($pdo, $userID)
     {
-        $tasksCount = 0;
-        $stmt = $pdo->prepare('SELECT COUNT(t.loginmd5) FROM tasks t WHERE t.loginmd5 = :userID AND t.status1 = 1');
-        $stmt->bindParam(':userID', $username,PDO::PARAM_STR);
+        $stmt = $pdo->prepare('SELECT topic, content, loginmd5, DateAdded, dateend, author, status1 FROM tasks
+        WHERE loginmd5= :userID;');
+        $stmt->bindParam(':userID',$userID,PDO::PARAM_STR);
         $stmt->execute();
-        $row = $stmt->fetch();
-        echo $row['COUNT(t.loginmd5)'];  
+        echo '<table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nazwa</th>
+                <th>Deadline</th>
+                <th>
+                    <center>Akcje</center>
+                </th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>';
+        $counter =0;
+        foreach($stmt as $row)
+        {
+            echo '
+                <tr>
+                    <td>'.++$counter.'</td>
+                    <td>
+                        <a href="task.php">'.$row['topic'].'</a>
+                    </td>
+                    <td>
+                        <a href="date.php">
+                            <span>'.$row['dateend'].'</span>
+                        </a>
+                    </td>
+                    <td>
+                        <center>
+                            <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
+                            <a href="javascript:;" data-toggle="modal" data-target="#'.$row['topic'].'">
+                                <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">
+                                    Edytuj</button>
+                            </a>
+                            <a href="javascript:;" data-toggle="modal" data-target="#deleteTaskConfirmModal">
+                                <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">
+                                    Usuń</button>
+                            </a>
+                        </center>
+                    </td>
+                    <td>
+                        <span class="badge badge-success">Skończone</span>
+                    </td>
+                </tr>
+               
+                <div class="modal" id="'.$row['topic'].'"  role="dialog"  aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="#'.$row['topic'].'">Edytuj zadanie: '.$row['topic'].'</h3>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST">
+                                <div class="form-group">
+                                    <label class="col-md-12">Nazwa zadania</label>
+                                    <div class="col-md-12">
+                                        <input type="hidden" value="'.$row['topic'].'" class="form-control form-control-line" name="editTaskName">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="example-email" class="col-md-12">Opis</label>
+                                    <div class="col-md-12">
+                                        <input type="text" value="'.$row['content'].'" class="form-control form-control-line" name="editTaskDescription" id="example-email">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Deadline</label>
+                                    <div class="col-md-12">
+                                        <input name="editTaskDate" type="date" class="form-control" value="'.$row['dateend'].'"> </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary"> Zapisz</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div> ';
+        }
+        echo '       </tbody>
+        </table>';
     }
 
+    public function editTask($pdo, $userID)
+    {
+        if(isset($_POST['editTaskName']))
+        {
+        $insertSTMT = $pdo->prepare('UPDATE tasks(content, dateend) 
+                            SET (:content, :dateend) WHERE topic = :topic AND loginmd5 = :userID');
+        $insertSTMT->bindParam(':topic', $_POST['editTaskName']);                    
+        $insertSTMT->bindParam(':content', $_POST['editTaskDescription']);
+        $insertSTMT->bindParam(':dateend', $_POST['editTaskDate']);
+        $insertSTMT->bindParam(':userID', $userID);
+        $insertSTMT->execute();
+        }
+    }
+
+    //ZLICZANIE landpage
     public function countWaitingTasks($pdo, $username)
     {
         $tasksCount = 0;
-        $stmt = $pdo->prepare('SELECT COUNT(t.loginmd5) FROM tasks t WHERE t.loginmd5 = :userID AND t.status1 = 0');
+        $stmt = $pdo->prepare('SELECT COUNT(t.loginmd5) FROM tasks t WHERE t.loginmd5 = :userID AND t.status = 0');
         $stmt->bindParam(':userID', $username,PDO::PARAM_STR);
         $stmt->execute();
         $row = $stmt->fetch();
@@ -461,18 +551,6 @@ class panel
         echo $row['COUNT(n.loginmd5)'];  
     }
 
-    public function removeUserFromGroup($pdo, $username, $groupName)
-    {
-            $username = $_POST["username"];
-            if($this->existsUser($pdo, $username) && (!($this->existsUserInGroup($pdo, $username, $groupName))))
-            {
-                $stmt = $pdo->prepare('DELETE FROM connectgroup WHERE login = :username AND GroupName = :groupName');
-
-                $stmt->bindParam(':username', $username,PDO::PARAM_STR);
-                $stmt->bindParam(':groupName', $groupName,PDO::PARAM_STR);
-
-                $stmt->execute();
-            }
-    }
+ 
 }
 ?>
