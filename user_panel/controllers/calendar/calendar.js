@@ -32,6 +32,7 @@ function calendarSendData(date) {
         url: 'controllers/calendar/getArticles.php',
         data: {"date":date},
         success: function (response) {
+            console.log('po kliknieciu w date: ');
             console.log(response)
             let json =JSON.parse(response);
             $('#calendarTable').html('')
@@ -59,6 +60,8 @@ function calendarGetUserDates(){
         url: 'controllers/calendar/getDates.php',
         data: {"method":"getDates"},
         success: function (response) {
+            console.log('Lista Dat: ');
+            console.log(response);
             let json =JSON.parse(response);
             for(x=0;x<json.length;x++){
                 let targetData = json[x].dateend;
