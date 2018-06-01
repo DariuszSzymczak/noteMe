@@ -17,12 +17,17 @@ function calendarAddCallback() {
         let arrows = $('.pignose-calendar-top-icon');
         $(arrows).each(function () {
             $(this).click(function () {
-                calendarAddCallback();        
+                calendarAddCallback();      
+                calendarGetUserDates();  
             });
+        $('.pignose-calendar-body').on('DOMSubtreeModified',function(){
+            calendarAddCallback();      
+            calendarGetUserDates();  
+        });
         });
 
 
-    }, 100);
+    }, 300);
 }
 
 function calendarSendData(date) {
