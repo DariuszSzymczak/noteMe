@@ -39,8 +39,7 @@ class panel
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $json = json_encode($results);  
-        //echo($json);
-        echo 'zmienna userID: '.$userID.' || z tego sie wyszukuje login = '.$loged.'  || data z kliku = '.$date;
+        echo($json);
     }
 
 
@@ -55,8 +54,8 @@ class panel
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $json = json_encode($results);  
-       // echo($json);
-       echo 'zmienna loged= '.$loged;
+         echo($json);
+
     }
 
     //Wyswietlenie listy notatek użytkownika

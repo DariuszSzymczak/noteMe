@@ -32,42 +32,41 @@ function calendarSendData(date) {
         url: 'controllers/calendar/getArticles.php',
         data: {"date":date},
         success: function (response) {
-            console.log('Wynik Klikniecia: ');
-            console.log(response)
-            // let json =JSON.parse(response);
-            // $('#calendarTable').html('')
-            // let length = json.length;
-            // let iterator=0;
-            // function animation(){
-            //     if(iterator < length){
-            //         setTimeout(function () {  
-            //             calendarShowTable(json[iterator]);
-            //             iterator++;
-            //             animation();
-            //         },240);
-            //     }   
+            console.log('klikanie ajax: ');
+            console.log(response);
+            let json =JSON.parse(response);
+            $('#calendarTable').html('')
+            let length = json.length;
+            let iterator=0;
+            function animation(){
+                if(iterator < length){
+                    setTimeout(function () {  
+                        calendarShowTable(json[iterator]);
+                        iterator++;
+                        animation();
+                    },240);
+                }   
                 
-            // }
-            // animation();
+            }
+            animation();
         }
     });
 }
 
-function calendarGetUserDates(){    
+function calendarGetUserDates(){
     const session = document.getElementById("sessionNumber").dataset.name;
-    console.log('wykonuje: calendarGetUserDates()'+' ze zmienną o wartości: '+session);
     $.ajax({
         type: 'POST',
         url: 'controllers/calendar/getDates.php',
         data: {"method":"getDates"},
         success: function (response) {
-            console.log('Lista Dat response: ');
+            console.log('Daty AJAX: ');
             console.log(response);
-            // let json =JSON.parse(response);
-            // for(x=0;x<json.length;x++){
-            //     let targetData = json[x].dateend;
-            //     let targetElement = $(`.pignose-calendar-unit-date[data-date='${targetData}'] a`).css({background: "#ff99a4"});
-            // }
+            let json =JSON.parse(response);
+            for(x=0;x<json.length;x++){
+                let targetData = json[x].dateend;
+                let targetElement = $(`.pignose-calendar-unit-date[data-date='${targetData}'] a`).css({background: "#ff99a4"});
+            }
             
         }
     });
