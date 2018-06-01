@@ -759,5 +759,34 @@ class panel
         $stmtE->execute();
         }
     }
+
+    //MAILING
+
+    public function sendMail($pdo,$userID)
+    {
+        if(isset ($_POST['mailTo']))
+        {
+        
+        $stmt = $pdo->prepare('SELECT loginmd5 FROM users WHERE login= :login;');
+        $stmt->bindParam(':login',$_POST['mailTo'],PDO::PARAM_STR);
+        $stmt->execute();
+        $row = $stmt->fetch(); 
+        $stmt -> closeCursor();
+        if(isset($row['loginmd5']))
+        {
+        $insertSTMT = $pdo->prepare("INSERT INTO mails(sender,receiver,topic,content) 
+                            values(:sender, :receiver, :topic, :content)");
+        $insertSTMT->bindParam(':sender', $userID);
+        $insertSTMT->bindParam(':receiver',$row['loginmd5']);
+        $insertSTMT->bindParam(':topic', $_POST['mailTopic']);
+        $insertSTMT->bindParam(':content', $_POST['mailContent']);
+        $insertSTMT->execute();
+        }
+        else
+        {
+            echo "<script>alert('Podany użytkownik nie istnieje. Spróbuj ponownie ;)')</script>";
+        }
+        }
+    }
 }
 ?>
