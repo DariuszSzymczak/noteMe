@@ -2,6 +2,9 @@
     require('dividedHTML/head-section.php');
     require('dividedHTML/header.php');
     require('dividedHTML/left-sidebar.php');
+    $pane->addTask($pdo,$_SESSION['userID']);
+    $pane->endTask($pdo,$_SESSION['userID']);
+    $pane->delTask($pdo,$_SESSION['userID']);
 ?>
     <div class="page-wrapper">
         <!-- Bread crumb -->

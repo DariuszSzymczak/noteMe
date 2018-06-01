@@ -3,6 +3,9 @@
     require('dividedHTML/header.php');
     require('dividedHTML/left-sidebar.php');
     $pane->addPrivateNote($pdo,$_SESSION['userID']);
+    $pane->delUserPrivateNote($pdo,$_SESSION['userID']);
+    $pane->editUserPrivateNote($pdo,$_SESSION['userID']);
+    
 
 ?>
 

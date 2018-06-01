@@ -57,7 +57,7 @@ class panel
 
     public function showUserPrivateNotes($pdo, $userID)
     {
-        $stmt = $pdo->prepare('SELECT Title,DateAdded FROM privatenotes WHERE loginmd5= :userID');
+        $stmt = $pdo->prepare('SELECT Title,DateAdded,Content FROM privatenotes WHERE loginmd5= :userID');
         $stmt->bindParam(':userID',$userID,PDO::PARAM_STR);
         $stmt->execute();
         $counter = 1;
@@ -66,19 +66,84 @@ class panel
             echo '<tr>';
             echo '<td>'. $counter .'</td>';
 
-            echo "<td><a href=\"javascript:;\" data-toggle=\"modal\" data-target=\"#showPrivateNoteModal\">
+            echo "<td><a href=\"javascript:;\" data-toggle=\"modal\" data-target=\"#show".$rows["Title"]. "\">
                   {$rows["Title"]}</td></a>";
             echo " <td>{$rows["DateAdded"]}</td>";
             echo "<td> <center>
-            <a href=\"javascript:;\" data-toggle=\"modal\" data-target=\"#editTaskModal\">
+            <a href=\"javascript:;\" data-toggle=\"modal\" data-target=\"#edit" .$rows['Title'] ."\">
                 <button type=\"button\" class=\"btn btn-warning btn-xs m-b-10 m-l-5\">
                     Edytuj</button>
             </a>
-            <a href=\"javascript:;\" data-toggle=\"modal\" data-target=\"#deleteTaskConfirmModal\">
-                <button type=\"button\" class=\"btn btn-danger btn-xs m-b-10 m-l-5\">
-                    Usuń</button>
-            </a>
+            <a href=\"javascript:;\" data-toggle=\"modal\" data-target=\"#a".$rows['Title']."\">
+            <button type=\"button\" class=\"btn btn-danger btn-xs m-b-10 m-l-5\">
+                Usuń</button>
+        </a> 
         </center></td>";
+        echo '<div class="modal" id="a'.$rows['Title'].'" tabindex="-1" role="dialog" aria-labelledby="deleteTaskConfirmModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Uwaga!</h3>
+            </div>
+            <div class="modal-body">
+                <h5>Na pewno chcesz usunąć zadanie: <strong>'.$rows['Title'].'</strong></h5>
+            </div>
+            <div class="modal-footer">
+            <form method="POST">
+                <input name="delNote" type="hidden" value="'.$rows['Title'].'">
+                <input type="submit" class="btn btn-primary" value="Tak"/>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
+                </form>
+            </div>
+            </div>
+        </div>
+        </div>';
+        echo '<div class="modal" tabindex="-1" role="dialog" aria-labelledby="showPrivateNoteModal" aria-hidden="true" id="show'.$rows["Title"].'">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">'.$rows["Title"].'</h3>
+                    </div>
+                    <div class="modal-body">
+                    <p>'.$rows["Content"].'</p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>';
+
+    echo '
+    <div class="modal" id="edit'.$rows['Title'].'"  role="dialog"  aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="#'.$rows['Title'].'">Edytuj zadanie: '.$rows['Title'].'</h3>
+            </div>
+            <div class="modal-body">
+                <form method="POST">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="hidden" value="'.$rows['Title'].'" class="form-control form-control-line" name="editNoteTitle">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="example-email" class="col-md-12">Opis</label>
+                        <div class="col-md-12">
+                            <input type="text" value="'.$rows['Content'].'" class="form-control form-control-line" name="editNoteContent" id="example-email">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary"> Zapisz</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+    ';
         $counter++;
         }
         
@@ -554,7 +619,7 @@ class panel
           </div>
             
             
-                        <div class="modal" id="a'.$row['topic'].'" tabindex="-1" role="dialog" aria-labelledby="deleteTaskConfirmModal" aria-hidden="true">
+            <div class="modal" id="a'.$row['topic'].'" tabindex="-1" role="dialog" aria-labelledby="deleteTaskConfirmModal" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
@@ -663,5 +728,32 @@ class panel
          $row = $stmt->fetch();
          echo $row['COUNT(t.loginmd5)'];  
      }
+
+     public function delUserPrivateNote($pdo,$userID)
+    {
+        if(isset($_POST['delNote']))
+        {
+            $stmt = $pdo->prepare('DELETE FROM privatenotes WHERE Title = :Title AND loginmd5 = :userID;');                 
+            $stmt->bindParam(':Title', $_POST['delNote']);
+            $stmt->bindParam(':userID', $userID);
+            $stmt->execute();
+        } 
+        
+    }
+
+    public function editUserPrivateNote($pdo,$userID)
+    {
+        
+        if(isset($_POST['editNoteTitle']))
+        {
+        $stmtE = $pdo->prepare('UPDATE privatenotes SET 
+                                Content= :Content
+                                WHERE Title = :Title AND Loginmd5 = :userID;');
+        $stmtE->bindParam(':Title', $_POST['editNoteTitle']);                    
+        $stmtE->bindParam(':Content', $_POST['editNoteContent']);
+        $stmtE->bindParam(':userID', $userID);
+        $stmtE->execute();
+        }
+    }
 }
 ?>
