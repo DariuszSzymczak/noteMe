@@ -39,7 +39,7 @@ class panel
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $json = json_encode($results);  
-        echo($json);
+        echo('getUserArticlesPHP');
     }
 
 
@@ -54,7 +54,7 @@ class panel
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $json = json_encode($results);  
-         echo($json);
+         echo("getuserDatesPHP");
 
     }
 

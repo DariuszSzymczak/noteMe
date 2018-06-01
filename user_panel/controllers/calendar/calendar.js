@@ -34,21 +34,21 @@ function calendarSendData(date) {
         success: function (response) {
             console.log('klikanie ajax: ');
             console.log(response);
-            let json =JSON.parse(response);
-            $('#calendarTable').html('')
-            let length = json.length;
-            let iterator=0;
-            function animation(){
-                if(iterator < length){
-                    setTimeout(function () {  
-                        calendarShowTable(json[iterator]);
-                        iterator++;
-                        animation();
-                    },240);
-                }   
+            // let json =JSON.parse(response);
+            // $('#calendarTable').html('')
+            // let length = json.length;
+            // let iterator=0;
+            // function animation(){
+            //     if(iterator < length){
+            //         setTimeout(function () {  
+            //             calendarShowTable(json[iterator]);
+            //             iterator++;
+            //             animation();
+            //         },240);
+            //     }   
                 
-            }
-            animation();
+            // }
+            // animation();
         }
     });
 }
@@ -62,13 +62,14 @@ function calendarGetUserDates(){
         success: function (response) {
             console.log('Daty AJAX: ');
             console.log(response);
-            let json =JSON.parse(response);
-            for(x=0;x<json.length;x++){
-                let targetData = json[x].dateend;
-                let targetElement = $(`.pignose-calendar-unit-date[data-date='${targetData}'] a`).css({background: "#ff99a4"});
-            }
+            // let json =JSON.parse(response);
+            // for(x=0;x<json.length;x++){
+            //     let targetData = json[x].dateend;
+            //     let targetElement = $(`.pignose-calendar-unit-date[data-date='${targetData}'] a`).css({background: "#ff99a4"});
+            // }
             
         }
+
     });
 }
 
