@@ -49,7 +49,7 @@ class panel
         $stmt1->bindParam(':userID',$userID,PDO::PARAM_STR);
         $stmt1->execute();
         $loged = $stmt1->fetchColumn();
-        $stmt = $pdo->prepare('SELECT dateend FROM tasks WHERE author = :loged  UNION SELECT dateend FROM grouptasks INNER JOIN connectgroup ON grouptasks.groupname = connectgroup.GroupName AND connectgroup.login = :loged;');
+        $stmt = $pdo->prepare('SELECT dateend,status1 FROM tasks WHERE author = :loged  UNION SELECT dateend,status1 FROM grouptasks INNER JOIN connectgroup ON grouptasks.groupname = connectgroup.GroupName AND connectgroup.login = :loged;');
         $stmt->bindParam(':loged',$loged,PDO::PARAM_STR);
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);

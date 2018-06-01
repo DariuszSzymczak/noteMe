@@ -59,9 +59,11 @@ function calendarGetUserDates(){
         data: {"method":"getDates"},
         success: function (response) {
             let json =JSON.parse(response);
+            console.log(json);
             for(x=0;x<json.length;x++){
                 let targetData = json[x].dateend;
-                let targetElement = $(`.pignose-calendar-unit-date[data-date='${targetData}'] a`).css({background: "#ff99a4"});
+                if(json[x].status1 == 0 ) $(`.pignose-calendar-unit-date[data-date='${targetData}'] a`).css({background: "#ff99a4"});
+                else if (json[x].status1 == 1)  $(`.pignose-calendar-unit-date[data-date='${targetData}'] a`).css({background: "#38fabc"});
             }
             
         }
