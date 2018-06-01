@@ -39,7 +39,7 @@ class panel
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $json = json_encode($results);  
-        echo('getUserArticlesPHP');
+        echo($json);
     }
 
 
@@ -54,8 +54,7 @@ class panel
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $json = json_encode($results);  
-         echo("getuserDatesPHP");
-
+        echo($json);
     }
 
     //Wyswietlenie listy notatek użytkownika

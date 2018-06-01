@@ -32,8 +32,6 @@ function calendarSendData(date) {
         url: 'controllers/calendar/getArticles.php',
         data: {"date":date},
         success: function (response) {
-            console.log('klikanie ajax: ');
-            console.log(response);
             let json =JSON.parse(response);
             $('#calendarTable').html('')
             let length = json.length;
@@ -60,8 +58,6 @@ function calendarGetUserDates(){
         url: 'controllers/calendar/getDates.php',
         data: {"method":"getDates"},
         success: function (response) {
-            console.log('Daty AJAX: ');
-            console.log(response);
             let json =JSON.parse(response);
             for(x=0;x<json.length;x++){
                 let targetData = json[x].dateend;
@@ -79,7 +75,7 @@ function calendarShowTable(json){
     let outerDiv = `<div class="media" style="display: none"> \
     <div class="media-left"> \ 
         <a href="#"> \
-            <img alt="..." src="images/avatar/1.jpg" class="media-object"> \ 
+            <img alt="..." src="images/avatar/time.png" class="media-object"> \ 
         </a> \
     </div> \
     <div class="media-body"> \
