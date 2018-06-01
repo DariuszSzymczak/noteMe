@@ -33,7 +33,7 @@ class panel
         $stmt1->bindParam(':userID',$userID,PDO::PARAM_STR);
         $stmt1->execute();
         $loged = $stmt1->fetchColumn();
-        $stmt = $pdo->prepare('SELECT topic,content,DateAdded,dateend FROM tasks WHERE author = :loged AND dateend>=:today AND DateAdded<=:today ;');
+        $stmt = $pdo->prepare('SELECT topic,content,DateAdded,dateend FROM tasks WHERE author = :loged AND dateend = :today UNION SELECT topic,content,DateAdded,dateend FROM grouptasks INNER JOIN connectgroup ON grouptasks.groupname = connectgroup.GroupName AND grouptasks.dateend = :today AND connectgroup.login = :loged;');
         $stmt->bindParam(':loged',$loged,PDO::PARAM_STR);
         $stmt->bindParam(':today',$date,PDO::PARAM_STR);
         $stmt->execute();
@@ -45,8 +45,12 @@ class panel
 
     public function getUserDates($pdo,$userID)
     {
-        $stmt = $pdo->prepare('SELECT DateAdded FROM tasks WHERE loginmd5= :userID;');
-        $stmt->bindParam(':userID',$userID,PDO::PARAM_STR);
+        $stmt1 = $pdo->prepare('SELECT login FROM users WHERE loginmd5= :userID;');
+        $stmt1->bindParam(':userID',$userID,PDO::PARAM_STR);
+        $stmt1->execute();
+        $loged = $stmt1->fetchColumn();
+        $stmt = $pdo->prepare('SELECT dateend FROM tasks WHERE author = :loged  UNION SELECT dateend FROM grouptasks INNER JOIN connectgroup ON grouptasks.groupname = connectgroup.GroupName AND connectgroup.login = :loged;');
+        $stmt->bindParam(':loged',$loged,PDO::PARAM_STR);
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $json = json_encode($results);  

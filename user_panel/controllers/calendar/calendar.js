@@ -60,9 +60,8 @@ function calendarGetUserDates(){
         data: {"method":"getDates"},
         success: function (response) {
             let json =JSON.parse(response);
-            
             for(x=0;x<json.length;x++){
-                let targetData = json[x].DateAdded;
+                let targetData = json[x].dateend;
                 let targetElement = $(`.pignose-calendar-unit-date[data-date='${targetData}'] a`).css({background: "#ff99a4"});
             }
             
