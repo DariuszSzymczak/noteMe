@@ -339,24 +339,19 @@ class panel
 
     public function addPrivateNote($pdo, $username)
     {
-        if(isset($_POST['title']) && isset($_POST['content']))
-        {       
-            
-            
-            $title = $_POST['title'];
-            $noteContent = $_POST['content'];
-            $today = date("Y-m-d");
-            echo $title;
-            echo $noteContent;
-            echo $today;
-            $stmt = $pdo->prepare('INSERT INTO privatenotes (DateAdded, Loginmd5, Title, Content)
-                                   VALUES (:today, :userID, :title, :content ) ');
-            $stmt->bindParam(':today', $today,PDO::PARAM_STR);
-            $stmt->bindParam(':userID', $userID,PDO::PARAM_STR);
-            $stmt->bindParam(':title', $title,PDO::PARAM_STR);
-            $stmt->bindParam(':content', $noteContent,PDO::PARAM_STR);
-
-           var_dump($stmt->execute());
+        if(isset ($_POST['noteTitle']))
+        {
+            if(isset ($_POST['noteContent']))
+            {
+                $date = date("y-m-d");
+                $insertSTMT = $pdo->prepare('INSERT into privatenotes(DateAdded, Loginmd5, Title, Content) 
+                                values(:DateAdded, :Loginmd5, :Title, :Content)');
+                $insertSTMT->bindParam(':DateAdded', $date);
+                $insertSTMT->bindParam(':Loginmd5', $username);
+                $insertSTMT->bindParam(':Title', $_POST['noteTitle']);
+               $insertSTMT->bindParam(':Content', $_POST['noteContent']);
+               $insertSTMT->execute();
+            }
         }
     }
 
