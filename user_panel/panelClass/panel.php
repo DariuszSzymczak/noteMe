@@ -33,7 +33,7 @@ class panel
         $stmt1->bindParam(':userID',$userID,PDO::PARAM_STR);
         $stmt1->execute();
         $loged = $stmt1->fetchColumn();
-        $stmt = $pdo->prepare('SELECT topic,content,DateAdded,dateend FROM tasks WHERE author = :loged AND dateend = :today UNION SELECT topic,content,DateAdded,dateend FROM grouptasks INNER JOIN connectgroup ON grouptasks.groupname = connectgroup.GroupName AND grouptasks.dateend = :today AND connectgroup.login = :loged;');
+        $stmt = $pdo->prepare('SELECT topic,content,DateAdded,dateend FROM tasks WHERE author = :loged AND dateend >= :today UNION SELECT topic,content,DateAdded,dateend FROM grouptasks INNER JOIN connectgroup ON grouptasks.groupname = connectgroup.GroupName AND grouptasks.dateend >= :today AND connectgroup.login = :loged;');
         $stmt->bindParam(':loged',$loged,PDO::PARAM_STR);
         $stmt->bindParam(':today',$date,PDO::PARAM_STR);
         $stmt->execute();
@@ -469,11 +469,6 @@ class panel
         $querryDeleteGroup->bindParam(':login',$login, PDO::PARAM_STR);
         $querryDeleteGroup->execute();
             
-        echo "<script>console.log( 'Ustawiony login: " . $login . "' );</script>";
-        echo "<script>console.log( 'Ustawiona Grupa: " . $groupID . "' );</script>";
-            
-        echo '<script>alert('.$login.')</script>';
-
         $q = $pdo->prepare('DELETE FROM connectgroup WHERE GroupName=:groupName AND login=:login');
         $q->bindParam(':groupName',$groupID, PDO::PARAM_STR);
         $q->bindParam(':login',$login, PDO::PARAM_STR);

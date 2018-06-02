@@ -82,11 +82,11 @@ function calendarShowTable(json){
     let outerDiv = `<div class="media" style="display: none"> \
     <div class="media-left"> \ 
         <a href="#"> \
-            <img alt="..." src="images/avatar/time.png" class="media-object"> \ 
+            <img alt="..." src="images/avatar/time.png" class="media-object" style="margin-top: 15px;"> \ 
         </a> \
     </div> \
     <div class="media-body"> \
-        <h4 class="media-heading">${json.topic}</h4>\
+        <h4 class="media-heading" style="margin-top: 15px;">${json.topic}</h4>\
         <p>${content}</p>\
         <p class="comment-date">Data zakończenia: ${json.dateend}</p> \
     </div> \
