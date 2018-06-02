@@ -783,5 +783,69 @@ class panel
         }
         }
     }
+
+    public function receivedMails($pdo, $userID)
+    {
+        $stmt = $pdo->prepare('SELECT m.sender,m.receiver,m.topic,m.content FROM mails m
+        WHERE receiver = :receiver;');
+        $stmt->bindParam(':receiver',$userID,PDO::PARAM_STR);
+        $stmt->execute(); 
+        $counter = 0;
+        foreach($stmt as $row)
+        {
+            $stmtA =  $pdo->prepare('SELECT login FROM users WHERE loginmd5 = :loginmd5;');
+            $stmtA->bindParam(':loginmd5',$row['sender'],PDO::PARAM_STR);
+            $stmtA->execute();
+            $rowA = $stmtA->fetch();
+            
+            echo '
+            <tr>
+                    <td>'.++$counter.'</td>
+                    <td>
+                        '.$rowA['login'].'
+                    </td>
+                    <td>    
+                            <span>'.$row['topic'].'</span>   
+                    </td>
+                    <td>
+                    <center> 
+
+                        <a href="javascript:;" data-toggle="modal" data-target="#'.$row['topic'].'">          
+                        <button type="submit" class="btn btn-info btn-xs m-b-10 m-l-5">Wyświetl</button> 
+                        </a>                  
+                        <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">
+                        Usuń</button>
+                             
+                   </center>
+
+                    </td>
+                    
+                </tr>
+                
+                
+                <div class="modal" id="'.$row['topic'].'"  role="dialog"  aria-hidden="true">
+                <div style = "max-width: 850px;" class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="#'.$row['topic'].'">Nadawca wiadomości: '.$rowA['login'].'</h3>
+                        </div>
+                        <div class="modal-body">
+                        <div class="jumbotron">
+                        <h5 class="display-7">'.$row['topic'].'</h5>
+                        <hr class="my-4">
+                        <p class="lead">'.$row['content'].'</p>
+                        <hr class="my-4">
+                      
+                        </div>
+
+                            <button style = "float:right;" type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                         
+                        </div>
+                    </div>
+                </div>
+          </div>
+          ';
+        } 
+    }
 }
 ?>

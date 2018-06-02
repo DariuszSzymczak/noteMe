@@ -24,7 +24,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-title">
-                        <h2>Twoje grupy  <?php $pane->sendMail($pdo,$_SESSION['userID']); ?></h2>
+                        <h2>Twoje wiadomości  <?php $pane->sendMail($pdo,$_SESSION['userID']); ?></h2>
 
                         </div>
                         <div class="card-body">
@@ -41,7 +41,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        
+                                    <?php $pane->receivedMails($pdo,$_SESSION['userID']); ?>
                                     </tbody>
                                 </table>
                             </div>
