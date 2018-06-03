@@ -56,6 +56,7 @@
                             </li>
                             <li>
                                 <a href="#"  class="has-arrow" aria-expanded="false">
+                                <a href="./logout.php" aria-expanded="false">
                                     <i class="fa fa-level-down"></i>
                                     <span class="hide-menu">Wyloguj</span>
                                 </a>

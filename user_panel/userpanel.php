@@ -83,7 +83,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-title">
-                        <h4>Twoje ostatnie zadania </h4>
+                        <h4>Twoje ostatnie zadania <?php $pane->editTask($pdo,$_SESSION['userID']); ?> </h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">

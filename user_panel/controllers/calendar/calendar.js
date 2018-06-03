@@ -17,12 +17,17 @@ function calendarAddCallback() {
         let arrows = $('.pignose-calendar-top-icon');
         $(arrows).each(function () {
             $(this).click(function () {
-                calendarAddCallback();        
+                calendarAddCallback();      
+                calendarGetUserDates();  
             });
+        $('.pignose-calendar-body').on('DOMSubtreeModified',function(){
+            calendarAddCallback();      
+            calendarGetUserDates();  
+        });
         });
 
 
-    }, 100);
+    }, 300);
 }
 
 function calendarSendData(date) {
@@ -32,7 +37,6 @@ function calendarSendData(date) {
         url: 'controllers/calendar/getArticles.php',
         data: {"date":date},
         success: function (response) {
-            console.log(response)
             let json =JSON.parse(response);
             $('#calendarTable').html('')
             let length = json.length;
@@ -60,13 +64,15 @@ function calendarGetUserDates(){
         data: {"method":"getDates"},
         success: function (response) {
             let json =JSON.parse(response);
-            
+            console.log(json);
             for(x=0;x<json.length;x++){
-                let targetData = json[x].DateAdded;
-                let targetElement = $(`.pignose-calendar-unit-date[data-date='${targetData}'] a`).css({background: "#ff99a4"});
+                let targetData = json[x].dateend;
+                if(json[x].status1 == 0 ) $(`.pignose-calendar-unit-date[data-date='${targetData}'] a`).css({background: "#ff99a4"});
+                else if (json[x].status1 == 1)  $(`.pignose-calendar-unit-date[data-date='${targetData}'] a`).css({background: "#38fabc"});
             }
             
         }
+        
     });
 }
 
@@ -76,11 +82,11 @@ function calendarShowTable(json){
     let outerDiv = `<div class="media" style="display: none"> \
     <div class="media-left"> \ 
         <a href="#"> \
-            <img alt="..." src="images/avatar/1.jpg" class="media-object"> \ 
+            <img alt="..." src="images/avatar/time.png" class="media-object" style="margin-top: 15px;"> \ 
         </a> \
     </div> \
     <div class="media-body"> \
-        <h4 class="media-heading">${json.topic}</h4>\
+        <h4 class="media-heading" style="margin-top: 15px;">${json.topic}</h4>\
         <p>${content}</p>\
         <p class="comment-date">Data zakończenia: ${json.dateend}</p> \
     </div> \

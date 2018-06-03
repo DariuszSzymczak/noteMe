@@ -43,7 +43,7 @@ class panel
         $stmt1->bindParam(':userID',$userID,PDO::PARAM_STR);
         $stmt1->execute();
         $loged = $stmt1->fetchColumn();
-        $stmt = $pdo->prepare('SELECT topic,content,DateAdded,dateend FROM tasks WHERE author = :loged AND dateend>=:today AND DateAdded<=:today ;');
+        $stmt = $pdo->prepare('SELECT topic,content,DateAdded,dateend FROM tasks WHERE author = :loged AND dateend >= :today UNION SELECT topic,content,DateAdded,dateend FROM grouptasks INNER JOIN connectgroup ON grouptasks.groupname = connectgroup.GroupName AND grouptasks.dateend >= :today AND connectgroup.login = :loged;');
         $stmt->bindParam(':loged',$loged,PDO::PARAM_STR);
         $stmt->bindParam(':today',$date,PDO::PARAM_STR);
         $stmt->execute();
@@ -55,8 +55,12 @@ class panel
 
     public function getUserDates($pdo,$userID)
     {
-        $stmt = $pdo->prepare('SELECT DateAdded FROM tasks WHERE loginmd5= :userID;');
-        $stmt->bindParam(':userID',$userID,PDO::PARAM_STR);
+        $stmt1 = $pdo->prepare('SELECT login FROM users WHERE loginmd5= :userID;');
+        $stmt1->bindParam(':userID',$userID,PDO::PARAM_STR);
+        $stmt1->execute();
+        $loged = $stmt1->fetchColumn();
+        $stmt = $pdo->prepare('SELECT dateend,status1 FROM tasks WHERE author = :loged  UNION SELECT dateend,status1 FROM grouptasks INNER JOIN connectgroup ON grouptasks.groupname = connectgroup.GroupName AND connectgroup.login = :loged;');
+        $stmt->bindParam(':loged',$loged,PDO::PARAM_STR);
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $json = json_encode($results);  
@@ -508,11 +512,6 @@ class panel
         $querryDeleteGroup->bindParam(':login',$login, PDO::PARAM_STR);
         $querryDeleteGroup->execute();
             
-        echo "<script>console.log( 'Ustawiony login: " . $login . "' );</script>";
-        echo "<script>console.log( 'Ustawiona Grupa: " . $groupID . "' );</script>";
-            
-        echo '<script>alert('.$login.')</script>';
-
         $q = $pdo->prepare('DELETE FROM connectgroup WHERE GroupName=:groupName AND login=:login');
         $q->bindParam(':groupName',$groupID, PDO::PARAM_STR);
         $q->bindParam(':login',$login, PDO::PARAM_STR);
@@ -1108,6 +1107,98 @@ class panel
         $stmt->execute();
         $row = $stmt->fetch();
         echo $row['COUNT(*)'];      
+
+    //MAILING
+
+    public function sendMail($pdo,$userID)
+    {
+        if(isset ($_POST['mailTo']))
+        {
+        
+        $stmt = $pdo->prepare('SELECT loginmd5 FROM users WHERE login= :login;');
+        $stmt->bindParam(':login',$_POST['mailTo'],PDO::PARAM_STR);
+        $stmt->execute();
+        $row = $stmt->fetch(); 
+        $stmt -> closeCursor();
+        if(isset($row['loginmd5']))
+        {
+        $insertSTMT = $pdo->prepare("INSERT INTO mails(sender,receiver,topic,content) 
+                            values(:sender, :receiver, :topic, :content)");
+        $insertSTMT->bindParam(':sender', $userID);
+        $insertSTMT->bindParam(':receiver',$row['loginmd5']);
+        $insertSTMT->bindParam(':topic', $_POST['mailTopic']);
+        $insertSTMT->bindParam(':content', $_POST['mailContent']);
+        $insertSTMT->execute();
+        }
+        else
+        {
+            echo "<script>alert('Podany użytkownik nie istnieje. Spróbuj ponownie ;)')</script>";
+        }
+        }
+    }
+
+    public function receivedMails($pdo, $userID)
+    {
+        $stmt = $pdo->prepare('SELECT m.sender,m.receiver,m.topic,m.content FROM mails m
+        WHERE receiver = :receiver;');
+        $stmt->bindParam(':receiver',$userID,PDO::PARAM_STR);
+        $stmt->execute(); 
+        $counter = 0;
+        foreach($stmt as $row)
+        {
+            $stmtA =  $pdo->prepare('SELECT login FROM users WHERE loginmd5 = :loginmd5;');
+            $stmtA->bindParam(':loginmd5',$row['sender'],PDO::PARAM_STR);
+            $stmtA->execute();
+            $rowA = $stmtA->fetch();
+            
+            echo '
+            <tr>
+                    <td>'.++$counter.'</td>
+                    <td>
+                        '.$rowA['login'].'
+                    </td>
+                    <td>    
+                            <span>'.$row['topic'].'</span>   
+                    </td>
+                    <td>
+                    <center> 
+
+                        <a href="javascript:;" data-toggle="modal" data-target="#'.$row['topic'].'">          
+                        <button type="submit" class="btn btn-info btn-xs m-b-10 m-l-5">Wyświetl</button> 
+                        </a>                  
+                        <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">
+                        Usuń</button>
+                             
+                   </center>
+
+                    </td>
+                    
+                </tr>
+                
+                
+                <div class="modal" id="'.$row['topic'].'"  role="dialog"  aria-hidden="true">
+                <div style = "max-width: 850px;" class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="#'.$row['topic'].'">Nadawca wiadomości: '.$rowA['login'].'</h3>
+                        </div>
+                        <div class="modal-body">
+                        <div class="jumbotron">
+                        <h5 class="display-7">'.$row['topic'].'</h5>
+                        <hr class="my-4">
+                        <p class="lead">'.$row['content'].'</p>
+                        <hr class="my-4">
+                      
+                        </div>
+
+                            <button style = "float:right;" type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                         
+                        </div>
+                    </div>
+                </div>
+          </div>
+          ';
+        } 
     }
 }
 ?>
