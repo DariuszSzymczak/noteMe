@@ -916,15 +916,15 @@ class panel
              ".$friend." </td></a>" ;
             echo "<td> <center>"; 
             echo'
-            <form method="POST">
+            <form id="ignore" method="POST">
             <input name="ignoreInvitation" type="hidden" value="'.$friend.'">
-            <button type="submit" class="btn btn-danger btn-xs m-b-10 m-l-5"><i class="ti-user"></i>Ignoruj</button>
             </form>   
-           
-            <form style="float:left;" method="POST" id="accept'.$friend.'">
+            <button form="ignore" type="submit" class="btn btn-danger btn-xs m-b-10 m-l-5"><i class="ti-user"></i>Ignoruj</button>
+
+            <form id="accept" style="float:left;" method="POST" id="accept'.$friend.'">
             <input name="acceptInvitation" type="hidden" value="'.$friend.'">
-            <button type="submit" class="btn btn-success btn-xs m-b-10 m-l-5"><i class="ti-user"></i>Akceptuj</button>
             </form>   
+            <button form="accept" type="submit" class="btn btn-success btn-xs m-b-10 m-l-5"><i class="ti-user"></i>Akceptuj</button>
 
           ';
            echo" </td>";
