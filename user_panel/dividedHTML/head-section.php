@@ -30,6 +30,7 @@
     <!-- Favicon icon -->
     <title>noteMe       </title>
     <!-- Bootstrap Core CSS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <link href="css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/helper.css" rel="stylesheet">

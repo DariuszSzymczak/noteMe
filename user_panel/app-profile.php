@@ -33,8 +33,9 @@
                                 <header>
                                     <div class="avatar">
                                         <?php
-                                             $pane->getUserAvatar($pdo,$_SESSION['userID']);
-                                             ?>
+                                        $login= substr($_SESSION['userID'], 0, -5); 
+                                        $pane->getUserAvatar($pdo, $login);
+                                         ?>
                                     </div>
                                 </header>
 

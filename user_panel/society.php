@@ -14,6 +14,8 @@
     
     if(isset($_POST["removeFriend"]))
     $pane->removeFromFriends($pdo, $login, $_POST["removeFriend"]);
+    if(isset($_POST["mailTo"]))
+    $pane->sendMail($pdo, $pane->loginToLoginMd5($pdo, $_POST["mailTo"]));
 
 ?>
     <!-- Page wrapper  -->
@@ -51,15 +53,15 @@
                                                     <i class="ti-search"></i>
                                                 </button>
                                             </span>
-                                            <input type="text" placeholder="Nazwa użytkownika" name="Search" class="form-control">
+                                            <input type="text" placeholder="Nazwa użytkownika" name="search-user" id="search-user" class="form-control">
                                         </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
+                    
                 </div>
-                
             </div>
             <div class="row">
             <div class="col-lg-12">
@@ -148,6 +150,6 @@
         </div>
     </div>
 
-    <?php
+<?php
     require('dividedHTML/footer.php');
 ?>

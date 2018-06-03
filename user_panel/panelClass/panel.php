@@ -27,14 +27,13 @@ class panel
 
 
     public function getUserAvatar($pdo,$userID)
-    {
+    {   
         $stmt = $pdo->prepare('SELECT data FROM avatars WHERE login = :login;');
         $stmt->bindParam(':login',$userID,PDO::PARAM_STR);
         $stmt->execute();
         $row = $stmt->fetch();
         $a=$row['data'];
         echo '<img src="data:image/jpeg;base64,'.base64_encode($a) .'" />';
-
     }
 
     public function getUserArticles($pdo,$userID,$date)
@@ -837,7 +836,7 @@ class panel
              ".$friend." </td></a>" ;
             echo "<td> 
             <center>
-            <a  href=\"javascript:;\" data-toggle=\"modal\" data-target=\"#sendMessageModal".$friend. "\">
+            <a  href=\"javascript:;\" data-toggle=\"modal\" data-target=\"#sendMailTo".$friend. "\">
                 <button type=\"button\" class=\"btn btn-info btn-xs m-b-10 m-l-5\">
                     Wiadomość</button>
             </a>";
@@ -848,8 +847,41 @@ class panel
             <button form="removefriend-'.$friend.'" type="submit" class="btn btn-danger btn-xs m-b-10 m-l-5">Usuń ze znajomych</button>
 
             </td>';
+            echo'
+            <div class="modal" tabindex="-1" role="dialog" aria-labelledby="sendMail" aria-hidden="true" id="sendMailTo'.$friend.'">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form method="POST" novalidate="novalidate">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Wyślij wiadomość do '.$friend.'</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="">
+                            <div class="form-group">
+                                <input type="hidden" name="mailTo" value="'.$friend.'"/>
+                                <label for="groupName">
+                                    Temat </label>
+                                <input type="text" placeholder="Temat wiadomości" class="form-control" name="mailTopic" id="mailTopic"/>
+                                <label for="groupSize">
+                                    Treść </label>
+                                <input type="text" placeholder="Treść wiadomości"  class="form-control" name="mailContent" id="mailContent"/>
+                                <span class="field-validation-valid text-danger" data-valmsg-for="groupName" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-primary" value="Wyślij wiadomość"/>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+            ';
             $counter++;
         }
+
 
     }
     public function showReceivedInvitations($pdo, $username)
@@ -885,7 +917,7 @@ class panel
             echo '</div>
             </td>';
             echo "<td>
-            <a href=otherUserPanel.php?username=".$friend. "\">
+            <a href=otherUserPanel.php?username=".$friend.">
              ".$friend." </td></a>" ;
             echo "<td> <center>"; 
             echo'
@@ -964,7 +996,7 @@ class panel
         {
             echo'
             <form method="POST">
-            <input name="user2" type="hidden" value="'.$user1.'">
+            <input name="user1" type="hidden" value="'.$user1.'">
             <button type="submit" class="btn btn-primary btn-flat btn-addon btn-lg m-b-10 m-l-5" disabled><i class="ti-user"></i>Zaproszenie wysłane</button>
             </form>
             ';
@@ -973,8 +1005,17 @@ class panel
         {
             echo'
             <form method="POST">
-            <input name="user2" type="hidden" value="'.$user1.'">
+            <input name="user1" type="hidden" value="'.$user1.'">
             <button type="submit" class="btn btn-success btn-flat btn-addon btn-lg m-b-10 m-l-5" disabled><i class="ti-user"></i>Znajomy</button>
+            </form>
+            ';
+        }
+        else if($this->relationShipStatus($pdo, $user1, $user2) == 4)
+        {
+            echo'
+            <form method="POST">
+            <input name="acceptInvitation" type="hidden" value="'.$user1.'">
+            <button type="submit" class="btn btn-success btn-flat btn-addon btn-lg m-b-10 m-l-5"><i class="ti-user"></i>Zaakceptuj zaproszenie</button>
             </form>
             ';
         }
@@ -1025,22 +1066,25 @@ class panel
     {
         if(isset($_POST["ignoreInvitation"]))
         {
-            $stmt = $pdo->prepare('UPDATE relationships r SET 
-            relationshipStatus = 3 
-            WHERE (r.user1Login =:user1 AND r.user2Login = :user2) 
-             OR (r.user2Login = :user1 AND r.user1Login= :user2)
-             AND r.relationshipStatus = 1;
-            ');
-         $stmt->bindParam(':user1', $user1, PDO::PARAM_STR);
-         $stmt->bindParam(':user2', $user2, PDO::PARAM_STR);
+         $stmt = $pdo->prepare('SELECT login FROM users WHERE login LIKE :username');
+         $stmt->bindParam(':username', $username ."%", PDO::PARAM_STR);
          $stmt->execute();
+         while($rows = $stmt->fetch())
+            {
+                $output .= '
+                <tr>
+                    <td>'.$rows["login"].'</td>
+                </tr>
+                ';
+            }
+            echo $output;
         }
     }
     public function relationShipStatus($pdo, $user1, $user2)
     {
-         $stmt = $pdo->prepare('SELECT COUNT(*) FROM relationships r 
+         $stmt = $pdo->prepare('SELECT COUNT(*), r.actionUserLogin, r.relationshipStatus FROM relationships r 
         WHERE (r.user1Login =:user1 AND r.user2Login = :user2) 
-        OR (r.user2Login = :user2 AND r.user1Login= :user1)
+        OR (r.user2Login = :user1 AND r.user1Login= :user2)
         ');
 
          $stmt->bindParam(':user1', $user1, PDO::PARAM_STR);
@@ -1050,20 +1094,16 @@ class panel
          $count = $row["COUNT(*)"];
          if($count == 0)
          {
-             return 0; // nieznajomi 
+             return 0;  
          }
+         if($user1 == $row["actionUserLogin"] && $row["relationshipStatus"] == 1)
+         {
+             return 4;
+         }
+
          else
          {
-            $stmtB = $pdo->prepare('SELECT r.relationshipStatus FROM relationships r 
-            WHERE (r.user1Login = :user1 AND R.user2Login = :user2) 
-            OR (r.user2Login = :user2 AND R.user1Login= :user1)
-            ');
-    
-             $stmtB->bindParam(':user1', $user1, PDO::PARAM_STR);
-             $stmtB->bindParam(':user2', $user2, PDO::PARAM_STR);
-             $stmtB->execute();
-             $status = $stmtB->fetch();
-                return $status["relationshipStatus"];
+            return $row["relationshipStatus"];
          }
 
     }
@@ -1109,7 +1149,14 @@ class panel
         echo $row['COUNT(*)'];      
     }
     //MAILING
-
+    public function loginToLoginMd5($pdo, $userID)
+    {
+        $stmt = $pdo->prepare('SELECT loginmd5 FROM users WHERE login= :login;');
+        $stmt->bindParam(':login', $userID ,PDO::PARAM_STR);
+        $stmt->execute();
+        $row = $stmt->fetch(); 
+        return $row["loginmd5"];
+    }
     public function sendMail($pdo,$userID)
     {
         if(isset ($_POST['mailTo']))

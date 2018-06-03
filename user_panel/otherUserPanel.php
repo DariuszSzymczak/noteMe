@@ -4,6 +4,8 @@
     require('dividedHTML/left-sidebar.php');
     $login= substr($_SESSION['userID'], 0, -5); 
     $pane->sendInvitation($pdo, $_GET['username'], $login);
+    if(isset($_POST["acceptInvitation"]))
+    $pane->acceptInvitation($pdo, $_POST["acceptInvitation"], $login);
 ?>
     <!-- Page wrapper  -->
     <div class="page-wrapper">
