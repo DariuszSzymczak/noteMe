@@ -1276,5 +1276,40 @@ class panel
         $row = $stmt->fetch();
         echo $row['COUNT(*)']; 
     }
+
+    public function showMailsRounded($pdo,$userID)
+    {
+        $pane = new panel();
+        $stmt = $pdo->prepare('SELECT m.sender,m.receiver,m.topic,m.content FROM mails m
+        WHERE receiver = :receiver;');
+        $stmt->bindParam(':receiver',$userID,PDO::PARAM_STR);
+        $stmt->execute(); 
+        $counter = 0;
+        echo '';
+        foreach($stmt as $row)
+        {
+           
+
+            $stmtA =  $pdo->prepare('SELECT login FROM users WHERE loginmd5 = :loginmd5;');
+            $stmtA->bindParam(':loginmd5',$row['sender'],PDO::PARAM_STR);
+            $stmtA->execute();
+            $rowA = $stmtA->fetch();
+            
+            echo '
+            <a href=otherUserPanel.php?username='.$rowA['login'].'>
+            <div class="user-img round-img">';
+            $pane->getUserAvatar($pdo,$rowA['login']);
+            echo '
+            </div>
+            <div class="mail-contnet">
+                <h5>'.$rowA['login'].'</h5>
+                <span class="mail-desc">'.$row['topic'].'</span>   
+            </div>
+        </a>
+                                    
+            ';
+          
+        } 
+    }
 }
 ?>
