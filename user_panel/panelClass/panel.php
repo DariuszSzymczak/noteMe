@@ -1107,7 +1107,7 @@ class panel
         $stmt->execute();
         $row = $stmt->fetch();
         echo $row['COUNT(*)'];      
-
+    }
     //MAILING
 
     public function sendMail($pdo,$userID)
