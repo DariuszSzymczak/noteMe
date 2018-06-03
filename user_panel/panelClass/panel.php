@@ -352,25 +352,23 @@ class panel
             <a href=otherUserPanel.php?username=".$rows["login"]. ">
              ".$rows["login"] ." </td></a>" ;
             echo "<td> <center>
-            <a href=\"javascript:;\" data-toggle=\"modal\" data-target=\"#sendMessageModal".$rows["login"]. "\">
-                <button type=\"button\" class=\"btn btn-info btn-xs m-b-10 m-l-5\">
+            <a data-logints=".$rows['login']." href=\"javascript:;\" data-toggle=\"modal\" data-target=\"#sendMail\">
+                <button data-logints=".$rows['login']." type=\"button\" class=\"btn btn-info btn-xs m-b-10 m-l-5\">
                     Wiadomość</button>
-            </a>
-            <a href=\"javascript:;\" data-toggle=\"modal\" data-target=\"\">
-                <button type=\"button\" class=\"btn btn-warning btn-xs m-b-10 m-l-5\">
-                    Przydziel zadanie</button>
             </a>";
             }
-            if(substr($_SESSION['userID'], 0, 5) == $rows["groupAdmin"])
+            if(substr($_SESSION['userID'],0, -5) == $rows["groupAdmin"])
             {
-                if(substr($_SESSION['userID'], 0, 5) != $rows["login"])
+                if(substr($_SESSION['userID'],0, -5) != $rows["login"])
                     {
-                    echo"
-                    <a href=\"javascript:;\" data-toggle=\"modal\" data-target=\"\">
-                    <button type=\"button\" class=\"btn btn-danger btn-xs m-b-10 m-l-5\">
-                        Usuń użytkownika</button>
-                    </a>
-                    </td>";
+                    echo "  
+                    <form method='POST' id='delete".$rows['login']."FromGroup'>
+                            <input name='usertodeleteFromGroup' type='hidden' value='".$rows['login']."'>
+                        </form>
+
+                        <button name='deleteFromGroup' form ='delete".$rows['login']."FromGroup' type=\"submit\" class=\"btn btn-danger btn-xs m-b-10 m-l-5\">
+                            Usuń użytkownika</button>
+                        </td>";
                     }
             }
             if($rows["login"] == $rows["groupAdmin"])
@@ -427,11 +425,14 @@ class panel
 
     public function addUserToGroup($pdo, $groupName)
     {
+        echo 'Gówno1';
         if(isset($_POST["username"]))
         {
+            echo 'Gówno2';
             $username = $_POST["username"];
             if($this->existsUser($pdo, $username) && (!($this->existsUserInGroup($pdo, $username, $groupName))))
             {
+                echo 'Gówno3';
                 $stmt = $pdo->prepare('INSERT INTO connectgroup(login, GroupName)
                                     VALUES (:username, :groupName) ');
 
@@ -522,6 +523,18 @@ class panel
         $querryLeaveGroup->bindParam(':groupName',$groupID, PDO::PARAM_STR);
         $querryLeaveGroup->bindParam(':login',$login, PDO::PARAM_STR);
         $querryLeaveGroup->execute();
+        }
+    }
+    public function deleteFromGroup($pdo){
+        if (isset($_POST['usertodeleteFromGroup'])){
+            $groupID= $_GET['groupName'];
+            $login = $_POST['usertodeleteFromGroup'];
+            echo $login;
+            echo $groupID;
+            $querryDeleteFrom = $pdo->prepare('DELETE FROM connectgroup WHERE GroupName=:groupName AND login=:login');
+            $querryDeleteFrom->bindParam(':groupName',$groupID, PDO::PARAM_STR);
+            $querryDeleteFrom->bindParam(':login',$login, PDO::PARAM_STR);
+            $querryDeleteFrom->execute();
         }
     }
     
