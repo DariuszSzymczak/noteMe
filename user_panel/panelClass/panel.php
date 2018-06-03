@@ -182,19 +182,14 @@ class panel
         }
         if(isset($_POST['password']))
         {
-            $salted = "salt{$_POST['password']}salt";
+            $salted = "salt{$pass1}salt";
             $hash = md5($salted);
-            $stmtA = $pdo->prepare('SELECT login FROM users WHERE loginmd5= :userID;');
-            $stmtA->bindParam(':userID',$userID,PDO::PARAM_STR);
-            while($row = $stmtA->fetch())
-                {
-                    $login = $row['login'];
-                    $primary = $login.substr($hash,0,5);
-                }  
-           
-            $stmtA->bindParam(':md5',$hash, PDO::PARAM_STR);
-            $stmtA->bindParam(':loginmd5',$primary, PDO::PARAM_STR);
-            $stmtA->execute();
+            $primary = $login.substr($hash,0,5);
+            $querryChangePass = $pdo->prepare('UPDATE users SET md5=:hash,loginmd5=:primary WHERE login =:login');
+            $querryChangePass->bindParam(':login',$login, PDO::PARAM_STR);
+            $querryChangePass->bindParam(':primary',$primary, PDO::PARAM_STR);
+            $querryChangePass->bindParam(':hash',$hash, PDO::PARAM_STR);
+            $querryChangePass->execute();
 
         }
         else
