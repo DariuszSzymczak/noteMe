@@ -69,7 +69,7 @@
                             <div class="form-group">
                                 <label for="groupName">
                                     Adresat </label>
-                                <input type="text" placeholder="Tutaj wpisz login osoby, z którą chcesz się skontaktować"  class="form-control" name="mailTo" id="groupName"
+                                <input type="text" placeholder="Tutaj wpisz login osoby, z którą chcesz się skontaktować"  class="form-control" name="adresat" id="groupName"
                                 />
                                 <div id="userlistbox"><p>Lista Użytkowników:</p><div id="userlist"></div> </div>
                                 <label for="mailTopic">
