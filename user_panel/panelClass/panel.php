@@ -1262,5 +1262,17 @@ class panel
         $row = $stmt->fetch();
         echo $row['COUNT(*)']; 
     }
+
+    public function showUsernamesbyLetter($pdo,$word){
+        $stmt = $pdo->prepare('SELECT login FROM users WHERE login LIKE ? ');
+        $params = Array("$word%");
+        $stmt->execute($params);
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $json = json_encode($results);  
+        echo($json);
+    }
+
+
+
 }
 ?>
