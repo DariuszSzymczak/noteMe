@@ -1277,7 +1277,6 @@ class panel
         echo $row['COUNT(*)']; 
     }
 
-<<<<<<< HEAD
     public function showMailsRounded($pdo,$userID)
     {
         $pane = new panel();
@@ -1312,7 +1311,6 @@ class panel
           
         } 
     }
-=======
     public function showUsernamesbyLetter($pdo,$word){
         $stmt = $pdo->prepare('SELECT login FROM users WHERE login LIKE ? ');
         $params = Array("$word%");
@@ -1324,6 +1322,5 @@ class panel
 
 
 
->>>>>>> 2e0c02ab7454c6d2dfed909bf1d3fa98b97fb5ab
 }
 ?>
