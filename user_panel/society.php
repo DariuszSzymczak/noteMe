@@ -15,7 +15,7 @@
     if(isset($_POST["removeFriend"]))
     $pane->removeFromFriends($pdo, $login, $_POST["removeFriend"]);
     if(isset($_POST["mailTo"]))
-    $pane->sendMail($pdo, $pane->loginToLoginMd5($pdo, $_POST["mailTo"]));
+    $pane->sendMail($pdo, $_SESSION['userID']);
 
 ?>
     <!-- Page wrapper  -->

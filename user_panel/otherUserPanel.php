@@ -6,6 +6,7 @@
     $pane->sendInvitation($pdo, $_GET['username'], $login);
     if(isset($_POST["acceptInvitation"]))
     $pane->acceptInvitation($pdo, $_POST["acceptInvitation"], $login);
+    $pane->sendMail($pdo, $_SESSION['userID']);
 ?>
     <!-- Page wrapper  -->
     <div class="page-wrapper">
@@ -47,8 +48,14 @@
                                 <div class="desc">
                                     <?php $pane->getOtherUserData($pdo,$_GET['username'],'description');?>
                                 </div>
-                                <div class="desc">
+                                <center>
+                                <div style= class="desc">
                                     <?php $pane->inviteToFriendsButtons($pdo, $_GET['username'], $login);?>
+                                        <a style="float:left" href="javascript:;" data-toggle="modal" data-target="#sendMailTo<?php echo $_GET['username'];?>">
+                                            <button type="button" class="btn btn-success btn-flat btn-addon btn-sm m-b-10 m-l-5">
+                                        <i class="ti-envelope"></i>Wyślij wiadomość</button>
+                                    </a>
+                                </div>
                                 </div>
                                 <div class="clear"></div>
                             </div>
@@ -107,7 +114,36 @@
             <!-- Column -->
         </div>
 
+<div class="modal" tabindex="-1" role="dialog" aria-labelledby="sendMail" aria-hidden="true" id="sendMailTo<?php echo $_GET['username'] ?>">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form method="POST" novalidate="novalidate">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Wyślij wiadomość do <?php echo $_GET['username'] ?></h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="">
+                            <div class="form-group">
+                                <input type="hidden" name="mailTo" value="<?php echo $_GET['username'] ?>"/>
+                                <label for="groupName">
+                                    Temat </label>
+                                <input type="text" placeholder="Temat wiadomości" class="form-control" name="mailTopic" id="mailTopic"/>
+                                <label for="groupSize">
+                                    Treść </label>
+                                <input type="text" placeholder="Treść wiadomości"  class="form-control" name="mailContent" id="mailContent"/>
+                                <span class="field-validation-valid text-danger" data-valmsg-for="groupName" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
 
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-primary" value="Wyślij wiadomość"/>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
         <?php
     require('dividedHTML/footer.php');
 ?>

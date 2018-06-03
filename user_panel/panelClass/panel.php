@@ -995,27 +995,27 @@ class panel
         else if(($this->relationShipStatus($pdo, $user1, $user2) == 1) || ($this->relationShipStatus($pdo, $user1, $user2) == 3))
         {
             echo'
-            <form method="POST">
+            <form style="float:left" method="POST">
             <input name="user1" type="hidden" value="'.$user1.'">
-            <button type="submit" class="btn btn-primary btn-flat btn-addon btn-lg m-b-10 m-l-5" disabled><i class="ti-user"></i>Zaproszenie wysłane</button>
+            <button type="submit" class="btn btn-primary btn-flat btn-addon btn-sm m-b-10 m-l-5" disabled><i class="ti-user"></i>Zaproszenie wysłane</button>
             </form>
             ';
         }
         else if($this->relationShipStatus($pdo, $user1, $user2) == 2)
         {
             echo'
-            <form method="POST">
+            <form style="float:left"  method="POST">
             <input name="user1" type="hidden" value="'.$user1.'">
-            <button type="submit" class="btn btn-success btn-flat btn-addon btn-lg m-b-10 m-l-5" disabled><i class="ti-user"></i>Znajomy</button>
+            <button type="submit" class="btn btn-success btn-flat btn-addon btn-sm m-b-10 m-l-5" disabled><i class="ti-user"></i>Znajomy</button>
             </form>
             ';
         }
         else if($this->relationShipStatus($pdo, $user1, $user2) == 4)
         {
             echo'
-            <form method="POST">
+            <form style="float:left"  method="POST">
             <input name="acceptInvitation" type="hidden" value="'.$user1.'">
-            <button type="submit" class="btn btn-success btn-flat btn-addon btn-lg m-b-10 m-l-5"><i class="ti-user"></i>Zaakceptuj zaproszenie</button>
+            <button type="submit" class="btn btn-success btn-flat btn-addon btn-sm m-b-10 m-l-5"><i class="ti-user"></i>Zaakceptuj zaproszenie</button>
             </form>
             ';
         }
@@ -1246,6 +1246,15 @@ class panel
           </div>
           ';
         } 
+    }
+    public function countReceivedMails($pdo, $userID)
+    {
+        $stmt = $pdo->prepare('SELECT COUNT(*) FROM mails 
+        WHERE receiver = :userID ');
+        $stmt->bindParam(':userID', $userID,PDO::PARAM_STR);
+        $stmt->execute();
+        $row = $stmt->fetch();
+        echo $row['COUNT(*)']; 
     }
 }
 ?>

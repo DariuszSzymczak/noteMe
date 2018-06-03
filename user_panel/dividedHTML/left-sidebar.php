@@ -15,7 +15,13 @@
                         <li>
                             <a href="emailInbox.php"  class="has-arrow" aria-expanded="false">
                                 <i class="fa fa-envelope"></i>
-                                <span class="hide-menu">Wiadomości</span>
+                                <span class="hide-menu">Wiadomości
+                                         <span class="label label-rouded label-danger pull-right">
+                                            <?php 
+                                                $pane->countReceivedMails($pdo, $_SESSION['userID']); 
+                                            ?>
+                                        </span>
+                                </span>
                             </a>
                             <li>
                                 <a href="app-profile.php"  class="has-arrow" aria-expanded="false">
