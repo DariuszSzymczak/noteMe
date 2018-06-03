@@ -5,8 +5,6 @@
     $pane->addPrivateNote($pdo,$_SESSION['userID']);
     $pane->delUserPrivateNote($pdo,$_SESSION['userID']);
     $pane->editUserPrivateNote($pdo,$_SESSION['userID']);
-    
-
 ?>
 
     <!-- Page wrapper  -->

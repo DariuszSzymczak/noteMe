@@ -195,7 +195,9 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted" href="app-profile.php">
                                 <div class="profile-pic">
-                                <?php  $pane->getUserAvatar($pdo,$_SESSION['userID']); ?>
+                                <?php  
+                                $login= substr($_SESSION['userID'], 0, -5); 
+                                $pane->getUserAvatar($pdo, $login); ?>
                                 </div>
                             </a>
                         </li>

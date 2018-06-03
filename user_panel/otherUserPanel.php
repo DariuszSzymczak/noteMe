@@ -2,7 +2,8 @@
     require('dividedHTML/head-section.php');
     require('dividedHTML/header.php');
     require('dividedHTML/left-sidebar.php');
-    $pane->changeUserData($pdo,$_SESSION['userID']);
+    $login= substr($_SESSION['userID'], 0, -5); 
+    $pane->sendInvitation($pdo, $_GET['username'], $login);
 ?>
     <!-- Page wrapper  -->
     <div class="page-wrapper">
@@ -33,18 +34,20 @@
                                 <header>
                                     <div class="avatar">
                                         <?php
-                                             $pane->getUserAvatar($pdo,$_SESSION['userID']);
-                                             ?>
+                                             $pane->getUserAvatar($pdo,$_GET['username']);
+                                        ?>
                                     </div>
                                 </header>
 
                                 <h3>
-                                    <?php $pane->getUserData($pdo,$_SESSION['userID'],'login');?>
+                                    <?php echo $_GET['username'];?>
                                 </h3>
                                 <div class="desc">
-                                    <?php $pane->getUserData($pdo,$_SESSION['userID'],'description');?>
+                                    <?php $pane->getOtherUserData($pdo,$_GET['username'],'description');?>
                                 </div>
-
+                                <div class="desc">
+                                    <?php $pane->inviteToFriendsButtons($pdo, $_GET['username'], $login);?>
+                                </div>
                                 <div class="clear"></div>
                             </div>
                         </div>
@@ -60,9 +63,6 @@
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#profile" role="tab">Profil</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#settings" role="tab">Ustawienia</a>
-                        </li>
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
@@ -74,71 +74,29 @@
                                         <strong>Nazwa użytkownika</strong>
                                         <br>
                                         <p class="text-muted">
-                                            <?php $pane->getUserData($pdo,$_SESSION['userID'],'login');?>
+                                            <?php $pane->getOtherUserData($pdo,$_GET['username'],'login');?>
                                         </p>
                                     </div>
                                     <div class="col-md-3 col-xs-6 b-r">
                                         <strong>Email</strong>
                                         <br>
                                         <p class="text-muted">
-                                            <?php $pane->getUserData($pdo,$_SESSION['userID'],'email');?>
+                                            <?php  $pane->getOtherUserData($pdo,$_GET['username'],'email');?>
                                         </p>
                                     </div>
                                     <div class="col-md-3 col-xs-6">
                                         <strong>Miejscowość</strong>
                                         <br>
                                         <p class="text-muted">
-                                            <?php $pane->getUserData($pdo,$_SESSION['userID'],'town');?>
+                                            <?php $pane->getOtherUserData($pdo,$_GET['username'],'town');?>
                                         </p>
                                     </div>
                                 </div>
                                 <hr>
                                 <p class="m-t-30">
-                                    <?php $pane->getUserData($pdo,$_SESSION['userID'],'description');?>
+                                    <?php  $pane->getOtherUserData($pdo,$_GET['username'],'description');?>
                                 </p>
 
-                            </div>
-                        </div>
-
-                        <div class="tab-pane" id="settings" role="tabpanel">
-                            </br>
-                            <div class="card-body">
-                                <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST" class="form-horizontal form-material" enctype="multipart/form-data">
-                                    <div class="form-group">
-                                        <label class="col-md-12">Miejscowość</label>
-                                        <div class="col-md-12">
-                                            <input name="city" type="text" value="<?php $pane->getUserData($pdo,$_SESSION['userID'],'town');?>" class="form-control form-control-line">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Hasło (podaj nowe)</label>
-                                        <div class="col-md-12">
-                                            <input name="pw" placeholder="Uzupełnij jeśli chcesz zmienić" type="password" class="form-control form-control-line">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-md-12">Opis</label>
-                                        <div class="col-md-12">
-                                            <textarea name="description" rows="20" class="form-control form-control-line">
-                                                <?php $pane->getUserData($pdo,$_SESSION['userID'],'description');?>
-                                            </textarea>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-md-12">Avatar</label>
-                                        <div class="col-md-12">
-                                            <input type="file" name="avatar">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="col-sm-12">
-                                            <input type="submit" class="btn btn-success"></input>
-                                        </div>
-                                    </div>
-                                </form>
                             </div>
                         </div>
                     </div>
@@ -150,4 +108,4 @@
 
         <?php
     require('dividedHTML/footer.php');
-?>  
+?>

@@ -14,12 +14,22 @@ class panel
         }   
     }
 
+    public function getOtherUserData($pdo,$username,$data)
+    {
+        $stmt = $pdo->prepare('SELECT email,login,description,town FROM users WHERE login= :username;');
+        $stmt->bindParam(':username',$username,PDO::PARAM_STR);
+        $stmt->execute();
+        while($row = $stmt->fetch())
+        {
+            echo $row[$data];
+        }   
+    }
+
+
     public function getUserAvatar($pdo,$userID)
     {
-        $loginmd5 = $_SESSION['userID'];
-        $login= substr($loginmd5, 0, -5); 
         $stmt = $pdo->prepare('SELECT data FROM avatars WHERE login = :login;');
-        $stmt->bindParam(':login',$login,PDO::PARAM_STR);
+        $stmt->bindParam(':login',$userID,PDO::PARAM_STR);
         $stmt->execute();
         $row = $stmt->fetch();
         $a=$row['data'];
@@ -142,7 +152,7 @@ class panel
             </div>
         </div>
     </div>
-</div>
+    </div>
     ';
         $counter++;
         }
@@ -299,10 +309,12 @@ class panel
 
     public function showGroupUsers($pdo, $groupName)
     {
-        $stmt = $pdo->prepare('SELECT cg.login, g.groupAdmin 
-                               FROM groups g, connectgroup cg 
+        $pane = new panel();
+        $stmt = $pdo->prepare('SELECT cg.login, g.groupAdmin, a.data
+                               FROM groups g, connectgroup cg, avatars a
                                WHERE cg.GroupName = :groupName 
-                               AND cg.GroupName = g.GroupName ');
+                               AND cg.GroupName = g.GroupName 
+                               AND a.login = cg.login');
 
         $stmt->bindParam(':groupName',$_GET['groupName'],PDO::PARAM_STR);
         $stmt->execute();
@@ -310,11 +322,37 @@ class panel
 
             while($rows = $stmt->fetch())
             { 
-            //  var_dump($rows);
+            //   var_dump($rows);
             //  echo"<br/>";
             echo '<tr>';
             echo '<td>'. $counter .'</td>';
-            echo "<td><a href=app-profile.php?userName=" .$rows["login"] .">" .$rows["login"] ."</a> </td>" ;
+            if(substr($_SESSION['userID'], 0, 5) == $rows["login"])
+            {
+                echo '<td>
+                <a href=app-profile.php>
+                <div class="round-img">';
+                    $pane->getUserAvatar($pdo,$rows['login']);
+                echo '</div>
+                </td>';
+                echo "<td>
+                <a href=app-profile.php>
+                 ".$rows["login"] ." </td></a>" ;
+                echo "<td> <center>
+              
+                </a>
+                </a>";   
+            }
+            else
+            {
+            echo '<td>
+            <a href=app-profile.php?username="'.$rows["login"].'">
+            <div class="round-img">';
+                $pane->getUserAvatar($pdo,$rows['login']);
+            echo '</div>
+            </td>';
+            echo "<td>
+            <a href=otherUserPanel.php?username=".$rows["login"]. ">
+             ".$rows["login"] ." </td></a>" ;
             echo "<td> <center>
             <a href=\"javascript:;\" data-toggle=\"modal\" data-target=\"#sendMessageModal".$rows["login"]. "\">
                 <button type=\"button\" class=\"btn btn-info btn-xs m-b-10 m-l-5\">
@@ -324,14 +362,19 @@ class panel
                 <button type=\"button\" class=\"btn btn-warning btn-xs m-b-10 m-l-5\">
                     Przydziel zadanie</button>
             </a>";
+            }
             if(substr($_SESSION['userID'], 0, 5) == $rows["groupAdmin"])
-            echo"
-            <a href=\"javascript:;\" data-toggle=\"modal\" data-target=\"\">
-            <button type=\"button\" class=\"btn btn-danger btn-xs m-b-10 m-l-5\">
-                Usuń użytkownika</button>
-            </a>
-            </td>";
-            
+            {
+                if(substr($_SESSION['userID'], 0, 5) != $rows["login"])
+                    {
+                    echo"
+                    <a href=\"javascript:;\" data-toggle=\"modal\" data-target=\"\">
+                    <button type=\"button\" class=\"btn btn-danger btn-xs m-b-10 m-l-5\">
+                        Usuń użytkownika</button>
+                    </a>
+                    </td>";
+                    }
+            }
             if($rows["login"] == $rows["groupAdmin"])
             {
             echo "<td><span class=\"badge badge-danger\">ADMIN</span>
@@ -721,7 +764,6 @@ class panel
     public function countFinishedTasks($pdo, $username)
      {
          $tasksCount = 0;
-        $stmt = $pdo->prepare('SELECT COUNT(t.loginmd5) FROM tasks t WHERE t.loginmd5 = :userID AND t.status = 1');
         $stmt = $pdo->prepare('SELECT COUNT(t.loginmd5) FROM tasks t WHERE t.loginmd5 = :userID AND t.status1 = 1');
          $stmt->bindParam(':userID', $username,PDO::PARAM_STR);
          $stmt->execute();
@@ -754,6 +796,318 @@ class panel
         $stmtE->bindParam(':userID', $userID);
         $stmtE->execute();
         }
+    }
+    //SPOLECZNOSC:
+    // STATUS 0 - NIEZNAJOMI
+    // STATUS 1 - ZAPRO WYSLANE
+    // STATUS 2 - ZNAJOMI
+    // STATUS 3 - ZAPRO ZIGNOROWANE
+    public function showFriends($pdo, $username)
+    {
+        $pane = new panel();
+        $stmt = $pdo->prepare('SELECT r.user1Login, r.user2Login FROM relationships r 
+        WHERE (r.user1Login =:username OR r.user2Login = :username)
+        AND r.relationshipStatus = 2
+        ');
+        $stmt->bindParam(':username',$username,PDO::PARAM_STR);
+        $stmt->execute();
+        $counter = 1;
+
+            while($rows = $stmt->fetch())
+            { 
+            //  var_dump($rows);
+            //  echo"<br/>";
+            echo '<tr>';
+            echo '<td>'. $counter .'</td>';
+            echo '<td>';
+            if($rows["user1Login"] == $username)
+            {
+                $friend = $rows["user2Login"];
+            }
+            else
+            {
+                $friend = $rows["user1Login"];
+            }
+           echo' <a href=otherUserPanel.php?username='.$friend.'">
+            <div class="round-img">';
+                $pane->getUserAvatar($pdo,$friend);
+            echo '</div>
+            </td>';
+            echo "<td>
+            <a href=otherUserPanel.php?username=".$friend. ">
+             ".$friend." </td></a>" ;
+            echo "<td> 
+            <center>
+            <a  href=\"javascript:;\" data-toggle=\"modal\" data-target=\"#sendMessageModal".$friend. "\">
+                <button type=\"button\" class=\"btn btn-info btn-xs m-b-10 m-l-5\">
+                    Wiadomość</button>
+            </a>";
+            echo '
+            <form id="removefriend-'.$friend.'" style="float:left" method="POST">
+            <input name="removeFriend" type="hidden" value="'.$friend.'">
+            </form>            
+            <button form="removefriend-'.$friend.'" type="submit" class="btn btn-danger btn-xs m-b-10 m-l-5">Usuń ze znajomych</button>
+
+            </td>';
+            $counter++;
+        }
+
+    }
+    public function showReceivedInvitations($pdo, $username)
+    {
+        $pane = new panel();
+        $stmt = $pdo->prepare('SELECT r.user1Login, r.user2Login FROM relationships r 
+        WHERE (r.user1Login = :username OR r.user2Login = :username)
+        AND r.relationshipStatus = 1
+        AND r.actionUserLogin <> :username
+        ');
+        $stmt->bindParam(':username',$username,PDO::PARAM_STR);
+        $stmt->execute();
+        $counter = 1;
+        echo"<br/>";
+            while($rows = $stmt->fetch())
+            { 
+            //  var_dump($rows);
+            //  echo"<br/>";
+            echo '<tr>';
+            echo '<td>'. $counter .'</td>';
+            echo '<td>';
+            if($rows["user1Login"] == $username)
+            {
+                $friend = $rows["user2Login"];
+            }
+            else
+            {
+                $friend = $rows["user1Login"];
+            }
+           echo' <a href=otherUserPanel.php?username='.$friend.'>
+            <div class="round-img">';
+                $pane->getUserAvatar($pdo,$friend);
+            echo '</div>
+            </td>';
+            echo "<td>
+            <a href=otherUserPanel.php?username=".$friend. "\">
+             ".$friend." </td></a>" ;
+            echo "<td> <center>"; 
+            echo'
+            <form method="POST">
+            <input name="ignoreInvitation" type="hidden" value="'.$friend.'">
+            <button type="submit" class="btn btn-danger btn-xs m-b-10 m-l-5"><i class="ti-user"></i>Ignoruj</button>
+            </form>   
+           
+            <form style="float:left;" method="POST" id="accept'.$friend.'">
+            <input name="acceptInvitation" type="hidden" value="'.$friend.'">
+            <button type="submit" class="btn btn-success btn-xs m-b-10 m-l-5"><i class="ti-user"></i>Akceptuj</button>
+            </form>   
+
+          ';
+           echo" </td>";
+            $counter++;
+        }    }
+    public function showSentInvitations($pdo, $username)
+    {
+        $pane = new panel();
+        $stmt = $pdo->prepare('SELECT user1Login, user2Login FROM relationships r 
+        WHERE (r.user1Login =:username OR r.user2Login = :username)
+        AND r.relationshipStatus = 1
+        AND r.actionUserLogin = :username
+        ');
+        $stmt->bindParam(':username',$username,PDO::PARAM_STR);
+        $stmt->execute();
+        $counter = 1;
+
+            while($rows = $stmt->fetch())
+            { 
+            //  var_dump($rows);
+            //  echo"<br/>";
+            echo '<tr>';
+            echo '<td>'. $counter .'</td>';
+            echo '<td>';
+            if($rows["user1Login"] == $username)
+            {
+                $friend = $rows["user2Login"];
+            }
+            else
+            {
+                $friend = $rows["user1Login"];
+            }
+           echo' <a href=otherUserPanel.php?username='.$friend.'>
+            <div class="round-img">';
+                $pane->getUserAvatar($pdo,$friend);
+            echo '</div>
+            </td>';
+            echo "<td>
+            <a href=otherUserPanel.php?username=".$friend. ">
+             ".$friend." </td></a>" ;
+            echo '<td> <center>
+            <form method="POST">
+            <input name="deleteSentInvitation" type="hidden" value="'.$friend.'">
+            <button type="submit" class="btn btn-danger btn-xs m-b-10 m-l-5">Usuń zaproszenie</button>
+            </form> 
+            </td>';
+            $counter++;
+        }
+    }
+    public function inviteToFriendsButtons($pdo, $user1, $user2)
+    {
+        if($this->relationShipStatus($pdo, $user1, $user2) == 0)
+        {
+            //user1 - zapraszany
+            //user2 - zapraszajacy
+            echo'
+            <form method="POST">
+            <input name="user1" type="hidden" value="'.$user1.'">
+            <button type="submit" class="btn btn-success btn-flat btn-addon btn-lg m-b-10 m-l-5"><i class="ti-user"></i>Zaproś do znajomych</button>
+            </form>
+            ';
+        }
+        else if(($this->relationShipStatus($pdo, $user1, $user2) == 1) || ($this->relationShipStatus($pdo, $user1, $user2) == 3))
+        {
+            echo'
+            <form method="POST">
+            <input name="user2" type="hidden" value="'.$user1.'">
+            <button type="submit" class="btn btn-primary btn-flat btn-addon btn-lg m-b-10 m-l-5" disabled><i class="ti-user"></i>Zaproszenie wysłane</button>
+            </form>
+            ';
+        }
+        else if($this->relationShipStatus($pdo, $user1, $user2) == 2)
+        {
+            echo'
+            <form method="POST">
+            <input name="user2" type="hidden" value="'.$user1.'">
+            <button type="submit" class="btn btn-success btn-flat btn-addon btn-lg m-b-10 m-l-5" disabled><i class="ti-user"></i>Znajomy</button>
+            </form>
+            ';
+        }
+    }
+    public function sendInvitation($pdo, $user1, $user2)
+    {
+        if(isset($_POST["user1"]))
+        {
+        $stmt = $pdo->prepare('INSERT INTO `relationships` (user1Login, user2Login, relationshipStatus, actionUserLogin)
+         VALUES (:user1, :user2, 1, :user2)
+        ');
+         $stmt->bindParam(':user1', $user1, PDO::PARAM_STR);
+         $stmt->bindParam(':user2', $user2, PDO::PARAM_STR);
+         $stmt->execute();
+        }
+    }
+    public function acceptInvitation($pdo, $user1, $user2)
+    {
+        if(isset($_POST["acceptInvitation"]))
+        {
+            $stmt = $pdo->prepare('UPDATE relationships r SET 
+            relationshipStatus = 2 
+            WHERE (r.user1Login =:user1 AND r.user2Login = :user2) 
+             OR (r.user2Login = :user1 AND r.user1Login= :user2)
+             AND r.relationshipStatus = 1;
+            ');
+         $stmt->bindParam(':user1', $user1, PDO::PARAM_STR);
+         $stmt->bindParam(':user2', $user2, PDO::PARAM_STR);
+         $stmt->execute();
+        }
+    }
+    public function ignoreInvitation($pdo, $user1, $user2)
+    {
+        if(isset($_POST["ignoreInvitation"]))
+        {
+            $stmt = $pdo->prepare('UPDATE relationships r SET 
+            relationshipStatus = 3 
+            WHERE (r.user1Login =:user1 AND r.user2Login = :user2) 
+             OR (r.user2Login = :user1 AND r.user1Login= :user2)
+             AND r.relationshipStatus = 1;
+            ');
+         $stmt->bindParam(':user1', $user1, PDO::PARAM_STR);
+         $stmt->bindParam(':user2', $user2, PDO::PARAM_STR);
+         $stmt->execute();
+        }
+    }
+    public function searchUser($pdo, $username)
+    {
+        if(isset($_POST["ignoreInvitation"]))
+        {
+            $stmt = $pdo->prepare('UPDATE relationships r SET 
+            relationshipStatus = 3 
+            WHERE (r.user1Login =:user1 AND r.user2Login = :user2) 
+             OR (r.user2Login = :user1 AND r.user1Login= :user2)
+             AND r.relationshipStatus = 1;
+            ');
+         $stmt->bindParam(':user1', $user1, PDO::PARAM_STR);
+         $stmt->bindParam(':user2', $user2, PDO::PARAM_STR);
+         $stmt->execute();
+        }
+    }
+    public function relationShipStatus($pdo, $user1, $user2)
+    {
+         $stmt = $pdo->prepare('SELECT COUNT(*) FROM relationships r 
+        WHERE (r.user1Login =:user1 AND r.user2Login = :user2) 
+        OR (r.user2Login = :user2 AND r.user1Login= :user1)
+        ');
+
+         $stmt->bindParam(':user1', $user1, PDO::PARAM_STR);
+         $stmt->bindParam(':user2', $user2, PDO::PARAM_STR);
+         $stmt->execute();
+         $row = $stmt->fetch();
+         $count = $row["COUNT(*)"];
+         if($count == 0)
+         {
+             return 0; // nieznajomi 
+         }
+         else
+         {
+            $stmtB = $pdo->prepare('SELECT r.relationshipStatus FROM relationships r 
+            WHERE (r.user1Login = :user1 AND R.user2Login = :user2) 
+            OR (r.user2Login = :user2 AND R.user1Login= :user1)
+            ');
+    
+             $stmtB->bindParam(':user1', $user1, PDO::PARAM_STR);
+             $stmtB->bindParam(':user2', $user2, PDO::PARAM_STR);
+             $stmtB->execute();
+             $status = $stmtB->fetch();
+                return $status["relationshipStatus"];
+         }
+
+    }
+
+    public function deleteSentInvitation($pdo, $user1, $user2)
+    {
+        if(isset($_POST["deleteSentInvitation"]))
+        {
+            $stmt = $pdo->prepare('DELETE FROM relationships  
+            WHERE (user1Login = :user1 AND user2Login = :user2) 
+             OR (user2Login = :user1 AND user1Login= :user2)
+             AND relationshipStatus = 1
+             AND actionUserLogin = :user1
+            ');
+         $stmt->bindParam(':user1', $user1, PDO::PARAM_STR);
+         $stmt->bindParam(':user2', $user2, PDO::PARAM_STR);
+         $stmt->execute();
+        }
+    }
+    public function removeFromFriends($pdo, $user1, $user2)
+    {
+        if(isset($_POST["removeFriend"]))
+        {
+            $stmt = $pdo->prepare('DELETE FROM relationships  
+            WHERE (user1Login = :user1 AND user2Login = :user2) 
+             OR (user2Login = :user1 AND user1Login= :user2)
+             AND relationshipStatus = 2
+            ');
+         $stmt->bindParam(':user1', $user1, PDO::PARAM_STR);
+         $stmt->bindParam(':user2', $user2, PDO::PARAM_STR);
+         $stmt->execute();
+        }
+    }
+    public function countInvitations($pdo, $username)
+    {
+        $stmt = $pdo->prepare('SELECT COUNT(*) FROM relationships r 
+                                WHERE (user1Login = :username OR user2Login = :username)
+                                AND relationshipStatus = 1
+                                AND actionUserLogin != :username');
+        $stmt->bindParam(':username', $username,PDO::PARAM_STR);
+        $stmt->execute();
+        $row = $stmt->fetch();
+        echo $row['COUNT(*)'];      
     }
 }
 ?>

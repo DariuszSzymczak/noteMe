@@ -81,6 +81,7 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
+                                                <th></th>
                                                 <th>Użytkownik</th>
                                                 <th>
                                                     <center>Akcje</center>
