@@ -4,7 +4,7 @@
     require('dividedHTML/left-sidebar.php');
     $pane->delReceivedMails($pdo,$_SESSION['userID']);
 ?>
-
+<script src="./controllers/getUsersByLetter/messages.js"></script>
 <div class="page-wrapper">
             <!-- Bread crumb -->
             <div class="row page-titles">
@@ -71,10 +71,11 @@
                                     Adresat </label>
                                 <input type="text" placeholder="Tutaj wpisz login osoby, z którą chcesz się skontaktować"  class="form-control" name="mailTo" id="groupName"
                                 />
-                                <label for="groupName">
+                                <div id="userlistbox"><p>Lista Użytkowników:</p><div id="userlist"></div> </div>
+                                <label for="mailTopic">
                                     Temat </label>
                                 <input type="text" placeholder="Temat wiadomości" class="form-control" name="mailTopic" id="mailTopic"/>
-                                <label for="groupSize">
+                                <label for="mailContent">
                                     Treść </label>
                                 <input type="text" placeholder="Treść wiadomości"  class="form-control" name="mailContent" id="mailContent"/>
                                 <span class="field-validation-valid text-danger" data-valmsg-for="groupName" data-valmsg-replace="true"></span>
