@@ -1215,11 +1215,14 @@ class panel
                     </td>
                     <td>
                     <center> 
-
+                    <form id="end-'.$row['topic'].'" method="POST">
+                    <input name="delMail" type="hidden" value="'.$row['topic'].'">
+                    </form> 
                         <a href="javascript:;" data-toggle="modal" data-target="#'.$row['topic'].'">          
                         <button type="submit" class="btn btn-info btn-xs m-b-10 m-l-5">Wyświetl</button> 
-                        </a>                  
-                        <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">
+                        </a>     
+                                      
+                        <button form="end-'.$row['topic'].'" type="submit" class="btn btn-danger btn-xs m-b-10 m-l-5">
                         Usuń</button>
                              
                    </center>
@@ -1243,7 +1246,7 @@ class panel
                         <hr class="my-4">
                       
                         </div>
-
+                            
                             <button style = "float:right;" type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
                          
                         </div>
@@ -1251,6 +1254,17 @@ class panel
                 </div>
           </div>
           ';
+        } 
+    }
+
+    public function delReceivedMails($pdo,$userID)
+    {
+        if(isset($_POST['delMail']))
+        {
+            $stmt = $pdo->prepare('DELETE FROM mails WHERE receiver = :receiver AND topic = :topic;');                 
+            $stmt->bindParam(':topic', $_POST['delMail']);
+            $stmt->bindParam(':receiver', $userID);
+            $stmt->execute();
         } 
     }
     public function countReceivedMails($pdo, $userID)

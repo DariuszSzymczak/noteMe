@@ -2,7 +2,7 @@
     require('dividedHTML/head-section.php');
     require('dividedHTML/header.php');
     require('dividedHTML/left-sidebar.php');
-   
+    $pane->delReceivedMails($pdo,$_SESSION['userID']);
 ?>
 
 <div class="page-wrapper">
@@ -32,7 +32,7 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th> </th>
                                             <th>Nadawca</th>
                                             <th>Temat</th>
                                             <th>
