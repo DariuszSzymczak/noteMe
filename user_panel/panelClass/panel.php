@@ -986,9 +986,9 @@ class panel
             //user1 - zapraszany
             //user2 - zapraszajacy
             echo'
-            <form method="POST">
+            <form style="float:left" method="POST">
             <input name="user1" type="hidden" value="'.$user1.'">
-            <button type="submit" class="btn btn-success btn-flat btn-addon btn-lg m-b-10 m-l-5"><i class="ti-user"></i>Zaproś do znajomych</button>
+            <button type="submit" class="btn btn-success btn-flat btn-addon btn-sm m-b-10 m-l-5"><i class="ti-user"></i>Zaproś do znajomych</button>
             </form>
             ';
         }
