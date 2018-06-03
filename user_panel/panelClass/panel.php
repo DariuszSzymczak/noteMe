@@ -1193,6 +1193,8 @@ class panel
         $counter = 0;
         foreach($stmt as $row)
         {
+            $pane = new panel();
+
             $stmtA =  $pdo->prepare('SELECT login FROM users WHERE loginmd5 = :loginmd5;');
             $stmtA->bindParam(':loginmd5',$row['sender'],PDO::PARAM_STR);
             $stmtA->execute();
@@ -1200,9 +1202,13 @@ class panel
             
             echo '
             <tr>
-                    <td>'.++$counter.'</td>
+                    <td><a href=otherUserPanel.php?username='.$rowA['login'].'>
+                    <div class="round-img">';
+                        $pane->getUserAvatar($pdo,$rowA['login']);
+                    echo '</div>
+                    </td>
                     <td>
-                        '.$rowA['login'].'
+                    <a href=otherUserPanel.php?username='.$rowA['login'].'>  '.$rowA['login'].' </a>
                     </td>
                     <td>    
                             <span>'.$row['topic'].'</span>   
