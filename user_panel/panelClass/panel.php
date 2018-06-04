@@ -1163,10 +1163,7 @@ class panel
 
     }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 546ae4a931a60ec021e2c11413cf6ccd3fae85c2
     public function showFriendsJSON($pdo, $username)
     {
         $pane = new panel();
