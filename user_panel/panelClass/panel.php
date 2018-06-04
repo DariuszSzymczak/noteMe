@@ -1121,7 +1121,7 @@ echo '<div class="modal" tabindex="-1" role="dialog" aria-labelledby="showPrivat
             {
                 $friend = $rows["user1Login"];
             }
-           echo' <a href=otherUserPanel.php?username='.$friend.'">
+           echo' <a href=otherUserPanel.php?username='.$friend.'>
             <div class="round-img">';
                 $pane->getUserAvatar($pdo,$friend);
             echo '</div>
