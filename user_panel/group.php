@@ -6,7 +6,7 @@
     $pane->addUserToGroup($pdo, $_GET['groupName']);
     $pane->sendMail($pdo,$_SESSION['userID']);
     $pane->deleteFromGroup($pdo);
-    
+    $pane->addTaskToGroup($pdo);
 ?>
 
     <!-- Page wrapper  -->
@@ -242,7 +242,7 @@
                                     </table>
                                 </div>
                                 <a href="javascript:;" data-toggle="modal" data-target="#addTaskModal">
-                                    <button type="button" class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5">
+                                    <button type="button" class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5" data-toggle="modal" data-target="#addTaskToGroupModal">
                                         <i class="ti-plus"></i>Dodaj zadanie</button>
                                 </a>
                             </div>
@@ -316,7 +316,7 @@
     require('dividedHTML/editTaskModal.php');
     require('dividedHTML/deleteUserConfirmModal.php');
     require('dividedHTML/sendMessageModal.php');
-    require('dividedHTML/addTaskToUserModal.php');
+    require('dividedHTML/addTaskToGroup.php');
     require('dividedHTML/addUserToGroupModal.php');
     
 ?>

@@ -537,7 +537,26 @@ class panel
             $querryDeleteFrom->execute();
         }
     }
-    
+    public function addTaskToGroup($pdo){
+        if (isset($_POST['groupTaskSend'])){
+            $groupID = $_GET['groupName'];
+            $taskName = $_POST['taskName'];
+            $taskDescription = $_POST['taskDescription'];
+            $taskExpiry = $_POST['taskExpiry'];
+            $date = date("d-m-y");
+            $login= substr($_SESSION['userID'], 0, -5); 
+            
+            $querryAddTask = $pdo->prepare('INSERT INTO grouptasks(topic, content,DateAdded, dateend, groupname, author, status1) 
+            VALUES (:topic,:content,:dateAdded,:dateend,:groupname,:login,0)');
+            $querryAddTask->bindParam(':topic', $taskName);
+            $querryAddTask->bindParam(':content', $taskDescription);
+            $querryAddTask->bindParam(':DateAdded', $date);
+            $querryAddTask->bindParam(':dateend', $taskExpiry);
+            $querryAddTask->bindParam(':groupname', $groupID);
+            $querryAddTask->bindParam(':login',$login);
+            $querryAddTask->execute();
+        }
+    }
 
     //DODAWANIE ZADAŃ
 
