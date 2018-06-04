@@ -1167,11 +1167,11 @@ class panel
     }
     public function sendMail($pdo,$userID)
     {
-        if(isset ($_POST['mailTo']))
+        if(isset ($_POST['adresat']))
         {
         
         $stmt = $pdo->prepare('SELECT loginmd5 FROM users WHERE login= :login;');
-        $stmt->bindParam(':login',$_POST['mailTo'],PDO::PARAM_STR);
+        $stmt->bindParam(':login',$_POST['adresat'],PDO::PARAM_STR);
         $stmt->execute();
         $row = $stmt->fetch(); 
         $stmt -> closeCursor();
