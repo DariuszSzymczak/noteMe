@@ -1151,6 +1151,31 @@ class panel
 
 
     }
+
+    public function showFriends($pdo, $username)
+    {
+        $pane = new panel();
+        $stmt = $pdo->prepare('SELECT r.user1Login, r.user2Login FROM relationships r 
+        WHERE (r.user1Login =:username OR r.user2Login = :username)
+        AND r.relationshipStatus = 2
+        ');
+        $stmt->bindParam(':username',$username,PDO::PARAM_STR);
+        $stmt->execute();
+    }
+    public function showFriendsJSON($pdo, $username)
+    {
+        $pane = new panel();
+        $stmt = $pdo->prepare('SELECT r.user2Login FROM relationships r 
+        WHERE (r.user1Login =:username OR r.user2Login = :username)
+        AND r.relationshipStatus = 2 AND r.relationshipStatus = 1
+        ');
+        $stmt->bindParam(':username',$username,PDO::PARAM_STR);
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $json = json_encode($results);  
+        echo($json);
+    }
+
     public function showReceivedInvitations($pdo, $username)
     {
         $pane = new panel();
