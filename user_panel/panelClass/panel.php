@@ -254,8 +254,7 @@ echo '<div class="modal" tabindex="-1" role="dialog" aria-labelledby="showPrivat
         $counter = 1;
         while($rows = $stmt->fetch())
         {
-            // var_dump($rows);
-            // echo"<br/>";
+            echo"<br/>";
             echo '<tr>';
             echo '<td>'. $counter .'</td>';
 
@@ -471,11 +470,17 @@ echo '<div class="modal" tabindex="-1" role="dialog" aria-labelledby="showPrivat
             {
                 
                 
-        $stmtAdmin = $pdo->prepare('SELECT g.groupAdmin FROM groups g WHERE g.GroupName = :groupName');
-        $stmtAdmin->bindParam(':groupName', $groupName,PDO::PARAM_INT);
-        $stmtAdmin->execute();
-        $row = $stmtAdmin->fetch();
-        $groupAdminLogin = $row["groupAdmin"];
+                $stmtAdmin = $pdo->prepare('SELECT g.groupAdmin FROM groups g WHERE g.GroupName = :groupName');
+                $stmtAdmin->bindParam(':groupName', $groupName,PDO::PARAM_INT);
+                $stmtAdmin->execute();
+                
+                $stmtIncrement = $pdo->prepare('UPDATE groups SET UserCount = UserCount + 1
+                                                 WHERE GroupName = :groupName');
+                $stmtIncrement->bindParam(':groupName', $groupName,PDO::PARAM_INT);
+                $stmtIncrement->execute();
+
+                $row = $stmtAdmin->fetch();
+                $groupAdminLogin = $row["groupAdmin"];
 
                 $stmt = $pdo->prepare('INSERT INTO connectgroup(login, GroupName, groupAdmin)
                                     VALUES (:username, :groupName, :admin) ');
@@ -580,8 +585,14 @@ echo '<div class="modal" tabindex="-1" role="dialog" aria-labelledby="showPrivat
         $querryLeaveGroup->execute();
         }
     }
-    public function deleteFromGroup($pdo){
-        if (isset($_POST['usertodeleteFromGroup'])){
+    public function deleteFromGroup($pdo, $groupName){
+        if (isset($_POST['usertodeleteFromGroup']))
+        {
+            $stmtDecrement = $pdo->prepare('UPDATE groups SET UserCount = UserCount - 1
+            WHERE GroupName = :groupName');
+            $stmtDecrement->bindParam(':groupName', $groupName,PDO::PARAM_INT);
+            $stmtDecrement->execute();
+            
             $groupID= $_GET['groupName'];
             $login = $_POST['usertodeleteFromGroup'];
             echo $login;
