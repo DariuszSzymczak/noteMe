@@ -2,7 +2,8 @@
     require('dividedHTML/head-section.php');
     require('dividedHTML/header.php');
     require('dividedHTML/left-sidebar.php');
-    $pane->addGroup($pdo,$_SESSION['userID']);
+    if(isset($_POST["groupName"]))
+    $pane->addGroup($pdo,$_SESSION['userID'], $_POST["groupName"]);
     $pane->deleteGroup($pdo,$_SESSION['userID']);
     $pane->leaveGroup($pdo);
 

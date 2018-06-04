@@ -180,16 +180,28 @@ class panel
             $stmtE->bindParam(':userID',$userID,PDO::PARAM_STR);
             $stmtE->execute();      
         }
-        if(isset($_POST['password']))
+        if(isset($_POST['password']) && isset($_POST['password2']))
         {
-            $salted = "salt{$pass1}salt";
+            
+            $pass = $_POST['password'];
+            $pass2 = $_POST['password2'];
+            if($pass == $pass2)
+            {
+            $salted = "salt{$pass}salt";
             $hash = md5($salted);
-            $primary = $login.substr($hash,0,5);
-            $querryChangePass = $pdo->prepare('UPDATE users SET md5=:hash,loginmd5=:primary WHERE login =:login');
+             $login= substr($userID, 0, -5); 
+            $querryChangePass = $pdo->prepare('UPDATE users SET md5=:hash,loginmd5=:userID WHERE login =:login');
             $querryChangePass->bindParam(':login',$login, PDO::PARAM_STR);
-            $querryChangePass->bindParam(':primary',$primary, PDO::PARAM_STR);
+            $querryChangePass->bindParam(':userID',$userID, PDO::PARAM_STR);
             $querryChangePass->bindParam(':hash',$hash, PDO::PARAM_STR);
             $querryChangePass->execute();
+            }
+            else
+            {
+                echo '<script>
+                alert("Podane hasła różnią się od siebie! ");
+                 </script>';
+            }
 
         }
         else
@@ -269,29 +281,38 @@ class panel
         $counter++;
         }
     }
-    public function addGroup($pdo, $userID)
+    public function addGroup($pdo, $userID, $groupName)
     {
         if(isset($_POST["groupName"]) && isset($_POST["groupSize"]))
         {
+            $pane1 = new panel();
             $name = $_POST["groupName"];
             $size = $_POST["groupSize"];
             $count = 1;
             $loggedUser = substr($_SESSION['userID'], 0, -5); 
-            $stmt = $pdo->prepare('INSERT INTO groups(GroupName,GroupDescription, Max_count, UserCount, groupAdmin)
-                                VALUES (:name, "Opis grupy...", :size, :count, :user ) ');
-            $stmtB = $pdo->prepare('INSERT INTO connectgroup(login, GroupName)
-            VALUES (:login, :name) ');
+            if(($pane1->hasUserGroup($pdo, $loggedUser, $groupName) != true))
+            {
+                $stmt = $pdo->prepare('INSERT INTO groups(GroupName,GroupDescription, Max_count, UserCount, groupAdmin) 
+                VALUES (:name, "Opis grupy...", :size, :count, :user )');
+                $stmtB = $pdo->prepare('INSERT INTO connectgroup(login, GroupName, groupAdmin)
+                VALUES (:login, :name, :login)');
 
-            $stmt->bindParam(':name', $name,PDO::PARAM_STR);
-            $stmt->bindParam(':size', $size,PDO::PARAM_INT);
-            $stmt->bindParam(':count', $count,PDO::PARAM_INT);
-            $stmt->bindParam(':user', $loggedUser,PDO::PARAM_STR);
+                $stmt->bindParam(':name', $name,PDO::PARAM_STR);
+                $stmt->bindParam(':size', $size,PDO::PARAM_INT);
+                $stmt->bindParam(':count', $count,PDO::PARAM_INT);
+                $stmt->bindParam(':user', $loggedUser,PDO::PARAM_STR);
 
-            $stmtB->bindParam(':name', $name,PDO::PARAM_STR);
-            $stmtB->bindParam(':login', $loggedUser,PDO::PARAM_STR);
+                $stmtB->bindParam(':name', $name,PDO::PARAM_STR);
+                $stmtB->bindParam(':login', $loggedUser,PDO::PARAM_STR);
 
-            $stmt->execute();
-            $stmtB->execute();
+
+                $stmt->execute();
+                $stmtB->execute();
+            }
+            else
+            {
+                echo '<script>alert("Już masz grupę o takiej nazwie, wybierz inną nazwę dla grupy")</script>';
+            }
         }
     }
     public function getGroupData($pdo, $groupName, $data)
@@ -362,7 +383,7 @@ class panel
                 if(substr($_SESSION['userID'],0, -5) != $rows["login"])
                     {
                     echo "  
-                    <form method='POST' id='delete".$rows['login']."FromGroup'>
+                    <form style=\"float:left;\" method='POST' id='delete".$rows['login']."FromGroup'>
                             <input name='usertodeleteFromGroup' type='hidden' value='".$rows['login']."'>
                         </form>
 
@@ -423,23 +444,50 @@ class panel
         return $userFound;
     }
 
+    public function hasUserGroup($pdo, $username, $groupName)
+    {
+        $stmt = $pdo->prepare('SELECT  g.GroupName, g.groupAdmin FROM groups g WHERE g.GroupName = :groupName AND g.groupAdmin = :username');
+        $stmt->bindParam(':groupName', $groupName,PDO::PARAM_INT);
+        $stmt->bindParam(':username', $username,PDO::PARAM_INT);
+        $stmt->execute();
+        $userFound = false;
+
+            while($rows = $stmt->fetch())
+            { 
+                if($username == $rows['groupAdmin'] && $groupName == $rows['GroupName'])
+                {
+                    $userFound = true;
+                }
+            }
+        return $userFound;
+    }
+
     public function addUserToGroup($pdo, $groupName)
     {
-        echo 'Gówno1';
         if(isset($_POST["username"]))
         {
-            echo 'Gówno2';
             $username = $_POST["username"];
             if($this->existsUser($pdo, $username) && (!($this->existsUserInGroup($pdo, $username, $groupName))))
             {
-                echo 'Gówno3';
-                $stmt = $pdo->prepare('INSERT INTO connectgroup(login, GroupName)
-                                    VALUES (:username, :groupName) ');
+                
+                
+        $stmtAdmin = $pdo->prepare('SELECT g.groupAdmin FROM groups g WHERE g.GroupName = :groupName');
+        $stmtAdmin->bindParam(':groupName', $groupName,PDO::PARAM_INT);
+        $stmtAdmin->execute();
+        $row = $stmtAdmin->fetch();
+        $groupAdminLogin = $row["groupAdmin"];
+
+                $stmt = $pdo->prepare('INSERT INTO connectgroup(login, GroupName, groupAdmin)
+                                    VALUES (:username, :groupName, :admin) ');
 
                 $stmt->bindParam(':username', $username,PDO::PARAM_STR);
                 $stmt->bindParam(':groupName', $groupName,PDO::PARAM_STR);
-
+                $stmt->bindParam(':admin', $groupAdminLogin,PDO::PARAM_STR);
                 $stmt->execute();
+            }
+            else
+            {
+                echo '<script>alert("Użytkownik jest już w grupie lub nie istnieje!")</script>'; 
             }
         }
     }
@@ -499,20 +547,27 @@ class panel
     public function deleteGroup($pdo,$loginmd5)
     {
 
-        if(isset($_POST['deleteGroup'])){
+        if(isset($_POST['deleteGroup']))
+        {
             $groupID = $_POST['deleteGroup'];
             $login= substr($loginmd5, 0, -5); 
+
         $querryDeleteGroup=$pdo->prepare('DELETE FROM groups WHERE GroupName=:groupName AND groupAdmin=:login');
         $querryDeleteGroup->bindParam(':groupName',$groupID, PDO::PARAM_STR);
         $querryDeleteGroup->bindParam(':login',$login, PDO::PARAM_STR);
         $querryDeleteGroup->execute();
-            
-        $q = $pdo->prepare('DELETE FROM connectgroup WHERE GroupName=:groupName AND login=:login');
+
+        $q = $pdo->prepare('DELETE FROM connectgroup WHERE GroupName=:groupName AND groupAdmin=:admin');
         $q->bindParam(':groupName',$groupID, PDO::PARAM_STR);
-        $q->bindParam(':login',$login, PDO::PARAM_STR);
+        $q->bindParam(':admin',$login, PDO::PARAM_STR);
         $q->execute();
-            }
+
+        $q2 = $pdo->prepare('DELETE FROM grouptasks WHERE GroupName=:groupName AND groupAdmin=:admin');
+        $q2->bindParam(':groupName',$groupID, PDO::PARAM_STR);
+        $q2->bindParam(':admin',$login, PDO::PARAM_STR);
+        $q2->execute();
         }
+    }
     //Opuść grupe
     public function leaveGroup($pdo){
         if(isset($_POST['leaveGroup'])){
@@ -537,7 +592,35 @@ class panel
             $querryDeleteFrom->execute();
         }
     }
-    
+    public function addTaskToGroup($pdo){
+        if (isset($_POST['groupTaskSend'])){
+            $groupID = $_GET['groupName'];
+            $taskName = $_POST['taskName'];
+            $taskDescription = $_POST['taskDescription'];
+            $taskExpiry = $_POST['taskExpiry'];
+            $date = date("y-m-d");
+            $login= substr($_SESSION['userID'], 0, -5); 
+            
+            $querryFindAdmin = $pdo->prepare('SELECT groupAdmin FROM groups WHERE GroupName = :GroupName');
+            $querryFindAdmin->bindParam(':GroupName', $groupID, PDO::PARAM_STR);
+            $querryFindAdmin->execute();
+
+            $row = $querryFindAdmin->fetch();
+            $groupAdmin = $row["groupAdmin"];
+
+            $querryAddTask = $pdo->prepare('INSERT INTO grouptasks(topic, content,DateAdded, dateend, groupname, author, status1, groupAdmin) 
+            VALUES (:topic,:content,:dateAdded,:dateend,:groupname,:login,0, :groupAdmin);');
+            $querryAddTask->bindParam(':topic', $taskName, PDO::PARAM_STR);
+            $querryAddTask->bindParam(':content', $taskDescription, PDO::PARAM_STR);
+            $querryAddTask->bindParam(':dateAdded', $date, PDO::PARAM_STR);
+            $querryAddTask->bindParam(':dateend', $taskExpiry, PDO::PARAM_STR);
+            $querryAddTask->bindParam(':groupname', $groupID, PDO::PARAM_STR);
+            $querryAddTask->bindParam(':login',$login, PDO::PARAM_STR);
+            $querryAddTask->bindParam(':groupAdmin',$groupAdmin, PDO::PARAM_STR);
+
+            $querryAddTask->execute();
+        }
+    }
 
     //DODAWANIE ZADAŃ
 
@@ -693,6 +776,182 @@ class panel
         </table>';
     }
 
+    //Zadania grupowe - show i akcje do niego xD
+    
+    public function showGroupTasks($pdo)
+    {
+        $groupName = $_GET['groupName'];
+        $stmt = $pdo->prepare('SELECT topic, content, DateAdded, dateend, status1 FROM grouptasks
+        WHERE groupName= :groupName;');
+        $stmt->bindParam(':groupName',$groupName,PDO::PARAM_STR);
+        $stmt->execute();
+        echo '<table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nazwa</th>
+                <th>Deadline</th>
+                <th>
+                    <center>Akcje</center>
+                </th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>';
+        $counter =0;
+        while($row = $stmt->fetch())        
+        {
+            echo '
+                <tr>
+                    <td>'.++$counter.'</td>
+                    <td>
+                        <a href="task.php">'.$row['topic'].'</a>
+                    </td>
+                    <td>
+                        <a href="date.php">
+                            <span>'.$row['dateend'].'</span>
+                        </a>
+                    </td>
+                    <td>
+                    <center> ';
+                        if($row['status1']==0)
+                        {
+                         echo '<form id="end-'.$row['topic'].'" method="POST">
+                         <input name="endgroupTask" type="hidden" value="'.$row['topic'].'">
+                         </form>                 
+                        <button form="end-'.$row['topic'].'" type="submit" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button> 
+                                          
+                         ';
+                        }
+                           
+                        echo '<a href="javascript:;" data-toggle="modal" data-target="#'.$row['topic'].'">
+                                <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">
+                                    Edytuj</button>
+                            </a>
+                            <a href="javascript:;" data-toggle="modal" data-target="#a'.$row['topic'].'">
+                                <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">
+                                    Usuń</button>
+                            </a> 
+                   </center>
+
+                    </td>
+                    <td>';
+                        if($row['status1']==1)
+                        {
+                        echo '<span class="badge badge-success">Skończone</span>';
+                        }
+                        else
+                        {
+                        echo '<span class="badge badge-danger">W trakcie</span>';   
+                        }
+                        echo'
+                    </td>
+                </tr>
+               
+                <div class="modal" id="'.$row['topic'].'"  role="dialog"  aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="#'.$row['topic'].'">Edytuj zadanie: '.$row['topic'].'</h3>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <input type="hidden" value="'.$row['topic'].'" class="form-control form-control-line" name="editgroupTaskName">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="example-email" class="col-md-12">Opis</label>
+                                    <div class="col-md-12">
+                                        <input type="text" value="'.$row['content'].'" class="form-control form-control-line" name="editTaskDescription" id="example-email">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Deadline</label>
+                                    <div class="col-md-12">
+                                        <input name="editTaskDate" type="date" class="form-control" value="'.$row['dateend'].'"> </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary"> Zapisz</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+          </div>
+            
+            
+            <div class="modal" id="a'.$row['topic'].'" tabindex="-1" role="dialog" aria-labelledby="deleteTaskConfirmModal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Uwaga!</h3>
+                </div>
+                <div class="modal-body">
+                    <h5>Na pewno chcesz usunąć zadanie: <strong>'.$row['topic'].'</strong></h5>
+                </div>
+                <div class="modal-footer">
+                <form method="POST">
+                    <input name="delgroupTask" type="hidden" value="'.$row['topic'].'">
+                    <input type="submit" class="btn btn-primary" value="Tak"/>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
+                    </form>
+                </div>
+                </div>
+            </div>
+            </div>';
+        }
+        echo '
+        </tbody>
+        </table>';
+    }
+    public function editgroupTask($pdo)
+    {
+        if(isset($_POST['editgroupTaskName']))
+        {
+        $groupID = $_GET['groupName'];
+        $stmt = $pdo->prepare('UPDATE grouptasks SET 
+                                content= :content,
+                                dateend= :dateend 
+                                WHERE topic = :topic AND groupName = :groupID;');
+        $stmt->bindParam(':topic', $_POST['editgroupTaskName']);                    
+        $stmt->bindParam(':content', $_POST['editTaskDescription']);
+        $stmt->bindParam(':dateend', $_POST['editTaskDate']);
+        $stmt->bindParam(':groupID', $groupID);
+        $stmt->execute();
+        }
+    }
+    public function endgroupTask($pdo)
+    {
+        if(isset($_POST['endgroupTask']))
+        {
+            $groupID = $_GET['groupName'];
+            $status1 = 1;
+            $stmt = $pdo->prepare('UPDATE grouptasks SET 
+                                    status1= :status1
+                                    WHERE topic = :topic AND groupName = :groupID;');
+            $stmt->bindParam(':status1', $status1);                    
+            $stmt->bindParam(':topic', $_POST['endgroupTask']);
+            $stmt->bindParam(':groupID', $groupID);
+            $stmt->execute();
+        } 
+    }
+
+    public function delgroupTask($pdo)
+    {
+        if(isset($_POST['delgroupTask']))
+        {
+            $groupID = $_GET['groupName'];
+            $stmt = $pdo->prepare('DELETE FROM grouptasks WHERE topic = :topic AND groupName = :groupID;');                 
+            $stmt->bindParam(':topic', $_POST['delgroupTask']);
+            $stmt->bindParam(':groupID', $groupID);
+            $stmt->execute();
+        } 
+        
+    }
+
+
+//---------------------------------------------------------------------------
     public function editTask($pdo, $userID)
     {
         if(isset($_POST['editTaskName']))
@@ -1359,7 +1618,7 @@ class panel
             <div class="drop-title">
                                  
         Brak wiadomości w skrzynce odbiorczej!
-        
+
        
         </div>
     </li>
