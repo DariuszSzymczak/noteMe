@@ -417,7 +417,7 @@ class panel
         $userFound = false;
             while($rows = $stmt->fetch())
             { 
-                if($username == $rows['login'] && $groupName == $rows['groupName'])
+                if($username == $rows['login'] && $groupName == $rows['GroupName'])
                 {
                     $userFound = true;
                 }
@@ -539,7 +539,7 @@ class panel
         $stmt -> closeCursor();
 
         $status = 0;
-        $date = date("d-m-y");
+        $date = date("Y-m-d");
         $insertSTMT = $pdo->prepare('INSERT into tasks(topic, content, loginmd5, DateAdded, dateend, author, status1) 
                             values(:topic, :content, :loginmd5, :DateAdded, :dateend, :author, :status1)');
         $insertSTMT->bindParam(':topic', $_POST['topic']);

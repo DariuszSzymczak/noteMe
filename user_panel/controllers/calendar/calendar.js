@@ -1,6 +1,3 @@
-
-
-console.log("chuj");
 function calendarAddCallback() {
 
 

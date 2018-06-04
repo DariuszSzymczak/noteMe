@@ -10,10 +10,11 @@
             <label for="username" class="col-form-label">Nazwa użytkownika:</label>
             <input name="username" type="text" class="form-control" id="username">
           </div>
-        </form>
       </div>
       <div class="modal-footer"> 
-        <input type="submit" class="btn btn-primary" value="Dodaj"/>
+        <input type="submit" class="btn btn-primary" value="Dodaj"/>        
+        </form>
+
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
