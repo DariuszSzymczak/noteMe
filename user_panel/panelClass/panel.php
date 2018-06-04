@@ -415,7 +415,7 @@ class panel
         $userFound = false;
             while($rows = $stmt->fetch())
             { 
-                if($username == $rows['login'] && $groupName == $rows['groupName'])
+                if($username == $rows['login'] && $groupName == $rows['GroupName'])
                 {
                     $userFound = true;
                 }
