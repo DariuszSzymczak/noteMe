@@ -180,16 +180,28 @@ class panel
             $stmtE->bindParam(':userID',$userID,PDO::PARAM_STR);
             $stmtE->execute();      
         }
-        if(isset($_POST['password']))
+        if(isset($_POST['password']) && isset($_POST['password2']))
         {
-            $salted = "salt{$pass1}salt";
+            
+            $pass = $_POST['password'];
+            $pass2 = $_POST['password2'];
+            if($pass == $pass2)
+            {
+            $salted = "salt{$pass}salt";
             $hash = md5($salted);
-            $primary = $login.substr($hash,0,5);
-            $querryChangePass = $pdo->prepare('UPDATE users SET md5=:hash,loginmd5=:primary WHERE login =:login');
+             $login= substr($userID, 0, -5); 
+            $querryChangePass = $pdo->prepare('UPDATE users SET md5=:hash,loginmd5=:userID WHERE login =:login');
             $querryChangePass->bindParam(':login',$login, PDO::PARAM_STR);
-            $querryChangePass->bindParam(':primary',$primary, PDO::PARAM_STR);
+            $querryChangePass->bindParam(':userID',$userID, PDO::PARAM_STR);
             $querryChangePass->bindParam(':hash',$hash, PDO::PARAM_STR);
             $querryChangePass->execute();
+            }
+            else
+            {
+                echo '<script>
+                alert("Podane hasła różnią się od siebie!");
+                 </script>';
+            }
 
         }
         else
@@ -539,7 +551,7 @@ class panel
         {
             $groupID = $_POST['deleteGroup'];
             $login= substr($loginmd5, 0, -5); 
-            
+
         $querryDeleteGroup=$pdo->prepare('DELETE FROM groups WHERE GroupName=:groupName AND groupAdmin=:login');
         $querryDeleteGroup->bindParam(':groupName',$groupID, PDO::PARAM_STR);
         $querryDeleteGroup->bindParam(':login',$login, PDO::PARAM_STR);
