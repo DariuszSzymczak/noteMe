@@ -16,6 +16,5 @@ else
     //cookies ze zlego logowania
     header('Location:./../../../../index.php');
 }
-
 $pane->getUserDates($pdo,$_SESSION['userID']);
 ?>
