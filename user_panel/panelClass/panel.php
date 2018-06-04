@@ -575,7 +575,26 @@ class panel
             $querryDeleteFrom->execute();
         }
     }
-    
+    public function addTaskToGroup($pdo){
+        if (isset($_POST['groupTaskSend'])){
+            $groupID = $_GET['groupName'];
+            $taskName = $_POST['taskName'];
+            $taskDescription = $_POST['taskDescription'];
+            $taskExpiry = $_POST['taskExpiry'];
+            $date = date("d-m-y");
+            $login= substr($_SESSION['userID'], 0, -5); 
+            
+            $querryAddTask = $pdo->prepare('INSERT INTO grouptasks(topic, content,DateAdded, dateend, groupname, author, status1) 
+            VALUES (:topic,:content,:dateAdded,:dateend,:groupname,:login,0);');
+            $querryAddTask->bindParam(':topic', $taskName, PDO::PARAM_STR);
+            $querryAddTask->bindParam(':content', $taskDescription, PDO::PARAM_STR);
+            $querryAddTask->bindParam(':dateAdded', $date, PDO::PARAM_STR);
+            $querryAddTask->bindParam(':dateend', $taskExpiry, PDO::PARAM_STR);
+            $querryAddTask->bindParam(':groupname', $groupID, PDO::PARAM_STR);
+            $querryAddTask->bindParam(':login',$login, PDO::PARAM_STR);
+            $querryAddTask->execute();
+        }
+    }
 
     //DODAWANIE ZADAŃ
 
@@ -1323,6 +1342,16 @@ class panel
         echo $row['COUNT(*)']; 
     }
 
+    public function countMailsReturn($pdo, $userID)
+    {
+        $stmt = $pdo->prepare('SELECT COUNT(*) FROM mails 
+        WHERE receiver = :userID ');
+        $stmt->bindParam(':userID', $userID,PDO::PARAM_STR);
+        $stmt->execute();
+        $row = $stmt->fetch();
+        return $row['COUNT(*)']; 
+    }
+
     public function showMailsRounded($pdo,$userID)
     {
         $pane = new panel();
@@ -1331,7 +1360,23 @@ class panel
         $stmt->bindParam(':receiver',$userID,PDO::PARAM_STR);
         $stmt->execute(); 
         $counter = 0;
-        echo '';
+        
+        if($pane->countMailsReturn($pdo,$userID)>0)
+        {
+        echo '
+        <div class="drop-title">
+                                 
+        Liczba wiadomości: 
+        <span class="label label-rouded label-danger pull-right">';
+        
+                $pane->countReceivedMails($pdo, $userID); 
+         echo '
+        </span>
+       
+        </div>
+    </li>
+    <li>
+        <div class="message-center">';
         foreach($stmt as $row)
         {
            
@@ -1356,6 +1401,28 @@ class panel
             ';
           
         } 
+        echo '
+        </div>
+        </li>
+        <li>
+            <a class="nav-link text-center" href="emailInbox.php">
+                <strong>Zobacz wszystkie wiadomości</strong>
+                <i class="fa fa-angle-right"></i>
+            </a>';
+        }
+        else
+        {
+            echo'
+            <div class="drop-title">
+                                 
+        Brak wiadomości w skrzynce odbiorczej!
+
+       
+        </div>
+    </li>
+    
+      ';
+        }
     }
     public function showUsernamesbyLetter($pdo,$word){
         $stmt = $pdo->prepare('SELECT login FROM users WHERE login LIKE ? ');
