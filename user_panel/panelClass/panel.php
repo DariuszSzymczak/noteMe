@@ -199,7 +199,7 @@ class panel
             else
             {
                 echo '<script>
-                alert("Podane hasła różnią się od siebie!");
+                alert("Podane hasła różnią się od siebie! ");
                  </script>';
             }
 
@@ -561,6 +561,11 @@ class panel
         $q->bindParam(':groupName',$groupID, PDO::PARAM_STR);
         $q->bindParam(':admin',$login, PDO::PARAM_STR);
         $q->execute();
+
+        $q2 = $pdo->prepare('DELETE FROM grouptasks WHERE GroupName=:groupName AND groupAdmin=:admin');
+        $q2->bindParam(':groupName',$groupID, PDO::PARAM_STR);
+        $q2->bindParam(':admin',$login, PDO::PARAM_STR);
+        $q2->execute();
         }
     }
     //Opuść grupe
@@ -593,17 +598,26 @@ class panel
             $taskName = $_POST['taskName'];
             $taskDescription = $_POST['taskDescription'];
             $taskExpiry = $_POST['taskExpiry'];
-            $date = date("d-m-y");
+            $date = date("Y-m-d");
             $login= substr($_SESSION['userID'], 0, -5); 
             
-            $querryAddTask = $pdo->prepare('INSERT INTO grouptasks(topic, content,DateAdded, dateend, groupname, author, status1) 
-            VALUES (:topic,:content,:dateAdded,:dateend,:groupname,:login,0);');
+            $querryFindAdmin = $pdo->prepare('SELECT groupAdmin FROM groups WHERE GroupName = :GroupName');
+            $querryFindAdmin->bindParam(':GroupName', $groupID, PDO::PARAM_STR);
+            $querryFindAdmin->execute();
+
+            $row = $querryFindAdmin->fetch();
+            $groupAdmin = $row["groupAdmin"];
+
+            $querryAddTask = $pdo->prepare('INSERT INTO grouptasks(topic, content,DateAdded, dateend, groupname, author, status1, groupAdmin) 
+            VALUES (:topic,:content,:dateAdded,:dateend,:groupname,:login,0, :groupAdmin);');
             $querryAddTask->bindParam(':topic', $taskName, PDO::PARAM_STR);
             $querryAddTask->bindParam(':content', $taskDescription, PDO::PARAM_STR);
             $querryAddTask->bindParam(':dateAdded', $date, PDO::PARAM_STR);
             $querryAddTask->bindParam(':dateend', $taskExpiry, PDO::PARAM_STR);
             $querryAddTask->bindParam(':groupname', $groupID, PDO::PARAM_STR);
             $querryAddTask->bindParam(':login',$login, PDO::PARAM_STR);
+            $querryAddTask->bindParam(':groupAdmin',$groupAdmin, PDO::PARAM_STR);
+
             $querryAddTask->execute();
         }
     }
