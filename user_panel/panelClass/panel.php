@@ -547,13 +547,13 @@ class panel
             $login= substr($_SESSION['userID'], 0, -5); 
             
             $querryAddTask = $pdo->prepare('INSERT INTO grouptasks(topic, content,DateAdded, dateend, groupname, author, status1) 
-            VALUES (:topic,:content,:dateAdded,:dateend,:groupname,:login,0)');
-            $querryAddTask->bindParam(':topic', $taskName);
-            $querryAddTask->bindParam(':content', $taskDescription);
-            $querryAddTask->bindParam(':DateAdded', $date);
-            $querryAddTask->bindParam(':dateend', $taskExpiry);
-            $querryAddTask->bindParam(':groupname', $groupID);
-            $querryAddTask->bindParam(':login',$login);
+            VALUES (:topic,:content,:dateAdded,:dateend,:groupname,:login,0);');
+            $querryAddTask->bindParam(':topic', $taskName, PDO::PARAM_STR);
+            $querryAddTask->bindParam(':content', $taskDescription, PDO::PARAM_STR);
+            $querryAddTask->bindParam(':dateAdded', $date, PDO::PARAM_STR);
+            $querryAddTask->bindParam(':dateend', $taskExpiry, PDO::PARAM_STR);
+            $querryAddTask->bindParam(':groupname', $groupID, PDO::PARAM_STR);
+            $querryAddTask->bindParam(':login',$login, PDO::PARAM_STR);
             $querryAddTask->execute();
         }
     }
