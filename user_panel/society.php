@@ -18,6 +18,7 @@
     $pane->sendMail($pdo, $_SESSION['userID']);
 
 ?>
+<script src="./controllers/getUsersByLetter/society.js"></script>
     <!-- Page wrapper  -->
     <div class="page-wrapper">
         <!-- Bread crumb -->
@@ -53,7 +54,8 @@
                                                     <i class="ti-search"></i>
                                                 </button>
                                             </span>
-                                            <input type="text" placeholder="Nazwa użytkownika" name="search-user" id="search-user" class="form-control">
+                                            <input type="text" placeholder="Nazwa użytkownika" name="search-user" id="groupName" class="form-control">
+                                            <div id="userlistbox" style="width: 100%"><p>Lista Użytkowników:</p><div id="userlist"></div> </div>
                                         </div>
                                     </div>
                                 </form>
