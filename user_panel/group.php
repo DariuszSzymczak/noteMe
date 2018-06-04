@@ -111,18 +111,7 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Nazwa</th>
-                                                <th>Grupa</th>
-                                                <th>Deadline</th>
-                                                <th>
-                                                    <center>Akcje</center>
-                                                </th>
-                                                <th>Status</th>
-                                            </tr>
-                                        </thead>
+                       
                                         <tbody>
                                             <?php $pane->showGroupTasks($pdo); ?> 
                                         </tbody>
