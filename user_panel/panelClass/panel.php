@@ -111,7 +111,7 @@ class panel
             </div>
         </div>
         </div>';
-        echo '<div class="modal" tabindex="-1" role="dialog" aria-labelledby="showPrivateNoteModal" aria-hidden="true" id="show'.$rows["Title"].'">
+echo '<div class="modal" tabindex="-1" role="dialog" aria-labelledby="showPrivateNoteModal" aria-hidden="true" id="show'.$rows["Title"].'">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                     <div class="modal-header">
@@ -805,7 +805,8 @@ class panel
                 <tr>
                     <td>'.++$counter.'</td>
                     <td>
-                        <a href="task.php">'.$row['topic'].'</a>
+                    <a href="javascript:;" data-toggle="modal" data-target="#show'.$row["topic"].'">
+                    '.$row["topic"].'</td></a>
                     </td>
                     <td>
                         <a href="date.php">
@@ -878,10 +879,37 @@ class panel
                         </div>
                     </div>
                 </div>
-          </div>
+          </div>';
             
+          echo '<div class="modal" tabindex="-1" role="dialog" aria-labelledby="showGroupTask" aria-hidden="true" id="show'.$row["topic"].'">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">'.$row["topic"].'</h3>
+                        <h4 style="float:left">Deadline: '.$row["dateend"] .'</h4>';
+                        if($row['status1']==1)
+                        {
+                        echo '<span class="badge badge-success">Skończone</span>';
+                        }
+                        else
+                        {
+                        echo '<span class="badge badge-danger">W trakcie</span>';   
+                        }
+                        echo'</div>
+                    
+                    <div class="modal-body">
+                    <p>'.$row["content"].'</p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                    </div>
+                </form>
+            </div>
+         </div>
+        </div>';
             
-            <div class="modal" id="a'.$row['topic'].'" tabindex="-1" role="dialog" aria-labelledby="deleteTaskConfirmModal" aria-hidden="true">
+            echo '<div class="modal" id="a'.$row['topic'].'" tabindex="-1" role="dialog" aria-labelledby="deleteTaskConfirmModal" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
@@ -1289,14 +1317,18 @@ class panel
     }
     public function sendInvitation($pdo, $user1, $user2)
     {
-        
-        $stmt = $pdo->prepare('INSERT INTO `relationships` (user1Login, user2Login, relationshipStatus, actionUserLogin)
-         VALUES (:user1, :user2, 1, :user2)
-        ');
-         $stmt->bindParam(':user1', $user1, PDO::PARAM_STR);
-         $stmt->bindParam(':user2', $user2, PDO::PARAM_STR);
-         $stmt->execute();
-      
+        if($this->relationShipStatus($pdo, $user1, $user2) == 0)
+        {
+            if($user2 != $user1)
+            {
+                $stmt = $pdo->prepare('INSERT INTO `relationships` (user1Login, user2Login, relationshipStatus, actionUserLogin)
+                VALUES (:user1, :user2, 1, :user2)
+                ');
+                $stmt->bindParam(':user1', $user1, PDO::PARAM_STR);
+                $stmt->bindParam(':user2', $user2, PDO::PARAM_STR);
+                $stmt->execute();
+            }
+        }
     }
 
     public function acceptInvitation($pdo, $user1, $user2)

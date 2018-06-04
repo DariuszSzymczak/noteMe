@@ -21,8 +21,8 @@ $(document).ready(function(){
                 box.html("");
                 for(x=0;x<json.length;x++){  
                     let login = json[x].login;   
-                    let button= `<button type="button" class="btn-success" data-login="${login}"  style="padding: 5px 5%;">+</button>`;              
-                    box.append(`<div class="innerBox"data-login="${login}" ><span style="width: 85% !important" >${login}</span>${button}</div>`);
+                    let button= `<button type="button" class="btn-success" data-login="${login}"  style="float:right; padding: 5px 5%;">Dodaj do znajomych</button>`;              
+                    box.append(`<div class="innerBox"data-login="${login}" ><span style="width: 10% !important" >${login}</span>${button}</div>`);
                     LetterGetAvatar(login);              
                
                 }
