@@ -269,29 +269,38 @@ class panel
         $counter++;
         }
     }
-    public function addGroup($pdo, $userID)
+    public function addGroup($pdo, $userID, $groupName)
     {
         if(isset($_POST["groupName"]) && isset($_POST["groupSize"]))
         {
+            $pane1 = new panel();
             $name = $_POST["groupName"];
             $size = $_POST["groupSize"];
             $count = 1;
             $loggedUser = substr($_SESSION['userID'], 0, -5); 
-            $stmt = $pdo->prepare('INSERT INTO groups(GroupName,GroupDescription, Max_count, UserCount, groupAdmin)
-                                VALUES (:name, "Opis grupy...", :size, :count, :user ) ');
-            $stmtB = $pdo->prepare('INSERT INTO connectgroup(login, GroupName)
-            VALUES (:login, :name) ');
+            if(($pane1->hasUserGroup($pdo, $loggedUser, $groupName) != true))
+            {
+                $stmt = $pdo->prepare('INSERT INTO groups(GroupName,GroupDescription, Max_count, UserCount, groupAdmin) 
+                VALUES (:name, "Opis grupy...", :size, :count, :user )');
+                $stmtB = $pdo->prepare('INSERT INTO connectgroup(login, GroupName, groupAdmin)
+                VALUES (:login, :name, :login)');
 
-            $stmt->bindParam(':name', $name,PDO::PARAM_STR);
-            $stmt->bindParam(':size', $size,PDO::PARAM_INT);
-            $stmt->bindParam(':count', $count,PDO::PARAM_INT);
-            $stmt->bindParam(':user', $loggedUser,PDO::PARAM_STR);
+                $stmt->bindParam(':name', $name,PDO::PARAM_STR);
+                $stmt->bindParam(':size', $size,PDO::PARAM_INT);
+                $stmt->bindParam(':count', $count,PDO::PARAM_INT);
+                $stmt->bindParam(':user', $loggedUser,PDO::PARAM_STR);
 
-            $stmtB->bindParam(':name', $name,PDO::PARAM_STR);
-            $stmtB->bindParam(':login', $loggedUser,PDO::PARAM_STR);
+                $stmtB->bindParam(':name', $name,PDO::PARAM_STR);
+                $stmtB->bindParam(':login', $loggedUser,PDO::PARAM_STR);
 
-            $stmt->execute();
-            $stmtB->execute();
+
+                $stmt->execute();
+                $stmtB->execute();
+            }
+            else
+            {
+                echo '<script>alert("Już masz grupę o takiej nazwie, wybierz inną nazwę dla grupy")</script>';
+            }
         }
     }
     public function getGroupData($pdo, $groupName, $data)
@@ -423,23 +432,50 @@ class panel
         return $userFound;
     }
 
+    public function hasUserGroup($pdo, $username, $groupName)
+    {
+        $stmt = $pdo->prepare('SELECT  g.GroupName, g.groupAdmin FROM groups g WHERE g.GroupName = :groupName AND g.groupAdmin = :username');
+        $stmt->bindParam(':groupName', $groupName,PDO::PARAM_INT);
+        $stmt->bindParam(':username', $username,PDO::PARAM_INT);
+        $stmt->execute();
+        $userFound = false;
+
+            while($rows = $stmt->fetch())
+            { 
+                if($username == $rows['groupAdmin'] && $groupName == $rows['GroupName'])
+                {
+                    $userFound = true;
+                }
+            }
+        return $userFound;
+    }
+
     public function addUserToGroup($pdo, $groupName)
     {
-        echo 'Gówno1';
         if(isset($_POST["username"]))
         {
-            echo 'Gówno2';
             $username = $_POST["username"];
             if($this->existsUser($pdo, $username) && (!($this->existsUserInGroup($pdo, $username, $groupName))))
             {
-                echo 'Gówno3';
-                $stmt = $pdo->prepare('INSERT INTO connectgroup(login, GroupName)
-                                    VALUES (:username, :groupName) ');
+                
+                
+        $stmtAdmin = $pdo->prepare('SELECT g.groupAdmin FROM groups g WHERE g.GroupName = :groupName');
+        $stmtAdmin->bindParam(':groupName', $groupName,PDO::PARAM_INT);
+        $stmtAdmin->execute();
+        $row = $stmtAdmin->fetch();
+        $groupAdminLogin = $row["groupAdmin"];
+
+                $stmt = $pdo->prepare('INSERT INTO connectgroup(login, GroupName, groupAdmin)
+                                    VALUES (:username, :groupName, :admin) ');
 
                 $stmt->bindParam(':username', $username,PDO::PARAM_STR);
                 $stmt->bindParam(':groupName', $groupName,PDO::PARAM_STR);
-
+                $stmt->bindParam(':admin', $groupAdminLogin,PDO::PARAM_STR);
                 $stmt->execute();
+            }
+            else
+            {
+                echo '<script>alert("Użytkownik jest już w grupie lub nie istnieje!")</script>'; 
             }
         }
     }
@@ -499,20 +535,22 @@ class panel
     public function deleteGroup($pdo,$loginmd5)
     {
 
-        if(isset($_POST['deleteGroup'])){
+        if(isset($_POST['deleteGroup']))
+        {
             $groupID = $_POST['deleteGroup'];
             $login= substr($loginmd5, 0, -5); 
+            
         $querryDeleteGroup=$pdo->prepare('DELETE FROM groups WHERE GroupName=:groupName AND groupAdmin=:login');
         $querryDeleteGroup->bindParam(':groupName',$groupID, PDO::PARAM_STR);
         $querryDeleteGroup->bindParam(':login',$login, PDO::PARAM_STR);
         $querryDeleteGroup->execute();
-            
-        $q = $pdo->prepare('DELETE FROM connectgroup WHERE GroupName=:groupName AND login=:login');
+
+        $q = $pdo->prepare('DELETE FROM connectgroup WHERE GroupName=:groupName AND groupAdmin=:admin');
         $q->bindParam(':groupName',$groupID, PDO::PARAM_STR);
-        $q->bindParam(':login',$login, PDO::PARAM_STR);
+        $q->bindParam(':admin',$login, PDO::PARAM_STR);
         $q->execute();
-            }
         }
+    }
     //Opuść grupe
     public function leaveGroup($pdo){
         if(isset($_POST['leaveGroup'])){
