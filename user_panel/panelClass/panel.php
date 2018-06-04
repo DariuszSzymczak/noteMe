@@ -712,6 +712,182 @@ class panel
         </table>';
     }
 
+    //Zadania grupowe - show i akcje do niego xD
+    
+    public function showGroupTasks($pdo)
+    {
+        $groupName = $_GET['groupName'];
+        $stmt = $pdo->prepare('SELECT topic, content, DateAdded, dateend, status1 FROM grouptasks
+        WHERE groupName= :groupName;');
+        $stmt->bindParam(':groupName',$groupName,PDO::PARAM_STR);
+        $stmt->execute();
+        echo '<table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nazwa</th>
+                <th>Deadline</th>
+                <th>
+                    <center>Akcje</center>
+                </th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>';
+        $counter =0;
+        while($row = $stmt->fetch())        
+        {
+            echo '
+                <tr>
+                    <td>'.++$counter.'</td>
+                    <td>
+                        <a href="task.php">'.$row['topic'].'</a>
+                    </td>
+                    <td>
+                        <a href="date.php">
+                            <span>'.$row['dateend'].'</span>
+                        </a>
+                    </td>
+                    <td>
+                    <center> ';
+                        if($row['status1']==0)
+                        {
+                         echo '<form id="end-'.$row['topic'].'" method="POST">
+                         <input name="endgroupTask" type="hidden" value="'.$row['topic'].'">
+                         </form>                 
+                        <button form="end-'.$row['topic'].'" type="submit" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button> 
+                                          
+                         ';
+                        }
+                           
+                        echo '<a href="javascript:;" data-toggle="modal" data-target="#'.$row['topic'].'">
+                                <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">
+                                    Edytuj</button>
+                            </a>
+                            <a href="javascript:;" data-toggle="modal" data-target="#a'.$row['topic'].'">
+                                <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">
+                                    Usuń</button>
+                            </a> 
+                   </center>
+
+                    </td>
+                    <td>';
+                        if($row['status1']==1)
+                        {
+                        echo '<span class="badge badge-success">Skończone</span>';
+                        }
+                        else
+                        {
+                        echo '<span class="badge badge-danger">W trakcie</span>';   
+                        }
+                        echo'
+                    </td>
+                </tr>
+               
+                <div class="modal" id="'.$row['topic'].'"  role="dialog"  aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="#'.$row['topic'].'">Edytuj zadanie: '.$row['topic'].'</h3>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <input type="hidden" value="'.$row['topic'].'" class="form-control form-control-line" name="editgroupTaskName">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="example-email" class="col-md-12">Opis</label>
+                                    <div class="col-md-12">
+                                        <input type="text" value="'.$row['content'].'" class="form-control form-control-line" name="editTaskDescription" id="example-email">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Deadline</label>
+                                    <div class="col-md-12">
+                                        <input name="editTaskDate" type="date" class="form-control" value="'.$row['dateend'].'"> </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary"> Zapisz</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+          </div>
+            
+            
+            <div class="modal" id="a'.$row['topic'].'" tabindex="-1" role="dialog" aria-labelledby="deleteTaskConfirmModal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Uwaga!</h3>
+                </div>
+                <div class="modal-body">
+                    <h5>Na pewno chcesz usunąć zadanie: <strong>'.$row['topic'].'</strong></h5>
+                </div>
+                <div class="modal-footer">
+                <form method="POST">
+                    <input name="delgroupTask" type="hidden" value="'.$row['topic'].'">
+                    <input type="submit" class="btn btn-primary" value="Tak"/>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
+                    </form>
+                </div>
+                </div>
+            </div>
+            </div>';
+        }
+        echo '
+        </tbody>
+        </table>';
+    }
+    public function editgroupTask($pdo)
+    {
+        if(isset($_POST['editgroupTaskName']))
+        {
+        $groupID = $_GET['groupName'];
+        $stmt = $pdo->prepare('UPDATE grouptasks SET 
+                                content= :content,
+                                dateend= :dateend 
+                                WHERE topic = :topic AND groupName = :groupID;');
+        $stmt->bindParam(':topic', $_POST['editgroupTaskName']);                    
+        $stmt->bindParam(':content', $_POST['editTaskDescription']);
+        $stmt->bindParam(':dateend', $_POST['editTaskDate']);
+        $stmt->bindParam(':groupID', $groupID);
+        $stmt->execute();
+        }
+    }
+    public function endgroupTask($pdo)
+    {
+        if(isset($_POST['endgroupTask']))
+        {
+            $groupID = $_GET['groupName'];
+            $status1 = 1;
+            $stmt = $pdo->prepare('UPDATE grouptasks SET 
+                                    status1= :status1
+                                    WHERE topic = :topic AND groupName = :groupID;');
+            $stmt->bindParam(':status1', $status1);                    
+            $stmt->bindParam(':topic', $_POST['endgroupTask']);
+            $stmt->bindParam(':groupID', $groupID);
+            $stmt->execute();
+        } 
+    }
+
+    public function delgroupTask($pdo)
+    {
+        if(isset($_POST['delgroupTask']))
+        {
+            $groupID = $_GET['groupName'];
+            $stmt = $pdo->prepare('DELETE FROM grouptasks WHERE topic = :topic AND groupName = :groupID;');                 
+            $stmt->bindParam(':topic', $_POST['delgroupTask']);
+            $stmt->bindParam(':groupID', $groupID);
+            $stmt->execute();
+        } 
+        
+    }
+
+
+//---------------------------------------------------------------------------
     public function editTask($pdo, $userID)
     {
         if(isset($_POST['editTaskName']))
