@@ -3,7 +3,7 @@
             <div class="modal-content">
                 <form method="POST" novalidate="novalidate">
                     <div class="modal-header">
-                        <h3 class="modal-title">Utwórz grupę</h3>
+                        <h3 class="modal-title">Dodaj notatkę</h3>
                     </div>
                     <div class="modal-body">
                         <div class="">
