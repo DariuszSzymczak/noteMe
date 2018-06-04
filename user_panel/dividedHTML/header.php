@@ -51,34 +51,22 @@
                             <a class="nav-link dropdown-toggle text-muted  " href="#" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-envelope"></i>
                                 <div class="notify">
-                                    <span class="heartbit"></span>
-                                    <span class="point"></span>
+                                <?php 
+                                    if($pane->countMailsReturn($pdo, $_SESSION['userID'])>0)
+                                    {
+                                        echo'
+                                  <span class="heartbit"></span>
+                                    <span class="point"></span>';
+                                    }
+                                    ?>
                                 </div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn" aria-labelledby="2">
                                 <ul>
                                     <li>
-                                        <div class="drop-title">
-                                 
-                                        Liczba wiadomości: 
-                                        <span class="label label-rouded label-danger pull-right">
-                                            <?php 
-                                                $pane->countReceivedMails($pdo, $_SESSION['userID']); 
-                                            ?>
-                                        </span>
-                                       
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="message-center">
+                                     
                                            <?php $pane->showMailsRounded($pdo,$_SESSION['userID']); ?>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link text-center" href="emailInbox.php">
-                                            <strong>Zobacz wszystkie wiadomości</strong>
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
+                                       
                                     </li>
                                 </ul>
                             </div>
