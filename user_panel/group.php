@@ -6,7 +6,10 @@
     $pane->addUserToGroup($pdo, $_GET['groupName']);
     $pane->sendMail($pdo,$_SESSION['userID']);
     $pane->deleteFromGroup($pdo);
-    
+    $pane->addTaskToGroup($pdo);
+    $pane->delgroupTask($pdo);
+    $pane->editgroupTask($pdo);
+    $pane->endgroupTask($pdo);
 ?>
 
     <!-- Page wrapper  -->
@@ -108,141 +111,14 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Nazwa</th>
-                                                <th>Grupa</th>
-                                                <th>Deadline</th>
-                                                <th>
-                                                    <center>Akcje</center>
-                                                </th>
-                                                <th>Status</th>
-                                            </tr>
-                                        </thead>
+                       
                                         <tbody>
-
-                                            <tr>
-                                                <td>1</td>
-                                                <td>
-                                                    <a href="task.php">Przykładowe zadanie z bazy</a>
-                                                </td>
-                                                <td>
-                                                    <a href="group.php">
-                                                        <span>IP20</span>
-                                                </td>
-                                                <td>
-                                                    <a href="date.php">
-                                                        <span>2018-05-30</span>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
-                                                    <a href="javascript:;" data-toggle="modal" data-target="#editTaskModal">
-                                                        <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">
-                                                            Edytuj</button>
-                                                    </a>
-                                                    <a href="javascript:;" data-toggle="modal" data-target="#deleteTaskConfirmModal">
-                                                        <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">
-                                                            Usuń</button>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <span class="badge badge-success">Skończone</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>
-                                                    <a href="task.php">Przykładowe zadanie z bazy</a>
-                                                </td>
-                                                <td>
-                                                    <a href="group.php">
-                                                        <span>IP20</span>
-                                                </td>
-                                                <td>
-                                                    <a href="date.php">
-                                                        <span>2018-05-30</span>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
-                                                    <a href="javascript:;" data-toggle="modal" data-target="#editTaskModal">
-                                                        <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">
-                                                            Edytuj</button>
-                                                    </a>
-                                                    <a href="javascript:;" data-toggle="modal" data-target="#deleteTaskConfirmModal">
-                                                        <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">
-                                                            Usuń</button>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <span class="badge badge-success">Skończone</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>
-                                                    <a href="task.php">Przykładowe zadanie z bazy</a>
-                                                </td>
-                                                <td>
-                                                    <a href="group.php">
-                                                        <span>IP20</span>
-                                                </td>
-                                                <td>
-                                                    <a href="date.php">
-                                                        <span>2018-05-30</span>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
-                                                    <a href="javascript:;" data-toggle="modal" data-target="#editTaskModal">
-                                                        <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">
-                                                            Edytuj</button>
-                                                    </a>
-                                                    <a href="javascript:;" data-toggle="modal" data-target="#deleteTaskConfirmModal">
-                                                        <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">
-                                                            Usuń</button>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <span class="badge badge-success">Skończone</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>
-                                                    <a href="task.php">Przykładowe zadanie z bazy</a>
-                                                </td>
-                                                <td>
-                                                    <a href="group.php">
-                                                        <span>IP20</span>
-                                                </td>
-                                                <td>
-                                                    <a href="date.php">
-                                                        <span>2018-05-30</span>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <button type="button" class="btn btn-info btn-xs m-b-10 m-l-5">Zakończ</button>
-                                                    <a href="javascript:;" data-toggle="modal" data-target="#editTaskModal">
-                                                        <button type="button" class="btn btn-warning btn-xs m-b-10 m-l-5">
-                                                            Edytuj</button>
-                                                    </a>
-                                                    <a href="javascript:;" data-toggle="modal" data-target="#deleteTaskConfirmModal">
-                                                        <button type="button" class="btn btn-danger btn-xs m-b-10 m-l-5">
-                                                            Usuń</button>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <span class="badge badge-success">Skończone</span>
-                                                </td>
-                                            </tr>
+                                            <?php $pane->showGroupTasks($pdo); ?> 
                                         </tbody>
                                     </table>
                                 </div>
                                 <a href="javascript:;" data-toggle="modal" data-target="#addTaskModal">
-                                    <button type="button" class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5">
+                                    <button type="button" class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5" data-toggle="modal" data-target="#addTaskToGroupModal">
                                         <i class="ti-plus"></i>Dodaj zadanie</button>
                                 </a>
                             </div>
@@ -316,7 +192,7 @@
     require('dividedHTML/editTaskModal.php');
     require('dividedHTML/deleteUserConfirmModal.php');
     require('dividedHTML/sendMessageModal.php');
-    require('dividedHTML/addTaskToUserModal.php');
+    require('dividedHTML/addTaskToGroup.php');
     require('dividedHTML/addUserToGroupModal.php');
     
 ?>

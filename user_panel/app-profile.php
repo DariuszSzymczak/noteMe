@@ -114,7 +114,13 @@
                                     <div class="form-group">
                                         <label class="col-md-12">Hasło (podaj nowe)</label>
                                         <div class="col-md-12">
-                                            <input name="pw" placeholder="Uzupełnij jeśli chcesz zmienić" type="password" class="form-control form-control-line">
+                                            <input name="password" placeholder="Wpisz nowe hasło" type="password" class="form-control form-control-line">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Hasło (powtórz)</label>
+                                        <div class="col-md-12">
+                                            <input name="password2" placeholder="Powtórz hasło" type="password" class="form-control form-control-line">
                                         </div>
                                     </div>
 

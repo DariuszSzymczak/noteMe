@@ -21,11 +21,18 @@ $(document).ready(function(){
                 box.html("");
                 for(x=0;x<json.length;x++){  
                     let login = json[x].login;   
-                    let button= `<button type="button" class="btn-success" data-login="${login}"  style="padding: 5px 5%;">+</button>`;              
-                    box.append(`<div class="innerBox"data-login="${login}" ><span style="width: 85% !important" >${login}</span>${button}</div>`);
-                    LetterGetAvatar(login);
-                
+                    let button= `<button type="button" class="btn-success" data-login="${login}"  style="float:right; padding: 5px 5%;">Dodaj do znajomych</button>`;              
+                    box.append(`<div class="innerBox"data-login="${login}" ><span style="width: 10% !important" >${login}</span>${button}</div>`);
+                    LetterGetAvatar(login);              
+               
                 }
+                $(`.btn-success`).each(function(){
+                    $(this).click(function(){
+                        let logg = this.dataset.login;
+                        console.log(logg);
+                        SocietySendInvitation(logg);
+                    })
+                })
                 
             }
             
@@ -49,3 +56,19 @@ function LetterGetAvatar(name){
         }
     });
 }
+
+function SocietySendInvitation(name){
+    $.ajax({
+        type: 'POST',
+        url: './controllers/getUsersByLetter/handlerSociety.php',
+        data: {"name2":name},
+        success: function (response) {
+         let table = document.getElementById('showSentInvitations');
+         table.innerHTML = response;
+
+            
+            
+        }
+    });
+}
+

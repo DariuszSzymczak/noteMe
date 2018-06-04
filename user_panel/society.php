@@ -110,7 +110,7 @@
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="showSentInvitations">
                                <?php $pane->showSentInvitations($pdo, $login) ?>
 
                                 </tbody>
@@ -137,7 +137,7 @@
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="showReceivedInvitations">
                                 <?php $pane->showReceivedInvitations($pdo, $login) ?>
 
                                 </tbody>
