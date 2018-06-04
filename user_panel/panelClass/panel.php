@@ -598,7 +598,7 @@ class panel
             $taskName = $_POST['taskName'];
             $taskDescription = $_POST['taskDescription'];
             $taskExpiry = $_POST['taskExpiry'];
-            $date = date("Y-m-d");
+            $date = date("y-m-d");
             $login= substr($_SESSION['userID'], 0, -5); 
             
             $querryFindAdmin = $pdo->prepare('SELECT groupAdmin FROM groups WHERE GroupName = :GroupName');
