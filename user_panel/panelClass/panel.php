@@ -1359,7 +1359,7 @@ class panel
             <div class="drop-title">
                                  
         Brak wiadomości w skrzynce odbiorczej!
-        
+
        
         </div>
     </li>
