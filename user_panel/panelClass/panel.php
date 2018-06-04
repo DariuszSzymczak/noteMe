@@ -1289,16 +1289,16 @@ class panel
     }
     public function sendInvitation($pdo, $user1, $user2)
     {
-        if(isset($_POST["user1"]))
-        {
+        
         $stmt = $pdo->prepare('INSERT INTO `relationships` (user1Login, user2Login, relationshipStatus, actionUserLogin)
          VALUES (:user1, :user2, 1, :user2)
         ');
          $stmt->bindParam(':user1', $user1, PDO::PARAM_STR);
          $stmt->bindParam(':user2', $user2, PDO::PARAM_STR);
          $stmt->execute();
-        }
+      
     }
+
     public function acceptInvitation($pdo, $user1, $user2)
     {
         if(isset($_POST["acceptInvitation"]))
