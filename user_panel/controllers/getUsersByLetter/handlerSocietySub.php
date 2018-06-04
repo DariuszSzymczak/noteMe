@@ -1,6 +1,5 @@
 <?php
 session_start();
-$name2 = $_POST['name2'];
 if(isset($_SESSION['userID']))
 {
 $panel = './../../panelClass/panel.php';
