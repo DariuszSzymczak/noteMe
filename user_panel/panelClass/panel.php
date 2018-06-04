@@ -383,7 +383,7 @@ class panel
                 if(substr($_SESSION['userID'],0, -5) != $rows["login"])
                     {
                     echo "  
-                    <form method='POST' id='delete".$rows['login']."FromGroup'>
+                    <form style=\"float:left;\" method='POST' id='delete".$rows['login']."FromGroup'>
                             <input name='usertodeleteFromGroup' type='hidden' value='".$rows['login']."'>
                         </form>
 
