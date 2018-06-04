@@ -571,7 +571,7 @@ class panel
         $stmt -> closeCursor();
 
         $status = 0;
-        $date = date("d-m-y");
+        $date = date("Y-m-d");
         $insertSTMT = $pdo->prepare('INSERT into tasks(topic, content, loginmd5, DateAdded, dateend, author, status1) 
                             values(:topic, :content, :loginmd5, :DateAdded, :dateend, :author, :status1)');
         $insertSTMT->bindParam(':topic', $_POST['topic']);
@@ -1304,6 +1304,16 @@ class panel
         echo $row['COUNT(*)']; 
     }
 
+    public function countMailsReturn($pdo, $userID)
+    {
+        $stmt = $pdo->prepare('SELECT COUNT(*) FROM mails 
+        WHERE receiver = :userID ');
+        $stmt->bindParam(':userID', $userID,PDO::PARAM_STR);
+        $stmt->execute();
+        $row = $stmt->fetch();
+        return $row['COUNT(*)']; 
+    }
+
     public function showMailsRounded($pdo,$userID)
     {
         $pane = new panel();
@@ -1312,7 +1322,23 @@ class panel
         $stmt->bindParam(':receiver',$userID,PDO::PARAM_STR);
         $stmt->execute(); 
         $counter = 0;
-        echo '';
+        
+        if($pane->countMailsReturn($pdo,$userID)>0)
+        {
+        echo '
+        <div class="drop-title">
+                                 
+        Liczba wiadomości: 
+        <span class="label label-rouded label-danger pull-right">';
+        
+                $pane->countReceivedMails($pdo, $userID); 
+         echo '
+        </span>
+       
+        </div>
+    </li>
+    <li>
+        <div class="message-center">';
         foreach($stmt as $row)
         {
            
@@ -1337,6 +1363,28 @@ class panel
             ';
           
         } 
+        echo '
+        </div>
+        </li>
+        <li>
+            <a class="nav-link text-center" href="emailInbox.php">
+                <strong>Zobacz wszystkie wiadomości</strong>
+                <i class="fa fa-angle-right"></i>
+            </a>';
+        }
+        else
+        {
+            echo'
+            <div class="drop-title">
+                                 
+        Brak wiadomości w skrzynce odbiorczej!
+
+       
+        </div>
+    </li>
+    
+      ';
+        }
     }
     public function showUsernamesbyLetter($pdo,$word){
         $stmt = $pdo->prepare('SELECT login FROM users WHERE login LIKE ? ');
