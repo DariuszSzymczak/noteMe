@@ -1,6 +1,6 @@
 <?php
 session_start();
-$word = $_POST['word'];
+$log = $_POST['login'];
 if(isset($_SESSION['userID']))
 {
 $panel = './../../panelClass/panel.php';
@@ -17,6 +17,7 @@ else
     //cookies ze zlego logowania
     header('Location:./../../../../index.php');
 }
-if(strlen($word) > 0 ) $pane->showUsernamesbyLetter($pdo,$word);
-else echo json_encode("");
+echo $pane->getUserAvatar($pdo,$log);
+    
+
 ?>

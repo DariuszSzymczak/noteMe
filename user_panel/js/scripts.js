@@ -128,4 +128,10 @@ $(function() {
         $('a[data-action="close"]').on("click", function() {
             $(this).closest(".card").removeClass().slideUp("fast");
         });
+        $("#sendMail").on('show.bs.modal', function(e){
+            var login = $(e.relatedTarget).data("logints");
+            $(e.currentTarget).find('input[name="adresat"]').val(login);
+
+        });
+
 });

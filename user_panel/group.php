@@ -4,6 +4,8 @@
     require('dividedHTML/left-sidebar.php');
     $pane->changeGroupData($pdo, $_GET['groupName']);
     $pane->addUserToGroup($pdo, $_GET['groupName']);
+    $pane->sendMail($pdo,$_SESSION['userID']);
+    $pane->deleteFromGroup($pdo);
     
 ?>
 
@@ -278,7 +280,36 @@
                     </div>
                 </div>
             </div>
+    <div class="modal" tabindex="-1" role="dialog" aria-labelledby="sendMail" aria-hidden="true" id="sendMail">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form method="POST" novalidate="novalidate">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Wyślij wiadomość</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="">
+                            <div class="form-group">
+                                <input type="hidden" placeholder="Tutaj wpisz login osoby, z którą chcesz się skontaktować"  class="form-control" name="adresat" id="groupName">
+                                <label for="groupName">
+                                    Temat </label>
+                                <input type="text" placeholder="Temat wiadomości" class="form-control" name="mailTopic" id="mailTopic"/>
+                                <label for="groupSize">
+                                    Treść </label>
+                                <input type="text" placeholder="Treść wiadomości"  class="form-control" name="mailContent" id="mailContent"/>
+                                <span class="field-validation-valid text-danger" data-valmsg-for="groupName" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
 
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-primary" value="Wyślij wiadomość"/>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
             <?php
     require('dividedHTML/footer.php');
     require('dividedHTML/deleteTaskConfirmModal.php');

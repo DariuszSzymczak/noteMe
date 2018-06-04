@@ -6925,3 +6925,31 @@ tbody tr td:last-child {
     display: inline-block !important;
   }
 }
+
+.innerBox{
+  padding: 3px;
+  cursor:pointer;
+  transition: 1s cubic-bezier(0.39, 0.575, 0.565, 1)
+}
+.innerBox:hover{
+  background: #9f92f0;
+}
+
+.innerBox img {
+  width: 42px;
+  display: inline;
+}
+
+div#userlistbox {
+  border: 1px solid #b7bdc0;
+  margin: 10px;
+  padding: 10px;
+
+}
+.innerBox span {
+  width: 90%;
+  text-align: center;
+  display: inline-block;
+  font-size: 18px;
+}
+

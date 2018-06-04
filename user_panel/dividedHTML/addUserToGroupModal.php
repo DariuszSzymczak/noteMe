@@ -5,7 +5,7 @@
         <h3 class="modal-title" id="exampleModalLabel">Dodaj użytkownika do grupy</h3>
       </div>
       <div class="modal-body">
-        <form action="" method="POST">
+        <form method="POST">
           <div class="form-group">
             <label for="username" class="col-form-label">Nazwa użytkownika:</label>
             <input name="username" type="text" class="form-control" id="username">
@@ -17,6 +17,7 @@
 
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
+      </form>
     </div>
   </div>
 </div>
