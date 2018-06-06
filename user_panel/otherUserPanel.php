@@ -2,8 +2,9 @@
     require('dividedHTML/head-section.php');
     require('dividedHTML/header.php');
     require('dividedHTML/left-sidebar.php');
-    $login= substr($_SESSION['userID'], 0, -5); 
-    $pane->sendInvitation($pdo, $_GET['username'], $login);
+    $login= substr($_SESSION['userID'], 0, -5);
+    if(isset($_POST["user1"]))
+    $pane->sendInvitation($pdo, $_POST['user1'], $login);
     if(isset($_POST["acceptInvitation"]))
     $pane->acceptInvitation($pdo, $_POST["acceptInvitation"], $login);
     $pane->sendMail($pdo, $_SESSION['userID']);

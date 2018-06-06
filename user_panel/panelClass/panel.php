@@ -111,7 +111,7 @@ class panel
             </div>
         </div>
         </div>';
-        echo '<div class="modal" tabindex="-1" role="dialog" aria-labelledby="showPrivateNoteModal" aria-hidden="true" id="show'.$rows["Title"].'">
+echo '<div class="modal" tabindex="-1" role="dialog" aria-labelledby="showPrivateNoteModal" aria-hidden="true" id="show'.$rows["Title"].'">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                     <div class="modal-header">
@@ -248,6 +248,7 @@ class panel
         FROM groups g, connectgroup cg
         WHERE cg.login = :loggedUser
         AND cg.GroupName = g.GroupName
+        AND cg.groupAdmin = g.groupAdmin
         ');
         $stmt->bindParam(':loggedUser',$loggedUser,PDO::PARAM_STR);
         $stmt->execute();
@@ -258,7 +259,7 @@ class panel
             echo '<tr>';
             echo '<td>'. $counter .'</td>';
 
-            echo "<td><a href=group.php?groupName=" .$rows["GroupName"] .">{$rows["GroupName"]}</td></a>";
+            echo "<td><a href=group.php?groupName="; echo urlencode($rows["GroupName"]) .">"; echo ($rows["GroupName"]) ."</td></a>";
             echo "
             <td>"
                 .$rows["UserCount"] ."/".$rows["Max_count"]
@@ -266,12 +267,14 @@ class panel
             echo "<td> <center>
             <form method='POST' id='delete-".$rows["GroupName"]."'>
                 <input name='deleteGroup' type='hidden' value='".$rows["GroupName"]."'>
+            </form>";
+            if($loggedUser != $rows["groupAdmin"])
+            {
+            echo'<form method="POST" id="leave-'.$rows["GroupName"].'">
+                <input name="leaveGroup" type="hidden" value="'.$rows["GroupName"].'">
             </form>
-
-            <form method='POST' id='leave-".$rows["GroupName"]."'>
-                <input name='leaveGroup' type='hidden' value='".$rows["GroupName"]."'>
-            </form>
-                <button form='leave-".$rows["GroupName"]."'  type='submit' class='btn btn-warning btn-xs m-b-10 m-l-5'> Opuść grupę </button>";
+                <button form="leave-"'.$rows["GroupName"].'"  type="submit" class="btn btn-warning btn-xs m-b-10 m-l-5"> Opuść grupę </button>';
+            }
             if($loggedUser == $rows["groupAdmin"])
             {
            echo "<button form='delete-".$rows["GroupName"]."' type='submit' class='btn btn-danger btn-xs m-b-10 m-l-5'> Skasuj grupę </button>";
@@ -287,26 +290,41 @@ class panel
             $pane1 = new panel();
             $name = $_POST["groupName"];
             $size = $_POST["groupSize"];
-            $count = 1;
+            $userCount = 1;
             $loggedUser = substr($_SESSION['userID'], 0, -5); 
             if(($pane1->hasUserGroup($pdo, $loggedUser, $groupName) != true))
             {
-                $stmt = $pdo->prepare('INSERT INTO groups(GroupName,GroupDescription, Max_count, UserCount, groupAdmin) 
-                VALUES (:name, "Opis grupy...", :size, :count, :user )');
-                $stmtB = $pdo->prepare('INSERT INTO connectgroup(login, GroupName, groupAdmin)
-                VALUES (:login, :name, :login)');
+                echo $name;
 
-                $stmt->bindParam(':name', $name,PDO::PARAM_STR);
-                $stmt->bindParam(':size', $size,PDO::PARAM_INT);
-                $stmt->bindParam(':count', $count,PDO::PARAM_INT);
-                $stmt->bindParam(':user', $loggedUser,PDO::PARAM_STR);
+                $stmtGroupsCount = $pdo->prepare('SELECT COUNT(*) FROM groups WHERE GroupName = :groupName');
+                $stmtGroupsCount->bindParam(':groupName', $groupName,PDO::PARAM_STR);
+                $stmtGroupsCount->execute();
 
-                $stmtB->bindParam(':name', $name,PDO::PARAM_STR);
-                $stmtB->bindParam(':login', $loggedUser,PDO::PARAM_STR);
+                $row= $stmtGroupsCount->fetch();
+                $count = $row["COUNT(*)"];
+                if($count == 0)
+                {
+                    $stmt = $pdo->prepare('INSERT INTO groups(GroupName,GroupDescription, Max_count, UserCount, groupAdmin) 
+                    VALUES (:name, "Opis grupy...", :size, :count, :user )');
 
+                    $stmtB = $pdo->prepare('INSERT INTO connectgroup(login, GroupName, groupAdmin)
+                    VALUES (:login, :name, :login)');
 
-                $stmt->execute();
-                $stmtB->execute();
+                    $stmt->bindParam(':name', $name,PDO::PARAM_STR);
+                    $stmt->bindParam(':size', $size,PDO::PARAM_INT);
+                    $stmt->bindParam(':count', $userCount,PDO::PARAM_INT);
+                    $stmt->bindParam(':user', $loggedUser,PDO::PARAM_STR);
+
+                    $stmtB->bindParam(':name', $name,PDO::PARAM_STR);
+                    $stmtB->bindParam(':login', $loggedUser,PDO::PARAM_STR);
+
+                    $stmt->execute();
+                    $stmtB->execute();
+                }
+                else
+                {
+                    echo '<script>alert("Już istnieje grupa o takiej nazwie! Wybierz inną nazwę")</script>';
+                }
             }
             else
             {
@@ -332,7 +350,9 @@ class panel
                                FROM groups g, connectgroup cg, avatars a
                                WHERE cg.GroupName = :groupName 
                                AND cg.GroupName = g.GroupName 
-                               AND a.login = cg.login');
+                               AND a.login = cg.login
+                               AND cg.groupAdmin = g.groupAdmin
+                               ');
 
         $stmt->bindParam(':groupName',$_GET['groupName'],PDO::PARAM_STR);
         $stmt->execute();
@@ -469,7 +489,7 @@ class panel
             if($this->existsUser($pdo, $username) && (!($this->existsUserInGroup($pdo, $username, $groupName))))
             {
                 
-                
+                echo'<script>' .$groupName. '</script>';
                 $stmtAdmin = $pdo->prepare('SELECT g.groupAdmin FROM groups g WHERE g.GroupName = :groupName');
                 $stmtAdmin->bindParam(':groupName', $groupName,PDO::PARAM_INT);
                 $stmtAdmin->execute();
@@ -495,6 +515,7 @@ class panel
                 echo '<script>alert("Użytkownik jest już w grupie lub nie istnieje!")</script>'; 
             }
         }
+
     }
 
     public function addPrivateNote($pdo, $username)
@@ -686,12 +707,13 @@ class panel
                 <tr>
                     <td>'.++$counter.'</td>
                     <td>
-                        <a href="task.php">'.$row['topic'].'</a>
-                    </td>
+                    <a href="javascript:;" data-toggle="modal" data-target="#show'.$row["topic"].'">
+                    '.$row["topic"].'</td></a>
+                                        </td>
                     <td>
-                        <a href="date.php">
+                       
                             <span>'.$row['dateend'].'</span>
-                        </a>
+                       
                     </td>
                     <td>
                     <center> ';
@@ -759,10 +781,30 @@ class panel
                         </div>
                     </div>
                 </div>
-          </div>
+          </div>';
             
+          echo '<div class="modal" tabindex="-1" role="dialog" aria-labelledby="showTask" aria-hidden="true" id="show'.$row["topic"].'">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">'.$row["topic"].'</h3>
+                        <h4 style="float:left !important;">Deadline: '.$row["dateend"] .'</h4>';
+                      
+                    
+                        echo'</div>
+                    <div class="modal-body">
+                    <p>'.$row["content"].'</p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                    </div>
+                </form>
+            </div>
+         </div>
+        </div>';
             
-            <div class="modal" id="a'.$row['topic'].'" tabindex="-1" role="dialog" aria-labelledby="deleteTaskConfirmModal" aria-hidden="true">
+            echo'<div class="modal" id="a'.$row['topic'].'" tabindex="-1" role="dialog" aria-labelledby="deleteTaskConfirmModal" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
@@ -816,7 +858,8 @@ class panel
                 <tr>
                     <td>'.++$counter.'</td>
                     <td>
-                        <a href="task.php">'.$row['topic'].'</a>
+                    <a href="javascript:;" data-toggle="modal" data-target="#show'.$row["topic"].'">
+                    '.$row["topic"].'</td></a>
                     </td>
                     <td>
                         <a href="date.php">
@@ -889,10 +932,37 @@ class panel
                         </div>
                     </div>
                 </div>
-          </div>
+          </div>';
             
+          echo '<div class="modal" tabindex="-1" role="dialog" aria-labelledby="showGroupTask" aria-hidden="true" id="show'.$row["topic"].'">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">'.$row["topic"].'</h3>
+                        <h4 style="float:left">Deadline: '.$row["dateend"] .'</h4>';
+                        if($row['status1']==1)
+                        {
+                        echo '<span class="badge badge-success">Skończone</span>';
+                        }
+                        else
+                        {
+                        echo '<span class="badge badge-danger">W trakcie</span>';   
+                        }
+                        echo'</div>
+                    
+                    <div class="modal-body">
+                    <p>'.$row["content"].'</p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                    </div>
+                </form>
+            </div>
+         </div>
+        </div>';
             
-            <div class="modal" id="a'.$row['topic'].'" tabindex="-1" role="dialog" aria-labelledby="deleteTaskConfirmModal" aria-hidden="true">
+            echo '<div class="modal" id="a'.$row['topic'].'" tabindex="-1" role="dialog" aria-labelledby="deleteTaskConfirmModal" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
@@ -1163,16 +1233,12 @@ class panel
 
     }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 546ae4a931a60ec021e2c11413cf6ccd3fae85c2
     public function showFriendsJSON($pdo, $username)
     {
         $pane = new panel();
-        $stmt = $pdo->prepare('SELECT r.user1Login FROM relationships r 
-        WHERE r.user1Login =:username
-        AND r.relationshipStatus = 2 OR r.relationshipStatus = 1
+        $stmt = $pdo->prepare('SELECT r.user2Login FROM relationships r 
+        WHERE (r.user1Login =:username OR r.user2Login = :username)
+        AND r.relationshipStatus = 2 AND r.relationshipStatus = 1
         ');
         $stmt->bindParam(':username',$username,PDO::PARAM_STR);
         $stmt->execute();
@@ -1319,14 +1385,18 @@ class panel
     }
     public function sendInvitation($pdo, $user1, $user2)
     {
-        
-        $stmt = $pdo->prepare('INSERT INTO `relationships` (user1Login, user2Login, relationshipStatus, actionUserLogin)
-         VALUES (:user1, :user2, 1, :user2)
-        ');
-         $stmt->bindParam(':user1', $user1, PDO::PARAM_STR);
-         $stmt->bindParam(':user2', $user2, PDO::PARAM_STR);
-         $stmt->execute();
-      
+        if($this->relationShipStatus($pdo, $user1, $user2) == 0)
+        {
+            if($user2 != $user1)
+            {
+                $stmt = $pdo->prepare('INSERT INTO `relationships` (user1Login, user2Login, relationshipStatus, actionUserLogin)
+                VALUES (:user1, :user2, 1, :user2)
+                ');
+                $stmt->bindParam(':user1', $user1, PDO::PARAM_STR);
+                $stmt->bindParam(':user2', $user2, PDO::PARAM_STR);
+                $stmt->execute();
+            }
+        }
     }
 
     public function acceptInvitation($pdo, $user1, $user2)

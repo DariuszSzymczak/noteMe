@@ -2,10 +2,11 @@
 class register{
 
     public function addUser($pdo,$mail,$login,$password,$password2)
-    {
-
+    {           
            if($password===$password2)
            {
+
+                              
                 $salted = "salt{$password}salt";
                 $hash = md5($salted);
                 $primary = $login.substr($hash,0,5);
@@ -34,9 +35,9 @@ class register{
                 $stmtC->bindValue(':imgdata', $imgData);
                 $stmtC->execute();
 
+
            }
            
-
     }
 
     public function login($pdo,$login,$password)

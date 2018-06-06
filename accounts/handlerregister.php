@@ -30,6 +30,23 @@
     //----------------Weryfikacja rejestracji----------------
     if(!empty($_POST['login']))
     {
+        $stmtExists = $pdo->prepare('SELECT login FROM users ');
+        $stmtExists->execute();
+        $userFound = false;
+            while($rows = $stmtExists->fetch())
+            { 
+                if($_POST['login'] == $rows['login'])
+                {
+                    echo 'Login jest już zajęty!';
+                }
+            }
+        $pattern = '/(\s)\w/';
+
+        if(preg_match($pattern, $_POST['login']))
+                {
+                    echo'Login nie może zawierać spacji!';
+                    return;
+                }
         $login = $_POST['login']; 
         if(!empty($_POST['mail']))
         {
