@@ -1233,10 +1233,6 @@ echo '<div class="modal" tabindex="-1" role="dialog" aria-labelledby="showPrivat
 
     }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 6abee255f4adbc5110284da89453b04b36a22c8c
     public function showFriendsJSON($pdo, $username)
     {
         $pane = new panel();
