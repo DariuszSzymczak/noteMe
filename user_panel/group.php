@@ -5,7 +5,7 @@
     $pane->changeGroupData($pdo, $_GET['groupName']);
     $pane->addUserToGroup($pdo, $_GET['groupName']);
     $pane->sendMail($pdo,$_SESSION['userID']);
-    $pane->deleteFromGroup($pdo);
+    $pane->deleteFromGroup($pdo, $_GET['groupName']);
     $pane->addTaskToGroup($pdo);
     $pane->delgroupTask($pdo);
     $pane->editgroupTask($pdo);

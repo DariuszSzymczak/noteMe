@@ -1,6 +1,5 @@
 <?php
 session_start();
-$name2 = $_POST['name2'];
 if(isset($_SESSION['userID']))
 {
 $panel = './../../panelClass/panel.php';
@@ -18,6 +17,5 @@ else
     header('Location:./../../../../index.php');
 }
 $name = substr($_SESSION['userID'],0, -5);
-$pane->sendInvitation($pdo,$name2,$name);
-$pane->showSentInvitations($pdo,$name);
+$pane->showFriendsJSON($pdo,$name);
 ?>

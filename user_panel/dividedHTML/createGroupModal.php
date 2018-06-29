@@ -14,8 +14,7 @@
                                 />
                                 <label for="groupSize">
                                     Liczba użytkowników </label>
-                                <input type="number" min="20" value="20" data-val="true" data-val-required="Wpisz nazwę grupy" class="form-control" name="groupSize" id="groupSize"
-                                />
+                                <input  required class="form-control" name="groupSize" max="20"type="number"/>
                                 <span class="field-validation-valid text-danger" data-valmsg-for="groupName" data-valmsg-replace="true"></span>
                             </div>
                         </div>
