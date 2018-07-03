@@ -167,7 +167,7 @@ function show_all(json){
                             <button type="button" class="btn btn-primary" id="form-button-changepw" data-toggle="modal" data-target="#modalChangePassword" data-loginTS=${json.login}> Zmień hasło </button>\
 			                <button data-user="${json.login}" class="btn btn-primary deleteUser" value="Usuń uzytkownika">Usuń uzytkownika</button>\
                         </div>
-                    </div>`
+                    </div>`;
         $('#users').append(outerDiv);
         $('.media').slideDown(500).delay(300);
     }
